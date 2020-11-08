@@ -58,7 +58,25 @@ public class PremierLeagueManager implements LeagueManager {
 
     @Override
     public SportsClub deleteClub() {
+        System.out.println("Enter Club Name you wish to delete");
+        String clubInput = sc.nextLine().toLowerCase();
 
+        boolean foundFlag = false;
+        SportsClub removedClub = null;
+        for (SportsClub sportsClub : sportsClubs) {
+            if(sportsClub.getClubName().equals(clubInput)) {
+                removedClub = sportsClubs.remove(sportsClubs.indexOf(sportsClub));
+                foundFlag = true;
+                break;
+            }
+        }
+        if(!foundFlag) {
+            System.out.println("[ERROR] ==> No Such Club Exists");
+            return null;
+        } else {
+            System.out.println(sportsClubs.size());
+            return removedClub;
+        }
     }
 
     @Override
