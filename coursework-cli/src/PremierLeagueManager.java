@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class PremierLeagueManager implements LeagueManager {
     private static List<FootballClub> allFootballClubs = new ArrayList<>();
     private static Scanner sc = new Scanner(System.in);
-//    private static final String savePath = "C:\\Users\\Ammuuu\\Downloads\\learning\\UNI\\OOP-Module\\Coursework\\OOP-COURSEWORK\\coursework-cli\\src";
+    private static final String savePath = "C:\\Users\\Ammuuu\\Downloads\\learning\\UNI\\OOP-Module\\Coursework\\OOP-COURSEWORK\\savefile";
 
     @Override
     public void addClub() throws ClassNotFoundException, IllegalAccessException {
@@ -26,6 +26,25 @@ public class PremierLeagueManager implements LeagueManager {
 
         System.out.println("Enter Club's name");
         String clubName = sc.nextLine().toLowerCase();
+        boolean clubExists = false;
+
+        while (true) {
+            for (FootballClub footballClub : allFootballClubs) {
+                if (footballClub.getClubName().equals(clubName)) {
+                    System.out.println("[ERROR] ==> " + clubName + " already exists! Please try again");
+                    clubExists = true;
+                    System.out.println("Enter Club's name");
+                    clubName = sc.nextLine().toLowerCase();
+                    break;
+                }
+            }
+            if (!clubExists) {
+                break;
+            } else {
+                clubExists = false;
+            }
+        }
+
         System.out.println("Enter club location");
         String clubLocation = sc.nextLine().toLowerCase();
         System.out.println("Enter club owner");
@@ -142,7 +161,7 @@ public class PremierLeagueManager implements LeagueManager {
     @Override
     public void saveData() {
         try {
-            FileOutputStream fileOutputStream = new FileOutputStream(new File("saveFile.txt"));
+            FileOutputStream fileOutputStream = new FileOutputStream(new File(savePath + "\\saveFile.txt"));
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
             System.out.println("Now saving data...");
             objectOutputStream.writeObject(allFootballClubs);
@@ -157,7 +176,7 @@ public class PremierLeagueManager implements LeagueManager {
     @Override
     public void loadData() {
         try {
-            FileInputStream fileInputStream = new FileInputStream(new File("saveFile.txt"));
+            FileInputStream fileInputStream = new FileInputStream(new File(savePath + "\\saveFile.txt"));
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
             System.out.println("Now loading data...");
             allFootballClubs = (List<FootballClub>) objectInputStream.readObject();
@@ -165,7 +184,6 @@ public class PremierLeagueManager implements LeagueManager {
             fileInputStream.close();
             objectInputStream.close();
             System.out.println(allFootballClubs);
-
         } catch (Exception e) {
             e.printStackTrace();
         }
