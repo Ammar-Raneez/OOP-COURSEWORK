@@ -64,15 +64,15 @@ public class PremierLeagueManager implements LeagueManager {
             case "u":
                 System.out.println("Please enter the lecturer in charge");
                 String lecturerInCharge = sc.nextLine();
-                footballClub = new UniversityFootballClub(clubName, clubLocation, clubOwner, new ClubKit(clubSponsor, colorTop, colorShort), lecturerInCharge);
+                footballClub = new UniversityFootballClub(clubName, clubLocation, clubOwner, new SportsClubKit(clubSponsor, colorTop, colorShort), lecturerInCharge);
                 break;
             case "s":
                 System.out.println("Please enter the teacher in charge");
                 String teacherInCharge = sc.nextLine();
-                footballClub = new SchoolFootballClub(clubName, clubLocation, clubOwner, new ClubKit(clubSponsor, colorTop, colorShort), teacherInCharge);
+                footballClub = new SchoolFootballClub(clubName, clubLocation, clubOwner, new SportsClubKit(clubSponsor, colorTop, colorShort), teacherInCharge);
                 break;
             case "l":
-                footballClub = new FootballClub(clubName, clubLocation, clubOwner, new ClubKit(clubSponsor, colorTop, colorShort));
+                footballClub = new FootballClub(clubName, clubLocation, clubOwner, new SportsClubKit(clubSponsor, colorTop, colorShort));
                 break;
         }
         allFootballClubs.add(footballClub);

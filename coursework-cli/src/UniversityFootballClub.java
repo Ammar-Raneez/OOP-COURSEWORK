@@ -1,7 +1,7 @@
 public class UniversityFootballClub extends FootballClub {
     private String lecturerInCharge;
 
-    public UniversityFootballClub(String clubName, String clubLocation, String clubOwner, ClubKit kit, String lecturerInCharge) {
+    public UniversityFootballClub(String clubName, String clubLocation, String clubOwner, SportsClubKit kit, String lecturerInCharge) {
         super(clubName, clubLocation, clubOwner, kit);
         this.lecturerInCharge = lecturerInCharge;
     }

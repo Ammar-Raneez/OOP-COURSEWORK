@@ -2,10 +2,10 @@ public class SportsClub {
     private String clubName;
     private String clubLocation;
     private String clubOwner;
-    private ClubKit kit;
+    private SportsClubKit kit;
     private int amountOfPlayers;
 
-    public SportsClub(String clubName, String clubLocation, String clubOwner, ClubKit kit, int amountOfPlayers) {
+    public SportsClub(String clubName, String clubLocation, String clubOwner, SportsClubKit kit, int amountOfPlayers) {
         this.clubName = clubName;
         this.clubLocation = clubLocation;
         this.clubOwner = clubOwner;
@@ -37,11 +37,11 @@ public class SportsClub {
         this.clubOwner = clubOwner;
     }
 
-    public ClubKit getKit() {
+    public SportsClubKit getKit() {
         return kit;
     }
 
-    public void setKit(ClubKit kit) {
+    public void setKit(SportsClubKit kit) {
         this.kit = kit;
     }
 

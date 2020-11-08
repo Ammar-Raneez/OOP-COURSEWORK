@@ -1,8 +1,8 @@
-class MatchScore {
+class FootballMatchScore {
     private int team1;
     private int team2;
 
-    public MatchScore(int team1, int team2) {
+    public FootballMatchScore(int team1, int team2) {
         this.team1 = team1;
         this.team2 = team2;
     }
