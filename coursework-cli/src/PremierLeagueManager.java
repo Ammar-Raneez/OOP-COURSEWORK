@@ -63,7 +63,23 @@ public class PremierLeagueManager implements LeagueManager {
 
     @Override
     public void displaySelectedClub() {
+        System.out.println("Enter club name to display");
+        String clubNameInput = sc.nextLine().toLowerCase();
 
+        boolean foundFlag = false;
+        SportsClub foundClub = null;
+        for(SportsClub sportsClub : sportsClubs) {
+            if (sportsClub.getClubName().equals(clubNameInput)) {
+                foundClub = sportsClub;
+                foundFlag = true;
+                break;
+            }
+        }
+        if (!foundFlag) {
+            System.out.println("[ERROR] ==> No Such Club Exists");
+        } else {
+            System.out.println(foundClub);
+        }
     }
 
     @Override
