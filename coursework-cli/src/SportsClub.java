@@ -57,10 +57,12 @@ public class SportsClub implements Serializable {
 
     @Override
     public String toString() {
-        return
+        return "SportsClub{" +
                 "clubName='" + clubName + '\'' +
                 ", clubLocation='" + clubLocation + '\'' +
                 ", clubOwner='" + clubOwner + '\'' +
-                ", kit=" + kit;
+                ", kit=" + kit +
+                ", amountOfPlayers=" + amountOfPlayers +
+                '}';
     }
 }

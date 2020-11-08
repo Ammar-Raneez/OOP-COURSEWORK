@@ -18,7 +18,7 @@ public class UniversityFootballClub extends FootballClub implements Serializable
 
     @Override
     public String toString() {
-        return "This UniversityFootballClub Object{" +
+        return "UniversityFootballClub{" +
                 super.toString() +
                 ",lecturerInCharge='" + lecturerInCharge + '\'' +
                 '}';

@@ -97,7 +97,7 @@ class FootballClubStatistics implements Serializable {
 
     @Override
     public String toString() {
-        return "ClubStatistics{" +
+        return "FootballClubStatistics{" +
                 "wins=" + wins +
                 ", draws=" + draws +
                 ", defeats=" + defeats +
