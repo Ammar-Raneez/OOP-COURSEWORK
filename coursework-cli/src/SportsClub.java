@@ -1,5 +1,3 @@
-import java.util.Objects;
-
 public class SportsClub {
     private String clubName;
     private String clubLocation;

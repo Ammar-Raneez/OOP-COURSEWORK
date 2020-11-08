@@ -5,11 +5,20 @@ import java.util.List;
 import java.util.Scanner;
 
 public class PremierLeagueManager implements LeagueManager {
-    private static List<SportsClub> sportsClubs = new ArrayList<>();
+    private static List<FootballClub> allFootballClubs = new ArrayList<>();
     private static Scanner sc = new Scanner(System.in);
 
     @Override
     public void addClub() throws ClassNotFoundException, IllegalAccessException {
+        System.out.println("Please enter the type of club (University (u) /School (s) /League (l) level)");
+        String clubType = sc.nextLine().toLowerCase();
+
+        while (true) {
+            if (clubType.equals("u") || clubType.equals("s") || clubType.equals("l")) {
+                break;
+            }
+        }
+
         System.out.println("Enter Club's name");
         String clubName = sc.nextLine().toLowerCase();
         System.out.println("Enter club location");
@@ -50,10 +59,25 @@ public class PremierLeagueManager implements LeagueManager {
             }
         }
 
-        SportsClub footballClub = new FootballClub(clubName, clubLocation, clubOwner, new ClubKit(clubSponsor, colorTop, colorShort));
-        sportsClubs.add(footballClub);
+        FootballClub footballClub = null;
+        switch (clubType) {
+            case "u":
+                System.out.println("Please enter the lecturer in charge");
+                String lecturerInCharge = sc.nextLine();
+                footballClub = new UniversityFootballClub(clubName, clubLocation, clubOwner, new ClubKit(clubSponsor, colorTop, colorShort), lecturerInCharge);
+                break;
+            case "s":
+                System.out.println("Please enter the teacher in charge");
+                String teacherInCharge = sc.nextLine();
+                footballClub = new SchoolFootballClub(clubName, clubLocation, clubOwner, new ClubKit(clubSponsor, colorTop, colorShort), teacherInCharge);
+                break;
+            case "l":
+                footballClub = new FootballClub(clubName, clubLocation, clubOwner, new ClubKit(clubSponsor, colorTop, colorShort));
+                break;
+        }
+        allFootballClubs.add(footballClub);
         System.out.println(footballClub);
-        System.out.println(sportsClubs.size());
+        System.out.println(allFootballClubs.size());
     }
 
     @Override
@@ -63,9 +87,9 @@ public class PremierLeagueManager implements LeagueManager {
 
         boolean foundFlag = false;
         SportsClub removedClub = null;
-        for (SportsClub sportsClub : sportsClubs) {
-            if(sportsClub.getClubName().equals(clubInput)) {
-                removedClub = sportsClubs.remove(sportsClubs.indexOf(sportsClub));
+        for (FootballClub footballClub : allFootballClubs) {
+            if(footballClub.getClubName().equals(clubInput)) {
+                removedClub = allFootballClubs.remove(allFootballClubs.indexOf(footballClub));
                 foundFlag = true;
                 break;
             }
@@ -74,7 +98,7 @@ public class PremierLeagueManager implements LeagueManager {
             System.out.println("[ERROR] ==> No Such Club Exists");
             return null;
         } else {
-            System.out.println(sportsClubs.size());
+            System.out.println(allFootballClubs.size());
             return removedClub;
         }
     }
@@ -85,10 +109,10 @@ public class PremierLeagueManager implements LeagueManager {
         String clubNameInput = sc.nextLine().toLowerCase();
 
         boolean foundFlag = false;
-        SportsClub foundClub = null;
-        for(SportsClub sportsClub : sportsClubs) {
-            if (sportsClub.getClubName().equals(clubNameInput)) {
-                foundClub = sportsClub;
+        FootballClub foundClub = null;
+        for(FootballClub footballClub : allFootballClubs) {
+            if (footballClub.getClubName().equals(clubNameInput)) {
+                foundClub = footballClub;
                 foundFlag = true;
                 break;
             }
