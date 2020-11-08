@@ -163,10 +163,17 @@ public class PremierLeagueManager implements LeagueManager {
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(new File(savePath + "\\saveFile.txt"));
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-            System.out.println("Now saving data...");
+            System.out.print("Now saving data");
+            Thread.sleep(500);
+            System.out.print(".");
+            Thread.sleep(500);
+            System.out.print(".");
+            Thread.sleep(500);
+            System.out.println(".");
             objectOutputStream.writeObject(allFootballClubs);
             objectOutputStream.close();
             fileOutputStream.close();
+            Thread.sleep(500);
             System.out.println("Data saved successfully!");
         } catch (Exception e) {
             e.printStackTrace();
@@ -178,7 +185,14 @@ public class PremierLeagueManager implements LeagueManager {
         try {
             FileInputStream fileInputStream = new FileInputStream(new File(savePath + "\\saveFile.txt"));
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-            System.out.println("Now loading data...");
+            System.out.print("Now loading data");
+            Thread.sleep(500);
+            System.out.print(".");
+            Thread.sleep(500);
+            System.out.print(".");
+            Thread.sleep(500);
+            System.out.println(".");
+            Thread.sleep(500);
             allFootballClubs = (List<FootballClub>) objectInputStream.readObject();
             System.out.println("Data loaded successfully!");
             fileInputStream.close();
