@@ -1,3 +1,4 @@
+//LeagueManager interface with methods common for any League
 public interface LeagueManager {
     void addClub() throws ClassNotFoundException, IllegalAccessException;
     SportsClub deleteClub();
