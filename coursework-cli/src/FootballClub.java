@@ -1,18 +1,18 @@
 public class FootballClub extends SportsClub {
     private static final int NUMBER_OF_PLAYERS = 10;
-    private ClubStatistics clubStatistics;
+    private FootballClubStatistics footballClubStatistics;
 
     public FootballClub(String clubName, String clubLocation, String clubOwner, ClubKit kit) {
         super(clubName, clubLocation, clubOwner, kit, NUMBER_OF_PLAYERS);
-        this.clubStatistics = new ClubStatistics();
+        this.footballClubStatistics = new FootballClubStatistics();
     }
 
-    public ClubStatistics getClubStatistics() {
-        return clubStatistics;
+    public FootballClubStatistics getClubStatistics() {
+        return footballClubStatistics;
     }
 
-    public void setClubStatistics(ClubStatistics clubStatistics) {
-        this.clubStatistics = clubStatistics;
+    public void setClubStatistics(FootballClubStatistics clubStatistics) {
+        this.footballClubStatistics = clubStatistics;
     }
 
     public static int getNumberOfPlayers() {
@@ -23,7 +23,7 @@ public class FootballClub extends SportsClub {
     public String toString() {
         return "FootballClub{" +
                 super.toString() +
-                ", clubStatistics=" + clubStatistics +
+                ", clubStatistics=" + footballClubStatistics +
                 '}';
     }
 

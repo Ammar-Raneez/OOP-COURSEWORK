@@ -9,7 +9,7 @@ class FootballClubStatistics {
     private double overallPossession;
     private int totalRedCards;
 
-    public ClubStatistics() {
+    public FootballClubStatistics() {
         this.wins = 0;
         this.draws = 0;
         this.defeats = 0;
