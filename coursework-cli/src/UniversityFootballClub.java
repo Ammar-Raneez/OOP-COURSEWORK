@@ -1,4 +1,6 @@
-public class UniversityFootballClub extends FootballClub {
+import java.io.Serializable;
+
+public class UniversityFootballClub extends FootballClub implements Serializable {
     private String lecturerInCharge;
 
     public UniversityFootballClub(String clubName, String clubLocation, String clubOwner, SportsClubKit kit, String lecturerInCharge) {

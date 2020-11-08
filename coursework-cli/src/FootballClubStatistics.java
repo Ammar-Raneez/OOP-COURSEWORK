@@ -1,4 +1,6 @@
-class FootballClubStatistics {
+import java.io.Serializable;
+
+class FootballClubStatistics implements Serializable {
     private int wins;
     private int draws;
     private int defeats;

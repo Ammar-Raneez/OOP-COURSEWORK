@@ -1,4 +1,6 @@
-class FootballMatchScore {
+import java.io.Serializable;
+
+class FootballMatchScore implements Serializable {
     private int team1;
     private int team2;
 

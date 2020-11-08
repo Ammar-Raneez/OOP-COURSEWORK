@@ -1,6 +1,7 @@
 import java.awt.*;
+import java.io.Serializable;
 
-class SportsClubKit {
+class SportsClubKit implements Serializable {
     private String sponsor;
     private Color topColor;
     private Color bottomColor;

@@ -1,4 +1,6 @@
-public class FootballClub extends SportsClub {
+import java.io.Serializable;
+
+public class FootballClub extends SportsClub implements Serializable {
     private static final int NUMBER_OF_PLAYERS = 10;
     private FootballClubStatistics footballClubStatistics;
 

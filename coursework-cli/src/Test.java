@@ -4,8 +4,10 @@ public class Test {
     public static void main(String[] args) throws IllegalAccessException, NoSuchFieldException, ClassNotFoundException {
         PremierLeagueManager premierLeagueManager = new PremierLeagueManager();
         premierLeagueManager.addClub();
-        premierLeagueManager.displaySelectedClub();
+//        premierLeagueManager.displaySelectedClub();
 
-        System.out.println(premierLeagueManager.deleteClub());
+//        System.out.println(premierLeagueManager.deleteClub());
+        premierLeagueManager.saveData();
+        premierLeagueManager.loadData();
     }
 }
