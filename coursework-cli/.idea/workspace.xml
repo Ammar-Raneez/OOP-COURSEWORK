@@ -2,18 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f13a4d9d-47bd-4191-8d1d-a05f9b3027bf" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/Ammuuu.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/Ammuuu.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FootballClub.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/oop/courseworkcli/FootballClub.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FootballClubStatistics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/oop/courseworkcli/FootballClubStatistics.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FootballMatch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/oop/courseworkcli/FootballMatch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LeagueManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/oop/courseworkcli/LeagueManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PremierLeagueManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/oop/courseworkcli/PremierLeagueManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SchoolFootballClub.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/oop/courseworkcli/SchoolFootballClub.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SportsClub.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/oop/courseworkcli/SportsClub.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SportsClubKit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/oop/courseworkcli/SportsClubKit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/oop/courseworkcli/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UniversityFootballClub.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/oop/courseworkcli/UniversityFootballClub.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lk/oop/courseworkcli/FootballClub.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/oop/courseworkcli/FootballClub.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lk/oop/courseworkcli/FootballClubStatistics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/oop/courseworkcli/FootballClubStatistics.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lk/oop/courseworkcli/PremierLeagueManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/oop/courseworkcli/PremierLeagueManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lk/oop/courseworkcli/SportsClub.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/oop/courseworkcli/SportsClub.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lk/oop/courseworkcli/SportsClubKit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/oop/courseworkcli/SportsClubKit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lk/oop/courseworkcli/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/oop/courseworkcli/Test.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,10 +81,10 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="275" y="28" key="#Inspections/0.0.1366.738@0.0.1366.738" timestamp="1604848848989" />
-    <state x="829" y="85" key="#com.intellij.ide.util.MemberChooser" timestamp="1604904032985">
+    <state x="829" y="85" key="#com.intellij.ide.util.MemberChooser" timestamp="1604905123404">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="829" y="85" key="#com.intellij.ide.util.MemberChooser/0.0.1366.738@0.0.1366.738" timestamp="1604904032985" />
+    <state x="829" y="85" key="#com.intellij.ide.util.MemberChooser/0.0.1366.738@0.0.1366.738" timestamp="1604905123404" />
     <state x="458" y="254" width="449" height="238" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1604837900826">
       <screen x="0" y="0" width="1366" height="738" />
     </state>

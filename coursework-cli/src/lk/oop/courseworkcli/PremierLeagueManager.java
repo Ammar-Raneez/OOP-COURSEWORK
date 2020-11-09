@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.Scanner;
 
 public class PremierLeagueManager implements LeagueManager {
+    private static final String SAVE_PATH = "C:\\Users\\Ammuuu\\Downloads\\learning\\UNI\\OOP-Module\\Coursework\\OOP-COURSEWORK\\saveFile";
     private static List<FootballClub> allFootballClubs = new ArrayList<>();
     private static Scanner sc = new Scanner(System.in);
-    private static final String SAVE_PATH = "C:\\Users\\Ammuuu\\Downloads\\learning\\UNI\\OOP-Module\\Coursework\\OOP-COURSEWORK\\saveFile";
 
     @Override
     public void addClub() throws ClassNotFoundException, IllegalAccessException {

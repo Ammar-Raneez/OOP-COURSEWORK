@@ -27,49 +27,18 @@ public class SportsClub implements Serializable {
     }
 
     /**
-     * @return name of club
+     * @return amount of players in a team of a sports club
      */
-    public String getClubName() {
-        return clubName;
+    public int getAmountOfPlayers() {
+        return amountOfPlayers;
     }
 
     /**
-     * sets name of a club
-     * @param clubName - name of club
+     * sets number of players of a sports club
+     * @param amountOfPlayers - number of players of a sports club
      */
-    public void setClubName(String clubName) {
-        this.clubName = clubName;
-    }
-
-
-    /**
-     * @return location of club
-     */
-    public String getClubLocation() {
-        return clubLocation;
-    }
-
-    /**
-     * sets location of a club
-     * @param clubLocation - location of club
-     */
-    public void setClubLocation(String clubLocation) {
-        this.clubLocation = clubLocation;
-    }
-
-    /**
-     * @return owner of club
-     */
-    public String getClubOwner() {
-        return clubOwner;
-    }
-
-    /**
-     * sets owner of a club
-     * @param clubOwner - owner of club
-     */
-    public void setClubOwner(String clubOwner) {
-        this.clubOwner = clubOwner;
+    public void setAmountOfPlayers(int amountOfPlayers) {
+        this.amountOfPlayers = amountOfPlayers;
     }
 
     /**
@@ -88,18 +57,48 @@ public class SportsClub implements Serializable {
     }
 
     /**
-     * @return amount of players in a team of a sports club
+     * @return location of club
      */
-    public int getAmountOfPlayers() {
-        return amountOfPlayers;
+    public String getClubLocation() {
+        return clubLocation;
     }
 
     /**
-     * sets number of players of a sports club
-     * @param amountOfPlayers - number of players of a sports club
+     * sets location of a club
+     * @param clubLocation - location of club
      */
-    public void setAmountOfPlayers(int amountOfPlayers) {
-        this.amountOfPlayers = amountOfPlayers;
+    public void setClubLocation(String clubLocation) {
+        this.clubLocation = clubLocation;
+    }
+
+    /**
+     * @return name of club
+     */
+    public String getClubName() {
+        return clubName;
+    }
+
+    /**
+     * sets name of a club
+     * @param clubName - name of club
+     */
+    public void setClubName(String clubName) {
+        this.clubName = clubName;
+    }
+
+    /**
+     * @return owner of club
+     */
+    public String getClubOwner() {
+        return clubOwner;
+    }
+
+    /**
+     * sets owner of a club
+     * @param clubOwner - owner of club
+     */
+    public void setClubOwner(String clubOwner) {
+        this.clubOwner = clubOwner;
     }
 
     /**

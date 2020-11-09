@@ -4,10 +4,10 @@ import java.io.Serializable;
 
 //helper class that holds statistics for a club
 class FootballClubStatistics implements Serializable {
-    private int draws;
     private int defeats;
-    private int goalsFor;
+    private int draws;
     private int goalsAgainst;
+    private int goalsFor;
     private int matchesPlayed;
     private int points;
     private int totalRedCards;
@@ -21,18 +21,18 @@ class FootballClubStatistics implements Serializable {
     public FootballClubStatistics() { }
 
     /**
-     * @return total wins of this club
+     * @return total defeats of this club
      */
-    public int getWins() {
-        return wins;
+    public int getDefeats() {
+        return defeats;
     }
 
     /**
-     * sets wins of this club
-     * @param wins - number of wins of this club
+     * sets defeats of this club
+     * @param defeats - number of defeats of this club
      */
-    public void setWins(int wins) {
-        this.wins = wins;
+    public void setDefeats(int defeats) {
+        this.defeats = defeats;
     }
 
     /**
@@ -51,18 +51,18 @@ class FootballClubStatistics implements Serializable {
     }
 
     /**
-     * @return total defeats of this club
+     * @return total goals scored against this club
      */
-    public int getDefeats() {
-        return defeats;
+    public int getGoalsAgainst() {
+        return goalsAgainst;
     }
 
     /**
-     * sets defeats of this club
-     * @param defeats - number of defeats of this club
+     * sets goals scored against this club
+     * @param goalsAgainst - total number of goals scored against this club
      */
-    public void setDefeats(int defeats) {
-        this.defeats = defeats;
+    public void setGoalsAgainst(int goalsAgainst) {
+        this.goalsAgainst = goalsAgainst;
     }
 
     /**
@@ -81,18 +81,18 @@ class FootballClubStatistics implements Serializable {
     }
 
     /**
-     * @return total goals scored against this club
+     * @return total matches played by this club
      */
-    public int getGoalsAgainst() {
-        return goalsAgainst;
+    public int getMatchesPlayed() {
+        return matchesPlayed;
     }
 
     /**
-     * sets goals scored against this club
-     * @param goalsAgainst - total number of goals scored against this club
+     * sets matches played by this club
+     * @param matchesPlayed - total number of matches played by this club
      */
-    public void setGoalsAgainst(int goalsAgainst) {
-        this.goalsAgainst = goalsAgainst;
+    public void setMatchesPlayed(int matchesPlayed) {
+        this.matchesPlayed = matchesPlayed;
     }
 
     /**
@@ -111,18 +111,33 @@ class FootballClubStatistics implements Serializable {
     }
 
     /**
-     * @return total matches played by this club
+     * @return total red cards obtained by this club
      */
-    public int getMatchesPlayed() {
-        return matchesPlayed;
+    public int getTotalRedCards() {
+        return totalRedCards;
     }
 
     /**
-     * sets matches played by this club
-     * @param matchesPlayed - total number of matches played by this club
+     * sets red cards obtained by this club
+     * @param totalRedCards - total number of red cards obtained by this club
      */
-    public void setMatchesPlayed(int matchesPlayed) {
-        this.matchesPlayed = matchesPlayed;
+    public void setTotalRedCards(int totalRedCards) {
+        this.totalRedCards = totalRedCards;
+    }
+
+    /**
+     * @return total wins of this club
+     */
+    public int getWins() {
+        return wins;
+    }
+
+    /**
+     * sets wins of this club
+     * @param wins - number of wins of this club
+     */
+    public void setWins(int wins) {
+        this.wins = wins;
     }
 
     /**
@@ -138,21 +153,6 @@ class FootballClubStatistics implements Serializable {
      */
     public void setOverallPossession(double overallPossession) {
         this.overallPossession = overallPossession;
-    }
-
-    /**
-     * @return total red cards obtained by this club
-     */
-    public int getTotalRedCards() {
-        return totalRedCards;
-    }
-
-    /**
-     * sets red cards obtained by this club
-     * @param totalRedCards - total number of red cards obtained by this club
-     */
-    public void setTotalRedCards(int totalRedCards) {
-        this.totalRedCards = totalRedCards;
     }
 
     /**

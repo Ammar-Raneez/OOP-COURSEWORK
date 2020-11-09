@@ -25,6 +25,13 @@ public class FootballClub extends SportsClub implements Serializable {
     }
 
     /**
+     * @return number of players in a football team
+     */
+    public static int getNumberOfPlayers() {
+        return NUMBER_OF_PLAYERS;
+    }
+
+    /**
      * @return this clubs statistic
      */
     public FootballClubStatistics getFootballClubStatistics() {
@@ -37,13 +44,6 @@ public class FootballClub extends SportsClub implements Serializable {
      */
     public void setFootballClubStatistics(FootballClubStatistics footballClubStatistics) {
         this.footballClubStatistics = footballClubStatistics;
-    }
-
-    /**
-     * @return number of players in a football team
-     */
-    public static int getNumberOfPlayers() {
-        return NUMBER_OF_PLAYERS;
     }
 
     /**
