@@ -8,10 +8,12 @@ import java.util.List;
 import java.util.Scanner;
 
 public class PremierLeagueManager implements LeagueManager {
-    private static final String SAVE_PATH = "C:\\Users\\Ammuuu\\Downloads\\learning\\UNI\\OOP-Module\\Coursework\\OOP-COURSEWORK\\saveFile";
+    private static final String SAVE_PATH = "C:\\Users\\Ammuuu\\Downloads\\learning\\UNI\\OOP-Module\\Coursework\\" +
+                                            "OOP-COURSEWORK\\saveFile";
     private static List<FootballClub> allFootballClubs = new ArrayList<>();
     private static Scanner sc = new Scanner(System.in);
 
+    //************************************************ADD METHOD******************************************************//
     @Override
     public void addClub() throws ClassNotFoundException, IllegalAccessException {
         System.out.println("Please enter the type of club (University /School /League level)");
@@ -40,6 +42,7 @@ public class PremierLeagueManager implements LeagueManager {
                     break;
                 }
             }
+
             if (!clubExists) {
                 break;
             } else {
@@ -67,8 +70,8 @@ public class PremierLeagueManager implements LeagueManager {
                 colorTop = (Color) fieldTop.get(null);
                 break;
             } catch (NoSuchFieldException e) {
-                System.out.println("[ERROR] ==> Please choose one of the valid colors! [black, blue, cyan, gray, green, magenta, orange, " +
-                        "pink, red, white, yellow]");
+                System.out.println("[ERROR] ==> Please choose one of the valid colors! [black, blue, cyan, gray, green, "
+                        + "magenta, orange, pink, red, white, yellow]");
             }
         }
 
@@ -80,8 +83,8 @@ public class PremierLeagueManager implements LeagueManager {
                 colorShort = (Color) fieldBottom.get(null);
                 break;
             } catch (NoSuchFieldException e) {
-                System.out.println("[ERROR] ==> Please choose one of the valid colors! [black, blue, cyan, gray, green, magenta, orange, " +
-                        "pink, red, white, yellow]");
+                System.out.println("[ERROR] ==> Please choose one of the valid colors! [black, blue, cyan, gray, green, "
+                        + "magenta, orange, pink, red, white, yellow]");
             }
         }
 
@@ -90,29 +93,40 @@ public class PremierLeagueManager implements LeagueManager {
             case "university":
                 System.out.println("Please enter the lecturer in charge");
                 String lecturerInChargeInput = sc.nextLine();
-                footballClub = new UniversityFootballClub(clubNameInput, clubLocationInput, clubOwnerInput, new SportsClubKit(clubSponsorInput, colorTop, colorShort), lecturerInChargeInput);
+                footballClub = new UniversityFootballClub(clubNameInput, clubLocationInput, clubOwnerInput,
+                                                          new SportsClubKit(clubSponsorInput, colorTop, colorShort),
+                                                          lecturerInChargeInput);
                 break;
             case "school":
                 System.out.println("Please enter the teacher in charge");
                 String teacherInChargeInput = sc.nextLine();
-                footballClub = new SchoolFootballClub(clubNameInput, clubLocationInput, clubOwnerInput, new SportsClubKit(clubSponsorInput, colorTop, colorShort), teacherInChargeInput);
+                footballClub = new SchoolFootballClub(clubNameInput, clubLocationInput, clubOwnerInput,
+                                                      new SportsClubKit(clubSponsorInput, colorTop, colorShort),
+                                                      teacherInChargeInput);
                 break;
             case "league":
-                footballClub = new FootballClub(clubNameInput, clubLocationInput, clubOwnerInput, new SportsClubKit(clubSponsorInput, colorTop, colorShort));
+                footballClub = new FootballClub(clubNameInput, clubLocationInput, clubOwnerInput,
+                                                new SportsClubKit(clubSponsorInput, colorTop, colorShort));
                 break;
         }
+
         allFootballClubs.add(footballClub);
         System.out.println(footballClub);
         System.out.println(allFootballClubs.size());
     }
+    //**********************************************END OF ADD METHOD*************************************************//
 
+
+
+    //***********************************************DELETE METHOD****************************************************//
     @Override
     public SportsClub deleteClub() {
+        boolean foundFlag = false;
+        SportsClub removedClub = null;
+
         System.out.println("Enter Club Name you wish to delete");
         String ClubNameInput = sc.nextLine().toLowerCase();
 
-        boolean foundFlag = false;
-        SportsClub removedClub = null;
         for (FootballClub footballClub : allFootballClubs) {
             if(footballClub.getClubName().equals(ClubNameInput)) {
                 removedClub = allFootballClubs.remove(allFootballClubs.indexOf(footballClub));
@@ -120,6 +134,7 @@ public class PremierLeagueManager implements LeagueManager {
                 break;
             }
         }
+
         if(!foundFlag) {
             System.out.println("[ERROR] ==> No Such Club Exists");
             return null;
@@ -128,14 +143,19 @@ public class PremierLeagueManager implements LeagueManager {
             return removedClub;
         }
     }
+    //*********************************************END OF DELETE METHOD***********************************************//
 
+
+
+    //******************************************DISPLAY SELECTED CLUB*************************************************//
     @Override
     public void displaySelectedClub() {
+        boolean foundFlag = false;
+        FootballClub foundClub = null;
+
         System.out.println("Enter club name to display");
         String clubNameInput = sc.nextLine().toLowerCase();
 
-        boolean foundFlag = false;
-        FootballClub foundClub = null;
         for(FootballClub footballClub : allFootballClubs) {
             if (footballClub.getClubName().equals(clubNameInput)) {
                 foundClub = footballClub;
@@ -143,12 +163,16 @@ public class PremierLeagueManager implements LeagueManager {
                 break;
             }
         }
+
         if (!foundFlag) {
             System.out.println("[ERROR] ==> No Such Club Exists");
         } else {
             System.out.println(foundClub);
         }
     }
+    //******************************************END DISPLAY SELECTED CLUB*********************************************//
+
+
 
     @Override
     public void addPlayedMatch() {
@@ -160,18 +184,24 @@ public class PremierLeagueManager implements LeagueManager {
 
     }
 
+
+
+    //**************************************************SAVE DATA*****************************************************//
     @Override
     public void saveData() {
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(new File(SAVE_PATH + "\\saveFile.txt"));
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
             System.out.print("Now saving data");
-            Thread.sleep(500);
-            System.out.print(".");
-            Thread.sleep(500);
-            System.out.print(".");
+
+            for (int i=0; i<2; i++) {
+                Thread.sleep(500);
+                System.out.print(".");
+            }
             Thread.sleep(500);
             System.out.println(".");
+            Thread.sleep(500);
+
             objectOutputStream.writeObject(allFootballClubs);
             objectOutputStream.close();
             fileOutputStream.close();
@@ -181,20 +211,26 @@ public class PremierLeagueManager implements LeagueManager {
             e.printStackTrace();
         }
     }
+    //**********************************************END SAVE DATA*****************************************************//
 
+
+
+    //**************************************************LOAD DATA*****************************************************//
     @Override
     public void loadData() {
         try {
             FileInputStream fileInputStream = new FileInputStream(new File(SAVE_PATH + "\\saveFile.txt"));
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
             System.out.print("Now loading data");
-            Thread.sleep(500);
-            System.out.print(".");
-            Thread.sleep(500);
-            System.out.print(".");
+
+            for (int i=0; i<2; i++) {
+                Thread.sleep(500);
+                System.out.print(".");
+            }
             Thread.sleep(500);
             System.out.println(".");
             Thread.sleep(500);
+
             allFootballClubs = (List<FootballClub>) objectInputStream.readObject();
             System.out.println("Data loaded successfully!");
             fileInputStream.close();

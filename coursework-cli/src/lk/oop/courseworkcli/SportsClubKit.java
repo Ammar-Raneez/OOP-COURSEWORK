@@ -1,9 +1,19 @@
+/*
+ * SportsClubKit
+ * Copyright © 2020 Ammar Raneez. All Rights Reserved.
+ *
+ */
+
 package lk.oop.courseworkcli;
 
 import java.awt.*;
 import java.io.Serializable;
 
-//helper class to create kits for clubs
+/**
+ * SportsClubKit class, which will be used to represent any generic sports club kit
+ * @version 1.x November 9th 2020
+ * @author Ammar Raneez
+ */
 class SportsClubKit implements Serializable {
     private Color bottomColor;
     private String sponsor;

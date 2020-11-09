@@ -1,9 +1,18 @@
+/*
+ * FootballMatch
+ * Copyright © 2020 Ammar Raneez. All Rights Reserved.
+ */
+
 package lk.oop.courseworkcli;
 
 import java.io.Serializable;
 import java.util.Date;
 
-//this helper class is used to create matches (played between two teams)
+/**
+ * FootballMatch class, which will be used to represent any match between two Football clubs
+ * @version 1.x November 9th 2020
+ * @author Ammar Raneez
+ */
 class FootballMatch implements Serializable {
     private FootballClub footballClub1;
     private FootballClub footballClub2;

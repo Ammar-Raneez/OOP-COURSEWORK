@@ -1,7 +1,17 @@
+/*
+ * UniversityFootballClub
+ * Copyright © 2020 Ammar Raneez. All Rights Reserved.
+ */
+
 package lk.oop.courseworkcli;
 
 import java.io.Serializable;
 
+/**
+ * UniversityFootballClub class, which will be used to represent any university football club (subclass of FootballClub)
+ * @version 1.x November 9th 2020
+ * @author Ammar Raneez
+ */
 public class UniversityFootballClub extends FootballClub implements Serializable {
     private String lecturerInCharge;
 
@@ -13,7 +23,8 @@ public class UniversityFootballClub extends FootballClub implements Serializable
      * @param kit - club kit (a helper class)
      * @param lecturerInCharge - lecturer in-charge of this university football club
      */
-    public UniversityFootballClub(String clubName, String clubLocation, String clubOwner, SportsClubKit kit, String lecturerInCharge) {
+    public UniversityFootballClub(String clubName, String clubLocation, String clubOwner, SportsClubKit kit,
+                                  String lecturerInCharge) {
         super(clubName, clubLocation, clubOwner, kit);
         this.lecturerInCharge = lecturerInCharge;
     }

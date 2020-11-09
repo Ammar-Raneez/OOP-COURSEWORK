@@ -1,7 +1,17 @@
+/*
+ * SchoolFootballClub
+ * Copyright © 2020 Ammar Raneez. All Rights Reserved.
+ */
+
 package lk.oop.courseworkcli;
 
 import java.io.Serializable;
 
+/**
+ * SchoolFootballClub class, which will be used to represent any school football club (subclass of FootballClub)
+ * @version 1.x November 9th 2020
+ * @author Ammar Raneez
+ */
 public class SchoolFootballClub extends FootballClub implements Serializable {
     private String teacherInCharge;
 
@@ -13,7 +23,8 @@ public class SchoolFootballClub extends FootballClub implements Serializable {
      * @param kit - club kit (a helper class)
      * @param teacherInCharge - teacher in-charge of this school football club
      */
-    public SchoolFootballClub(String clubName, String clubLocation, String clubOwner, SportsClubKit kit, String teacherInCharge) {
+    public SchoolFootballClub(String clubName, String clubLocation, String clubOwner, SportsClubKit kit,
+                              String teacherInCharge) {
         super(clubName, clubLocation, clubOwner, kit);
         this.teacherInCharge = teacherInCharge;
     }
