@@ -8,11 +8,11 @@ package lk.oop.courseworkcli;
 import java.io.Serializable;
 
 /**
- * FootballClubStatistics class, which will be used to represent any football clubs statistics
+ * FootballClubStatistics class, which will be used to represent any football clubs total statistics
  * @version 1.x November 9th 2020
  * @author Ammar Raneez | 2019163 | W1761196
  */
-class FootballClubStatistics implements Serializable {
+class FootballClubTotalStatistics implements Serializable {
     private int defeats;
     private int draws;
     private int goalsAgainst;
@@ -20,6 +20,7 @@ class FootballClubStatistics implements Serializable {
     private int matchesPlayed;
     private int points;
     private int totalRedCards;
+    private int totalYellowCards;
     private int wins;
     private double overallPossession;
 
@@ -27,7 +28,7 @@ class FootballClubStatistics implements Serializable {
      * initializes a club statistic object
      * all attributes initialized to 0, since a new club will not have any record
      */
-    public FootballClubStatistics() { }
+    public FootballClubTotalStatistics() { }
 
     /**
      * @return total defeats of this club
@@ -132,6 +133,21 @@ class FootballClubStatistics implements Serializable {
      */
     public void setTotalRedCards(int totalRedCards) {
         this.totalRedCards = totalRedCards;
+    }
+
+    /**
+     * @return total yellow cards obtained by this club
+     */
+    public int getTotalYellowCards() {
+        return totalYellowCards;
+    }
+
+    /**
+     * sets yellow cards obtained by this club
+     * @param totalYellowCards - total number of yellow cards obtained by this club
+     */
+    public void setTotalYellowCards(int totalYellowCards) {
+        this.totalYellowCards = totalYellowCards;
     }
 
     /**
