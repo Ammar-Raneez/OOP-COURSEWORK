@@ -1,12 +1,14 @@
+package lk.oop.courseworkcli;
+
 import java.io.Serializable;
 
 //super class that can hold any sport club
 public class SportsClub implements Serializable {
-    private String clubName;
-    private String clubLocation;
-    private String clubOwner;
-    private SportsClubKit kit;
     private int amountOfPlayers;
+    private SportsClubKit kit;
+    private String clubLocation;
+    private String clubName;
+    private String clubOwner;
 
     /**
      * initializes a new sports club

@@ -1,10 +1,12 @@
+package lk.oop.courseworkcli;
+
 import java.io.Serializable;
 
 public class UniversityFootballClub extends FootballClub implements Serializable {
     private String lecturerInCharge;
 
     /**
-     * initializes a new UniversityFootballClub object
+     * initializes a new lk.oop.courseworkcli.UniversityFootballClub object
      * @param clubName - name of club
      * @param clubLocation - location of club
      * @param clubOwner - owner of club

@@ -1,8 +1,8 @@
-import java.util.Scanner;
+package lk.oop.courseworkcli;
 
 public class Test {
     public static void main(String[] args) throws IllegalAccessException, NoSuchFieldException, ClassNotFoundException {
-        PremierLeagueManager premierLeagueManager = new PremierLeagueManager();
+        LeagueManager premierLeagueManager = new PremierLeagueManager();
 //        premierLeagueManager.addClub();
 //        premierLeagueManager.addClub();
 //        premierLeagueManager.displaySelectedClub();

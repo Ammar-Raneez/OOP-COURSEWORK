@@ -1,3 +1,5 @@
+package lk.oop.courseworkcli;
+
 import java.awt.*;
 import java.io.*;
 import java.lang.reflect.Field;
@@ -8,33 +10,33 @@ import java.util.Scanner;
 public class PremierLeagueManager implements LeagueManager {
     private static List<FootballClub> allFootballClubs = new ArrayList<>();
     private static Scanner sc = new Scanner(System.in);
-    private static final String savePath = "C:\\Users\\Ammuuu\\Downloads\\learning\\UNI\\OOP-Module\\Coursework\\OOP-COURSEWORK\\savefile";
+    private static final String SAVE_PATH = "C:\\Users\\Ammuuu\\Downloads\\learning\\UNI\\OOP-Module\\Coursework\\OOP-COURSEWORK\\saveFile";
 
     @Override
     public void addClub() throws ClassNotFoundException, IllegalAccessException {
         System.out.println("Please enter the type of club (University /School /League level)");
-        String clubType = sc.nextLine().toLowerCase();
+        String clubTypeInput = sc.nextLine().toLowerCase();
 
         while (true) {
-            if (clubType.equals("university") || clubType.equals("school") || clubType.equals("league")) {
+            if (clubTypeInput.equals("university") || clubTypeInput.equals("school") || clubTypeInput.equals("league")) {
                 break;
             } else {
                 System.out.println("Please specify appropriately! (university/school/league)");
-                clubType = sc.nextLine().toLowerCase();
+                clubTypeInput = sc.nextLine().toLowerCase();
             }
         }
 
         System.out.println("Enter Club's name");
-        String clubName = sc.nextLine().toLowerCase();
+        String clubNameInput = sc.nextLine().toLowerCase();
         boolean clubExists = false;
 
         while (true) {
             for (FootballClub footballClub : allFootballClubs) {
-                if (footballClub.getClubName().equals(clubName)) {
-                    System.out.println("[ERROR] ==> " + clubName + " already exists! Please try again");
+                if (footballClub.getClubName().equals(clubNameInput)) {
+                    System.out.println("[ERROR] ==> " + clubNameInput + " already exists! Please try again");
                     clubExists = true;
                     System.out.println("Enter Club's name");
-                    clubName = sc.nextLine().toLowerCase();
+                    clubNameInput = sc.nextLine().toLowerCase();
                     break;
                 }
             }
@@ -46,11 +48,11 @@ public class PremierLeagueManager implements LeagueManager {
         }
 
         System.out.println("Enter club location");
-        String clubLocation = sc.nextLine().toLowerCase();
+        String clubLocationInput = sc.nextLine().toLowerCase();
         System.out.println("Enter club owner");
-        String clubOwner = sc.nextLine().toLowerCase();
+        String clubOwnerInput = sc.nextLine().toLowerCase();
         System.out.println("Enter club sponsor");
-        String clubSponsor = sc.nextLine().toLowerCase();
+        String clubSponsorInput = sc.nextLine().toLowerCase();
 
         Color colorTop;
         Color colorShort;
@@ -84,19 +86,19 @@ public class PremierLeagueManager implements LeagueManager {
         }
 
         FootballClub footballClub = null;
-        switch (clubType) {
+        switch (clubTypeInput) {
             case "university":
                 System.out.println("Please enter the lecturer in charge");
-                String lecturerInCharge = sc.nextLine();
-                footballClub = new UniversityFootballClub(clubName, clubLocation, clubOwner, new SportsClubKit(clubSponsor, colorTop, colorShort), lecturerInCharge);
+                String lecturerInChargeInput = sc.nextLine();
+                footballClub = new UniversityFootballClub(clubNameInput, clubLocationInput, clubOwnerInput, new SportsClubKit(clubSponsorInput, colorTop, colorShort), lecturerInChargeInput);
                 break;
             case "school":
                 System.out.println("Please enter the teacher in charge");
-                String teacherInCharge = sc.nextLine();
-                footballClub = new SchoolFootballClub(clubName, clubLocation, clubOwner, new SportsClubKit(clubSponsor, colorTop, colorShort), teacherInCharge);
+                String teacherInChargeInput = sc.nextLine();
+                footballClub = new SchoolFootballClub(clubNameInput, clubLocationInput, clubOwnerInput, new SportsClubKit(clubSponsorInput, colorTop, colorShort), teacherInChargeInput);
                 break;
             case "league":
-                footballClub = new FootballClub(clubName, clubLocation, clubOwner, new SportsClubKit(clubSponsor, colorTop, colorShort));
+                footballClub = new FootballClub(clubNameInput, clubLocationInput, clubOwnerInput, new SportsClubKit(clubSponsorInput, colorTop, colorShort));
                 break;
         }
         allFootballClubs.add(footballClub);
@@ -107,12 +109,12 @@ public class PremierLeagueManager implements LeagueManager {
     @Override
     public SportsClub deleteClub() {
         System.out.println("Enter Club Name you wish to delete");
-        String clubInput = sc.nextLine().toLowerCase();
+        String ClubNameInput = sc.nextLine().toLowerCase();
 
         boolean foundFlag = false;
         SportsClub removedClub = null;
         for (FootballClub footballClub : allFootballClubs) {
-            if(footballClub.getClubName().equals(clubInput)) {
+            if(footballClub.getClubName().equals(ClubNameInput)) {
                 removedClub = allFootballClubs.remove(allFootballClubs.indexOf(footballClub));
                 foundFlag = true;
                 break;
@@ -161,7 +163,7 @@ public class PremierLeagueManager implements LeagueManager {
     @Override
     public void saveData() {
         try {
-            FileOutputStream fileOutputStream = new FileOutputStream(new File(savePath + "\\saveFile.txt"));
+            FileOutputStream fileOutputStream = new FileOutputStream(new File(SAVE_PATH + "\\saveFile.txt"));
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
             System.out.print("Now saving data");
             Thread.sleep(500);
@@ -183,7 +185,7 @@ public class PremierLeagueManager implements LeagueManager {
     @Override
     public void loadData() {
         try {
-            FileInputStream fileInputStream = new FileInputStream(new File(savePath + "\\saveFile.txt"));
+            FileInputStream fileInputStream = new FileInputStream(new File(SAVE_PATH + "\\saveFile.txt"));
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
             System.out.print("Now loading data");
             Thread.sleep(500);

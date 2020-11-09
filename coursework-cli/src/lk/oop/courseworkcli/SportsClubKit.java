@@ -1,11 +1,13 @@
+package lk.oop.courseworkcli;
+
 import java.awt.*;
 import java.io.Serializable;
 
 //helper class to create kits for clubs
 class SportsClubKit implements Serializable {
+    private Color bottomColor;
     private String sponsor;
     private Color topColor;
-    private Color bottomColor;
 
     /**
      * initializes a sports club kit

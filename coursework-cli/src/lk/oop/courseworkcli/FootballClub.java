@@ -1,5 +1,7 @@
+package lk.oop.courseworkcli;
+
 import java.io.Serializable;
-//**MATCH SCORE ==> GOALS OF A TEAM**//
+//**MATCH SCORE ==> GOALS OF A TEAM FOR A SPECIFIC MATCH**//
 public class FootballClub extends SportsClub implements Serializable {
     private static final int NUMBER_OF_PLAYERS = 10;
     private FootballClubStatistics footballClubStatistics;

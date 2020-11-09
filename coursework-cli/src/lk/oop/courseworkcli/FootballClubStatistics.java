@@ -1,32 +1,24 @@
+package lk.oop.courseworkcli;
+
 import java.io.Serializable;
 
 //helper class that holds statistics for a club
 class FootballClubStatistics implements Serializable {
-    private int wins;
     private int draws;
     private int defeats;
     private int goalsFor;
     private int goalsAgainst;
-    private int points;
     private int matchesPlayed;
-    private double overallPossession;
+    private int points;
     private int totalRedCards;
+    private int wins;
+    private double overallPossession;
 
     /**
      * initializes a club statistic object
      * all attributes initialized to 0, since a new club will not have any record
      */
-    public FootballClubStatistics() {
-        this.wins = 0;
-        this.draws = 0;
-        this.defeats = 0;
-        this.goalsFor = 0;
-        this.goalsAgainst = 0;
-        this.points = 0;
-        this.matchesPlayed = 0;
-        this.overallPossession = 0;
-        this.totalRedCards = 0;
-    }
+    public FootballClubStatistics() { }
 
     /**
      * @return total wins of this club
