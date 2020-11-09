@@ -10,7 +10,7 @@ import java.io.Serializable;
 /**
  * FootballClubStatistics class, which will be used to represent any football clubs statistics
  * @version 1.x November 9th 2020
- * @author Ammar Raneez
+ * @author Ammar Raneez | 2019163 | W1761196
  */
 class FootballClubStatistics implements Serializable {
     private int defeats;

@@ -12,7 +12,7 @@ import java.io.Serializable;
 /**
  * SportsClubKit class, which will be used to represent any generic sports club kit
  * @version 1.x November 9th 2020
- * @author Ammar Raneez
+ * @author Ammar Raneez | 2019163 | W1761196
  */
 class SportsClubKit implements Serializable {
     private Color bottomColor;

@@ -9,7 +9,7 @@ import java.io.Serializable;
 /**
  * SportsClub class, which will be used to represent any generic sport club (super class of FootballClub)
  * @version 1.x November 9th 2020
- * @author Ammar Raneez
+ * @author Ammar Raneez | 2019163 | W1761196
  */
 public class SportsClub implements Serializable {
     private int amountOfPlayers;

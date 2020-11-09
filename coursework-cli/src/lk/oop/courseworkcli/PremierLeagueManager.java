@@ -1,3 +1,8 @@
+/*
+ * PremierLeagueManager
+ * Copyright © 2020 Ammar Raneez. All Rights Reserved.
+ */
+
 package lk.oop.courseworkcli;
 
 import java.awt.*;
@@ -7,6 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * PremierLeagueManager class, the main class that will implement all the manipulation methods of a FootballClub
+ * @version 1.x November 9th 2020
+ * @author Ammar Raneez | 2019163 | W1761196
+ */
 public class PremierLeagueManager implements LeagueManager {
     private static final String SAVE_PATH = "C:\\Users\\Ammuuu\\Downloads\\learning\\UNI\\OOP-Module\\Coursework\\" +
                                             "OOP-COURSEWORK\\saveFile";

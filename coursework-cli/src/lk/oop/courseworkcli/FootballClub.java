@@ -10,7 +10,7 @@ import java.io.Serializable;
 /**
  * FootballClub class, which will be used to represent any football club (sub class of SportsClub)
  * @version 1.x November 9th 2020
- * @author Ammar Raneez
+ * @author Ammar Raneez | 2019163 | W1761196
  */
 public class FootballClub extends SportsClub implements Serializable {
     private static final int NUMBER_OF_PLAYERS = 10;
