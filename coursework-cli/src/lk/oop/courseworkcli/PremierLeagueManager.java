@@ -223,7 +223,24 @@ public class PremierLeagueManager implements LeagueManager {
 
     @Override
     public void displayPointsTable() {
-
+        System.out.println("------------------------------------------------------------------------------------------");
+        System.out.println("PREMIER LEAGUE STANDINGS");
+        System.out.println("------------------------------------------------------------------------------------------");
+        System.out.format("%-20s %-5s %-5s %-5s %-5s %-5s %-5s %-5s %-5s", "Club", "MP", "W", "D", "L", "GF", "GA", "GD", "Pts");
+        System.out.println();
+        for (FootballClub footballClub : allFootballClubs) {
+            System.out.format("%-20s %-5s %-5s %-5s %-5s %-5s %-5s %-5s %-5s", footballClub.getClubName(),
+                               footballClub.getFootballClubTotalStatistics().getMatchesPlayed(),
+                               footballClub.getFootballClubTotalStatistics().getWins(),
+                               footballClub.getFootballClubTotalStatistics().getDraws(),
+                               footballClub.getFootballClubTotalStatistics().getDefeats(),
+                               footballClub.getFootballClubTotalStatistics().getGoalsFor(),
+                               footballClub.getFootballClubTotalStatistics().getGoalsAgainst(),
+                               footballClub.getFootballClubTotalStatistics().getGoalDifference(),
+                               footballClub.getFootballClubTotalStatistics().getPoints());
+            System.out.println();
+        }
+        System.out.println("------------------------------------------------------------------------------------------");
     }
 
 

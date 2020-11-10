@@ -53,10 +53,13 @@ class FootballMatch implements Serializable {
 
     //*************************************PLAY MATCH METHOD BETWEEN TWO TEAMS***************************************//
     public void playMatch() {
+        //*randomly generated values of statistics for a single match*//
         List<Integer> firstTeamRandomStats = singleMatchRandomGeneratedStats();
         List<Integer> secondTeamRandomStats = singleMatchRandomGeneratedStats();
+        //*total club statistics of the two teams*//
         FootballClubTotalStatistics firstTeamTotalStats = footballClub1.getFootballClubTotalStatistics();
         FootballClubTotalStatistics secondTeamTotalStats = footballClub2.getFootballClubTotalStatistics();
+        //*single match statistics -> values need not be saved*//
         SingleMatchFootballClubStatistic firstTeamSingleMatchStats = footballClub1.getSingleMatchFootballClubStatistic();
         SingleMatchFootballClubStatistic secondTeamSingleMatchStats = footballClub2.getSingleMatchFootballClubStatistic();
 
@@ -64,7 +67,7 @@ class FootballMatch implements Serializable {
         int firstTeamPossession = FootballMatch.random.nextInt(100 + 1);
 
         firstTeamSingleMatchStats.setPossession(firstTeamPossession);
-        //*generating random values for a team playing a match*//
+        //*use the randomly generated values to update the attributes of a club*//
         updateSingleMatchTeamStats(firstTeamSingleMatchStats, firstTeamRandomStats, firstTeamTotalStats);
         footballClub1.setSingleMatchFootballClubStatistic(firstTeamSingleMatchStats);
 
@@ -73,6 +76,7 @@ class FootballMatch implements Serializable {
         updateSingleMatchTeamStats(secondTeamSingleMatchStats, secondTeamRandomStats, secondTeamTotalStats);
         footballClub2.setSingleMatchFootballClubStatistic(secondTeamSingleMatchStats);
 
+        //method that updates the total overall statistics (the above methods generate stats of a team in a match)
         updateClubTotalStatistics();
     }
 
@@ -103,6 +107,7 @@ class FootballMatch implements Serializable {
         footballClub1.setFootballClubTotalStatistics(firstTeamTotalStats);
         footballClub2.setFootballClubTotalStatistics(secondTeamTotalStats);
     }
+
     /**
      * A private helper method of updateClubTotalStatistics() that will set the stats of each team
      * To avoid duplication of code, since both teams values have to be set
@@ -141,16 +146,16 @@ class FootballMatch implements Serializable {
     private List<Integer> singleMatchRandomGeneratedStats() {
         //generate random values within reasonable ranges for each stat recorded in a match**//
         int corners = FootballMatch.random.nextInt(30 - 5 + 1) + 5;
-        int fouls = FootballMatch.random.nextInt(15 - 5 + 1) + 5;
         int goals = FootballMatch.random.nextInt(10 + 1);
+        int fouls = FootballMatch.random.nextInt(15 - 5 + 1) + 5;
         int offsides = FootballMatch.random.nextInt(10 - 5 + 1) + 5;
         int passes = FootballMatch.random.nextInt(700 - 300 + 1) + 300;
         int passAccuracy = FootballMatch.random.nextInt(100 + 1);
         int redCards = FootballMatch.random.nextInt(3 + 1);
         int shots = FootballMatch.random.nextInt(50 - 20 + 1) + 20;
         int shotsOnTarget = FootballMatch.random.nextInt(50 + 1);
-        int yellowCards = FootballMatch.random.nextInt(10 - 5 + 1) + 5;
-        return Arrays.asList(corners, fouls, goals, offsides, passes, passAccuracy, redCards, shots, shotsOnTarget,
+        int yellowCards = FootballMatch.random.nextInt(5 + 1);
+        return Arrays.asList(corners, goals, fouls, offsides, passes, passAccuracy, redCards, shots, shotsOnTarget,
                 yellowCards);
     }
 
@@ -178,6 +183,7 @@ class FootballMatch implements Serializable {
         singleMatchFootballClubStatistic.setShotsOnTarget(teamRandomStats.get(8));
         singleMatchFootballClubStatistic.setYellowCards(teamRandomStats.get(9));
 
+        //*also update the overall stats (total red and yellow cards obtained by a club)*//
         footballClubTotalStatistics.setTotalRedCards(footballClubTotalStatistics.getTotalRedCards() +
                                                      teamRandomStats.get(6));
         footballClubTotalStatistics.setTotalYellowCards(footballClubTotalStatistics.getTotalYellowCards() +
