@@ -16,8 +16,6 @@ public class FootballClub extends SportsClub implements Serializable {
     private static final int NUMBER_OF_PLAYERS = 10;
     private FootballClubTotalStatistics footballClubTotalStatistics;
     private SingleMatchFootballClubStatistic singleMatchFootballClubStatistic;
-    private int matchPossession;
-    private int matchScore;
 
     /**
      * Constructor - takes in values and initializes a Football club object
@@ -35,7 +33,6 @@ public class FootballClub extends SportsClub implements Serializable {
         super(clubName, clubLocation, clubOwner, kit, NUMBER_OF_PLAYERS);
         this.footballClubTotalStatistics = new FootballClubTotalStatistics();
         this.singleMatchFootballClubStatistic = new SingleMatchFootballClubStatistic();
-        this.matchScore = 0;
     }
 
     /**
@@ -46,48 +43,33 @@ public class FootballClub extends SportsClub implements Serializable {
     }
 
     /**
-     * @return this clubs statistic
+     * @return this clubs total statistic
      */
     public FootballClubTotalStatistics getFootballClubTotalStatistics() {
         return footballClubTotalStatistics;
     }
 
     /**
-     * sets the statistics for this club
-     * @param footballClubTotalStatistics - this clubs statistics
+     * sets the total statistics for this club
+     * @param footballClubTotalStatistics - this clubs total statistics
      */
     public void setFootballClubTotalStatistics(FootballClubTotalStatistics footballClubTotalStatistics) {
         this.footballClubTotalStatistics = footballClubTotalStatistics;
     }
 
     /**
-     * @return match possession of this club
+     * @return this clubs statistic for a single match
      */
-    public int getMatchPossession() {
-        return matchPossession;
+    public SingleMatchFootballClubStatistic getSingleMatchFootballClubStatistic() {
+        return singleMatchFootballClubStatistic;
     }
 
     /**
-     * sets a match possession for this club
-     * @param matchPossession - possession for a specific match
+     * sets the statistics for this club for a match
+     * @param singleMatchFootballClubStatistic - this clubs statistics for a match
      */
-    public void setMatchPossession(int matchPossession) {
-        this.matchPossession = matchPossession;
-    }
-
-    /**
-     * @return match score of this club
-     */
-    public int getMatchScore() {
-        return matchScore;
-    }
-
-    /**
-     * sets a match score for this club
-     * @param matchScore - score for a specific match
-     */
-    public void setMatchScore(int matchScore) {
-        this.matchScore = matchScore;
+    public void setSingleMatchFootballClubStatistic(SingleMatchFootballClubStatistic singleMatchFootballClubStatistic) {
+        this.singleMatchFootballClubStatistic = singleMatchFootballClubStatistic;
     }
 
     /**
@@ -96,8 +78,8 @@ public class FootballClub extends SportsClub implements Serializable {
     @Override
     public String toString() {
         return "FootballClub{" +
-                super.toString() +
-                ", clubStatistics=" + footballClubTotalStatistics +
+                "footballClubTotalStatistics=" + footballClubTotalStatistics +
+                ", singleMatchFootballClubStatistic=" + singleMatchFootballClubStatistic +
                 '}';
     }
 }

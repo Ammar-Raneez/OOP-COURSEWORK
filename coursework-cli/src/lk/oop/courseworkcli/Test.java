@@ -5,6 +5,7 @@ public class Test {
         LeagueManager premierLeagueManager = new PremierLeagueManager();
         premierLeagueManager.addClub();
         premierLeagueManager.addClub();
+        premierLeagueManager.addPlayedMatch();
 //        premierLeagueManager.displaySelectedClub();
 //
 //        System.out.println(premierLeagueManager.deleteClub());

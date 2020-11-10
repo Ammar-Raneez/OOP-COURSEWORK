@@ -8,9 +8,8 @@ package lk.oop.courseworkcli;
 import java.awt.*;
 import java.io.*;
 import java.lang.reflect.Field;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.List;
-import java.util.Scanner;
 
 /**
  * PremierLeagueManager class, the main class that will implement all the manipulation methods of a FootballClub
@@ -22,6 +21,7 @@ public class PremierLeagueManager implements LeagueManager {
                                             "OOP-COURSEWORK\\saveFile";
     private static List<FootballClub> allFootballClubs = new ArrayList<>();
     private static Scanner sc = new Scanner(System.in);
+    private static Random random = new Random();
 
     //****************************************PRIVATE HELPER METHODS**************************************************//
     private static String getUserInput(String printSentence) {
@@ -195,7 +195,63 @@ public class PremierLeagueManager implements LeagueManager {
 
     @Override
     public void addPlayedMatch() {
+        if (allFootballClubs.size() < 2) {
+            System.out.println("There isn't enough teams to play a match!");
+            return;
+        }
+        FootballClub firstTeam;
+        FootballClub secondTeam;
 
+        do {
+            firstTeam = allFootballClubs.get(PremierLeagueManager.random.nextInt(allFootballClubs.size()));
+            secondTeam = allFootballClubs.get(PremierLeagueManager.random.nextInt(allFootballClubs.size()));
+        } while (firstTeam.getClubName().equals(secondTeam.getClubName()));
+
+        List<Integer> firstTeamRandomStats = randomGeneratedStats();
+        List<Integer> secondTeamRandomStats = randomGeneratedStats();
+
+        SingleMatchFootballClubStatistic firstTeamSingleMatch = firstTeam.getSingleMatchFootballClubStatistic();
+        firstTeamSingleMatch.setCorners(firstTeamRandomStats.get(0));
+        firstTeamSingleMatch.setGoals(firstTeamRandomStats.get(1));
+        firstTeamSingleMatch.setFouls(firstTeamRandomStats.get(2));
+        firstTeamSingleMatch.setOffsides(firstTeamRandomStats.get(3));
+        firstTeamSingleMatch.setPasses(firstTeamRandomStats.get(4));
+        firstTeamSingleMatch.setPassAccuracy(firstTeamRandomStats.get(5));
+        firstTeamSingleMatch.setRedCards(firstTeamRandomStats.get(6));
+        firstTeamSingleMatch.setShots(firstTeamRandomStats.get(7));
+        firstTeamSingleMatch.setShotsOnTarget(firstTeamRandomStats.get(8));
+        firstTeamSingleMatch.setYellowCards(firstTeamRandomStats.get(9));
+        firstTeam.setSingleMatchFootballClubStatistic(firstTeamSingleMatch);
+
+        SingleMatchFootballClubStatistic secondTeamSingleMatch = secondTeam.getSingleMatchFootballClubStatistic();
+        secondTeamSingleMatch.setCorners(secondTeamRandomStats.get(0));
+        secondTeamSingleMatch.setGoals(secondTeamRandomStats.get(1));
+        secondTeamSingleMatch.setFouls(secondTeamRandomStats.get(2));
+        secondTeamSingleMatch.setOffsides(secondTeamRandomStats.get(3));
+        secondTeamSingleMatch.setPasses(secondTeamRandomStats.get(4));
+        secondTeamSingleMatch.setPassAccuracy(secondTeamRandomStats.get(5));
+        secondTeamSingleMatch.setRedCards(secondTeamRandomStats.get(6));
+        secondTeamSingleMatch.setShots(secondTeamRandomStats.get(7));
+        secondTeamSingleMatch.setShotsOnTarget(secondTeamRandomStats.get(8));
+        secondTeamSingleMatch.setYellowCards(secondTeamRandomStats.get(9));
+        secondTeam.setSingleMatchFootballClubStatistic(secondTeamSingleMatch);
+
+        System.out.println(firstTeam);
+        System.out.println(secondTeam);
+    }
+
+    private List<Integer> randomGeneratedStats() {
+        int corners = PremierLeagueManager.random.nextInt(30 - 5 + 1) + 5;
+        int fouls = PremierLeagueManager.random.nextInt(15 - 5 + 1) + 5;
+        int goals = PremierLeagueManager.random.nextInt(10 + 1);
+        int offsides = PremierLeagueManager.random.nextInt(10 - 5 + 1) + 5;
+        int passes = PremierLeagueManager.random.nextInt(700 - 300 + 1) + 300;
+        int passAccuracy = PremierLeagueManager.random.nextInt(100 + 1);
+        int redCards = PremierLeagueManager.random.nextInt(3 + 1);
+        int shots = PremierLeagueManager.random.nextInt(50 - 20 + 1) + 20;
+        int shotsOnTarget = PremierLeagueManager.random.nextInt(50 + 1);
+        int yellowCards = PremierLeagueManager.random.nextInt(10 - 5 + 1) + 5;
+        return Arrays.asList(corners, fouls, goals, offsides, passes, passAccuracy, redCards, shots, shotsOnTarget, yellowCards);
     }
 
 

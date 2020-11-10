@@ -13,6 +13,7 @@ package lk.oop.courseworkcli;
 public class SingleMatchFootballClubStatistic {
     private int corners;
     private int fouls;
+    private int goals;
     private int offsides;
     private int passes;
     private int passAccuracy;
@@ -56,6 +57,21 @@ public class SingleMatchFootballClubStatistic {
      */
     public void setFouls(int fouls) {
         this.fouls = fouls;
+    }
+
+    /**
+     * @return total goals of this club for a match
+     */
+    public int getGoals() {
+        return goals;
+    }
+
+    /**
+     * sets total goals of this club for a match
+     * @param goals - number of goals of this club for a match
+     */
+    public void setGoals(int goals) {
+        this.goals = goals;
     }
 
     /**
@@ -186,13 +202,14 @@ public class SingleMatchFootballClubStatistic {
         return "SingleMatchFootballClubStatistic{" +
                 "corners=" + corners +
                 ", fouls=" + fouls +
+                ", goals=" + goals +
                 ", offsides=" + offsides +
                 ", passes=" + passes +
                 ", passAccuracy=" + passAccuracy +
                 ", possession=" + possession +
                 ", redCards=" + redCards +
                 ", shots=" + shots +
-                ", shotsOfTarget=" + shotsOnTarget +
+                ", shotsOnTarget=" + shotsOnTarget +
                 ", yellowCards=" + yellowCards +
                 '}';
     }

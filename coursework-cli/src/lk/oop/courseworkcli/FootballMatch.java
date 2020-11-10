@@ -31,36 +31,6 @@ class FootballMatch implements Serializable {
     }
 
     /**
-     * @return score of the first team
-     */
-    public int getFootballClub1Score() {
-        return this.footballClub1.getMatchScore();
-    }
-
-    /**
-     * sets first teams goal scored in a match
-     * @param footballClub1Score - first teams goal scored
-     */
-    public void setFootballClub1Score(int footballClub1Score) {
-        this.footballClub1.setMatchScore(footballClub1Score);
-    }
-
-    /**
-     * @return score of the second team
-     */
-    public int getFootballClub2Score() {
-        return this.footballClub2.getMatchScore();
-    }
-
-    /**
-     * sets second teams goal scored in a match
-     * @param footballClub2Score - second teams goal scored
-     */
-    public void setFootballClub2Score(int footballClub2Score) {
-        this.footballClub2.setMatchScore(footballClub2Score);
-    }
-
-    /**
      * @return date of a match
      */
     public Date getMatchDate() {
@@ -81,9 +51,9 @@ class FootballMatch implements Serializable {
     @Override
     public String toString() {
         return "FootballMatch{" +
-                "footballClub1=[" + footballClub1.getClubName() + " Score=" + footballClub1.getMatchScore() +
-                "], footballClub2=[" + footballClub2.getClubName() + " Score=" + footballClub2.getMatchScore() +
-                "], matchDate=" + matchDate +
+                "footballClub1=" + footballClub1 +
+                ", footballClub2=" + footballClub2 +
+                ", matchDate=" + matchDate +
                 '}';
     }
 }
