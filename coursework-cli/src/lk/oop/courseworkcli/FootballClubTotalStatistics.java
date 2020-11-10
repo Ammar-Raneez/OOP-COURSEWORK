@@ -22,7 +22,6 @@ class FootballClubTotalStatistics implements Serializable {
     private int totalRedCards;
     private int totalYellowCards;
     private int wins;
-    private double overallPossession;
 
     /**
      * initializes a club statistic object
@@ -166,21 +165,6 @@ class FootballClubTotalStatistics implements Serializable {
     }
 
     /**
-     * @return average overall possession of this club
-     */
-    public double getOverallPossession() {
-        return overallPossession;
-    }
-
-    /**
-     * sets overall possession of this club
-     * @param overallPossession - average overall possession of this club
-     */
-    public void setOverallPossession(double overallPossession) {
-        this.overallPossession = overallPossession;
-    }
-
-    /**
      * @return overrun toString() method
      */
     @Override
@@ -193,7 +177,6 @@ class FootballClubTotalStatistics implements Serializable {
                 ", goalsAgainst=" + goalsAgainst +
                 ", points=" + points +
                 ", matchesPlayed=" + matchesPlayed +
-                ", overallPossession=" + overallPossession +
                 ", totalRedCards=" + totalRedCards +
                 '}';
     }

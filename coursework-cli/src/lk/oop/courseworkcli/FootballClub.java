@@ -78,6 +78,7 @@ public class FootballClub extends SportsClub implements Serializable {
     @Override
     public String toString() {
         return "FootballClub{" +
+                super.toString() +
                 "footballClubTotalStatistics=" + footballClubTotalStatistics +
                 ", singleMatchFootballClubStatistic=" + singleMatchFootballClubStatistic +
                 '}';
