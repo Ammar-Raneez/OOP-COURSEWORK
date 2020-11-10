@@ -54,19 +54,21 @@ class FootballMatch implements Serializable {
     //*************************************PLAY MATCH METHOD BETWEEN TWO TEAMS***************************************//
     public void playMatch() {
         List<Integer> firstTeamRandomStats = singleMatchRandomGeneratedStats();
-        SingleMatchFootballClubStatistic firstTeamSingleMatchStats = footballClub1.getSingleMatchFootballClubStatistic();
+        List<Integer> secondTeamRandomStats = singleMatchRandomGeneratedStats();
         FootballClubTotalStatistics firstTeamTotalStats = footballClub1.getFootballClubTotalStatistics();
+        FootballClubTotalStatistics secondTeamTotalStats = footballClub2.getFootballClubTotalStatistics();
+        SingleMatchFootballClubStatistic firstTeamSingleMatchStats = footballClub1.getSingleMatchFootballClubStatistic();
+        SingleMatchFootballClubStatistic secondTeamSingleMatchStats = footballClub2.getSingleMatchFootballClubStatistic();
+
+        //*not randomly generate for both teams, since teams two's possession = 100 - team one's possession*//
         int firstTeamPossession = FootballMatch.random.nextInt(100 + 1);
 
         firstTeamSingleMatchStats.setPossession(firstTeamPossession);
+        //*generating random values for a team playing a match*//
         updateSingleMatchTeamStats(firstTeamSingleMatchStats, firstTeamRandomStats, firstTeamTotalStats);
         footballClub1.setSingleMatchFootballClubStatistic(firstTeamSingleMatchStats);
 
-
-        List<Integer> secondTeamRandomStats = singleMatchRandomGeneratedStats();
-        SingleMatchFootballClubStatistic secondTeamSingleMatchStats = footballClub2.getSingleMatchFootballClubStatistic();
-        FootballClubTotalStatistics secondTeamTotalStats = footballClub2.getFootballClubTotalStatistics();
-
+        //*second team's possession = 100 - first team's*//
         secondTeamSingleMatchStats.setPossession((100 - firstTeamPossession));
         updateSingleMatchTeamStats(secondTeamSingleMatchStats, secondTeamRandomStats, secondTeamTotalStats);
         footballClub2.setSingleMatchFootballClubStatistic(secondTeamSingleMatchStats);
@@ -137,6 +139,7 @@ class FootballMatch implements Serializable {
      * @return list of randomly generated values
      */
     private List<Integer> singleMatchRandomGeneratedStats() {
+        //generate random values within reasonable ranges for each stat recorded in a match**//
         int corners = FootballMatch.random.nextInt(30 - 5 + 1) + 5;
         int fouls = FootballMatch.random.nextInt(15 - 5 + 1) + 5;
         int goals = FootballMatch.random.nextInt(10 + 1);
@@ -163,6 +166,7 @@ class FootballMatch implements Serializable {
     private void updateSingleMatchTeamStats(SingleMatchFootballClubStatistic singleMatchFootballClubStatistic,
                                             List<Integer> teamRandomStats,
                                             FootballClubTotalStatistics footballClubTotalStatistics) {
+        //*method that uses the randomly generated values to set each field*//
         singleMatchFootballClubStatistic.setCorners(teamRandomStats.get(0));
         singleMatchFootballClubStatistic.setGoals(teamRandomStats.get(1));
         singleMatchFootballClubStatistic.setFouls(teamRandomStats.get(2));
