@@ -255,17 +255,19 @@ public class PremierLeagueManager implements LeagueManager {
     @Override
     public void loadData() {
         try {
+            System.out.print("Now loading data");
+            PremierLeagueManager.threeDotSuspense();
+
             FileInputStream fileInputStream = new FileInputStream(new File(SAVE_PATH + "\\saveFile.txt"));
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-            System.out.print("Now loading data");
-
-            PremierLeagueManager.threeDotSuspense();
 
             allFootballClubs = (List<FootballClub>) objectInputStream.readObject();
             System.out.println("Data loaded successfully!");
             fileInputStream.close();
             objectInputStream.close();
             System.out.println(allFootballClubs);
+        } catch (FileNotFoundException ex) {
+            System.out.println("There weren't any files to load!");
         } catch (Exception e) {
             e.printStackTrace();
         }
