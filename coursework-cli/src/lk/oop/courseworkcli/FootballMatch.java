@@ -74,50 +74,66 @@ class FootballMatch implements Serializable {
         updateClubTotalStatistics();
     }
 
+    /**
+     * updateClubTotalStatistics()
+     * Private helper method that uses the private helper method setTeamTotalStats()
+     * To update the stats of a club
+     */
     private void updateClubTotalStatistics() {
         FootballClubTotalStatistics firstTeamTotalStats = footballClub1.getFootballClubTotalStatistics();
         FootballClubTotalStatistics secondTeamTotalStats = footballClub2.getFootballClubTotalStatistics();
         int firstTeamMatchGoal = footballClub1.getSingleMatchFootballClubStatistic().getGoals();
         int secondTeamMatchGoal = footballClub2.getSingleMatchFootballClubStatistic().getGoals();
 
+        //*if first team wins, they get 3 points, if they lose the second teams gets 3, if its a draw*//
+        //*both get a point each*//
+        //*According to the team that is passes as the first argument the logic above occurs*//
         if (firstTeamMatchGoal > secondTeamMatchGoal) {
-            firstTeamTotalStats.setGoalsAgainst(firstTeamTotalStats.getGoalsAgainst() + secondTeamMatchGoal);
-            firstTeamTotalStats.setGoalsFor(firstTeamTotalStats.getGoalsFor() + firstTeamMatchGoal);
-            firstTeamTotalStats.setMatchesPlayed(firstTeamTotalStats.getMatchesPlayed() + 1);
-            firstTeamTotalStats.setPoints(firstTeamTotalStats.getPoints() + 3);
-            firstTeamTotalStats.setWins(firstTeamTotalStats.getWins() + 1);
-
-            secondTeamTotalStats.setGoalsAgainst(secondTeamTotalStats.getGoalsAgainst() + firstTeamMatchGoal);
-            secondTeamTotalStats.setGoalsFor(secondTeamTotalStats.getGoalsFor() + secondTeamMatchGoal);
-            secondTeamTotalStats.setMatchesPlayed(secondTeamTotalStats.getMatchesPlayed() + 1);
-            secondTeamTotalStats.setDefeats(secondTeamTotalStats.getDefeats() + 1);
+            setTeamTotalStats(firstTeamTotalStats, firstTeamMatchGoal, secondTeamTotalStats, secondTeamMatchGoal,
+                       3);
         } else if (secondTeamMatchGoal > firstTeamMatchGoal) {
-            secondTeamTotalStats.setGoalsAgainst(secondTeamTotalStats.getGoalsAgainst() + firstTeamMatchGoal);
-            secondTeamTotalStats.setGoalsFor(secondTeamTotalStats.getGoalsFor() + secondTeamMatchGoal);
-            secondTeamTotalStats.setMatchesPlayed(secondTeamTotalStats.getMatchesPlayed() + 1);
-            secondTeamTotalStats.setPoints(secondTeamTotalStats.getPoints() + 3);
-            secondTeamTotalStats.setWins(secondTeamTotalStats.getWins() + 1);
-
-            firstTeamTotalStats.setGoalsAgainst(firstTeamTotalStats.getGoalsAgainst() + secondTeamMatchGoal);
-            firstTeamTotalStats.setGoalsFor(firstTeamTotalStats.getGoalsFor() + firstTeamMatchGoal);
-            firstTeamTotalStats.setMatchesPlayed(firstTeamTotalStats.getMatchesPlayed() + 1);
-            firstTeamTotalStats.setDefeats(firstTeamTotalStats.getDefeats() + 1);
+            setTeamTotalStats(secondTeamTotalStats, secondTeamMatchGoal, firstTeamTotalStats, firstTeamMatchGoal,
+                       3);
         } else {
-            firstTeamTotalStats.setMatchesPlayed(firstTeamTotalStats.getMatchesPlayed() + 1);
-            firstTeamTotalStats.setPoints(firstTeamTotalStats.getPoints() + 1);
-            firstTeamTotalStats.setDraws(firstTeamTotalStats.getDraws() + 1);
-
-            secondTeamTotalStats.setMatchesPlayed(secondTeamTotalStats.getMatchesPlayed() + 1);
-            secondTeamTotalStats.setPoints(secondTeamTotalStats.getPoints() + 1);
-            secondTeamTotalStats.setDraws(secondTeamTotalStats.getDraws() + 1);
+            setTeamTotalStats(firstTeamTotalStats, firstTeamMatchGoal, secondTeamTotalStats, secondTeamMatchGoal,
+                       1);
         }
-
         footballClub1.setFootballClubTotalStatistics(firstTeamTotalStats);
         footballClub2.setFootballClubTotalStatistics(secondTeamTotalStats);
     }
+    /**
+     * A private helper method of updateClubTotalStatistics() that will set the stats of each team
+     * To avoid duplication of code, since both teams values have to be set
+     * @param firstTeam first teams total statistics
+     * @param firstTeamMatchGoal first teams goals scored for this match
+     * @param secondTeam second teams goals scored for this match
+     * @param secondTeamMatchGoal second teams total statistics
+     * @param points points of first team (to classify between wins and losses)
+     */
+    private void setTeamTotalStats(FootballClubTotalStatistics firstTeam, int firstTeamMatchGoal,
+                                   FootballClubTotalStatistics secondTeam, int secondTeamMatchGoal, int points) {
+        firstTeam.setGoalsAgainst(firstTeam.getGoalsAgainst() + secondTeamMatchGoal);
+        firstTeam.setGoalsFor(firstTeam.getGoalsFor() + firstTeamMatchGoal);
+        firstTeam.setMatchesPlayed(firstTeam.getMatchesPlayed() + 1);
+
+        if (points == 3) {
+            firstTeam.setPoints(firstTeam.getPoints() + points);
+            firstTeam.setWins(firstTeam.getWins() + 1);
+            secondTeam.setDefeats(secondTeam.getDefeats() + 1);
+        } else {
+            firstTeam.setPoints(firstTeam.getPoints() + 1);
+            secondTeam.setPoints(secondTeam.getPoints() + 1);
+            firstTeam.setDraws(firstTeam.getDraws() + 1);
+            secondTeam.setDraws(secondTeam.getDraws() + 1);
+        }
+
+        secondTeam.setGoalsAgainst(secondTeam.getGoalsAgainst() + firstTeamMatchGoal);
+        secondTeam.setGoalsFor(secondTeam.getGoalsFor() + secondTeamMatchGoal);
+        secondTeam.setMatchesPlayed(secondTeam.getMatchesPlayed() + 1);
+    }
 
     /**
-     * private helper method that generates random values for the stats of a team for a match
+     * private helper method of playMatch() that generates random values for the stats of a team for a match
      * @return list of randomly generated values
      */
     private List<Integer> singleMatchRandomGeneratedStats() {
@@ -136,8 +152,13 @@ class FootballMatch implements Serializable {
     }
 
     /**
-     * private method
-     * helper method that uses the list of values to set the stats for each team of the match
+     * private helper method of playMatch() that uses the list of values to set the stats for each team of the match
+     * @param singleMatchFootballClubStatistic - a clubs statistics for a single match (ex: shots, shots on target,
+     *                                          fouls etc...)
+     * @param teamRandomStats - the list that holds all the randomly generated values (generated from the above helper
+     *                          function
+     * @param footballClubTotalStatistics - a clubs total overall statistics (required here to modify total number of
+     *                                      yellow and red cards obtained by a team
      */
     private void updateSingleMatchTeamStats(SingleMatchFootballClubStatistic singleMatchFootballClubStatistic,
                                             List<Integer> teamRandomStats,
