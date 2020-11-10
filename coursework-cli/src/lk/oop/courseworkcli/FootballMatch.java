@@ -53,18 +53,67 @@ class FootballMatch implements Serializable {
 
     //*************************************PLAY MATCH METHOD BETWEEN TWO TEAMS***************************************//
     public void playMatch() {
-        int firstTeamPossession = FootballMatch.random.nextInt(100 + 1);
         List<Integer> firstTeamRandomStats = singleMatchRandomGeneratedStats();
         SingleMatchFootballClubStatistic firstTeamSingleMatchStats = footballClub1.getSingleMatchFootballClubStatistic();
-        updateSingleMatchTeamStats(firstTeamSingleMatchStats, firstTeamRandomStats);
+        FootballClubTotalStatistics firstTeamTotalStats = footballClub1.getFootballClubTotalStatistics();
+        int firstTeamPossession = FootballMatch.random.nextInt(100 + 1);
+
         firstTeamSingleMatchStats.setPossession(firstTeamPossession);
+        updateSingleMatchTeamStats(firstTeamSingleMatchStats, firstTeamRandomStats, firstTeamTotalStats);
         footballClub1.setSingleMatchFootballClubStatistic(firstTeamSingleMatchStats);
+
 
         List<Integer> secondTeamRandomStats = singleMatchRandomGeneratedStats();
         SingleMatchFootballClubStatistic secondTeamSingleMatchStats = footballClub2.getSingleMatchFootballClubStatistic();
-        updateSingleMatchTeamStats(secondTeamSingleMatchStats, secondTeamRandomStats);
+        FootballClubTotalStatistics secondTeamTotalStats = footballClub2.getFootballClubTotalStatistics();
+
         secondTeamSingleMatchStats.setPossession((100 - firstTeamPossession));
+        updateSingleMatchTeamStats(secondTeamSingleMatchStats, secondTeamRandomStats, secondTeamTotalStats);
         footballClub2.setSingleMatchFootballClubStatistic(secondTeamSingleMatchStats);
+
+        updateClubTotalStatistics();
+    }
+
+    private void updateClubTotalStatistics() {
+        FootballClubTotalStatistics firstTeamTotalStats = footballClub1.getFootballClubTotalStatistics();
+        FootballClubTotalStatistics secondTeamTotalStats = footballClub2.getFootballClubTotalStatistics();
+        int firstTeamMatchGoal = footballClub1.getSingleMatchFootballClubStatistic().getGoals();
+        int secondTeamMatchGoal = footballClub2.getSingleMatchFootballClubStatistic().getGoals();
+
+        if (firstTeamMatchGoal > secondTeamMatchGoal) {
+            firstTeamTotalStats.setGoalsAgainst(firstTeamTotalStats.getGoalsAgainst() + secondTeamMatchGoal);
+            firstTeamTotalStats.setGoalsFor(firstTeamTotalStats.getGoalsFor() + firstTeamMatchGoal);
+            firstTeamTotalStats.setMatchesPlayed(firstTeamTotalStats.getMatchesPlayed() + 1);
+            firstTeamTotalStats.setPoints(firstTeamTotalStats.getPoints() + 3);
+            firstTeamTotalStats.setWins(firstTeamTotalStats.getWins() + 1);
+
+            secondTeamTotalStats.setGoalsAgainst(secondTeamTotalStats.getGoalsAgainst() + firstTeamMatchGoal);
+            secondTeamTotalStats.setGoalsFor(secondTeamTotalStats.getGoalsFor() + secondTeamMatchGoal);
+            secondTeamTotalStats.setMatchesPlayed(secondTeamTotalStats.getMatchesPlayed() + 1);
+            secondTeamTotalStats.setDefeats(secondTeamTotalStats.getDefeats() + 1);
+        } else if (secondTeamMatchGoal > firstTeamMatchGoal) {
+            secondTeamTotalStats.setGoalsAgainst(secondTeamTotalStats.getGoalsAgainst() + firstTeamMatchGoal);
+            secondTeamTotalStats.setGoalsFor(secondTeamTotalStats.getGoalsFor() + secondTeamMatchGoal);
+            secondTeamTotalStats.setMatchesPlayed(secondTeamTotalStats.getMatchesPlayed() + 1);
+            secondTeamTotalStats.setPoints(secondTeamTotalStats.getPoints() + 3);
+            secondTeamTotalStats.setWins(secondTeamTotalStats.getWins() + 1);
+
+            firstTeamTotalStats.setGoalsAgainst(firstTeamTotalStats.getGoalsAgainst() + secondTeamMatchGoal);
+            firstTeamTotalStats.setGoalsFor(firstTeamTotalStats.getGoalsFor() + firstTeamMatchGoal);
+            firstTeamTotalStats.setMatchesPlayed(firstTeamTotalStats.getMatchesPlayed() + 1);
+            firstTeamTotalStats.setDefeats(firstTeamTotalStats.getDefeats() + 1);
+        } else {
+            firstTeamTotalStats.setMatchesPlayed(firstTeamTotalStats.getMatchesPlayed() + 1);
+            firstTeamTotalStats.setPoints(firstTeamTotalStats.getPoints() + 1);
+            firstTeamTotalStats.setDraws(firstTeamTotalStats.getDraws() + 1);
+
+            secondTeamTotalStats.setMatchesPlayed(secondTeamTotalStats.getMatchesPlayed() + 1);
+            secondTeamTotalStats.setPoints(secondTeamTotalStats.getPoints() + 1);
+            secondTeamTotalStats.setDraws(secondTeamTotalStats.getDraws() + 1);
+        }
+
+        footballClub1.setFootballClubTotalStatistics(firstTeamTotalStats);
+        footballClub2.setFootballClubTotalStatistics(secondTeamTotalStats);
     }
 
     /**
@@ -91,7 +140,8 @@ class FootballMatch implements Serializable {
      * helper method that uses the list of values to set the stats for each team of the match
      */
     private void updateSingleMatchTeamStats(SingleMatchFootballClubStatistic singleMatchFootballClubStatistic,
-                                            List<Integer> teamRandomStats) {
+                                            List<Integer> teamRandomStats,
+                                            FootballClubTotalStatistics footballClubTotalStatistics) {
         singleMatchFootballClubStatistic.setCorners(teamRandomStats.get(0));
         singleMatchFootballClubStatistic.setGoals(teamRandomStats.get(1));
         singleMatchFootballClubStatistic.setFouls(teamRandomStats.get(2));
@@ -102,6 +152,11 @@ class FootballMatch implements Serializable {
         singleMatchFootballClubStatistic.setShots(teamRandomStats.get(7));
         singleMatchFootballClubStatistic.setShotsOnTarget(teamRandomStats.get(8));
         singleMatchFootballClubStatistic.setYellowCards(teamRandomStats.get(9));
+
+        footballClubTotalStatistics.setTotalRedCards(footballClubTotalStatistics.getTotalRedCards() +
+                                                     teamRandomStats.get(6));
+        footballClubTotalStatistics.setTotalYellowCards(footballClubTotalStatistics.getTotalYellowCards() +
+                teamRandomStats.get(9));
     }
     //*************************************END PLAY MATCH METHOD BETWEEN TWO TEAMS************************************//
 

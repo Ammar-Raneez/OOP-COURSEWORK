@@ -75,6 +75,11 @@ class FootballClubTotalStatistics implements Serializable {
     }
 
     /**
+     * @return total goal difference scored against this club
+     */
+    public int getGoalDifference() { return goalsFor - goalsAgainst; }
+
+    /**
      * @return total goals scored by this club
      */
     public int getGoalsFor() {

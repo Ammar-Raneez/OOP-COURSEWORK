@@ -5,12 +5,14 @@
 
 package lk.oop.courseworkcli;
 
+import java.io.Serializable;
+
 /**
  * SingleMatchFootballClubStatistic class, which will be used to represent any football clubs single match statistic
  * @version 1.x November 9th 2020
  * @author Ammar Raneez | 2019163 | W1761196
  */
-public class SingleMatchFootballClubStatistic {
+public class SingleMatchFootballClubStatistic implements Serializable {
     private int corners;
     private int fouls;
     private int goals;
