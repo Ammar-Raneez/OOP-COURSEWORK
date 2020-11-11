@@ -223,10 +223,13 @@ public class PremierLeagueManager implements LeagueManager {
 
     @Override
     public void displayPointsTable() {
-        System.out.println("------------------------------------------------------------------------------------------");
+        Collections.sort(allFootballClubs, Collections.reverseOrder());
+
+        System.out.println("===================================================================");
         System.out.println("PREMIER LEAGUE STANDINGS");
-        System.out.println("------------------------------------------------------------------------------------------");
-        System.out.format("%-20s %-5s %-5s %-5s %-5s %-5s %-5s %-5s %-5s", "Club", "MP", "W", "D", "L", "GF", "GA", "GD", "Pts");
+        System.out.println("===================================================================");
+        System.out.format("%-20s %-5s %-5s %-5s %-5s %-5s %-5s %-5s %-5s", "Club", "MP", "W", "D", "L", "GF", "GA",
+                          "GD", "Pts");
         System.out.println();
         for (FootballClub footballClub : allFootballClubs) {
             System.out.format("%-20s %-5s %-5s %-5s %-5s %-5s %-5s %-5s %-5s", footballClub.getClubName(),
@@ -240,7 +243,7 @@ public class PremierLeagueManager implements LeagueManager {
                                footballClub.getFootballClubTotalStatistics().getPoints());
             System.out.println();
         }
-        System.out.println("------------------------------------------------------------------------------------------");
+        System.out.println("===================================================================");
     }
 
 
@@ -255,7 +258,10 @@ public class PremierLeagueManager implements LeagueManager {
 
             PremierLeagueManager.threeDotSuspense();
 
-            objectOutputStream.writeObject(allFootballClubs);
+            for (FootballClub footballClub : allFootballClubs) {
+                objectOutputStream.writeObject(footballClub);
+            }
+
             objectOutputStream.close();
             fileOutputStream.close();
             Thread.sleep(500);
@@ -278,7 +284,14 @@ public class PremierLeagueManager implements LeagueManager {
             FileInputStream fileInputStream = new FileInputStream(new File(SAVE_PATH + "\\saveFile.txt"));
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
 
-            allFootballClubs = (List<FootballClub>) objectInputStream.readObject();
+            for (;;) {
+                try {
+                    allFootballClubs.add((FootballClub) objectInputStream.readObject());
+                } catch (EOFException e) {
+                    break;
+                }
+            }
+
             System.out.println("Data loaded successfully!");
             fileInputStream.close();
             objectInputStream.close();

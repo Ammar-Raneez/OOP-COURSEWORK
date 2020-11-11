@@ -12,7 +12,7 @@ import java.io.Serializable;
  * @version 1.x November 9th 2020
  * @author Ammar Raneez | 2019163 | W1761196
  */
-public class FootballClub extends SportsClub implements Serializable {
+public class FootballClub extends SportsClub implements Serializable, Comparable<FootballClub> {
     private static final int NUMBER_OF_PLAYERS = 10;
     private FootballClubTotalStatistics footballClubTotalStatistics;
     private SingleMatchFootballClubStatistic singleMatchFootballClubStatistic;
@@ -82,5 +82,10 @@ public class FootballClub extends SportsClub implements Serializable {
                 "footballClubTotalStatistics=" + footballClubTotalStatistics +
                 ", singleMatchFootballClubStatistic=" + singleMatchFootballClubStatistic +
                 '}';
+    }
+
+    @Override
+    public int compareTo(FootballClub o) {
+        return this.getFootballClubTotalStatistics().getPoints() - o.getFootballClubTotalStatistics().getPoints();
     }
 }
