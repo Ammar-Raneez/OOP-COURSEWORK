@@ -223,11 +223,12 @@ public class PremierLeagueManager implements LeagueManager {
 
     @Override
     public void displayPointsTable() {
-        Collections.sort(allFootballClubs, Collections.reverseOrder());
+        allFootballClubs.sort(new GoalDifferenceComparator().reversed());
+        allFootballClubs.sort(Collections.reverseOrder());
 
-        System.out.println("===================================================================");
+        System.out.println("=======================================================================");
         System.out.println("PREMIER LEAGUE STANDINGS");
-        System.out.println("===================================================================");
+        System.out.println("=======================================================================");
         System.out.format("%-20s %-5s %-5s %-5s %-5s %-5s %-5s %-5s %-5s", "Club", "MP", "W", "D", "L", "GF", "GA",
                           "GD", "Pts");
         System.out.println();
@@ -243,7 +244,7 @@ public class PremierLeagueManager implements LeagueManager {
                                footballClub.getFootballClubTotalStatistics().getPoints());
             System.out.println();
         }
-        System.out.println("===================================================================");
+        System.out.println("=======================================================================");
     }
 
 
