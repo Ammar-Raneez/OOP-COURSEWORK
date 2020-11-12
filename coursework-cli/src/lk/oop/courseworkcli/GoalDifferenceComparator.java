@@ -21,6 +21,7 @@ public class GoalDifferenceComparator implements Comparator<FootballClub> {
      */
     @Override
     public int compare(FootballClub footballClub1, FootballClub footballClub2) {
-        return footballClub1.getFootballClubTotalStatistics().getGoalDifference() - footballClub2.getFootballClubTotalStatistics().getGoalDifference();
+        return footballClub1.getFootballClubTotalStatistics().getGoalDifference() -
+               footballClub2.getFootballClubTotalStatistics().getGoalDifference();
     }
 }

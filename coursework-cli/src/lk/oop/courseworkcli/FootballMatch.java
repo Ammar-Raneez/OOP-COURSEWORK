@@ -16,7 +16,8 @@ import java.util.Random;
  * @version 1.x November 9th 2020
  * @author Ammar Raneez | 2019163 | W1761196
  */
-class FootballMatch implements Serializable {
+public class FootballMatch implements Serializable, Comparable<FootballMatch> {
+    private static final long serialVersionUID = 1900807394549689165L;
     private static Random random = new Random();
     private FootballClub footballClub1;
     private FootballClub footballClub2;
@@ -49,7 +50,19 @@ class FootballMatch implements Serializable {
         this.matchDate = matchDate;
     }
 
+    /**
+     * @return football club 1
+     */
+    public FootballClub getFootballClub1() {
+        return footballClub1;
+    }
 
+    /**
+     * @return football club 2
+     */
+    public FootballClub getFootballClub2() {
+        return footballClub2;
+    }
 
     //*************************************PLAY MATCH METHOD BETWEEN TWO TEAMS***************************************//
     public void playMatch() {
@@ -192,6 +205,15 @@ class FootballMatch implements Serializable {
     //*************************************END PLAY MATCH METHOD BETWEEN TWO TEAMS************************************//
 
 
+    /**
+     * compareTo method - to sort the list of matches based on date
+     * @param o - compares this date with o's date
+     * @return - if this date > o's date returns a +ve value, a -ve vice versa, and 0 if they equal
+     */
+    @Override
+    public int compareTo(FootballMatch o) {
+        return this.getMatchDate().compareTo(o.getMatchDate());
+    }
 
     /**
      * @return overrun toString() method

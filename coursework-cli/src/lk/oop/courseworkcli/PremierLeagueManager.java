@@ -19,16 +19,28 @@ import java.util.List;
 public class PremierLeagueManager implements LeagueManager {
     private static final String SAVE_PATH = "C:\\Users\\Ammuuu\\Downloads\\learning\\UNI\\OOP-Module\\Coursework\\" +
                                             "OOP-COURSEWORK\\saveFile";
+    private static List<FootballMatch> allMatches = new ArrayList<>();
     private static List<FootballClub> allFootballClubs = new ArrayList<>();
     private static Scanner sc = new Scanner(System.in);
     private static Random random = new Random();
 
     //***************************************PRIVATE COMMON HELPER METHODS********************************************//
+
+    /**
+     * Private helper method that displays a sentence and returns user's input
+     * Marked static since it's common for any object created
+     * @param printSentence - sentence to use as a prompt
+     * @return - the input of the user
+     */
     private static String getUserInput(String printSentence) {
         System.out.println(printSentence);
         return sc.nextLine().toLowerCase();
     }
 
+    /**
+     * Private helper method that generates the popular 3 dot loading
+     * @throws InterruptedException - since Threads are used, to avoid any synchronization issues
+     */
     private static void threeDotSuspense() throws InterruptedException {
         for (int i=0; i<2; i++) {
             Thread.sleep(500);
@@ -212,15 +224,17 @@ public class PremierLeagueManager implements LeagueManager {
 
         FootballMatch footballMatch = new FootballMatch(firstTeam, secondTeam, new Date());
         footballMatch.playMatch();
+        allMatches.add(footballMatch);
 
-        System.out.println(firstTeam);
-        System.out.println(secondTeam);
-        System.out.println(footballMatch);
+//        System.out.println(firstTeam);
+//        System.out.println(secondTeam);
+//        System.out.println(footballMatch);
     }
     //*************************************END ADD PLAYED MATCH BETWEEN TWO CLUB**************************************//
 
 
 
+    //*********************************************DISPLAY POINTS TABLE***********************************************//
     @Override
     public void displayPointsTable() {
         allFootballClubs.sort(new GoalDifferenceComparator().reversed());
@@ -246,12 +260,42 @@ public class PremierLeagueManager implements LeagueManager {
         }
         System.out.println("=======================================================================");
     }
+    //******************************************END DISPLAY POINTS TABLE**********************************************//
+
+
+
+    //*********************************************DISPLAY MATCH SCORES***********************************************//
+    @Override
+    public void displayMatchResults() {
+        allMatches.sort(Collections.reverseOrder());
+        System.out.println("=============================================");
+        System.out.format("%7s %5s", "", "PREMIER LEAGUE - ALL MATCHES");
+        System.out.println();
+        System.out.println("=============================================");
+
+        for (FootballMatch footballMatch : allMatches) {
+            System.out.format("%7s %5s", "", footballMatch.getMatchDate());
+            System.out.println();
+            System.out.format("%-20s %1s %1s %20s", footballMatch.getFootballClub1().getClubName(),
+                              footballMatch.getFootballClub1().getSingleMatchFootballClubStatistic().getGoals(),
+                              footballMatch.getFootballClub2().getSingleMatchFootballClubStatistic().getGoals(),
+                              footballMatch.getFootballClub2().getClubName()
+                              );
+            System.out.println();
+            System.out.println("---------------------------------------------");
+        }
+    }
+    //******************************************END DISPLAY MATCH SCORES***********************************************//
 
 
 
     //**************************************************SAVE DATA*****************************************************//
     @Override
     public void saveData() {
+        List<Object> allData = new ArrayList<>();
+        allData.add(allFootballClubs);
+        allData.add(allMatches);
+
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(new File(SAVE_PATH + "\\saveFile.txt"));
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
@@ -259,15 +303,14 @@ public class PremierLeagueManager implements LeagueManager {
 
             PremierLeagueManager.threeDotSuspense();
 
-            for (FootballClub footballClub : allFootballClubs) {
-                objectOutputStream.writeObject(footballClub);
-            }
+            objectOutputStream.writeObject(allData);
 
             objectOutputStream.close();
             fileOutputStream.close();
             Thread.sleep(500);
             System.out.println("Data saved successfully!");
         } catch (Exception e) {
+            System.out.println("Something went wrong while saving the file!");
             e.printStackTrace();
         }
     }
@@ -278,29 +321,29 @@ public class PremierLeagueManager implements LeagueManager {
     //**************************************************LOAD DATA*****************************************************//
     @Override
     public void loadData() {
+        List<Object> allData;
+
         try {
+            FileInputStream fileInputStream = new FileInputStream(new File(SAVE_PATH + "\\saveFile.txt"));
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+            System.out.println("saveFile.txt found!");
             System.out.print("Now loading data");
             PremierLeagueManager.threeDotSuspense();
 
-            FileInputStream fileInputStream = new FileInputStream(new File(SAVE_PATH + "\\saveFile.txt"));
-            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+            allData = (List<Object>) objectInputStream.readObject();
 
-            for (;;) {
-                try {
-                    allFootballClubs.add((FootballClub) objectInputStream.readObject());
-                } catch (EOFException e) {
-                    break;
-                }
-            }
+            allFootballClubs = (List<FootballClub>) allData.get(0);
+            allMatches = (List<FootballMatch>) allData.get(1);
 
             System.out.println("Data loaded successfully!");
             fileInputStream.close();
             objectInputStream.close();
-            System.out.println(allFootballClubs);
         } catch (FileNotFoundException ex) {
             System.out.println("There weren't any files to load!");
         } catch (Exception e) {
             e.printStackTrace();
         }
+        System.out.println(allMatches);
     }
+    //**********************************************END LOAD DATA*****************************************************//
 }
