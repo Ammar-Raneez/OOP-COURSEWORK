@@ -146,8 +146,8 @@ public class PremierLeagueManager implements LeagueManager {
         }
 
         allFootballClubs.add(footballClub);
-        System.out.println(footballClub);
-        System.out.println(allFootballClubs.size());
+//        System.out.println(footballClub);
+//        System.out.println(allFootballClubs.size());
     }
     //**********************************************END OF ADD METHOD*************************************************//
 
@@ -226,6 +226,8 @@ public class PremierLeagueManager implements LeagueManager {
         footballMatch.playMatch();
         allMatches.add(footballMatch);
 
+        System.out.println("Upon adding a match " + allMatches);
+
 //        System.out.println(firstTeam);
 //        System.out.println(secondTeam);
 //        System.out.println(footballMatch);
@@ -276,10 +278,10 @@ public class PremierLeagueManager implements LeagueManager {
         for (FootballMatch footballMatch : allMatches) {
             System.out.format("%7s %5s", "", footballMatch.getMatchDate());
             System.out.println();
-            System.out.format("%-20s %1s %1s %20s", footballMatch.getFootballClub1().getClubName(),
-                              footballMatch.getFootballClub1().getSingleMatchFootballClubStatistic().getGoals(),
-                              footballMatch.getFootballClub2().getSingleMatchFootballClubStatistic().getGoals(),
-                              footballMatch.getFootballClub2().getClubName()
+            System.out.format("%-20s %1s %1s %20s", footballMatch.getFirstTeam().getClubName(),
+                              footballMatch.getFirstTeam().getSingleMatchFootballClubStatistic().getGoals(),
+                              footballMatch.getSecondTeam().getSingleMatchFootballClubStatistic().getGoals(),
+                              footballMatch.getSecondTeam().getClubName()
                               );
             System.out.println();
             System.out.println("---------------------------------------------");
@@ -343,7 +345,7 @@ public class PremierLeagueManager implements LeagueManager {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println(allMatches);
+        System.out.println("Load method " +  allMatches);
     }
     //**********************************************END LOAD DATA*****************************************************//
 }

@@ -1,7 +1,7 @@
 package lk.oop.courseworkcli;
 
 public class Test {
-    public static void main(String[] args) throws IllegalAccessException, ClassNotFoundException {
+    public static void main(String[] args) throws IllegalAccessException, ClassNotFoundException, CloneNotSupportedException {
         LeagueManager premierLeagueManager = new PremierLeagueManager();
         premierLeagueManager.loadData();
 //        premierLeagueManager.addClub();

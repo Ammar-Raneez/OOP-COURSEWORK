@@ -19,19 +19,19 @@ import java.util.Random;
 public class FootballMatch implements Serializable, Comparable<FootballMatch> {
     private static final long serialVersionUID = 1900807394549689165L;
     private static Random random = new Random();
-    private FootballClub footballClub1;
-    private FootballClub footballClub2;
+    private FootballClub firstTeam;
+    private FootballClub secondTeam;
     private Date matchDate;
 
     /**
      * initializes a match object
-     * @param footballClub1 - first team
-     * @param footballClub2 - second team
+     * @param firstTeam - first team
+     * @param secondTeam - second team
      * @param matchDate - date of a match
      */
-    public FootballMatch(FootballClub footballClub1, FootballClub footballClub2, Date matchDate) {
-        this.footballClub1 = footballClub1;
-        this.footballClub2 = footballClub2;
+    public FootballMatch(FootballClub firstTeam, FootballClub secondTeam, Date matchDate) {
+        this.firstTeam = firstTeam;
+        this.secondTeam = secondTeam;
         this.matchDate = matchDate;
     }
 
@@ -53,15 +53,15 @@ public class FootballMatch implements Serializable, Comparable<FootballMatch> {
     /**
      * @return football club 1
      */
-    public FootballClub getFootballClub1() {
-        return footballClub1;
+    public FootballClub getFirstTeam() {
+        return firstTeam;
     }
 
     /**
      * @return football club 2
      */
-    public FootballClub getFootballClub2() {
-        return footballClub2;
+    public FootballClub getSecondTeam() {
+        return secondTeam;
     }
 
     //*************************************PLAY MATCH METHOD BETWEEN TWO TEAMS***************************************//
@@ -70,11 +70,11 @@ public class FootballMatch implements Serializable, Comparable<FootballMatch> {
         List<Integer> firstTeamRandomStats = singleMatchRandomGeneratedStats();
         List<Integer> secondTeamRandomStats = singleMatchRandomGeneratedStats();
         //*total club statistics of the two teams*//
-        FootballClubTotalStatistics firstTeamTotalStats = footballClub1.getFootballClubTotalStatistics();
-        FootballClubTotalStatistics secondTeamTotalStats = footballClub2.getFootballClubTotalStatistics();
+        FootballClubTotalStatistics firstTeamTotalStats = firstTeam.getFootballClubTotalStatistics();
+        FootballClubTotalStatistics secondTeamTotalStats = secondTeam.getFootballClubTotalStatistics();
         //*single match statistics -> values need not be saved*//
-        SingleMatchFootballClubStatistic firstTeamSingleMatchStats = footballClub1.getSingleMatchFootballClubStatistic();
-        SingleMatchFootballClubStatistic secondTeamSingleMatchStats = footballClub2.getSingleMatchFootballClubStatistic();
+        SingleMatchFootballClubStatistic firstTeamSingleMatchStats = firstTeam.getSingleMatchFootballClubStatistic();
+        SingleMatchFootballClubStatistic secondTeamSingleMatchStats = secondTeam.getSingleMatchFootballClubStatistic();
 
         //*not randomly generate for both teams, since teams two's possession = 100 - team one's possession*//
         int firstTeamPossession = FootballMatch.random.nextInt(100 + 1);
@@ -82,12 +82,12 @@ public class FootballMatch implements Serializable, Comparable<FootballMatch> {
         firstTeamSingleMatchStats.setPossession(firstTeamPossession);
         //*use the randomly generated values to update the attributes of a club*//
         updateSingleMatchTeamStats(firstTeamSingleMatchStats, firstTeamRandomStats, firstTeamTotalStats);
-        footballClub1.setSingleMatchFootballClubStatistic(firstTeamSingleMatchStats);
+        firstTeam.setSingleMatchFootballClubStatistic(firstTeamSingleMatchStats);
 
         //*second team's possession = 100 - first team's*//
         secondTeamSingleMatchStats.setPossession((100 - firstTeamPossession));
         updateSingleMatchTeamStats(secondTeamSingleMatchStats, secondTeamRandomStats, secondTeamTotalStats);
-        footballClub2.setSingleMatchFootballClubStatistic(secondTeamSingleMatchStats);
+        secondTeam.setSingleMatchFootballClubStatistic(secondTeamSingleMatchStats);
 
         //method that updates the total overall statistics (the above methods generate stats of a team in a match)
         updateClubTotalStatistics();
@@ -99,10 +99,10 @@ public class FootballMatch implements Serializable, Comparable<FootballMatch> {
      * To update the stats of a club
      */
     private void updateClubTotalStatistics() {
-        FootballClubTotalStatistics firstTeamTotalStats = footballClub1.getFootballClubTotalStatistics();
-        FootballClubTotalStatistics secondTeamTotalStats = footballClub2.getFootballClubTotalStatistics();
-        int firstTeamMatchGoal = footballClub1.getSingleMatchFootballClubStatistic().getGoals();
-        int secondTeamMatchGoal = footballClub2.getSingleMatchFootballClubStatistic().getGoals();
+        FootballClubTotalStatistics firstTeamTotalStats = firstTeam.getFootballClubTotalStatistics();
+        FootballClubTotalStatistics secondTeamTotalStats = secondTeam.getFootballClubTotalStatistics();
+        int firstTeamMatchGoal = firstTeam.getSingleMatchFootballClubStatistic().getGoals();
+        int secondTeamMatchGoal = secondTeam.getSingleMatchFootballClubStatistic().getGoals();
 
         //*if first team wins, they get 3 points, if they lose the second teams gets 3, if its a draw*//
         //*both get a point each*//
@@ -117,8 +117,8 @@ public class FootballMatch implements Serializable, Comparable<FootballMatch> {
             setTeamTotalStats(firstTeamTotalStats, firstTeamMatchGoal, secondTeamTotalStats, secondTeamMatchGoal,
                        1);
         }
-        footballClub1.setFootballClubTotalStatistics(firstTeamTotalStats);
-        footballClub2.setFootballClubTotalStatistics(secondTeamTotalStats);
+        firstTeam.setFootballClubTotalStatistics(firstTeamTotalStats);
+        secondTeam.setFootballClubTotalStatistics(secondTeamTotalStats);
     }
 
     /**
@@ -221,8 +221,8 @@ public class FootballMatch implements Serializable, Comparable<FootballMatch> {
     @Override
     public String toString() {
         return "FootballMatch{" +
-                "footballClub1=" + footballClub1 +
-                ", footballClub2=" + footballClub2 +
+                "footballClub1=" + firstTeam +
+                ", footballClub2=" + secondTeam +
                 ", matchDate=" + matchDate +
                 '}';
     }
