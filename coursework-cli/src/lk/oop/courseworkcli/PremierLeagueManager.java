@@ -322,8 +322,9 @@ public class PremierLeagueManager implements LeagueManager {
         if (!foundMatch) {
             System.out.println("[ERROR] ==> No such Football Match was found!");
         } else {
-            System.out.format("%-27s %-10s %28s", foundFootballMatch.getFirstTeam().getClubName(), "TEAM STATS",
-                              foundFootballMatch.getSecondTeam().getClubName());
+            System.out.println("===================================================================");
+            System.out.format("%-27s %-10s %28s", foundFootballMatch.getFirstTeam().getClubName().toUpperCase(),
+                    "TEAM STATS", foundFootballMatch.getSecondTeam().getClubName().toUpperCase());
             System.out.println();
             System.out.format("%-30s %-5s %30s", foundFootballMatch.getFirstTeamSingleMatchStats().getShots(),
                     "Shots", foundFootballMatch.getSecondTeamSingleMatchStats().getShots());
@@ -354,7 +355,7 @@ public class PremierLeagueManager implements LeagueManager {
             System.out.println();
             System.out.format("%-29s %-7s %29s", foundFootballMatch.getFirstTeamSingleMatchStats().getCorners(),
                     "Corners", foundFootballMatch.getSecondTeamSingleMatchStats().getCorners());
-            System.out.println();
+            System.out.println("\n===================================================================");
         }
     }
     //********************************************END DISPLAY SELECTED MATCH******************************************//
@@ -374,7 +375,6 @@ public class PremierLeagueManager implements LeagueManager {
             System.out.print("Now saving data");
 
             PremierLeagueManager.threeDotSuspense();
-
             objectOutputStream.writeObject(allData);
 
             objectOutputStream.close();
@@ -390,7 +390,7 @@ public class PremierLeagueManager implements LeagueManager {
 
 
 
-    //**************************************************LOAD DATA*****************************************************//
+    //************************************************LOAD DATA*******************************************************//
     @Override
     public void loadData() {
         List<Object> allData;
@@ -415,7 +415,7 @@ public class PremierLeagueManager implements LeagueManager {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("Load method " +  allMatches);
+//        System.out.println("Load method " +  allMatches);
     }
     //**********************************************END LOAD DATA*****************************************************//
 }
