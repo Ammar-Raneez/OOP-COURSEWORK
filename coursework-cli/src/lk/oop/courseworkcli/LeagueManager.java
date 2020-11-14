@@ -17,6 +17,7 @@ public interface LeagueManager {
     void addPlayedMatch();
     void displayPointsTable();
     void displayMatchResults();
+    void displaySelectedMatchStatistics();
     void saveData();
     void loadData();
 }

@@ -6,10 +6,7 @@
 package lk.oop.courseworkcli;
 
 import java.io.Serializable;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 /**
  * FootballMatch class, which will be used to represent any match between two Football clubs
@@ -17,11 +14,15 @@ import java.util.Random;
  * @author Ammar Raneez | 2019163 | W1761196
  */
 public class FootballMatch implements Serializable, Comparable<FootballMatch> {
+    //*serialization happened to refer to a different serial id for objects of FootballMatch, therefore*//
+    //*the expected value shown up on the terminal was hardcoded*//
     private static final long serialVersionUID = 1900807394549689165L;
     private static Random random = new Random();
     private FootballClub firstTeam;
     private FootballClub secondTeam;
     private Date matchDate;
+    private SingleMatchFootballClubStatistic firstTeamSingleMatchStats = new SingleMatchFootballClubStatistic();
+    private SingleMatchFootballClubStatistic secondTeamSingleMatchStats = new SingleMatchFootballClubStatistic();
 
     /**
      * initializes a match object
@@ -35,36 +36,14 @@ public class FootballMatch implements Serializable, Comparable<FootballMatch> {
         this.matchDate = matchDate;
     }
 
-    /**
-     * @return date of a match
-     */
-    public Date getMatchDate() {
-        return matchDate;
-    }
 
-    /**
-     * sets date of a match
-     * @param matchDate - date of a specific match
-     */
-    public void setMatchDate(Date matchDate) {
-        this.matchDate = matchDate;
-    }
-
-    /**
-     * @return football club 1
-     */
-    public FootballClub getFirstTeam() {
-        return firstTeam;
-    }
-
-    /**
-     * @return football club 2
-     */
-    public FootballClub getSecondTeam() {
-        return secondTeam;
-    }
 
     //*************************************PLAY MATCH METHOD BETWEEN TWO TEAMS***************************************//
+    /**
+     * Main function that handles playing of a single match
+     * This function is called in the PremierLeagueManager class in the addMatch() method
+     * Which handles all the necessary updates
+     */
     public void playMatch() {
         //*randomly generated values of statistics for a single match*//
         List<Integer> firstTeamRandomStats = singleMatchRandomGeneratedStats();
@@ -73,8 +52,6 @@ public class FootballMatch implements Serializable, Comparable<FootballMatch> {
         FootballClubTotalStatistics firstTeamTotalStats = firstTeam.getFootballClubTotalStatistics();
         FootballClubTotalStatistics secondTeamTotalStats = secondTeam.getFootballClubTotalStatistics();
         //*single match statistics -> values need not be saved*//
-        SingleMatchFootballClubStatistic firstTeamSingleMatchStats = firstTeam.getSingleMatchFootballClubStatistic();
-        SingleMatchFootballClubStatistic secondTeamSingleMatchStats = secondTeam.getSingleMatchFootballClubStatistic();
 
         //*not randomly generate for both teams, since teams two's possession = 100 - team one's possession*//
         int firstTeamPossession = FootballMatch.random.nextInt(100 + 1);
@@ -82,12 +59,12 @@ public class FootballMatch implements Serializable, Comparable<FootballMatch> {
         firstTeamSingleMatchStats.setPossession(firstTeamPossession);
         //*use the randomly generated values to update the attributes of a club*//
         updateSingleMatchTeamStats(firstTeamSingleMatchStats, firstTeamRandomStats, firstTeamTotalStats);
-        firstTeam.setSingleMatchFootballClubStatistic(firstTeamSingleMatchStats);
+//        firstTeam.setSingleMatchFootballClubStatistic(firstTeamSingleMatchStats);
 
         //*second team's possession = 100 - first team's*//
         secondTeamSingleMatchStats.setPossession((100 - firstTeamPossession));
         updateSingleMatchTeamStats(secondTeamSingleMatchStats, secondTeamRandomStats, secondTeamTotalStats);
-        secondTeam.setSingleMatchFootballClubStatistic(secondTeamSingleMatchStats);
+//        secondTeam.setSingleMatchFootballClubStatistic(secondTeamSingleMatchStats);
 
         //method that updates the total overall statistics (the above methods generate stats of a team in a match)
         updateClubTotalStatistics();
@@ -101,8 +78,8 @@ public class FootballMatch implements Serializable, Comparable<FootballMatch> {
     private void updateClubTotalStatistics() {
         FootballClubTotalStatistics firstTeamTotalStats = firstTeam.getFootballClubTotalStatistics();
         FootballClubTotalStatistics secondTeamTotalStats = secondTeam.getFootballClubTotalStatistics();
-        int firstTeamMatchGoal = firstTeam.getSingleMatchFootballClubStatistic().getGoals();
-        int secondTeamMatchGoal = secondTeam.getSingleMatchFootballClubStatistic().getGoals();
+        int firstTeamMatchGoal = firstTeamSingleMatchStats.getGoals();
+        int secondTeamMatchGoal = secondTeamSingleMatchStats.getGoals();
 
         //*if first team wins, they get 3 points, if they lose the second teams gets 3, if its a draw*//
         //*both get a point each*//
@@ -204,9 +181,54 @@ public class FootballMatch implements Serializable, Comparable<FootballMatch> {
     }
     //*************************************END PLAY MATCH METHOD BETWEEN TWO TEAMS************************************//
 
+    /**
+     * Returns the first team's statistics for this match
+     * @return - first team match stats
+     */
+    public SingleMatchFootballClubStatistic getFirstTeamSingleMatchStats() {
+        return firstTeamSingleMatchStats;
+    }
 
     /**
-     * compareTo method - to sort the list of matches based on date
+     * Returns the second team's statistics for this match
+     * @return - second team match stats
+     */
+    public SingleMatchFootballClubStatistic getSecondTeamSingleMatchStats() {
+        return secondTeamSingleMatchStats;
+    }
+
+    /**
+     * @return date of a match
+     */
+    public Date getMatchDate() {
+        return matchDate;
+    }
+
+    /**
+     * sets date of a match
+     * @param matchDate - date of a specific match
+     */
+    public void setMatchDate(Date matchDate) {
+        this.matchDate = matchDate;
+    }
+
+    /**
+     * @return football club 1
+     */
+    public FootballClub getFirstTeam() {
+        return firstTeam;
+    }
+
+    /**
+     * @return football club 2
+     */
+    public FootballClub getSecondTeam() {
+        return secondTeam;
+    }
+
+    /**
+     * overridden compareTo() method - to sort the list of matches based on date
+     * Needed for the displayMatchResults() method - to display most recent on top (descending order of date)
      * @param o - compares this date with o's date
      * @return - if this date > o's date returns a +ve value, a -ve vice versa, and 0 if they equal
      */
@@ -222,8 +244,12 @@ public class FootballMatch implements Serializable, Comparable<FootballMatch> {
     public String toString() {
         return "FootballMatch{" +
                 "footballClub1=" + firstTeam +
+                ", footballClub1 match stats=" + firstTeamSingleMatchStats +
                 ", footballClub2=" + secondTeam +
+                ", footballClub2 match stats=" + secondTeamSingleMatchStats +
                 ", matchDate=" + matchDate +
                 '}';
     }
+
+
 }

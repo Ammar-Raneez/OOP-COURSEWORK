@@ -15,7 +15,7 @@ import java.io.Serializable;
 public class FootballClub extends SportsClub implements Serializable, Comparable<FootballClub> {
     private static final int NUMBER_OF_PLAYERS = 10;
     private FootballClubTotalStatistics footballClubTotalStatistics;
-    private SingleMatchFootballClubStatistic singleMatchFootballClubStatistic;
+//    private SingleMatchFootballClubStatistic singleMatchFootballClubStatistic;
 
     /**
      * Constructor - takes in values and initializes a Football club object
@@ -32,7 +32,7 @@ public class FootballClub extends SportsClub implements Serializable, Comparable
     public FootballClub(String clubName, String clubLocation, String clubOwner, SportsClubKit kit) {
         super(clubName, clubLocation, clubOwner, kit, NUMBER_OF_PLAYERS);
         this.footballClubTotalStatistics = new FootballClubTotalStatistics();
-        this.singleMatchFootballClubStatistic = new SingleMatchFootballClubStatistic();
+//        this.singleMatchFootballClubStatistic = new SingleMatchFootballClubStatistic();
     }
 
     /**
@@ -57,20 +57,20 @@ public class FootballClub extends SportsClub implements Serializable, Comparable
         this.footballClubTotalStatistics = footballClubTotalStatistics;
     }
 
-    /**
-     * @return this clubs statistic for a single match
-     */
-    public SingleMatchFootballClubStatistic getSingleMatchFootballClubStatistic() {
-        return singleMatchFootballClubStatistic;
-    }
-
-    /**
-     * sets the statistics for this club for a match
-     * @param singleMatchFootballClubStatistic - this clubs statistics for a match
-     */
-    public void setSingleMatchFootballClubStatistic(SingleMatchFootballClubStatistic singleMatchFootballClubStatistic) {
-        this.singleMatchFootballClubStatistic = singleMatchFootballClubStatistic;
-    }
+//    /**
+//     * @return this clubs statistic for a single match
+//     */
+//    public SingleMatchFootballClubStatistic getSingleMatchFootballClubStatistic() {
+//        return singleMatchFootballClubStatistic;
+//    }
+//
+//    /**
+//     * sets the statistics for this club for a match
+//     * @param singleMatchFootballClubStatistic - this clubs statistics for a match
+//     */
+//    public void setSingleMatchFootballClubStatistic(SingleMatchFootballClubStatistic singleMatchFootballClubStatistic) {
+//        this.singleMatchFootballClubStatistic = singleMatchFootballClubStatistic;
+//    }
 
     /**
      * @return overrun toString() method
@@ -80,10 +80,16 @@ public class FootballClub extends SportsClub implements Serializable, Comparable
         return "FootballClub{" +
                 super.toString() +
                 "footballClubTotalStatistics=" + footballClubTotalStatistics +
-                ", singleMatchFootballClubStatistic=" + singleMatchFootballClubStatistic +
+//                ", singleMatchFootballClubStatistic=" + singleMatchFootballClubStatistic +
                 '}';
     }
 
+    /**
+     * Overridden compareTo() method - to sort the clubs based on points
+     * Needed for the displayPointsTable() method - to display club with most points on top (descending order of points)
+     * @param o - compare this FootballClub with o
+     * @return - +ve value if this clubs points > o's points, -ve value if vice-versa, 0 if equal
+     */
     @Override
     public int compareTo(FootballClub o) {
         return this.getFootballClubTotalStatistics().getPoints() - o.getFootballClubTotalStatistics().getPoints();

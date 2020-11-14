@@ -222,6 +222,11 @@ public class PremierLeagueManager implements LeagueManager {
             secondTeam = allFootballClubs.get(PremierLeagueManager.random.nextInt(allFootballClubs.size()));
         } while (firstTeam.getClubName().equals(secondTeam.getClubName()));
 
+//        FootballMatch footballMatch;
+//        do {
+//            footballMatch = new FootballMatch(firstTeam, secondTeam, new Date());
+//        } while (footballMatch.getFirstTeam().getClubName().compareTo(footballMatch.getSecondTeam().getClubName()) == 0);
+
         FootballMatch footballMatch = new FootballMatch(firstTeam, secondTeam, new Date());
         footballMatch.playMatch();
         allMatches.add(footballMatch);
@@ -279,15 +284,47 @@ public class PremierLeagueManager implements LeagueManager {
             System.out.format("%7s %5s", "", footballMatch.getMatchDate());
             System.out.println();
             System.out.format("%-20s %1s %1s %20s", footballMatch.getFirstTeam().getClubName(),
-                              footballMatch.getFirstTeam().getSingleMatchFootballClubStatistic().getGoals(),
-                              footballMatch.getSecondTeam().getSingleMatchFootballClubStatistic().getGoals(),
+                              footballMatch.getFirstTeamSingleMatchStats().getGoals(),
+                              footballMatch.getSecondTeamSingleMatchStats().getGoals(),
                               footballMatch.getSecondTeam().getClubName()
                               );
             System.out.println();
             System.out.println("---------------------------------------------");
         }
     }
-    //******************************************END DISPLAY MATCH SCORES***********************************************//
+    //******************************************END DISPLAY MATCH SCORES**********************************************//
+
+
+
+    //*********************************************DISPLAY SELECTED DATE**********************************************//
+    @Override
+    public void displaySelectedMatchStatistics() {
+        System.out.println("Enter First Club's Name:");
+        String firstTeamInput = sc.nextLine();
+        System.out.println("Enter Second Club's Name:");
+        String secondTeamInput = sc.nextLine();
+
+        boolean foundMatch = false;
+        FootballMatch foundFootballMatch = null;
+        for (FootballMatch footballMatch: allMatches) {
+            if ((footballMatch.getFirstTeam().getClubName().equals(firstTeamInput) &&
+                    footballMatch.getSecondTeam().getClubName().equals(secondTeamInput)) ||
+                    (footballMatch.getSecondTeam().getClubName().equals(firstTeamInput) &&
+                        footballMatch.getFirstTeam().getClubName().equals(secondTeamInput))) {
+                            foundFootballMatch = footballMatch;
+                            foundMatch = true;
+                            break;
+            }
+        }
+
+        if (!foundMatch) {
+            System.out.println("[ERROR] ==> No such Football Match was found!");
+        } else {
+            System.out.println(foundFootballMatch);
+        }
+
+    }
+    //********************************************END DISPLAY SELECTED MATCH******************************************//
 
 
 

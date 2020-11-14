@@ -7,10 +7,11 @@ public class Test {
 //        premierLeagueManager.addClub();
 //        premierLeagueManager.addClub();
         premierLeagueManager.addPlayedMatch();
-        premierLeagueManager.displayPointsTable();
+//        premierLeagueManager.displayPointsTable();
 //        premierLeagueManager.displaySelectedClub();
-        premierLeagueManager.displayMatchResults();
+//        premierLeagueManager.displayMatchResults();
+        premierLeagueManager.displaySelectedMatchStatistics();
 //        System.out.println(premierLeagueManager.deleteClub());
-        premierLeagueManager.saveData();
+//        premierLeagueManager.saveData();
     }
 }
