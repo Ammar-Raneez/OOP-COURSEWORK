@@ -12,12 +12,12 @@ package lk.oop.courseworkcli;
  */
 public interface LeagueManager {
     void addClub() throws ClassNotFoundException, IllegalAccessException;
-    SportsClub deleteClub();
-    void displaySelectedClub();
+    SportsClub deleteClub(String clubNameInput);
+    void displaySelectedClub(String clubNameInput);
     void addPlayedMatch();
     void displayPointsTable();
     void displayMatchResults();
-    void displaySelectedMatchStatistics();
+    void displaySelectedMatchStatistics(String firstTeamInput, String secondTeamInput);
     void saveData();
     void loadData();
 }

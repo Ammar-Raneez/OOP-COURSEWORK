@@ -12,7 +12,7 @@ import java.util.*;
 import java.util.List;
 
 /**
- * PremierLeagueManager class, the main class that will implement all the manipulation methods of a FootballClub
+ * PremierLeagueManager class, the class that will implement all the manipulation methods of a FootballClub
  * @version 1.x November 9th 2020
  * @author Ammar Raneez | 2019163 | W1761196
  */
@@ -155,10 +155,9 @@ public class PremierLeagueManager implements LeagueManager {
 
     //***********************************************DELETE METHOD****************************************************//
     @Override
-    public SportsClub deleteClub() {
+    public SportsClub deleteClub(String clubNameInput) {
         boolean foundFlag = false;
         SportsClub removedClub = null;
-        String clubNameInput = PremierLeagueManager.getUserInput("Enter Club Name you wish to delete");
 
         for (FootballClub footballClub : allFootballClubs) {
             if (footballClub.getClubName().equals(clubNameInput)) {
@@ -182,10 +181,9 @@ public class PremierLeagueManager implements LeagueManager {
 
     //*********************************************DISPLAY SELECTED CLUB**********************************************//
     @Override
-    public void displaySelectedClub() {
+    public void displaySelectedClub(String clubNameInput) {
         boolean foundFlag = false;
         FootballClub foundClub = null;
-        String clubNameInput = PremierLeagueManager.getUserInput("Enter club name to display");
 
         for (FootballClub footballClub : allFootballClubs) {
             if (footballClub.getClubName().equals(clubNameInput)) {
@@ -298,12 +296,7 @@ public class PremierLeagueManager implements LeagueManager {
 
     //*********************************************DISPLAY SELECTED DATE**********************************************//
     @Override
-    public void displaySelectedMatchStatistics() {
-        System.out.println("Enter First Club's Name:");
-        String firstTeamInput = sc.nextLine();
-        System.out.println("Enter Second Club's Name:");
-        String secondTeamInput = sc.nextLine();
-
+    public void displaySelectedMatchStatistics(String firstTeamInput, String secondTeamInput) {
         boolean foundMatch = false;
         FootballMatch foundFootballMatch = null;
         for (FootballMatch footballMatch: allMatches) {
