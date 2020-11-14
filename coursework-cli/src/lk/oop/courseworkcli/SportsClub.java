@@ -11,7 +11,8 @@ import java.io.Serializable;
  * @version 1.x November 9th 2020
  * @author Ammar Raneez | 2019163 | W1761196
  */
-public class SportsClub implements Serializable {
+public abstract class SportsClub implements Serializable {
+    private static final long serialVersionUID = -1367205871791753063L;
     private int amountOfPlayers;
     private SportsClubKit kit;
     private String clubLocation;

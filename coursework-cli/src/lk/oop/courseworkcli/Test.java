@@ -6,7 +6,7 @@ public class Test {
         premierLeagueManager.loadData();
 //        premierLeagueManager.addClub();
 //        premierLeagueManager.addClub();
-        premierLeagueManager.addPlayedMatch();
+//        premierLeagueManager.addPlayedMatch();
 //        premierLeagueManager.displayPointsTable();
 //        premierLeagueManager.displaySelectedClub();
 //        premierLeagueManager.displayMatchResults();

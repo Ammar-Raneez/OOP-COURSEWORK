@@ -307,6 +307,8 @@ public class PremierLeagueManager implements LeagueManager {
         boolean foundMatch = false;
         FootballMatch foundFootballMatch = null;
         for (FootballMatch footballMatch: allMatches) {
+            //*if condition that checks both possibilities, so that if user enters football club 2 as the first input*//
+            //*and football club 1 as the second output, the same match is considered*//
             if ((footballMatch.getFirstTeam().getClubName().equals(firstTeamInput) &&
                     footballMatch.getSecondTeam().getClubName().equals(secondTeamInput)) ||
                     (footballMatch.getSecondTeam().getClubName().equals(firstTeamInput) &&
@@ -320,9 +322,40 @@ public class PremierLeagueManager implements LeagueManager {
         if (!foundMatch) {
             System.out.println("[ERROR] ==> No such Football Match was found!");
         } else {
-            System.out.println(foundFootballMatch);
+            System.out.format("%-27s %-10s %28s", foundFootballMatch.getFirstTeam().getClubName(), "TEAM STATS",
+                              foundFootballMatch.getSecondTeam().getClubName());
+            System.out.println();
+            System.out.format("%-30s %-5s %30s", foundFootballMatch.getFirstTeamSingleMatchStats().getShots(),
+                    "Shots", foundFootballMatch.getSecondTeamSingleMatchStats().getShots());
+            System.out.println();
+            System.out.format("%-25s %-15s %25s", foundFootballMatch.getFirstTeamSingleMatchStats().getShotsOnTarget(),
+                    "Shots on target", foundFootballMatch.getSecondTeamSingleMatchStats().getShotsOnTarget());
+            System.out.println();
+            System.out.format("%-27s %-10s %28s", foundFootballMatch.getFirstTeamSingleMatchStats().getPossession(),
+                    "Possession", foundFootballMatch.getSecondTeamSingleMatchStats().getPossession());
+            System.out.println();
+            System.out.format("%-29s %-6s %30s", foundFootballMatch.getFirstTeamSingleMatchStats().getPasses(),
+                    "Passes", foundFootballMatch.getSecondTeamSingleMatchStats().getPasses());
+            System.out.println();
+            System.out.format("%-26s %-13s %26s", foundFootballMatch.getFirstTeamSingleMatchStats().getPassAccuracy(),
+                    "Pass accuracy", foundFootballMatch.getSecondTeamSingleMatchStats().getPassAccuracy());
+            System.out.println();
+            System.out.format("%-30s %-5s %30s", foundFootballMatch.getFirstTeamSingleMatchStats().getFouls(),
+                    "Fouls", foundFootballMatch.getSecondTeamSingleMatchStats().getFouls());
+            System.out.println();
+            System.out.format("%-26s %-12s %27s", foundFootballMatch.getFirstTeamSingleMatchStats().getYellowCards(),
+                    "Yellow cards", foundFootballMatch.getSecondTeamSingleMatchStats().getYellowCards());
+            System.out.println();
+            System.out.format("%-28s %-9s %28s", foundFootballMatch.getFirstTeamSingleMatchStats().getRedCards(),
+                    "Red cards", foundFootballMatch.getSecondTeamSingleMatchStats().getRedCards());
+            System.out.println();
+            System.out.format("%-28s %-8s %29s", foundFootballMatch.getFirstTeamSingleMatchStats().getOffsides(),
+                    "Offsides", foundFootballMatch.getSecondTeamSingleMatchStats().getOffsides());
+            System.out.println();
+            System.out.format("%-29s %-7s %29s", foundFootballMatch.getFirstTeamSingleMatchStats().getCorners(),
+                    "Corners", foundFootballMatch.getSecondTeamSingleMatchStats().getCorners());
+            System.out.println();
         }
-
     }
     //********************************************END DISPLAY SELECTED MATCH******************************************//
 
