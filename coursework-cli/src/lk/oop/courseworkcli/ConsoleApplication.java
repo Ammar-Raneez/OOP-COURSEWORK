@@ -5,7 +5,8 @@
 
 package lk.oop.courseworkcli;
 
-import java.util.Scanner;
+import java.awt.*;
+import java.lang.reflect.Field;
 
 /**
  * ConsoleApplication class, the main runner class
@@ -14,31 +15,86 @@ import java.util.Scanner;
  */
 public class ConsoleApplication {
     private static PremierLeagueManager premierLeagueManager = new PremierLeagueManager();
-    private static Scanner sc = new Scanner(System.in);
 
-    /**
-     * Private helper method that displays a sentence and returns user's input
-     * Marked static since it's common for any object created
-     * @param printSentence - sentence to use as a prompt
-     * @return - the input of the user
-     */
-    private static String getUserInput(String printSentence) {
-        System.out.println(printSentence);
-        return sc.nextLine().toLowerCase();
-    }
+    public static void addClub() throws ClassNotFoundException, IllegalAccessException {
+        String clubTypeInput = PremierLeagueManager.getUserInput("Please enter the type of club " +
+                "(University /School /" + "League level)");
 
-    public static void addClub() {
+        while (true) {
+            if (clubTypeInput.equals("university") || clubTypeInput.equals("school") || clubTypeInput.equals("league")) {
+                break;
+            } else {
+                clubTypeInput = PremierLeagueManager.getUserInput("Please specify appropriately! " +
+                        "(university/school/league)");
+            }
+        }
 
+        String clubNameInput = PremierLeagueManager.getUserInput("Enter Club's name");
+        boolean clubExists = false;
+
+        while (true) {
+            for (FootballClub footballClub : PremierLeagueManager.getAllFootballClubs()) {
+                if (footballClub.getClubName().equals(clubNameInput)) {
+                    clubExists = true;
+                    clubNameInput = PremierLeagueManager.getUserInput("[ERROR] ==> " + clubNameInput +
+                            " already exists! Please try again");
+                    break;
+                }
+            }
+            if (!clubExists) {
+                break;
+            } else {
+                clubExists = false;
+            }
+        }
+
+        String clubLocationInput = PremierLeagueManager.getUserInput("Enter club location");
+        String clubOwnerInput = PremierLeagueManager.getUserInput("Enter club owner");
+        String clubSponsorInput = PremierLeagueManager.getUserInput("Enter club sponsor");
+
+        Color colorTop;
+        Color colorShort;
+        Field fieldTop;
+        Field fieldBottom;
+
+        while (true) {
+            try {
+                String topColorInput = PremierLeagueManager.getUserInput("Enter club kit top color");
+                fieldTop = Class.forName("java.awt.Color").getField(topColorInput);
+                colorTop = (Color) fieldTop.get(null);
+                break;
+            } catch (NoSuchFieldException e) {
+                System.out.println("[ERROR] ==> Please choose one of the valid colors! [black, blue, cyan, gray, green, "
+                        + "magenta, orange, pink, red, white, yellow]");
+            }
+        }
+
+        while (true) {
+            try {
+                String shortColorInput = PremierLeagueManager.getUserInput("Enter club kit short color");
+                fieldBottom = Class.forName("java.awt.Color").getField(shortColorInput);
+                colorShort = (Color) fieldBottom.get(null);
+                break;
+            } catch (NoSuchFieldException e) {
+                System.out.println("[ERROR] ==> Please choose one of the valid colors! [black, blue, cyan, gray, green, "
+                        + "magenta, orange, pink, red, white, yellow]");
+            }
+        }
+
+        premierLeagueManager.addClub(clubTypeInput, clubNameInput, clubLocationInput, clubOwnerInput, clubSponsorInput,
+                                     colorTop, colorShort);
     }
 
     public static void deleteClub() {
-        String clubNameInput = getUserInput("Enter Club Name you wish to delete");
+        String clubNameInput = PremierLeagueManager.getUserInput("Enter Club Name you wish to delete");
         SportsClub deletedClub = premierLeagueManager.deleteClub(clubNameInput);
-        System.out.println(deletedClub + " was successfully deleted!");
+        if (deletedClub != null) {
+            System.out.println(clubNameInput + " was successfully deleted!");
+        }
     }
 
     public static void displaySelectedClub() {
-        String clubNameInput = getUserInput("Enter club name to display");
+        String clubNameInput = PremierLeagueManager.getUserInput("Enter club name to display");
         premierLeagueManager.displaySelectedClub(clubNameInput);
     }
 
@@ -55,8 +111,8 @@ public class ConsoleApplication {
     }
 
     public static void displaySelectedMatchStatistics() {
-        String firstTeamInput = getUserInput("Enter First Club's Name:");
-        String secondTeamInput = getUserInput("Enter Second Club's Name:");
+        String firstTeamInput = PremierLeagueManager.getUserInput("Enter First Club's Name:");
+        String secondTeamInput = PremierLeagueManager.getUserInput("Enter Second Club's Name:");
         premierLeagueManager.displaySelectedMatchStatistics(firstTeamInput, secondTeamInput);
     }
 
@@ -68,7 +124,14 @@ public class ConsoleApplication {
         premierLeagueManager.loadData();
     }
 
-    public static void main(String[] args) {
-
+    public static void main(String[] args) throws IllegalAccessException, ClassNotFoundException {
+        loadData();
+//        addClub();
+//        addClub();
+        addPlayedMatch();
+        displayPointsTable();
+        displayMatchResults();
+        displaySelectedMatchStatistics();
+        saveData();
     }
 }

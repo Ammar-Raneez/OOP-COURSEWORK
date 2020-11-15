@@ -5,13 +5,16 @@
 
 package lk.oop.courseworkcli;
 
+import java.awt.*;
+
 /**
  * LeagueManager interface, which will be used to hold generic methods that applies to any sport league
  * @version 1.x November 9th 2020
  * @author Ammar Raneez | 2019163 | W1761196
  */
 public interface LeagueManager {
-    void addClub() throws ClassNotFoundException, IllegalAccessException;
+    void addClub(String clubTypeInput, String clubNameInput, String clubLocationInput, String clubOwnerInput,
+                 String clubSponsorInput, Color colorTop, Color colorShort);
     SportsClub deleteClub(String clubNameInput);
     void displaySelectedClub(String clubNameInput);
     void addPlayedMatch();
