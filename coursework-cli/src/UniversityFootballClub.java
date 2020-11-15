@@ -19,11 +19,12 @@ public class UniversityFootballClub extends FootballClub implements Serializable
      * @param clubLocation - location of club
      * @param clubOwner - owner of club
      * @param kit - club kit (a helper class)
+     * @param clubWorth - club net worth
      * @param lecturerInCharge - lecturer in-charge of this university football club
      */
     public UniversityFootballClub(String clubName, String clubLocation, String clubOwner, SportsClubKit kit,
-                                  String lecturerInCharge) {
-        super(clubName, clubLocation, clubOwner, kit);
+                                  String lecturerInCharge, String clubWorth) {
+        super(clubName, clubLocation, clubOwner, kit, clubWorth);
         this.lecturerInCharge = lecturerInCharge;
     }
 

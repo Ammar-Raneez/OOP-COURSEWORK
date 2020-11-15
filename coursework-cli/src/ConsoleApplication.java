@@ -5,6 +5,7 @@
 
 import java.awt.*;
 import java.lang.reflect.Field;
+import java.util.Scanner;
 
 /**
  * ConsoleApplication class, the main runner class
@@ -79,8 +80,10 @@ public class ConsoleApplication {
             }
         }
 
+        String clubNetWorth = PremierLeagueManager.getUserInput("Please enter club net worth");
+
         premierLeagueManager.addClub(clubTypeInput, clubNameInput, clubLocationInput, clubOwnerInput, clubSponsorInput,
-                                     colorTop, colorShort);
+                                     colorTop, colorShort, clubNetWorth);
     }
 
     public static void deleteClub() {
@@ -125,11 +128,11 @@ public class ConsoleApplication {
     public static void main(String[] args) throws IllegalAccessException, ClassNotFoundException {
         loadData();
 //        addClub();
-//        addClub();
-        addPlayedMatch();
-        displayPointsTable();
-        displayMatchResults();
-        displaySelectedMatchStatistics();
-        saveData();
+        addClub();
+//        addPlayedMatch();
+//        displayPointsTable();
+//        displayMatchResults();
+//        displaySelectedMatchStatistics();
+//        saveData();
     }
 }

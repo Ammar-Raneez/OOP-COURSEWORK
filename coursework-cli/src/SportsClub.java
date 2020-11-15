@@ -17,6 +17,7 @@ public abstract class SportsClub implements Serializable {
     private String clubLocation;
     private String clubName;
     private String clubOwner;
+    private String clubNetWorth;
 
     /**
      * initializes a new sports club
@@ -25,13 +26,16 @@ public abstract class SportsClub implements Serializable {
      * @param clubOwner - owner of club
      * @param kit - club kit (a helper class)
      * @param amountOfPlayers - number of players in a team of a specific sports club
+     * @param clubNetWorth - net worth of this club
      */
-    public SportsClub(String clubName, String clubLocation, String clubOwner, SportsClubKit kit, int amountOfPlayers) {
+    public SportsClub(String clubName, String clubLocation, String clubOwner, SportsClubKit kit, int amountOfPlayers,
+                      String clubNetWorth) {
         this.clubName = clubName;
         this.clubLocation = clubLocation;
         this.clubOwner = clubOwner;
         this.kit = kit;
         this.amountOfPlayers = amountOfPlayers;
+        this.clubNetWorth = clubNetWorth;
     }
 
     /**
@@ -110,17 +114,33 @@ public abstract class SportsClub implements Serializable {
     }
 
     /**
+     * @return club net worth
+     */
+    public String getClubNetWorth() {
+        return clubNetWorth;
+    }
+
+    /**
+     * sets net worth of a club
+     * @param clubNetWorth - net worth of club
+     */
+    public void setClubNetWorth(String clubNetWorth) {
+        this.clubNetWorth = clubNetWorth;
+    }
+
+    /**
      * @return overrun toString() method
      */
     //TODO, improve toString() methods
     @Override
     public String toString() {
         return "SportsClub{" +
-                "clubName='" + clubName + '\'' +
-                ", clubLocation='" + clubLocation + '\'' +
-                ", clubOwner='" + clubOwner + '\'' +
+                "amountOfPlayers=" + amountOfPlayers +
                 ", kit=" + kit +
-                ", amountOfPlayers=" + amountOfPlayers +
+                ", clubLocation='" + clubLocation + '\'' +
+                ", clubName='" + clubName + '\'' +
+                ", clubOwner='" + clubOwner + '\'' +
+                ", clubNetWorth=" + clubNetWorth +
                 '}';
     }
 }

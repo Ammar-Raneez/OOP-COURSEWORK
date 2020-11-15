@@ -53,7 +53,7 @@ public class PremierLeagueManager implements LeagueManager {
     //************************************************ADD METHOD******************************************************//
     @Override
     public void addClub(String clubTypeInput, String clubNameInput, String clubLocationInput, String clubOwnerInput,
-                        String clubSponsorInput, Color colorTop, Color colorShort) {
+                        String clubSponsorInput, Color colorTop, Color colorShort, String netWorth) {
         FootballClub footballClub = null;
         switch (clubTypeInput) {
             case "university":
@@ -62,7 +62,7 @@ public class PremierLeagueManager implements LeagueManager {
 
                 footballClub = new UniversityFootballClub(clubNameInput, clubLocationInput, clubOwnerInput,
                                                           new SportsClubKit(clubSponsorInput, colorTop, colorShort),
-                                                          lecturerInChargeInput);
+                                                          lecturerInChargeInput, netWorth);
                 break;
             case "school":
                 String teacherInChargeInput = PremierLeagueManager.getUserInput("Please enter the " +
@@ -70,11 +70,11 @@ public class PremierLeagueManager implements LeagueManager {
 
                 footballClub = new SchoolFootballClub(clubNameInput, clubLocationInput, clubOwnerInput,
                                                       new SportsClubKit(clubSponsorInput, colorTop, colorShort),
-                                                      teacherInChargeInput);
+                                                      teacherInChargeInput, netWorth);
                 break;
             case "league":
                 footballClub = new FootballClub(clubNameInput, clubLocationInput, clubOwnerInput,
-                                                new SportsClubKit(clubSponsorInput, colorTop, colorShort));
+                                                new SportsClubKit(clubSponsorInput, colorTop, colorShort), netWorth);
                 break;
         }
 

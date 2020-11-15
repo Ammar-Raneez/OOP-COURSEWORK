@@ -11,7 +11,7 @@ import java.io.Serializable;
  * @author Ammar Raneez | 2019163 | W1761196
  */
 public class FootballClub extends SportsClub implements Serializable, Comparable<FootballClub> {
-    private static final int NUMBER_OF_PLAYERS = 10;
+    private static final int NUMBER_OF_PLAYERS = 11;
     private FootballClubTotalStatistics footballClubTotalStatistics;
 
     /**
@@ -24,10 +24,12 @@ public class FootballClub extends SportsClub implements Serializable, Comparable
      * @param clubLocation - location of club
      * @param clubOwner - owner of club
      * @param kit - club kit (a helper class)
+     * @param clubWorth - club net worth
      * @return no return (constructor)
      */
-    public FootballClub(String clubName, String clubLocation, String clubOwner, SportsClubKit kit) {
-        super(clubName, clubLocation, clubOwner, kit, NUMBER_OF_PLAYERS);
+    public FootballClub(String clubName, String clubLocation, String clubOwner, SportsClubKit kit,
+                        String clubWorth) {
+        super(clubName, clubLocation, clubOwner, kit, NUMBER_OF_PLAYERS, clubWorth);
         this.footballClubTotalStatistics = new FootballClubTotalStatistics();
     }
 

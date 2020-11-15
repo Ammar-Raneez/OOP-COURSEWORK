@@ -12,7 +12,7 @@ import java.awt.*;
  */
 public interface LeagueManager {
     void addClub(String clubTypeInput, String clubNameInput, String clubLocationInput, String clubOwnerInput,
-                 String clubSponsorInput, Color colorTop, Color colorShort);
+                 String clubSponsorInput, Color colorTop, Color colorShort, String netWorth);
     SportsClub deleteClub(String clubNameInput);
     void displaySelectedClub(String clubNameInput);
     void addPlayedMatch();
