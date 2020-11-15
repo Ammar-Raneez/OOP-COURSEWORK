@@ -2,7 +2,6 @@
  * SportsClub
  * Copyright © 2020 Ammar Raneez. All Rights Reserved.
  */
-package lk.oop.courseworkcli;
 
 import java.io.Serializable;
 

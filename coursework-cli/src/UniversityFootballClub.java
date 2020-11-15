@@ -3,8 +3,6 @@
  * Copyright © 2020 Ammar Raneez. All Rights Reserved.
  */
 
-package lk.oop.courseworkcli;
-
 import java.io.Serializable;
 
 /**
@@ -16,7 +14,7 @@ public class UniversityFootballClub extends FootballClub implements Serializable
     private String lecturerInCharge;
 
     /**
-     * initializes a new lk.oop.courseworkcli.UniversityFootballClub object
+     * initializes a new UniversityFootballClub object
      * @param clubName - name of club
      * @param clubLocation - location of club
      * @param clubOwner - owner of club

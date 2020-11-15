@@ -4,8 +4,6 @@
  *
  */
 
-package lk.oop.courseworkcli;
-
 import java.awt.*;
 import java.io.Serializable;
 
