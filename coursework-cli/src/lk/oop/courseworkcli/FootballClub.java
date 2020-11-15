@@ -15,7 +15,6 @@ import java.io.Serializable;
 public class FootballClub extends SportsClub implements Serializable, Comparable<FootballClub> {
     private static final int NUMBER_OF_PLAYERS = 10;
     private FootballClubTotalStatistics footballClubTotalStatistics;
-//    private SingleMatchFootballClubStatistic singleMatchFootballClubStatistic;
 
     /**
      * Constructor - takes in values and initializes a Football club object
@@ -32,7 +31,6 @@ public class FootballClub extends SportsClub implements Serializable, Comparable
     public FootballClub(String clubName, String clubLocation, String clubOwner, SportsClubKit kit) {
         super(clubName, clubLocation, clubOwner, kit, NUMBER_OF_PLAYERS);
         this.footballClubTotalStatistics = new FootballClubTotalStatistics();
-//        this.singleMatchFootballClubStatistic = new SingleMatchFootballClubStatistic();
     }
 
     /**
@@ -57,30 +55,15 @@ public class FootballClub extends SportsClub implements Serializable, Comparable
         this.footballClubTotalStatistics = footballClubTotalStatistics;
     }
 
-//    /**
-//     * @return this clubs statistic for a single match
-//     */
-//    public SingleMatchFootballClubStatistic getSingleMatchFootballClubStatistic() {
-//        return singleMatchFootballClubStatistic;
-//    }
-//
-//    /**
-//     * sets the statistics for this club for a match
-//     * @param singleMatchFootballClubStatistic - this clubs statistics for a match
-//     */
-//    public void setSingleMatchFootballClubStatistic(SingleMatchFootballClubStatistic singleMatchFootballClubStatistic) {
-//        this.singleMatchFootballClubStatistic = singleMatchFootballClubStatistic;
-//    }
-
     /**
      * @return overrun toString() method
      */
+    //TODO, improve toString() methods
     @Override
     public String toString() {
         return "FootballClub{" +
                 super.toString() +
                 "footballClubTotalStatistics=" + footballClubTotalStatistics +
-//                ", singleMatchFootballClubStatistic=" + singleMatchFootballClubStatistic +
                 '}';
     }
 

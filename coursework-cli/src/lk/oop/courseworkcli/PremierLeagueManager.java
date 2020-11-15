@@ -139,8 +139,6 @@ public class PremierLeagueManager implements LeagueManager {
     //***************************************ADD PLAYED MATCH BETWEEN TWO CLUB****************************************//
     @Override
     public void addPlayedMatch() {
-        //TODO add functionality to prevent same matches being played
-        //TODO, improve toString() methods
         FootballClub firstTeam;
         FootballClub secondTeam;
 
@@ -155,6 +153,7 @@ public class PremierLeagueManager implements LeagueManager {
             secondTeam = allFootballClubs.get(PremierLeagueManager.random.nextInt(allFootballClubs.size()));
         } while (firstTeam.getClubName().equals(secondTeam.getClubName()));
 
+        //TODO add functionality to prevent same matches being played
 //        FootballMatch footballMatch;
 //        do {
 //            footballMatch = new FootballMatch(firstTeam, secondTeam, new Date());

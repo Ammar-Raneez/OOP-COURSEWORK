@@ -45,6 +45,7 @@ public class FootballMatch implements Serializable, Comparable<FootballMatch> {
      * Which handles all the necessary updates
      */
     public void playMatch() {
+        //TODO generate unique scores each match
         //*randomly generated values of statistics for a single match*//
         List<Integer> firstTeamRandomStats = singleMatchRandomGeneratedStats();
         List<Integer> secondTeamRandomStats = singleMatchRandomGeneratedStats();
@@ -59,12 +60,10 @@ public class FootballMatch implements Serializable, Comparable<FootballMatch> {
         firstTeamSingleMatchStats.setPossession(firstTeamPossession);
         //*use the randomly generated values to update the attributes of a club*//
         updateSingleMatchTeamStats(firstTeamSingleMatchStats, firstTeamRandomStats, firstTeamTotalStats);
-//        firstTeam.setSingleMatchFootballClubStatistic(firstTeamSingleMatchStats);
 
         //*second team's possession = 100 - first team's*//
         secondTeamSingleMatchStats.setPossession((100 - firstTeamPossession));
         updateSingleMatchTeamStats(secondTeamSingleMatchStats, secondTeamRandomStats, secondTeamTotalStats);
-//        secondTeam.setSingleMatchFootballClubStatistic(secondTeamSingleMatchStats);
 
         //method that updates the total overall statistics (the above methods generate stats of a team in a match)
         updateClubTotalStatistics();
@@ -240,6 +239,7 @@ public class FootballMatch implements Serializable, Comparable<FootballMatch> {
     /**
      * @return overrun toString() method
      */
+    //TODO, improve toString() methods
     @Override
     public String toString() {
         return "FootballMatch{" +
