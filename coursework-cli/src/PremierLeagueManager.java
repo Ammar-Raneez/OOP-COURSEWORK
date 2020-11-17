@@ -30,7 +30,7 @@ public class PremierLeagueManager implements LeagueManager {
      */
     public static String getUserInput(String printSentence) {
         System.out.println(printSentence);
-        return sc.nextLine().toLowerCase();
+        return sc.nextLine().toLowerCase().trim();
     }
 
     /**
@@ -158,7 +158,7 @@ public class PremierLeagueManager implements LeagueManager {
         FootballMatch footballMatch = null;
         boolean hasMatch = false;
 
-        for (int i=0; i<allFootballClubs.size(); i++) {
+        for (int i=0; i<15; i++) {
             footballMatch = new FootballMatch(firstTeam, secondTeam, new Date());
 
             for (FootballMatch match : allMatches) {
@@ -170,16 +170,19 @@ public class PremierLeagueManager implements LeagueManager {
                     break;
                 }
             }
+
+            do {
+                firstTeam = allFootballClubs.get(PremierLeagueManager.random.nextInt(allFootballClubs.size()));
+                secondTeam = allFootballClubs.get(PremierLeagueManager.random.nextInt(allFootballClubs.size()));
+            } while (firstTeam.getClubName().equals(secondTeam.getClubName()));
         }
         if (hasMatch) {
             System.out.println("All Possible Matches have already been played!");
             return;
         }
-        if (footballMatch != null){
-            footballMatch.playMatch();
-            System.out.println("Match was played");
-            allMatches.add(footballMatch);
-        }
+        footballMatch.playMatch();
+        System.out.println("Match was played");
+        allMatches.add(footballMatch);
     }
     //*************************************END ADD PLAYED MATCH BETWEEN TWO CLUB**************************************//
 

@@ -31,6 +31,14 @@ public class ConsoleApplication {
         boolean clubExists = false;
 
         while (true) {
+            if (clubNameInput.equals("")) {
+                clubNameInput = PremierLeagueManager.getUserInput("Please enter a club name!");
+            } else {
+                break;
+            }
+        }
+
+        while (true) {
             for (FootballClub footballClub : PremierLeagueManager.getAllFootballClubs()) {
                 if (footballClub.getClubName().equals(clubNameInput)) {
                     clubExists = true;
@@ -137,6 +145,8 @@ public class ConsoleApplication {
         loadData();
         addClub();
         addClub();
+        addClub();
+        addPlayedMatch();
         addPlayedMatch();
         addPlayedMatch();
         displayPointsTable();

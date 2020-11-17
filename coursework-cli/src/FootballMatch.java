@@ -43,7 +43,6 @@ public class FootballMatch implements Serializable, Comparable<FootballMatch> {
      * Which handles all the necessary updates
      */
     public void playMatch() {
-        //TODO generate unique scores each match
         //*randomly generated values of statistics for a single match*//
         List<Integer> firstTeamRandomStats = singleMatchRandomGeneratedStats();
         List<Integer> secondTeamRandomStats = singleMatchRandomGeneratedStats();
@@ -62,6 +61,23 @@ public class FootballMatch implements Serializable, Comparable<FootballMatch> {
         //*second team's possession = 100 - first team's*//
         secondTeamSingleMatchStats.setPossession((100 - firstTeamPossession));
         updateSingleMatchTeamStats(secondTeamSingleMatchStats, secondTeamRandomStats, secondTeamTotalStats);
+
+        //*to prevent matches from having the same results*//
+        List<FootballMatch> footballMatches = PremierLeagueManager.getAllMatches();
+        boolean uniqueGoal;
+        do {
+            uniqueGoal = true;
+            for (FootballMatch footballMatch : footballMatches) {
+                if ((footballMatch.getFirstTeamSingleMatchStats().getGoals() == firstTeamSingleMatchStats.getGoals() &&
+                        footballMatch.getSecondTeamSingleMatchStats().getGoals() == secondTeamSingleMatchStats.getGoals()) ||
+                        (footballMatch.getSecondTeamSingleMatchStats().getGoals() == firstTeamSingleMatchStats.getGoals() &&
+                                footballMatch.getFirstTeamSingleMatchStats().getGoals() == secondTeamSingleMatchStats.getGoals())) {
+                    //*changing one teams goal will be sufficient for generating a new result*//
+                    firstTeamSingleMatchStats.setGoals(FootballMatch.random.nextInt(15 + 1));
+                    uniqueGoal = false;
+                }
+            }
+        } while (!uniqueGoal);
 
         //method that updates the total overall statistics (the above methods generate stats of a team in a match)
         updateClubTotalStatistics();
@@ -133,7 +149,7 @@ public class FootballMatch implements Serializable, Comparable<FootballMatch> {
     private List<Integer> singleMatchRandomGeneratedStats() {
         //generate random values within reasonable ranges for each stat recorded in a match**//
         int corners = FootballMatch.random.nextInt(30 - 5 + 1) + 5;
-        int goals = FootballMatch.random.nextInt(10 + 1);
+        int goals = FootballMatch.random.nextInt(15 + 1);
         int fouls = FootballMatch.random.nextInt(15 - 5 + 1) + 5;
         int offsides = FootballMatch.random.nextInt(10 - 5 + 1) + 5;
         int passes = FootballMatch.random.nextInt(700 - 300 + 1) + 300;
