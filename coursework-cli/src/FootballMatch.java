@@ -249,5 +249,17 @@ public class FootballMatch implements Serializable, Comparable<FootballMatch> {
                 '}';
     }
 
-
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        FootballMatch that = (FootballMatch) o;
+//        return Objects.equals(firstTeam, that.firstTeam) &&
+//                Objects.equals(secondTeam, that.secondTeam);
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(firstTeam, secondTeam);
+//    }
 }

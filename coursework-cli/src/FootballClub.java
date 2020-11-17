@@ -4,17 +4,14 @@
  */
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 /**
  * FootballClub class, which will be used to represent any football club (sub class of SportsClub)
  * @version 1.x November 9th 2020
  * @author Ammar Raneez | 2019163 | W1761196
  */
-public class FootballClub extends SportsClub implements Serializable, Comparable<FootballClub> {
+public class FootballClub extends SportsClub implements Comparable<FootballClub> {
     private static final int NUMBER_OF_PLAYERS = 11;
     private static Random random = new Random();
     private FootballClubTotalStatistics footballClubTotalStatistics;
@@ -84,6 +81,16 @@ public class FootballClub extends SportsClub implements Serializable, Comparable
     @Override
     public int compareTo(FootballClub o) {
         return this.getFootballClubTotalStatistics().getPoints() - o.getFootballClubTotalStatistics().getPoints();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return super.equals(o);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode());
     }
 
     /**

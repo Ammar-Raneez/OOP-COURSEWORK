@@ -141,26 +141,45 @@ public class PremierLeagueManager implements LeagueManager {
         FootballClub firstTeam;
         FootballClub secondTeam;
 
+        //*this if condition checks whether there are enough teams to play a match in the first place*//
         if (allFootballClubs.size() < 2) {
             System.out.println("There isn't enough teams to play a match!");
             return;
         }
 
-        //loop till two unique teams are selected (two same teams cannot play against each other)
+        //*loop till two unique teams are selected (two same teams cannot play against each other)*//
         do {
             firstTeam = allFootballClubs.get(PremierLeagueManager.random.nextInt(allFootballClubs.size()));
             secondTeam = allFootballClubs.get(PremierLeagueManager.random.nextInt(allFootballClubs.size()));
         } while (firstTeam.getClubName().equals(secondTeam.getClubName()));
 
-        //TODO add functionality to prevent same matches being played
-//        FootballMatch footballMatch;
-//        do {
-//            footballMatch = new FootballMatch(firstTeam, secondTeam, new Date());
-//        } while (footballMatch.getFirstTeam().getClubName().compareTo(footballMatch.getSecondTeam().getClubName()) == 0);
+        //*A fair number of chances is given to the program to generate a unique match*//
+        //*If it still fails, it has a huge probability that all matches have already been played*//
+        FootballMatch footballMatch = null;
+        boolean hasMatch = false;
 
-        FootballMatch footballMatch = new FootballMatch(firstTeam, secondTeam, new Date());
-        footballMatch.playMatch();
-        allMatches.add(footballMatch);
+        for (int i=0; i<allFootballClubs.size(); i++) {
+            footballMatch = new FootballMatch(firstTeam, secondTeam, new Date());
+
+            for (FootballMatch match : allMatches) {
+                if ((match.getFirstTeam().getClubName().equals(footballMatch.getFirstTeam().getClubName()) &&
+                        match.getSecondTeam().getClubName().equals(footballMatch.getSecondTeam().getClubName())) ||
+                            (match.getSecondTeam().getClubName().equals(footballMatch.getFirstTeam().getClubName()) &&
+                                match.getFirstTeam().getClubName().equals(footballMatch.getSecondTeam().getClubName()))) {
+                    hasMatch = true;
+                    break;
+                }
+            }
+        }
+        if (hasMatch) {
+            System.out.println("All Possible Matches have already been played!");
+            return;
+        }
+        if (footballMatch != null){
+            footballMatch.playMatch();
+            System.out.println("Match was played");
+            allMatches.add(footballMatch);
+        }
     }
     //*************************************END ADD PLAYED MATCH BETWEEN TWO CLUB**************************************//
 
@@ -292,11 +311,13 @@ public class PremierLeagueManager implements LeagueManager {
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(new File(SAVE_PATH + "\\saveFile.txt"));
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-
+            System.out.print("Now saving data");
+            PremierLeagueManager.threeDotSuspense();
             objectOutputStream.writeObject(allData);
-
             objectOutputStream.close();
             fileOutputStream.close();
+            Thread.sleep(500);
+            System.out.println("Data saved successfully!");
         } catch (Exception e) {
             System.out.println("[ERROR] ==> Something went wrong while saving the file!");
             e.printStackTrace();
@@ -315,14 +336,15 @@ public class PremierLeagueManager implements LeagueManager {
             FileInputStream fileInputStream = new FileInputStream(new File(SAVE_PATH + "\\saveFile.txt"));
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
             System.out.println("saveFile.txt found!");
-
+            System.out.print("Now loading data");
+            PremierLeagueManager.threeDotSuspense();
             allData = (List<Object>) objectInputStream.readObject();
-
             allFootballClubs = (List<FootballClub>) allData.get(0);
             allMatches = (List<FootballMatch>) allData.get(1);
-
             fileInputStream.close();
             objectInputStream.close();
+            Thread.sleep(500);
+            System.out.println("Data loaded successfully!");
         } catch (FileNotFoundException ex) {
             System.out.println("[ERROR] ==> There weren't any files to load!");
         } catch (Exception e) {

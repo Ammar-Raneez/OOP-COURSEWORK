@@ -81,12 +81,12 @@ public class ConsoleApplication {
 
         String clubNetWorth = PremierLeagueManager.getUserInput("Please enter club net worth");
 
-        System.out.print("Now adding Football Club " + clubNameInput);
-        PremierLeagueManager.threeDotSuspense();
         premierLeagueManager.addClub(clubTypeInput, clubNameInput, clubLocationInput, clubOwnerInput, clubSponsorInput,
                                      colorTop, colorShort, clubNetWorth);
+        System.out.print("Now adding Football Club " + clubNameInput);
+        PremierLeagueManager.threeDotSuspense();
         Thread.sleep(500);
-        System.out.println(clubNameInput + " was successfully added!");
+        System.out.println(clubNameInput + " was successfully Promoted to the Premier League!");
     }
 
     public static void deleteClub() throws InterruptedException {
@@ -96,7 +96,7 @@ public class ConsoleApplication {
             System.out.print("Now deleting " + clubNameInput);
             PremierLeagueManager.threeDotSuspense();
             Thread.sleep(500);
-            System.out.println(clubNameInput + " was successfully deleted!");
+            System.out.println(clubNameInput + " was successfully Relegated from the Premier League!");
         }
     }
 
@@ -123,31 +123,24 @@ public class ConsoleApplication {
         premierLeagueManager.displaySelectedMatchStatistics(firstTeamInput, secondTeamInput);
     }
 
-    public static void saveData() throws InterruptedException {
-        System.out.print("Now saving data");
-        PremierLeagueManager.threeDotSuspense();
+    public static void saveData() {
         premierLeagueManager.saveData();
-        Thread.sleep(500);
-        System.out.println("Data saved successfully!");
     }
 
-    public static void loadData() throws InterruptedException {
-        System.out.print("Now loading data");
-        PremierLeagueManager.threeDotSuspense();
+    public static void loadData() {
         premierLeagueManager.loadData();
-        Thread.sleep(500);
-        System.out.println("Data loaded successfully!");
     }
 
 
 
     public static void main(String[] args) throws IllegalAccessException, ClassNotFoundException, InterruptedException {
         loadData();
-//        addClub();
         addClub();
-//        addPlayedMatch();
-//        displayPointsTable();
-//        displayMatchResults();
+        addClub();
+        addPlayedMatch();
+        addPlayedMatch();
+        displayPointsTable();
+        displayMatchResults();
 //        displaySelectedMatchStatistics();
 //        saveData();
     }

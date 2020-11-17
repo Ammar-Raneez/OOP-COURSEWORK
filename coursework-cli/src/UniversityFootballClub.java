@@ -4,13 +4,14 @@
  */
 
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * UniversityFootballClub class, which will be used to represent any university football club (subclass of FootballClub)
  * @version 1.x November 9th 2020
  * @author Ammar Raneez | 2019163 | W1761196
  */
-public class UniversityFootballClub extends FootballClub implements Serializable {
+public class UniversityFootballClub extends FootballClub {
     private String lecturerInCharge;
 
     /**

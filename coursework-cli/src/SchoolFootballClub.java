@@ -4,13 +4,14 @@
  */
 
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * SchoolFootballClub class, which will be used to represent any school football club (subclass of FootballClub)
  * @version 1.x November 9th 2020
  * @author Ammar Raneez | 2019163 | W1761196
  */
-public class SchoolFootballClub extends FootballClub implements Serializable {
+public class SchoolFootballClub extends FootballClub {
     private String teacherInCharge;
 
     /**
