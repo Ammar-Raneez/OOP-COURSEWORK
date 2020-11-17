@@ -4,6 +4,10 @@
  */
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 
 /**
  * FootballClub class, which will be used to represent any football club (sub class of SportsClub)
@@ -12,7 +16,9 @@ import java.io.Serializable;
  */
 public class FootballClub extends SportsClub implements Serializable, Comparable<FootballClub> {
     private static final int NUMBER_OF_PLAYERS = 11;
+    private static Random random = new Random();
     private FootballClubTotalStatistics footballClubTotalStatistics;
+    private List<Player> allPlayers =  new ArrayList<>();
 
     /**
      * Constructor - takes in values and initializes a Football club object
@@ -31,6 +37,7 @@ public class FootballClub extends SportsClub implements Serializable, Comparable
                         String clubWorth) {
         super(clubName, clubLocation, clubOwner, kit, NUMBER_OF_PLAYERS, clubWorth);
         this.footballClubTotalStatistics = new FootballClubTotalStatistics();
+        this.generatePlayers();
     }
 
     /**
@@ -64,6 +71,7 @@ public class FootballClub extends SportsClub implements Serializable, Comparable
         return "FootballClub{" +
                 super.toString() +
                 "footballClubTotalStatistics=" + footballClubTotalStatistics +
+                ", allPlayers=" + allPlayers +
                 '}';
     }
 
@@ -76,5 +84,75 @@ public class FootballClub extends SportsClub implements Serializable, Comparable
     @Override
     public int compareTo(FootballClub o) {
         return this.getFootballClubTotalStatistics().getPoints() - o.getFootballClubTotalStatistics().getPoints();
+    }
+
+    /**
+     * Private method that sets the randomly generated values provided by playerInformationGeneration()
+     * to 11 players (since a football club consists of 11 players) for the club being added
+     */
+    private void generatePlayers() {
+        for (int i=0; i<FootballClub.getNumberOfPlayers(); i++) {
+            List<Object> allPlayerInformation = playerInformationGeneration();
+            allPlayers.add(new Player((double) allPlayerInformation.get(0), (String) allPlayerInformation.get(1),
+                    (String) allPlayerInformation.get(2), (PlayerStats) allPlayerInformation.get(3),
+                    (String) allPlayerInformation.get(4), (String) allPlayerInformation.get(5),
+                    (int) allPlayerInformation.get(6)
+                    ));
+        }
+    }
+
+    /**
+     * Private helper method that handles the random generation of values for each attribute of a player
+     * @return a list of objects consisting of all the necessary values
+     */
+    private List<Object> playerInformationGeneration() {
+        List<String> nationalities = new ArrayList<>(
+                Arrays.asList("Germany", "Portugal", "Spain", "Italy", "England", "Argentina", "Brazil",
+                              "Netherlands", "Croatia", "Belgium", "Hungary", "Uruguay", "Czech Republic",
+                              "Bosnia and Herzegovina", "Denmark", "Ivory Coast", "Sweden", "Paraguay", "Japan",
+                              "France", "Cameroon", "Egypt", "Chile", "Colombia", "Wales"
+                )
+        );
+
+        List<String> commonNames = new ArrayList<>(
+                Arrays.asList("James", "John", "Robert", "Michael", "William", "David", "Richard", "Joseph",
+                              "Thomas", "Charles", "Christopher", "Daniel", "Matthew", "Anthony", "Donald",
+                              "Mark", "Paul", "Steven", "Andrew", "Kenneth", "Joshua", "Kevin", "Brian",
+                              "George", "Edward", "Ronald", "Timothy", "Jason", "Jeffrey", "Ryan"
+                )
+        );
+
+        List<String> positions = new ArrayList<>(
+                Arrays.asList("GK", "CB", "LB", "RB", "LWB", "RWB", "SW", "DM", "CM", "AM", "LM", "RM",
+                              "CF", "S", "SS", "WF"
+                )
+        );
+        List<String> preferredFoot = new ArrayList<>(Arrays.asList("R", "L", "B"));
+
+        double playerHeight = FootballClub.random.nextInt(250 - 150 + 1) + 150;
+        String playerName = commonNames.get(FootballClub.random.nextInt(commonNames.size()));
+        String playerNationality = nationalities.get(FootballClub.random.nextInt(nationalities.size()));
+        PlayerStats playerStats = new PlayerStats(
+                FootballClub.random.nextInt(100 + 1),
+                FootballClub.random.nextInt(100 + 1),
+                FootballClub.random.nextInt(100 + 1),
+                FootballClub.random.nextInt(100 + 1),
+                FootballClub.random.nextInt(100 + 1),
+                FootballClub.random.nextInt(100 + 1),
+                FootballClub.random.nextInt(100 + 1),
+                FootballClub.random.nextInt(100 + 1),
+                FootballClub.random.nextInt(100 + 1),
+                FootballClub.random.nextInt(100 + 1),
+                FootballClub.random.nextInt(100 + 1),
+                FootballClub.random.nextInt(100 + 1),
+                FootballClub.random.nextInt(100 + 1)
+        );
+        playerStats.setOverall();
+        String playerPosition = positions.get(FootballClub.random.nextInt(positions.size()));
+        String playerPreferredFoot = preferredFoot.get(FootballClub.random.nextInt(preferredFoot.size()));
+        int shirtNumber = FootballClub.random.nextInt(15 - 1 + 1) + 1;
+
+        return Arrays.asList(playerHeight, playerName, playerNationality, playerStats, playerPosition,
+                             playerPreferredFoot, shirtNumber);
     }
 }

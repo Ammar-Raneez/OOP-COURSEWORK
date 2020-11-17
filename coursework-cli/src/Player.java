@@ -7,6 +7,17 @@ public class Player {
     private String preferredFoot;
     private int shirtNumber;
 
+    public Player(double height, String name, String nationality, PlayerStats playerStats, String position,
+                  String preferredFoot, int shirtNumber) {
+        this.height = height;
+        this.name = name;
+        this.nationality = nationality;
+        this.playerStats = playerStats;
+        this.position = position;
+        this.preferredFoot = preferredFoot;
+        this.shirtNumber = shirtNumber;
+    }
+
     public double getHeight() {
         return height;
     }

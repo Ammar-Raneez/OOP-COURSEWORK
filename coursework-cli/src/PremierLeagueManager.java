@@ -79,6 +79,7 @@ public class PremierLeagueManager implements LeagueManager {
         }
 
         allFootballClubs.add(footballClub);
+        System.out.println(allFootballClubs);
     }
     //**********************************************END OF ADD METHOD*************************************************//
 
