@@ -5,7 +5,6 @@
 
 import java.awt.*;
 import java.lang.reflect.Field;
-import java.util.Scanner;
 
 /**
  * ConsoleApplication class, the main runner class
@@ -15,7 +14,7 @@ import java.util.Scanner;
 public class ConsoleApplication {
     private static PremierLeagueManager premierLeagueManager = new PremierLeagueManager();
 
-    public static void addClub() throws ClassNotFoundException, IllegalAccessException {
+    public static void addClub() throws ClassNotFoundException, IllegalAccessException, InterruptedException {
         String clubTypeInput = PremierLeagueManager.getUserInput("Please enter the type of club " +
                 "(University /School /" + "League level)");
 
@@ -82,14 +81,21 @@ public class ConsoleApplication {
 
         String clubNetWorth = PremierLeagueManager.getUserInput("Please enter club net worth");
 
+        System.out.print("Now adding Football Club " + clubNameInput);
+        PremierLeagueManager.threeDotSuspense();
         premierLeagueManager.addClub(clubTypeInput, clubNameInput, clubLocationInput, clubOwnerInput, clubSponsorInput,
                                      colorTop, colorShort, clubNetWorth);
+        Thread.sleep(500);
+        System.out.println(clubNameInput + " was successfully added!");
     }
 
-    public static void deleteClub() {
+    public static void deleteClub() throws InterruptedException {
         String clubNameInput = PremierLeagueManager.getUserInput("Enter Club Name you wish to delete");
         SportsClub deletedClub = premierLeagueManager.deleteClub(clubNameInput);
         if (deletedClub != null) {
+            System.out.print("Now deleting " + clubNameInput);
+            PremierLeagueManager.threeDotSuspense();
+            Thread.sleep(500);
             System.out.println(clubNameInput + " was successfully deleted!");
         }
     }
@@ -117,15 +123,25 @@ public class ConsoleApplication {
         premierLeagueManager.displaySelectedMatchStatistics(firstTeamInput, secondTeamInput);
     }
 
-    public static void saveData() {
+    public static void saveData() throws InterruptedException {
+        System.out.print("Now saving data");
+        PremierLeagueManager.threeDotSuspense();
         premierLeagueManager.saveData();
+        Thread.sleep(500);
+        System.out.println("Data saved successfully!");
     }
 
-    public static void loadData() {
+    public static void loadData() throws InterruptedException {
+        System.out.print("Now loading data");
+        PremierLeagueManager.threeDotSuspense();
         premierLeagueManager.loadData();
+        Thread.sleep(500);
+        System.out.println("Data loaded successfully!");
     }
 
-    public static void main(String[] args) throws IllegalAccessException, ClassNotFoundException {
+
+
+    public static void main(String[] args) throws IllegalAccessException, ClassNotFoundException, InterruptedException {
         loadData();
 //        addClub();
         addClub();
