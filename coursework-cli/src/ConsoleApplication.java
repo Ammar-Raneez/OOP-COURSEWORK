@@ -146,6 +146,11 @@ public class ConsoleApplication {
         addClub();
         addClub();
         addClub();
+        addClub();
+        addPlayedMatch();
+        addPlayedMatch();
+        addPlayedMatch();
+        addPlayedMatch();
         addPlayedMatch();
         addPlayedMatch();
         addPlayedMatch();

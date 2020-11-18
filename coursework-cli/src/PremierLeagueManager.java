@@ -155,10 +155,11 @@ public class PremierLeagueManager implements LeagueManager {
 
         //*A fair number of chances is given to the program to generate a unique match*//
         //*If it still fails, it has a huge probability that all matches have already been played*//
-        FootballMatch footballMatch = null;
-        boolean hasMatch = false;
+        FootballMatch footballMatch;
+        boolean hasMatch;
 
-        for (int i=0; i<15; i++) {
+        while (true){
+            hasMatch = false;
             footballMatch = new FootballMatch(firstTeam, secondTeam, new Date());
 
             for (FootballMatch match : allMatches) {
@@ -171,18 +172,22 @@ public class PremierLeagueManager implements LeagueManager {
                 }
             }
 
+            if(!hasMatch) {
+                footballMatch.playMatch();
+                allMatches.add(footballMatch);
+                break;
+            }
+
             do {
                 firstTeam = allFootballClubs.get(PremierLeagueManager.random.nextInt(allFootballClubs.size()));
                 secondTeam = allFootballClubs.get(PremierLeagueManager.random.nextInt(allFootballClubs.size()));
             } while (firstTeam.getClubName().equals(secondTeam.getClubName()));
+
+            if (allMatches.size() == (allFootballClubs.size() * (allFootballClubs.size() - 1) / 2)) {
+                System.out.println("All Possible Matches have already been played!");
+                break;
+            }
         }
-        if (hasMatch) {
-            System.out.println("All Possible Matches have already been played!");
-            return;
-        }
-        footballMatch.playMatch();
-        System.out.println("Match was played");
-        allMatches.add(footballMatch);
     }
     //*************************************END ADD PLAYED MATCH BETWEEN TWO CLUB**************************************//
 
@@ -222,13 +227,13 @@ public class PremierLeagueManager implements LeagueManager {
     @Override
     public void displayMatchResults() {
         allMatches.sort(Collections.reverseOrder());
-        System.out.println("=============================================");
-        System.out.format("%7s %5s", "", "PREMIER LEAGUE - ALL MATCHES");
+        System.out.println("===============================================");
+        System.out.format("%8s %5s", "", "PREMIER LEAGUE - ALL MATCHES");
         System.out.println();
-        System.out.println("=============================================");
+        System.out.println("===============================================");
 
         for (FootballMatch footballMatch : allMatches) {
-            System.out.format("%7s %5s", "", footballMatch.getMatchDate());
+            System.out.format("%8s %5s", "", footballMatch.getMatchDate());
             System.out.println();
             System.out.format("%-20s %1s %1s %20s", footballMatch.getFirstTeam().getClubName(),
                               footballMatch.getFirstTeamSingleMatchStats().getGoals(),
@@ -236,7 +241,7 @@ public class PremierLeagueManager implements LeagueManager {
                               footballMatch.getSecondTeam().getClubName()
                               );
             System.out.println();
-            System.out.println("---------------------------------------------");
+            System.out.println("-----------------------------------------------");
         }
     }
     //******************************************END DISPLAY MATCH SCORES**********************************************//
