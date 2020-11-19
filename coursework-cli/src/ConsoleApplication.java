@@ -28,7 +28,6 @@ public class ConsoleApplication {
         }
 
         String clubNameInput = PremierLeagueManager.getUserInput("Enter Club's name");
-        boolean clubExists = false;
 
         while (true) {
             if (clubNameInput.equals("")) {
@@ -38,6 +37,7 @@ public class ConsoleApplication {
             }
         }
 
+        boolean clubExists = false;
         while (true) {
             for (FootballClub footballClub : PremierLeagueManager.getAllFootballClubs()) {
                 if (footballClub.getClubName().equals(clubNameInput)) {
@@ -55,8 +55,31 @@ public class ConsoleApplication {
         }
 
         String clubLocationInput = PremierLeagueManager.getUserInput("Enter club location");
+        while (true) {
+            if (clubLocationInput.equals("")) {
+                clubLocationInput = PremierLeagueManager.getUserInput("Please enter a club location!");
+            } else {
+                break;
+            }
+        }
+
         String clubOwnerInput = PremierLeagueManager.getUserInput("Enter club owner");
+        while (true) {
+            if (clubOwnerInput.equals("")) {
+                clubOwnerInput = PremierLeagueManager.getUserInput("Please enter a club Owner!");
+            } else {
+                break;
+            }
+        }
+
         String clubSponsorInput = PremierLeagueManager.getUserInput("Enter club sponsor");
+        while (true) {
+            if (clubSponsorInput.equals("")) {
+                clubSponsorInput = PremierLeagueManager.getUserInput("Please enter a club Sponsor!");
+            } else {
+                break;
+            }
+        }
 
         Color colorTop;
         Color colorShort;
@@ -88,6 +111,13 @@ public class ConsoleApplication {
         }
 
         String clubNetWorth = PremierLeagueManager.getUserInput("Please enter club net worth");
+        while (true) {
+            if (clubNetWorth.equals("")) {
+                clubNetWorth = PremierLeagueManager.getUserInput("Please specify a club net worth!");
+            } else {
+                break;
+            }
+        }
 
         premierLeagueManager.addClub(clubTypeInput, clubNameInput, clubLocationInput, clubOwnerInput, clubSponsorInput,
                                      colorTop, colorShort, clubNetWorth);

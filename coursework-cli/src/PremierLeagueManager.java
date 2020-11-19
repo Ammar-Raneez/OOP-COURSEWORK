@@ -23,7 +23,8 @@ public class PremierLeagueManager implements LeagueManager {
 
     //***************************************PRIVATE COMMON HELPER METHODS********************************************//
     /**
-     * Public helper method that displays a sentence and returns user's input
+     * Public helper method that displays a sentence and returns user's input transformed to lowercase and whitespaces
+     * trimmed
      * Marked static since it's common for any object created
      * @param printSentence - sentence to use as a prompt
      * @return - the input of the user
