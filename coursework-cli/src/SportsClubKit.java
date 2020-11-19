@@ -1,7 +1,6 @@
 /*
  * SportsClubKit
  * Copyright © 2020 Ammar Raneez. All Rights Reserved.
- *
  */
 
 import java.awt.*;
@@ -37,14 +36,6 @@ class SportsClubKit implements Serializable {
     }
 
     /**
-     * sets color of bottom
-     * @param bottomColor - color of bottom
-     */
-    public void setBottomColor(Color bottomColor) {
-        this.bottomColor = bottomColor;
-    }
-
-    /**
      * @return sponsor
      */
     public String getSponsor() {
@@ -52,26 +43,10 @@ class SportsClubKit implements Serializable {
     }
 
     /**
-     * sets sponsor of club
-     * @param sponsor - sponsor of the club
-     */
-    public void setSponsor(String sponsor) {
-        this.sponsor = sponsor;
-    }
-
-    /**
      * @return top color
      */
     public Color getTopColor() {
         return topColor;
-    }
-
-    /**
-     * sets color of top
-     * @param topColor - color of top
-     */
-    public void setTopColor(Color topColor) {
-        this.topColor = topColor;
     }
 
     /**

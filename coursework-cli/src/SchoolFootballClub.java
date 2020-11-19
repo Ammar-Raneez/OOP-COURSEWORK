@@ -3,7 +3,6 @@
  * Copyright © 2020 Ammar Raneez. All Rights Reserved.
  */
 
-import java.io.Serializable;
 import java.util.Objects;
 
 /**

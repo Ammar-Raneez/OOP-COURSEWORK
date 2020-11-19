@@ -3,7 +3,6 @@
  * Copyright © 2020 Ammar Raneez. All Rights Reserved.
  */
 
-import java.io.Serializable;
 import java.util.*;
 
 /**
@@ -163,6 +162,7 @@ public class FootballClub extends SportsClub implements Comparable<FootballClub>
                 FootballClub.random.nextInt(100 + 1),
                 FootballClub.random.nextInt(100 + 1)
         );
+        //*call method that sets overall stat*//
         playerStats.setOverall();
         String playerPosition = positions.get(FootballClub.random.nextInt(positions.size()));
         String playerPreferredFoot = preferredFoot.get(FootballClub.random.nextInt(preferredFoot.size()));

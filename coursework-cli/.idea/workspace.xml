@@ -6,11 +6,12 @@
       <change beforePath="$PROJECT_DIR$/src/ConsoleApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ConsoleApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/FootballClub.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FootballClub.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/FootballMatch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FootballMatch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PlayerStats.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PlayerStats.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PremierLeagueManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PremierLeagueManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SchoolFootballClub.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SchoolFootballClub.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SportsClub.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SportsClub.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SportsClubKit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SportsClubKit.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/UniversityFootballClub.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UniversityFootballClub.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../saveFile/saveFile.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,22 +123,22 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="804" y="124" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1605784287716" />
-    <state width="1323" height="376" key="GridCell.Tab.0.bottom" timestamp="1605787070474">
+    <state width="1323" height="437" key="GridCell.Tab.0.bottom" timestamp="1605787872724">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="376" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1605787070474" />
-    <state width="1323" height="376" key="GridCell.Tab.0.center" timestamp="1605787070473">
+    <state width="1323" height="437" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1605787872724" />
+    <state width="1323" height="437" key="GridCell.Tab.0.center" timestamp="1605787872724">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="376" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1605787070473" />
-    <state width="1323" height="376" key="GridCell.Tab.0.left" timestamp="1605787070473">
+    <state width="1323" height="437" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1605787872724" />
+    <state width="1323" height="437" key="GridCell.Tab.0.left" timestamp="1605787872724">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="376" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1605787070473" />
-    <state width="1323" height="376" key="GridCell.Tab.0.right" timestamp="1605787070473">
+    <state width="1323" height="437" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1605787872724" />
+    <state width="1323" height="437" key="GridCell.Tab.0.right" timestamp="1605787872724">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="376" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1605787070473" />
+    <state width="1323" height="437" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1605787872724" />
     <state x="52" y="91" key="RollbackChangesDialog" timestamp="1604904436649">
       <screen x="0" y="0" width="1366" height="738" />
     </state>

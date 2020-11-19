@@ -62,9 +62,11 @@ public class FootballMatch implements Serializable, Comparable<FootballMatch> {
         secondTeamSingleMatchStats.setPossession((100 - firstTeamPossession));
         updateSingleMatchTeamStats(secondTeamSingleMatchStats, secondTeamRandomStats, secondTeamTotalStats);
 
-        //*to prevent matches from having the same results*//
+        //*to prevent matches from having the same score results*//
         List<FootballMatch> footballMatches = PremierLeagueManager.getAllMatches();
         boolean uniqueGoal;
+        //*the logic here is to continuously loop and generate goals until this match's score is unique*//
+        //*checking this football match's goals against all the FootballMatches in the list*//
         do {
             uniqueGoal = true;
             for (FootballMatch footballMatch : footballMatches) {
@@ -126,10 +128,12 @@ public class FootballMatch implements Serializable, Comparable<FootballMatch> {
         firstTeam.setGoalsFor(firstTeam.getGoalsFor() + firstTeamMatchGoal);
         firstTeam.setMatchesPlayed(firstTeam.getMatchesPlayed() + 1);
 
+        //*if points = 3, then a team has won*//
         if (points == 3) {
             firstTeam.setPoints(firstTeam.getPoints() + points);
             firstTeam.setWins(firstTeam.getWins() + 1);
             secondTeam.setDefeats(secondTeam.getDefeats() + 1);
+        //*if not, it was a draw*//
         } else {
             firstTeam.setPoints(firstTeam.getPoints() + 1);
             secondTeam.setPoints(secondTeam.getPoints() + 1);
