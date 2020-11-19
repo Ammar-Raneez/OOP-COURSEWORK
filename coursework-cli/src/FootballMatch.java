@@ -265,17 +265,32 @@ public class FootballMatch implements Serializable, Comparable<FootballMatch> {
                 '}';
     }
 
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//        FootballMatch that = (FootballMatch) o;
-//        return Objects.equals(firstTeam, that.firstTeam) &&
-//                Objects.equals(secondTeam, that.secondTeam);
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash(firstTeam, secondTeam);
-//    }
+    /**
+     * Overrun equals method to check for any FootballMatch equality
+     * Special equals method, that checks first team against first and second, and does the same for second team
+     * This is done since the first team and second team could be in different ordering, but the match it refers to is
+     * still the same
+     * Not all attributes are checked against, since they can be duplicated
+     * @param o - compare this FootballMatch with o
+     * @return - t/f on whether the equality is satisfied
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        FootballMatch that = (FootballMatch) o;
+        return (Objects.equals(firstTeam, that.firstTeam) &&
+                Objects.equals(secondTeam, that.secondTeam)) ||
+                (Objects.equals(secondTeam, that.firstTeam) &&
+                Objects.equals(firstTeam, that.secondTeam));
+    }
+
+    /**
+     * If the above equals method returns true, the objects must have the same hashcode as well
+     * @return - a hash value for the objects
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstTeam, secondTeam);
+    }
 }

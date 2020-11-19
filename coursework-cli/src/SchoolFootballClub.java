@@ -55,4 +55,23 @@ public class SchoolFootballClub extends FootballClub {
                 ", teacherInCharge='" + teacherInCharge + '\'' +
                 '}';
     }
+
+    /**
+     * Equals() method called from the super class - FootballClub
+     * @param o - compare this club with o
+     * @return - t/f on whether the equality is satisfied
+     */
+    @Override
+    public boolean equals(Object o) {
+        return super.equals(o);
+    }
+
+    /**
+     * If the above equals method returns true, the objects must have the same hashcode as well
+     * @return - a hash value for the objects
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode());
+    }
 }

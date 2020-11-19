@@ -143,8 +143,11 @@ public class ConsoleApplication {
 
     public static void main(String[] args) throws IllegalAccessException, ClassNotFoundException, InterruptedException {
         loadData();
-//        addClub();
-//        addClub();
+        addClub();
+        addClub();
+        addClub();
+        addPlayedMatch();
+        addPlayedMatch();
         addPlayedMatch();
         addPlayedMatch();
         displayPointsTable();

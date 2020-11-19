@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class PremierLeagueManager implements LeagueManager {
     private static final String SAVE_PATH = "C:\\Users\\Ammuuu\\Downloads\\learning\\UNI\\OOP-Module\\Coursework\\" +
-                                            "OOP-COURSEWORK\\saveFile";
+                                            "OOP-COURSEWORK\\saveFile-cli";
     private static List<FootballMatch> allMatches = new ArrayList<>();
     private static List<FootballClub> allFootballClubs = new ArrayList<>();
     private static Scanner sc = new Scanner(System.in);
@@ -163,13 +163,17 @@ public class PremierLeagueManager implements LeagueManager {
             footballMatch = new FootballMatch(firstTeam, secondTeam, new Date());
 
             for (FootballMatch match : allMatches) {
-                if ((match.getFirstTeam().getClubName().equals(footballMatch.getFirstTeam().getClubName()) &&
-                        match.getSecondTeam().getClubName().equals(footballMatch.getSecondTeam().getClubName())) ||
-                            (match.getSecondTeam().getClubName().equals(footballMatch.getFirstTeam().getClubName()) &&
-                                match.getFirstTeam().getClubName().equals(footballMatch.getSecondTeam().getClubName()))) {
+                if (match.equals(footballMatch)) {
                     hasMatch = true;
                     break;
                 }
+//                if ((match.getFirstTeam().getClubName().equals(footballMatch.getFirstTeam().getClubName()) &&
+//                        match.getSecondTeam().getClubName().equals(footballMatch.getSecondTeam().getClubName())) ||
+//                            (match.getSecondTeam().getClubName().equals(footballMatch.getFirstTeam().getClubName()) &&
+//                                match.getFirstTeam().getClubName().equals(footballMatch.getSecondTeam().getClubName()))) {
+//                    hasMatch = true;
+//                    break;
+//                }
             }
 
             if(!hasMatch) {

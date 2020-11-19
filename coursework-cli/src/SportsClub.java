@@ -145,29 +145,29 @@ public abstract class SportsClub implements Serializable {
                 '}';
     }
 
-//    /**
-//     * Overrun equals method to check for any SportsClub equality
-//     * Not all attributes are checked against, since they can be duplicated
-//     * This is placed in the super class, so every class that inherits this, get the equals() method
-//     * @param o - compare this SportsClub with o
-//     * @return - t/f on whether the equality is satisfied
-//     */
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//        SportsClub that = (SportsClub) o;
-//        return Objects.equals(clubLocation, that.clubLocation) &&
-//                Objects.equals(clubName, that.clubName) &&
-//                Objects.equals(clubOwner, that.clubOwner);
-//    }
-//
-//    /**
-//     * If the above equals method returns true, the objects must have the same hashcode as well
-//     * @return - a hash value for the objects
-//     */
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash(clubLocation, clubName, clubOwner);
-//    }
+    /**
+     * Overrun equals method to check for any SportsClub equality
+     * Not all attributes are checked against, since they can be duplicated
+     * This is placed in the super class, so every class that inherits this, get the equals() method
+     * @param o - compare this SportsClub with o
+     * @return - t/f on whether the equality is satisfied
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SportsClub that = (SportsClub) o;
+        return Objects.equals(clubLocation, that.clubLocation) &&
+                Objects.equals(clubName, that.clubName) &&
+                Objects.equals(clubOwner, that.clubOwner);
+    }
+
+    /**
+     * If the above equals method returns true, the objects must have the same hashcode as well
+     * @return - a hash value for the objects
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(clubLocation, clubName, clubOwner);
+    }
 }
