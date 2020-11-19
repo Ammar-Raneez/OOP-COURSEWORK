@@ -216,18 +216,49 @@ public class ConsoleApplication {
 
     public static void main(String[] args) throws IllegalAccessException, ClassNotFoundException, InterruptedException {
         loadData();
-//        addClub();
-//        addClub();
-//        addClub();
-//        addPlayedMatch();
-//        addPlayedMatch();
-//        addPlayedMatch();
-//        addPlayedMatch();
-//        displayPointsTable();
-//        displayMatchResults();
-//        displaySelectedClub();
-//        deleteClub();
-//        displaySelectedMatchStatistics();
-        saveData();
+        System.out.println("***************************************************");
+        System.out.println("WELCOME TO THE PREMIER LEAGUE");
+        System.out.println("***************************************************");
+        System.out.println("Enter a to promote a club to the Premier League");
+        System.out.println("Enter d to relegate a club from the Premier League");
+        System.out.println("Enter p to play a match");
+        System.out.println("Enter z to display the current Premier League Standings");
+        System.out.println("Enter c to display all Match Scores of the Premier League");
+        System.out.println("Enter x to display a selected club");
+        System.out.println("Enter s to display a selected match statistic");
+        System.out.println("Enter q to exit");
+
+        String userChoice = PremierLeagueManager.getUserInput("Please choose an option");
+        infiniteLoop:
+        while (true) {
+            switch (userChoice) {
+                case "a":
+                    addClub();
+                    break;
+                case "d":
+                    deleteClub();
+                    break;
+                case "p":
+                    addPlayedMatch();
+                    break;
+                case "z":
+                    displayPointsTable();
+                    break;
+                case "c":
+                    displayMatchResults();
+                    break;
+                case "x":
+                    displaySelectedClub();
+                    break;
+                case "s":
+                    displaySelectedMatchStatistics();
+                    break;
+                case "q":
+                    saveData();
+                    break infiniteLoop;
+                default:
+                    userChoice = PremierLeagueManager.getUserInput("Please choose a valid option");
+            }
+        }
     }
 }
