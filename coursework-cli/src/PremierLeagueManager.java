@@ -14,7 +14,8 @@ import java.util.List;
  * @author Ammar Raneez | 2019163 | W1761196
  */
 public class PremierLeagueManager implements LeagueManager {
-    private static final String SAVE_PATH = "saveFile-cli";
+    private static final String SAVE_PATH = "C:\\Users\\Ammuuu\\Downloads\\learning\\UNI\\OOP-Module\\Coursework\\" +
+                                            "OOP-COURSEWORK\\saveFile-cli";
     private static List<FootballMatch> allMatches = new ArrayList<>();
     private static List<FootballClub> allFootballClubs = new ArrayList<>();
     private static Scanner sc = new Scanner(System.in);

@@ -216,18 +216,18 @@ public class ConsoleApplication {
 
     public static void main(String[] args) throws IllegalAccessException, ClassNotFoundException, InterruptedException {
         loadData();
-        addClub();
-        addClub();
-        addClub();
-        addPlayedMatch();
-        addPlayedMatch();
-        addPlayedMatch();
-        addPlayedMatch();
-        displayPointsTable();
-        displayMatchResults();
-        displaySelectedClub();
-        deleteClub();
-        displaySelectedMatchStatistics();
+//        addClub();
+//        addClub();
+//        addClub();
+//        addPlayedMatch();
+//        addPlayedMatch();
+//        addPlayedMatch();
+//        addPlayedMatch();
+//        displayPointsTable();
+//        displayMatchResults();
+//        displaySelectedClub();
+//        deleteClub();
+//        displaySelectedMatchStatistics();
         saveData();
     }
 }
