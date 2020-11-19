@@ -1,4 +1,6 @@
-public class PlayerStats {
+import java.io.Serializable;
+
+public class PlayerStats implements Serializable {
     private int accuracy;
     private int control;
     private int crossing;

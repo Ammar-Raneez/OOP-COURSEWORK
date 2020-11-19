@@ -183,7 +183,9 @@ public class PremierLeagueManager implements LeagueManager {
                 secondTeam = allFootballClubs.get(PremierLeagueManager.random.nextInt(allFootballClubs.size()));
             } while (firstTeam.getClubName().equals(secondTeam.getClubName()));
 
-            if (allMatches.size() == (allFootballClubs.size() * (allFootballClubs.size() - 1) / 2)) {
+            //*second condition is if you delete a football club after it has already played a match*//
+            if ((allMatches.size() == (allFootballClubs.size() * (allFootballClubs.size() - 1) / 2)) ||
+                    (allMatches.size() > allFootballClubs.size())) {
                 System.out.println("All Possible Matches have already been played!");
                 break;
             }
@@ -227,21 +229,21 @@ public class PremierLeagueManager implements LeagueManager {
     @Override
     public void displayMatchResults() {
         allMatches.sort(Collections.reverseOrder());
-        System.out.println("===============================================");
-        System.out.format("%8s %5s", "", "PREMIER LEAGUE - ALL MATCHES");
+        System.out.println("=============================================");
+        System.out.format("%7s %5s", "", "PREMIER LEAGUE - ALL MATCHES");
         System.out.println();
-        System.out.println("===============================================");
+        System.out.println("=============================================");
 
         for (FootballMatch footballMatch : allMatches) {
             System.out.format("%8s %5s", "", footballMatch.getMatchDate());
             System.out.println();
-            System.out.format("%-20s %1s %1s %20s", footballMatch.getFirstTeam().getClubName(),
+            System.out.format("%-19s %2s %2s %19s", footballMatch.getFirstTeam().getClubName(),
                               footballMatch.getFirstTeamSingleMatchStats().getGoals(),
                               footballMatch.getSecondTeamSingleMatchStats().getGoals(),
                               footballMatch.getSecondTeam().getClubName()
                               );
             System.out.println();
-            System.out.println("-----------------------------------------------");
+            System.out.println("---------------------------------------------");
         }
     }
     //******************************************END DISPLAY MATCH SCORES**********************************************//
