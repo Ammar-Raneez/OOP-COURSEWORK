@@ -1,11 +1,14 @@
 package oop.cw.guifx;
 
 import javafx.beans.property.SimpleStringProperty;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.StackPane;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,23 +16,27 @@ import java.util.List;
 
 public class GuiElements {
     public static AnchorPane anchor(){
-        return new AnchorPane();
+        AnchorPane anchorPane = new AnchorPane();
+        anchorPane.setStyle("-fx-background-color: #37003d; -fx-border-color: #f00;");
+        return anchorPane;
     }
 
-    public static VBox vbox(int minWidth) {
-        VBox vBox = new VBox();
-        vBox.setMinWidth(minWidth);
-        return vBox;
+    public static StackPane stackPane(int width, int height) {
+        StackPane stackPane = new StackPane();
+        stackPane.setMinHeight(height);
+        stackPane.setMinWidth(width);
+        return stackPane;
     }
 
-    private static TableColumn<FootballClub, String> tableColumns(TableView<FootballClub> tableView, String columnName, double columnWidthMultiplier) {
-        TableColumn<FootballClub, String> column = new TableColumn<>(columnName);
-        column.prefWidthProperty().bind(tableView.widthProperty().multiply(columnWidthMultiplier));
-        column.setResizable(false);
-        return column;
+    public Scene scene(AnchorPane anchorPane, int width, int height, String file) {
+        Scene scene = new Scene(anchorPane, width, height);
+        String css = this.getClass().getResource(file).toExternalForm();
+        scene.getStylesheets().add(css);
+        return scene;
     }
 
-    public static List<TableColumn<FootballClub, String>> generateTableColumns(TableView<FootballClub> tableView) {
+    public static List<TableColumn<FootballClub, String>> generatePointsTableColumns(TableView<FootballClub> tableView) {
+        tableView.setMinHeight(500);
         TableColumn<FootballClub, String> columnClub = GuiElements.tableColumns(tableView, "Club", 0.3);
         columnClub.setCellValueFactory(new PropertyValueFactory<>("clubName"));
 
@@ -63,7 +70,7 @@ public class GuiElements {
                 new SimpleStringProperty(String.valueOf(cellData.getValue().getFootballClubTotalStatistics().getGoalsAgainst()))
         );
 
-        TableColumn<FootballClub, String> columnGoalDifference = GuiElements.tableColumns(tableView, "GD", 0.085);
+        TableColumn<FootballClub, String> columnGoalDifference = GuiElements.tableColumns(tableView, "GD", 0.09);
         columnGoalDifference.setCellValueFactory(cellData ->
                 new SimpleStringProperty(String.valueOf(cellData.getValue().getFootballClubTotalStatistics().getGoalDifference()))
         );
@@ -78,5 +85,21 @@ public class GuiElements {
                         columnGoalDifference, columnPoints
                 )
         );
+    }
+    private static TableColumn<FootballClub, String> tableColumns(TableView<FootballClub> tableView, String columnName, double columnWidthMultiplier) {
+        TableColumn<FootballClub, String> column = new TableColumn<>(columnName);
+        column.prefWidthProperty().bind(tableView.widthProperty().multiply(columnWidthMultiplier));
+        column.setResizable(false);
+        return column;
+    }
+
+    public static ImageView imageViewLay(String imageFile, int layX, int layY, int height, int width){
+        Image imageLay = new Image(imageFile);
+        ImageView imageViewLay = new ImageView(imageLay);
+        imageViewLay.setFitHeight(height);
+        imageViewLay.setFitWidth(width);
+        imageViewLay.setX(layX);
+        imageViewLay.setY(layY);
+        return imageViewLay;
     }
 }

@@ -1,0 +1,23 @@
+.table-view {
+    -fx-border-color: '#f00';
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: '43134c';
+}
+
+.table-view .column-header-background {
+    -fx-background-color: '62ffa4';
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+}
+
+.table-view .table-cell{
+    -fx-border-color: transparent;
+}
+
+.table-view .table-cell: hover {
+    -fx-text-background-color: 'f00';
+}
