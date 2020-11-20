@@ -1,10 +1,13 @@
 package oop.cw.guifx;
 
 import javafx.beans.property.SimpleStringProperty;
+import javafx.scene.Cursor;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -15,6 +18,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class GuiElements {
+    private static DropShadow shadow = new DropShadow();
+
     public static AnchorPane anchor(){
         AnchorPane anchorPane = new AnchorPane();
         anchorPane.setStyle("-fx-background-color: #37003d; -fx-border-color: #f00;");
@@ -33,6 +38,17 @@ public class GuiElements {
         String css = this.getClass().getResource(file).toExternalForm();
         scene.getStylesheets().add(css);
         return scene;
+    }
+
+    public static Button button(String btnText, int layX, int layY, String id){
+        Button button = new Button();
+        button.setText(btnText);
+        button.setLayoutX(layX);
+        button.setLayoutY(layY);
+        button.setId(id);
+        button.setCursor(Cursor.HAND);
+        button.setEffect(shadow);
+        return button;
     }
 
     public static List<TableColumn<FootballClub, String>> generatePointsTableColumns(TableView<FootballClub> tableView) {

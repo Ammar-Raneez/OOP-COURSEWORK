@@ -1,5 +1,6 @@
+/*table section*/
 .table-view {
-    -fx-border-color: '#f00';
+    -fx-border-color: '#ff015b';
 }
 
 .table-view .column-header .label {
@@ -27,5 +28,35 @@
 }
 
 .table-view .table-row-cell: hover {
-    -fx-text-background-color: 'f00';
+    -fx-text-background-color: 'ff015b';
+}
+/*table section end*/
+
+/*buttons*/
+#goalSorter, #winSorter, #playMatch, #displayMatch, #searchMatch {
+    -fx-padding: 5px 30px;
+    -fx-text-fill: #fff;
+}
+#goalSorter:hover, #winSorter:hover, #playMatch:hover, #displayMatch:hover, #searchMatch:hover {
+    -fx-background-color: #fff;
+}
+
+#goalSorter, #winSorter, #displayMatch, #searchMatch {
+    -fx-font-size: 20px;
+    -fx-background-color: #ff015b;
+    -fx-border-radius: 70px;
+    -fx-background-radius: 70px;
+}
+#goalSorter:hover, #winSorter:hover, #displayMatch:hover, #searchMatch:hover {
+    -fx-text-fill: #ff015b;
+    -fx-background-color: #fff;
+}
+
+#playMatch {
+    -fx-font-size: 30px;
+    -fx-background-color: #f00;
+    -fx-font-weight: bold;
+}
+#playMatch:hover {
+    -fx-text-fill: #f00;
 }
