@@ -1,14 +1,13 @@
 package oop.cw.guifx;
-
 /*
- * GoalDifferenceComparator
+ * oop.cw.guifx.GoalDifferenceComparator
  * Copyright © 2020 Ammar Raneez. All Rights Reserved.
  */
 
 import java.util.Comparator;
 
 /**
- * GoalDifferenceComparator class, which will be used to sort the list of football clubs based on GD
+ * oop.cw.guifx.GoalDifferenceComparator class, which will be used to sort the list of football clubs based on GD
  * Needed for an additional sorting of FootballClubs that have the same amount of points
  * @version 1.x November 11th 2020
  * @author Ammar Raneez | 2019163 | W1761196

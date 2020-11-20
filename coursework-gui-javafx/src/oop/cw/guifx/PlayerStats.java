@@ -1,14 +1,13 @@
 package oop.cw.guifx;
-
 /*
- * PlayerStats
+ * oop.cw.guifx.PlayerStats
  * Copyright © 2020 Ammar Raneez. All Rights Reserved.
  */
 
 import java.io.Serializable;
 
 /**
- * PlayerStats class, which will be used to represent any Players stats
+ * oop.cw.guifx.PlayerStats class, which will be used to represent any Players stats
  * @version 1.x November 17th 2020
  * @author Ammar Raneez | 2019163 | W1761196
  */
@@ -174,7 +173,7 @@ public class PlayerStats implements Serializable {
      */
     @Override
     public String toString() {
-        return "PlayerStats{" +
+        return "oop.cw.guifx.PlayerStats{" +
                 "accuracy=" + accuracy +
                 ", control=" + control +
                 ", crossing=" + crossing +

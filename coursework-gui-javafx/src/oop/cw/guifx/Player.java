@@ -1,14 +1,13 @@
 package oop.cw.guifx;
-
 /*
- * Player
+ * oop.cw.guifx.Player
  * Copyright © 2020 Ammar Raneez. All Rights Reserved.
  */
 
 import java.io.Serializable;
 
 /**
- * Player class, which will be used to represent any Player
+ * oop.cw.guifx.Player class, which will be used to represent any oop.cw.guifx.Player
  * @version 1.x November 17th 2020
  * @author Ammar Raneez | 2019163 | W1761196
  */
@@ -22,7 +21,7 @@ public class Player implements Serializable {
     private int shirtNumber;
 
     /**
-     * initializes all info of a Player
+     * initializes all info of a oop.cw.guifx.Player
      * @param height - player height
      * @param name - player name
      * @param nationality - player nationality
@@ -152,7 +151,7 @@ public class Player implements Serializable {
      */
     @Override
     public String toString() {
-        return "Player{" +
+        return "oop.cw.guifx.Player{" +
                 "height=" + height +
                 ", name='" + name + '\'' +
                 ", nationality='" + nationality + '\'' +

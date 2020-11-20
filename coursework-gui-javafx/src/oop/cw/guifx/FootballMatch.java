@@ -1,7 +1,6 @@
 package oop.cw.guifx;
-
 /*
- * FootballMatch
+ * oop.cw.guifx.FootballMatch
  * Copyright © 2020 Ammar Raneez. All Rights Reserved.
  */
 
@@ -9,12 +8,12 @@ import java.io.Serializable;
 import java.util.*;
 
 /**
- * FootballMatch class, which will be used to represent any match between two Football clubs
+ * oop.cw.guifx.FootballMatch class, which will be used to represent any match between two Football clubs
  * @version 1.x November 9th 2020
  * @author Ammar Raneez | 2019163 | W1761196
  */
 public class FootballMatch implements Serializable, Comparable<FootballMatch> {
-    //*serialization happened to refer to a different serial id for objects of FootballMatch, therefore*//
+    //*serialization happened to refer to a different serial id for objects of oop.cw.guifx.FootballMatch, therefore*//
     //*the expected value shown up on the terminal was hardcoded*//
     private static final long serialVersionUID = 1900807394549689165L;
     private static Random random = new Random();
@@ -41,7 +40,7 @@ public class FootballMatch implements Serializable, Comparable<FootballMatch> {
     //*************************************PLAY MATCH METHOD BETWEEN TWO TEAMS***************************************//
     /**
      * Main function that handles playing of a single match
-     * This function is called in the PremierLeagueManager class in the addMatch() method
+     * This function is called in the oop.cw.guifx.PremierLeagueManager class in the addMatch() method
      * Which handles all the necessary updates
      */
     public void playMatch() {
@@ -262,7 +261,7 @@ public class FootballMatch implements Serializable, Comparable<FootballMatch> {
     //TODO, improve toString() methods
     @Override
     public String toString() {
-        return "FootballMatch{" +
+        return "oop.cw.guifx.FootballMatch{" +
                 "footballClub1=" + firstTeam +
                 ", footballClub1 match stats=" + firstTeamSingleMatchStats +
                 ", footballClub2=" + secondTeam +
@@ -272,12 +271,12 @@ public class FootballMatch implements Serializable, Comparable<FootballMatch> {
     }
 
     /**
-     * Overrun equals method to check for any FootballMatch equality
+     * Overrun equals method to check for any oop.cw.guifx.FootballMatch equality
      * Special equals method, that checks first team against first and second, and does the same for second team
      * This is done since the first team and second team could be in different ordering, but the match it refers to is
      * still the same
      * Not all attributes are checked against, since they can be duplicated
-     * @param o - compare this FootballMatch with o
+     * @param o - compare this oop.cw.guifx.FootballMatch with o
      * @return - t/f on whether the equality is satisfied
      */
     @Override

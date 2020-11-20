@@ -1,5 +1,4 @@
 package oop.cw.guifx;
-
 /*
  * FootballClubStatistics
  * Copyright © 2020 Ammar Raneez. All Rights Reserved.
@@ -12,7 +11,8 @@ import java.io.Serializable;
  * @version 1.x November 9th 2020
  * @author Ammar Raneez | 2019163 | W1761196
  */
-class FootballClubTotalStatistics implements Serializable {
+public class FootballClubTotalStatistics implements Serializable {
+    private static final long serialVersionUID = -30110101487621832L;
     private int defeats;
     private int draws;
     private int goalsAgainst;

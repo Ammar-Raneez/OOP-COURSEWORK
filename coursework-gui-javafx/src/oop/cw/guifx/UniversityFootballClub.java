@@ -1,14 +1,12 @@
-package oop.cw.guifx;
-
-/*
- * UniversityFootballClub
+package oop.cw.guifx;/*
+ * oop.cw.guifx.UniversityFootballClub
  * Copyright © 2020 Ammar Raneez. All Rights Reserved.
  */
 
 import java.util.Objects;
 
 /**
- * UniversityFootballClub class, which will be used to represent any university football club (subclass of FootballClub)
+ * oop.cw.guifx.UniversityFootballClub class, which will be used to represent any university football club (subclass of oop.cw.guifx.FootballClub)
  * @version 1.x November 9th 2020
  * @author Ammar Raneez | 2019163 | W1761196
  */
@@ -16,7 +14,7 @@ public class UniversityFootballClub extends FootballClub {
     private String lecturerInCharge;
 
     /**
-     * initializes a new UniversityFootballClub object
+     * initializes a new oop.cw.guifx.UniversityFootballClub object
      * @param clubName - name of club
      * @param clubLocation - location of club
      * @param clubOwner - owner of club
@@ -51,14 +49,14 @@ public class UniversityFootballClub extends FootballClub {
     //TODO, improve toString() methods
     @Override
     public String toString() {
-        return "UniversityFootballClub{" +
+        return "oop.cw.guifx.UniversityFootballClub{" +
                 super.toString() +
                 ",lecturerInCharge='" + lecturerInCharge + '\'' +
                 '}';
     }
 
     /**
-     * Equals() method called from the super class - FootballClub
+     * Equals() method called from the super class - oop.cw.guifx.FootballClub
      * @param o - compare this club with o
      * @return - t/f on whether the equality is satisfied
      */

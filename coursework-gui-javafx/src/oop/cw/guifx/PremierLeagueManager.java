@@ -1,7 +1,6 @@
 package oop.cw.guifx;
-
 /*
- * PremierLeagueManager
+ * oop.cw.guifx.PremierLeagueManager
  * Copyright © 2020 Ammar Raneez. All Rights Reserved.
  */
 
@@ -11,7 +10,7 @@ import java.util.*;
 import java.util.List;
 
 /**
- * PremierLeagueManager class, the class that will implement all the manipulation methods of a FootballClub
+ * oop.cw.guifx.PremierLeagueManager class, the class that will implement all the manipulation methods of a oop.cw.guifx.FootballClub
  * @version 1.x November 9th 2020
  * @author Ammar Raneez | 2019163 | W1761196
  */
@@ -56,7 +55,7 @@ public class PremierLeagueManager implements LeagueManager {
     //************************************************ADD METHOD******************************************************//
 
     /**
-     * Method implementation of addClub(), overrun from the LeagueManager interface
+     * Method implementation of addClub(), overrun from the oop.cw.guifx.LeagueManager interface
      * This method handles the functionality of adding/promoting a club to the PremierLeague
      * @param clubTypeInput - type of club input (university, school or league)
      * @param clubNameInput - name of the club
@@ -105,7 +104,7 @@ public class PremierLeagueManager implements LeagueManager {
     //***********************************************DELETE METHOD****************************************************//
 
     /**
-     * Method implementation of deleteClub(), overrun from the LeagueManager interface
+     * Method implementation of deleteClub(), overrun from the oop.cw.guifx.LeagueManager interface
      * This method handles the functionality of deleting/relegating a club from the PremierLeague
      * Deletes based on club name input
      * @param clubNameInput - name of club wished to relegate
@@ -140,7 +139,7 @@ public class PremierLeagueManager implements LeagueManager {
     //*********************************************DISPLAY SELECTED CLUB**********************************************//
 
     /**
-     * Method implementation of displaySelectedClub(), overrun from the LeagueManager interface
+     * Method implementation of displaySelectedClub(), overrun from the oop.cw.guifx.LeagueManager interface
      * This method handles the functionality of displaying a club in the PremierLeague
      * Identifies based on club name
      * @param clubNameInput - name of club wished to display
@@ -171,7 +170,7 @@ public class PremierLeagueManager implements LeagueManager {
     //***************************************ADD PLAYED MATCH BETWEEN TWO CLUB****************************************//
 
     /**
-     * Method implementation of addPlayedMatch(), overrun from the LeagueManager interface
+     * Method implementation of addPlayedMatch(), overrun from the oop.cw.guifx.LeagueManager interface
      * This method handles the functionality of playing a match in the PremierLeague
      */
     @Override
@@ -246,14 +245,14 @@ public class PremierLeagueManager implements LeagueManager {
     //*********************************************DISPLAY POINTS TABLE***********************************************//
 
     /**
-     * Method implementation of displayPointsTable(), overrun from the LeagueManager interface
+     * Method implementation of displayPointsTable(), overrun from the oop.cw.guifx.LeagueManager interface
      * This method handles the functionality of displaying the standings of the Premier League
      */
     @Override
     public void displayPointsTable() {
-        //*sort based on the GoalDifferenceComparator created, in descending order*//
+        //*sort based on the oop.cw.guifx.GoalDifferenceComparator created, in descending order*//
         allFootballClubs.sort(new GoalDifferenceComparator().reversed());
-        //*then use the compareTo() method of FootballClub to sort based on points
+        //*then use the compareTo() method of oop.cw.guifx.FootballClub to sort based on points
         //*(GD sorted first so the GD order is maintained)*//
         allFootballClubs.sort(Collections.reverseOrder());
 
@@ -285,12 +284,12 @@ public class PremierLeagueManager implements LeagueManager {
     //*********************************************DISPLAY MATCH SCORES***********************************************//
 
     /**
-     * Method implementation of displayMatchResults(), overrun from the LeagueManager interface
+     * Method implementation of displayMatchResults(), overrun from the oop.cw.guifx.LeagueManager interface
      * This method handles the functionality of displaying all the match results in the Premier League
      */
     @Override
     public void displayMatchResults() {
-        //*FootballMatch compareTo() method is used to sort (Date sorting), in descending order*//
+        //*oop.cw.guifx.FootballMatch compareTo() method is used to sort (Date sorting), in descending order*//
         //*So it's ordered from the most recent to the least*//
         allMatches.sort(Collections.reverseOrder());
         System.out.println("=============================================");
@@ -317,7 +316,7 @@ public class PremierLeagueManager implements LeagueManager {
     //*********************************************DISPLAY SELECTED DATE**********************************************//
 
     /**
-     * Method implementation of displaySelectedMatchStatistics(), overrun from the LeagueManager interface
+     * Method implementation of displaySelectedMatchStatistics(), overrun from the oop.cw.guifx.LeagueManager interface
      * This method handles the functionality of displaying a selected match in the Premier League
      * Identifies based on the club name inputs that are involved in the match
      * @param firstTeamInput - club name
@@ -390,7 +389,7 @@ public class PremierLeagueManager implements LeagueManager {
     //**************************************************SAVE DATA*****************************************************//
 
     /**
-     * Method implementation of saveData(), overrun from the LeagueManager interface
+     * Method implementation of saveData(), overrun from the oop.cw.guifx.LeagueManager interface
      * This method handles the functionality of saving all required data
      */
     @Override
@@ -418,7 +417,7 @@ public class PremierLeagueManager implements LeagueManager {
     //************************************************LOAD DATA*******************************************************//
 
     /**
-     * Method implementation of loadData(), overrun from the LeagueManager interface
+     * Method implementation of loadData(), overrun from the oop.cw.guifx.LeagueManager interface
      * This method handles the functionality of loading all the data that had been saved
      */
     @Override
