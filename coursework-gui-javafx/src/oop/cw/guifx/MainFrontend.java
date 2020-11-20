@@ -38,13 +38,24 @@ public class MainFrontend extends Application {
         Button searchMatch = GuiElements.button("SEARCH MATCH", 735, 590, "searchMatch");
         Button displayMatch = GuiElements.button("DISPLAY MATCH", 950, 590, "displayMatch");
         Button playMatch = GuiElements.button("P L A Y!", 1180, 580, "playMatch");
-        //*end gui elements*//
-
-        goalSorter.setOnAction(event -> allClubs.sort(new GoalsForComparator().reversed()));
-        winSorter.setOnAction(event -> allClubs.sort(new WinComparator().reversed()));
-
         TableView<FootballClub> tableView = new TableView<>();
         List<TableColumn<FootballClub, String>> allColumns = GuiElements.generatePointsTableColumns(tableView);
+        //*end gui elements*//
+
+        goalSorter.setOnAction(event -> {
+            allClubs.sort(new GoalsForComparator().reversed());
+            for (int i=0; i<tableView.getItems().size(); i++) {
+                tableView.getItems().set(i, allClubs.get(i));
+            }
+        });
+
+        winSorter.setOnAction(event -> {
+            allClubs.sort(new WinComparator().reversed());
+            for (int i=0; i<tableView.getItems().size(); i++) {
+                tableView.getItems().set(i, allClubs.get(i));
+            }
+        });
+
 
         for (TableColumn<FootballClub, String> eachColumn : allColumns) {
             tableView.getColumns().add(eachColumn);
