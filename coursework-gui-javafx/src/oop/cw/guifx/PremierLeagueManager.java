@@ -241,9 +241,9 @@ public class PremierLeagueManager implements LeagueManager {
      * @return - a LocalDate object containing the random date created
      */
     private static LocalDate generateRandomDate(int year) {
-        String randomDay = String.valueOf(random.nextInt((32 - 1)  + 1));
+        String randomDay = String.valueOf(random.nextInt((31)) + 1);
         if (Integer.parseInt(randomDay) < 10) randomDay = "0" + randomDay;
-        String randomMonth = String.valueOf(random.nextInt((13 - 1) + 1));
+        String randomMonth = String.valueOf(random.nextInt((12)) + 1);
         if (Integer.parseInt(randomMonth) < 10) randomMonth = "0" + randomMonth;
         String dateString = randomDay + "/" + randomMonth + "/" + year;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy");
