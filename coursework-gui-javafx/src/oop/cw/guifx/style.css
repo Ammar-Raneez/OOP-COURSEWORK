@@ -1,4 +1,4 @@
-/*table section*/
+/*points table section*/
 .table-view {
     -fx-border-color: '#ff015b';
 }
@@ -34,46 +34,44 @@
 .table-view .table-row-cell: hover {
     -fx-text-background-color: 'ff015b';
 }
-/*table section end*/
+/*points table section end*/
 
-/*buttons*/
-#goalSorter, #winSorter, #playMatch, #displayMatch {
+
+/*points table view *buttons*/
+#pointsTable__goalSorter, #pointsTable__winSorter, #pointsTable__playMatch, #pointsTable__displayMatch {
     -fx-padding: 5px 30px;
     -fx-text-fill: #fff;
-}
-#goalSorter:hover, #winSorter:hover, #playMatch:hover, #displayMatch:hover {
-    -fx-background-color: #fff;
-}
-
-#goalSorter, #winSorter {
-    -fx-font-size: 20px;
-    -fx-background-color: #ff015b;
     -fx-border-radius: 70px;
     -fx-background-radius: 70px;
+    -fx-font-size: 20px;
 }
-#goalSorter:hover, #winSorter:hover {
-    -fx-text-fill: #ff015b;
+#pointsTable__goalSorter:hover, #pointsTable__winSorter:hover, #pointsTable__playMatch:hover, #pointsTable__displayMatch:hover {
     -fx-background-color: #fff;
 }
+#pointsTable__goalSorter, #pointsTable__winSorter {
+    -fx-background-color: #ff015b;
+}
+#pointsTable__goalSorter:hover, #pointsTable__winSorter:hover {
+    -fx-text-fill: #ff015b;
+}
 
-#displayMatch {
+#pointsTable__displayMatch, #pointsTable__playMatch {
+    -fx-font-weight: bold;
+}
+#pointsTable__displayMatch {
     -fx-text-fill: #000;
     -fx-padding: 5px 50px;
-    -fx-font-size: 20px;
     -fx-background-color: #62ffa4;
-    -fx-border-radius: 70px;
-    -fx-background-radius: 70px;
-    -fx-font-weight: bold;
 }
-#displayMatch:hover {
+#pointsTable__displayMatch:hover {
     -fx-text-fill: #62ffa4;
 }
-
-#playMatch {
+#pointsTable__playMatch {
     -fx-font-size: 30px;
     -fx-background-color: #f00;
-    -fx-font-weight: bold;
 }
-#playMatch:hover {
+#pointsTable__playMatch:hover {
     -fx-text-fill: #f00;
 }
+/*points table view buttons end*/
+

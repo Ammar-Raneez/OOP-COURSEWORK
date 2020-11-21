@@ -1,17 +1,18 @@
 package oop.cw.guifx;
 
 import javafx.beans.property.SimpleStringProperty;
+import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -33,11 +34,33 @@ public class GuiElements {
         return stackPane;
     }
 
+    public static ScrollPane scrollPane(int width, int height, int layX, int layY) {
+        ScrollPane scrollPane = new ScrollPane();
+        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+        scrollPane.setPrefSize(width, height);
+        scrollPane.setLayoutX(layX);
+        scrollPane.setLayoutY(layY);
+        return scrollPane;
+    }
+
     public Scene scene(AnchorPane anchorPane, int width, int height, String file) {
         Scene scene = new Scene(anchorPane, width, height);
         String css = this.getClass().getResource(file).toExternalForm();
         scene.getStylesheets().add(css);
         return scene;
+    }
+
+    public static HBox hBox() {
+        HBox hBox = new HBox();
+        hBox.setAlignment(Pos.CENTER);
+        return hBox;
+    }
+
+    public static VBox vBox(int minWidth) {
+        VBox vBox = new VBox();
+        vBox.setAlignment(Pos.CENTER);
+        vBox.setMinWidth(minWidth);
+        return vBox;
     }
 
     public static Button button(String btnText, int layX, int layY, String id){
@@ -49,6 +72,12 @@ public class GuiElements {
         button.setCursor(Cursor.HAND);
         button.setEffect(shadow);
         return button;
+    }
+
+    public static Label matchViewLabels(String text, String id) {
+        Label label = new Label(text);
+        label.setId(id);
+        return label;
     }
 
     public static List<TableColumn<FootballClub, String>> generatePointsTableColumns(TableView<FootballClub> tableView) {
