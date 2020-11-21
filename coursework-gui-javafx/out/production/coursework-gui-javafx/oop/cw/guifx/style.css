@@ -93,23 +93,19 @@
     -fx-background-color: #fff;
     -fx-text-fill: #ff015b;
 }
-
 #allMatches__firstTeamName, #allMatches__secondTeamName {
     -fx-font-weight: bold;
     -fx-font-size: 20px;
 }
-
 #allMatches__firstTeamGoals, #allMatches__secondTeamGoals {
     -fx-font-weight: bold;
     -fx-font-size: 30px;
     -fx-text-fill: #04f5ff;
 }
-
 #allMatches__matchDate {
     -fx-font-weight: bold;
     -fx-font-size: 16px;
 }
-
 #allMatches__vs {
     -fx-font-weight: bold;
     -fx-font-size: 40px;
@@ -121,29 +117,38 @@
     -fx-border-color: #04f5ff;
     -fx-text-fill: #fff;
 }
-
 #allMatches__dateInput .scroll-pane {
     -fx-background-color: transparent;
 }
-
 #allMatches__dateInput .scroll-pane .viewport{
     -fx-background-color: transparent;
 }
-
-
 #allMatches__dateInput .scroll-pane .content{
     -fx-background-color: transparent;
 }
 
-#allMatches__searchDate {
+#allMatches__searchDate, #allMatches__searchReset {
     -fx-padding: 4px 30px;
     -fx-text-fill: #fff;
-    -fx-background-color: #04f5ff;
     -fx-font-size: 20px;
     -fx-font-weight: bold;
 }
+#allMatches__searchDate:hover, #allMatches__searchReset:hover {
+    -fx-text-fill: #fff;
+}
+#allMatches__searchDate {
+    -fx-background-color: #222;
+    -fx-border-color: #62ffa4;
+    -fx-text-fill: #62ffa4;
+}
 #allMatches__searchDate:hover {
-    -fx-background-color: #fff;
-    -fx-text-fill: #04f5ff;
-    -fx-border-color: #04f5ff;
+    -fx-background-color: #62ffa4;
+}
+#allMatches__searchReset {
+    -fx-text-fill: #f00;
+    -fx-background-color: #222;
+    -fx-border-color: #f00;
+}
+#allMatches__searchReset:hover {
+    -fx-background-color: #f00;
 }

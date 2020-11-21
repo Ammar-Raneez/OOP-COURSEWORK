@@ -96,52 +96,76 @@ public class MainFrontend extends Application {
         ImageView eplBoot = GuiElements.imageViewLay(
                 "file:/C:/Users/Ammuuu/Downloads/learning/UNI/OOP-Module/Coursework/OOP-COURSEWORK/images/PL-boot.png",
                 1100, 450, 200, 200);
-        TextField dateInputField = GuiElements.textField("dd/mm/yyy", 290, 40, 900, 150, "allMatches__dateInput");
-        Button searchDateBtn = GuiElements.button("Search", 1170, 150, "allMatches__searchDate");
+        TextField dateInputField = GuiElements.textField("yyyy-mm-dd", 200, 40, 840, 150, "allMatches__dateInput");
+        Button searchDateBtn = GuiElements.button("Search", 1045, 150, "allMatches__searchDate");
+        Button resetSearchBtn = GuiElements.button("Reset", 1176, 150, "allMatches__searchReset");
         Button pointsTableBtn = GuiElements.button("<<< POINTS TABLE", 40, 630, "allMatches__pointsTable");
         pointsTableBtn.setOnAction(event -> window.setScene(pointsTableScene));
         VBox vBoxContainer = new VBox();
 
         for (FootballMatch match : allMatches) {
-            VBox vBoxFirstTeam = GuiElements.vBox(300);
-            HBox firstTeamNameContainer = GuiElements.hBox("");
-            HBox firstTeamGoalContainer = GuiElements.hBox("");
-            Label firstTeamName = GuiElements.matchViewLabels(match.getFirstTeam().getClubName().toUpperCase(), "allMatches__firstTeamName");
-            Label firstTeamGoals = GuiElements.matchViewLabels(String.valueOf(match.getFirstTeamSingleMatchStats().getGoals()),
-                    "allMatches__firstTeamGoals");
-            firstTeamNameContainer.getChildren().add(firstTeamName);
-            firstTeamGoalContainer.getChildren().add(firstTeamGoals);
-            vBoxFirstTeam.getChildren().addAll(firstTeamNameContainer, firstTeamGoalContainer);
-
-            VBox vBoxDate = GuiElements.vBox(100);
-            Label labelDate = GuiElements.matchViewLabels(String.valueOf(match.getMatchDate()), "allMatches__matchDate");
-            Label labelVS = GuiElements.matchViewLabels("VS", "allMatches__vs");
-            vBoxDate.getChildren().addAll(labelDate, labelVS);
-
-            VBox vBoxSecondTeam = GuiElements.vBox(300);
-            HBox secondTeamNameContainer = GuiElements.hBox("");
-            HBox secondTeamGoalsContainer = GuiElements.hBox("");
-            Label secondTeamName = GuiElements.matchViewLabels(match.getSecondTeam().getClubName().toUpperCase(), "allMatches__secondTeamName");
-            Label secondTeamGoals = GuiElements.matchViewLabels(String.valueOf(match.getSecondTeamSingleMatchStats().getGoals()),
-                    "allMatches__secondTeamGoals");
-            secondTeamNameContainer.getChildren().add(secondTeamName);
-            secondTeamGoalsContainer.getChildren().add(secondTeamGoals);
-            vBoxSecondTeam.getChildren().addAll(secondTeamNameContainer, secondTeamGoalsContainer);
-
-            HBox hBoxEachRow = GuiElements.hBox("allMatches__eachRow");
-            hBoxEachRow.getChildren().addAll(vBoxFirstTeam, vBoxDate, vBoxSecondTeam);
-
-            vBoxContainer.getChildren().addAll(hBoxEachRow);
+            allMatchDisplayAndFilter(vBoxContainer, match);
         }
 
         ScrollPane scrollPaneContainer = GuiElements.scrollPane(700, 420, 330, 250,
                 "-fx-background: #222; -fx-border-color: #f00;");
         scrollPaneContainer.setContent(vBoxContainer);
 
+        searchDateBtn.setOnAction(event -> {
+            vBoxContainer.getChildren().clear();
+            String userInput = dateInputField.getText();
+            for (FootballMatch footballMatch: allMatches) {
+                if (String.valueOf(footballMatch.getMatchDate()).equals(userInput)) {
+                    allMatchDisplayAndFilter(vBoxContainer, footballMatch);
+                }
+            }
+        });
+
+        resetSearchBtn.setOnAction(event -> {
+            dateInputField.setText("");
+            vBoxContainer.getChildren().clear();
+            for (FootballMatch match : allMatches) {
+                allMatchDisplayAndFilter(vBoxContainer, match);
+            }
+        });
+
         AnchorPane anchorPane = GuiElements.anchor("-fx-background-color: #222; -fx-border-color: #f00;");
-        anchorPane.getChildren().addAll(eplLion2, eplTrophy, eplBall, eplBoot, scrollPaneContainer, pointsTableBtn, dateInputField, searchDateBtn);
+        anchorPane.getChildren().addAll(eplLion2, eplTrophy, eplBall, eplBoot, scrollPaneContainer, pointsTableBtn, dateInputField,
+                searchDateBtn, resetSearchBtn);
 
         return guiElements.scene(anchorPane, 1366, 700, "style.css");
+    }
+
+    private static void allMatchDisplayAndFilter(VBox vBoxContainer, FootballMatch footballMatch) {
+        VBox vBoxFirstTeam = GuiElements.vBox(300);
+        HBox firstTeamNameContainer = GuiElements.hBox("");
+        HBox firstTeamGoalContainer = GuiElements.hBox("");
+        Label firstTeamName = GuiElements.matchViewLabels(footballMatch.getFirstTeam().getClubName().toUpperCase(), "allMatches__firstTeamName");
+        Label firstTeamGoals = GuiElements.matchViewLabels(String.valueOf(footballMatch.getFirstTeamSingleMatchStats().getGoals()),
+                "allMatches__firstTeamGoals");
+        firstTeamNameContainer.getChildren().add(firstTeamName);
+        firstTeamGoalContainer.getChildren().add(firstTeamGoals);
+        vBoxFirstTeam.getChildren().addAll(firstTeamNameContainer, firstTeamGoalContainer);
+
+        VBox vBoxDate = GuiElements.vBox(100);
+        Label labelDate = GuiElements.matchViewLabels(String.valueOf(footballMatch.getMatchDate()), "allMatches__matchDate");
+        Label labelVS = GuiElements.matchViewLabels("VS", "allMatches__vs");
+        vBoxDate.getChildren().addAll(labelDate, labelVS);
+
+        VBox vBoxSecondTeam = GuiElements.vBox(300);
+        HBox secondTeamNameContainer = GuiElements.hBox("");
+        HBox secondTeamGoalsContainer = GuiElements.hBox("");
+        Label secondTeamName = GuiElements.matchViewLabels(footballMatch.getSecondTeam().getClubName().toUpperCase(), "allMatches__secondTeamName");
+        Label secondTeamGoals = GuiElements.matchViewLabels(String.valueOf(footballMatch.getSecondTeamSingleMatchStats().getGoals()),
+                "allMatches__secondTeamGoals");
+        secondTeamNameContainer.getChildren().add(secondTeamName);
+        secondTeamGoalsContainer.getChildren().add(secondTeamGoals);
+        vBoxSecondTeam.getChildren().addAll(secondTeamNameContainer, secondTeamGoalsContainer);
+
+        HBox hBoxEachRow = GuiElements.hBox("allMatches__eachRow");
+        hBoxEachRow.getChildren().addAll(vBoxFirstTeam, vBoxDate, vBoxSecondTeam);
+
+        vBoxContainer.getChildren().addAll(hBoxEachRow);
     }
 
     public static void main(String[] args) {
