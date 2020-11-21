@@ -39,10 +39,8 @@ public class MainFrontend extends Application {
                 "file:/C:/Users/Ammuuu/Downloads/learning/UNI/OOP-Module/Coursework/OOP-COURSEWORK/images/PL-ref.png",
                 870, 525, 150, 180);
         Button goalSorter = GuiElements.button("GOAL SORT", 400, 590, "pointsTable__goalSorter");
-        Button winSorter = GuiElements.button("WIN SORT", 580, 590, "pointsTable__winSorter");
-        Button displayMatch = GuiElements.button("DISPLAY ALL MATCHES", 490, 510, "pointsTable__displayMatch");
-        Scene displayMatchScene = displayAllMatches(allMatches, guiElements);
-        displayMatch.setOnAction(event -> window.setScene(displayMatchScene));
+        Button winSorter = GuiElements.button("WIN SORT", 640, 590, "pointsTable__winSorter");
+        Button displayMatch = GuiElements.button("ALL MATCHES >>>", 510, 510, "pointsTable__displayMatch");
         Button playMatch = GuiElements.button("P L A Y!", 1180, 580, "pointsTable__playMatch");
         TableView<FootballClub> tableView = new TableView<>();
         List<TableColumn<FootballClub, String>> allColumns = GuiElements.generatePointsTableColumns(tableView);
@@ -71,28 +69,44 @@ public class MainFrontend extends Application {
             tableView.getItems().add(footballClub);
         }
 
-        AnchorPane anchorPane = GuiElements.anchor();
+        AnchorPane anchorPane = GuiElements.anchor("-fx-background-color: #37003d; -fx-border-color: #f00;");
         StackPane stackPane = GuiElements.stackPane(1366, 500);
         stackPane.getChildren().add(tableView);
         anchorPane.getChildren().addAll(stackPane, eplLion, eplText, goalSorter, winSorter, playMatch, displayMatch, eplRef);
-        Scene scene = guiElements.scene(anchorPane, 1366, 700, "style.css");
-        window.setScene(scene);
+
+        Scene pointsTableScene = guiElements.scene(anchorPane, 1366, 700, "style.css");
+        Scene displayMatchScene = displayAllMatches(window, allMatches, guiElements, pointsTableScene);
+        displayMatch.setOnAction(event -> window.setScene(displayMatchScene));
+
+        window.setScene(pointsTableScene);
         window.setTitle("PREMIER LEAGUE MANAGER");
         window.show();
     }
 
-    public static Scene displayAllMatches(List<FootballMatch> allMatches, GuiElements guiElements) {
+    public static Scene displayAllMatches(Stage window, List<FootballMatch> allMatches, GuiElements guiElements, Scene pointsTableScene) {
         ImageView eplLion2 = GuiElements.imageViewLay(
                 "file:/C:/Users/Ammuuu/Downloads/learning/UNI/OOP-Module/Coursework/OOP-COURSEWORK/images/PL-lion2.png",
                 500, 20, 220, 350);
-
-
+        ImageView eplTrophy = GuiElements.imageViewLay(
+                "file:/C:/Users/Ammuuu/Downloads/learning/UNI/OOP-Module/Coursework/OOP-COURSEWORK/images/PL-trophy.png",
+                0, 250, 350, 320);
+        ImageView eplBall = GuiElements.imageViewLay(
+                "file:/C:/Users/Ammuuu/Downloads/learning/UNI/OOP-Module/Coursework/OOP-COURSEWORK/images/PL-ball.png",
+                1100, 250, 200, 200);
+        ImageView eplBoot = GuiElements.imageViewLay(
+                "file:/C:/Users/Ammuuu/Downloads/learning/UNI/OOP-Module/Coursework/OOP-COURSEWORK/images/PL-boot.png",
+                1100, 450, 200, 200);
+        TextField dateInputField = GuiElements.textField("dd/mm/yyy", 290, 40, 900, 150, "allMatches__dateInput");
+        Button searchDateBtn = GuiElements.button("Search", 1170, 150, "allMatches__searchDate");
+        Button pointsTableBtn = GuiElements.button("<<< POINTS TABLE", 40, 630, "allMatches__pointsTable");
+        pointsTableBtn.setOnAction(event -> window.setScene(pointsTableScene));
         VBox vBoxContainer = new VBox();
+
         for (FootballMatch match : allMatches) {
             VBox vBoxFirstTeam = GuiElements.vBox(300);
-            HBox firstTeamNameContainer = GuiElements.hBox();
-            HBox firstTeamGoalContainer = GuiElements.hBox();
-            Label firstTeamName = GuiElements.matchViewLabels(match.getFirstTeam().getClubName(), "allMatches__firstTeamName");
+            HBox firstTeamNameContainer = GuiElements.hBox("");
+            HBox firstTeamGoalContainer = GuiElements.hBox("");
+            Label firstTeamName = GuiElements.matchViewLabels(match.getFirstTeam().getClubName().toUpperCase(), "allMatches__firstTeamName");
             Label firstTeamGoals = GuiElements.matchViewLabels(String.valueOf(match.getFirstTeamSingleMatchStats().getGoals()),
                     "allMatches__firstTeamGoals");
             firstTeamNameContainer.getChildren().add(firstTeamName);
@@ -100,31 +114,33 @@ public class MainFrontend extends Application {
             vBoxFirstTeam.getChildren().addAll(firstTeamNameContainer, firstTeamGoalContainer);
 
             VBox vBoxDate = GuiElements.vBox(100);
-            Label labelVS = GuiElements.matchViewLabels("VS", "allMatches__vs");
             Label labelDate = GuiElements.matchViewLabels(String.valueOf(match.getMatchDate()), "allMatches__matchDate");
-            vBoxDate.getChildren().addAll(labelVS, labelDate);
+            Label labelVS = GuiElements.matchViewLabels("VS", "allMatches__vs");
+            vBoxDate.getChildren().addAll(labelDate, labelVS);
 
             VBox vBoxSecondTeam = GuiElements.vBox(300);
-            HBox secondTeamNameContainer = GuiElements.hBox();
-            HBox secondTeamGoalsContainer = GuiElements.hBox();
-            Label secondTeamName = GuiElements.matchViewLabels(match.getSecondTeam().getClubName(), "allMatches__secondTeamName");
+            HBox secondTeamNameContainer = GuiElements.hBox("");
+            HBox secondTeamGoalsContainer = GuiElements.hBox("");
+            Label secondTeamName = GuiElements.matchViewLabels(match.getSecondTeam().getClubName().toUpperCase(), "allMatches__secondTeamName");
             Label secondTeamGoals = GuiElements.matchViewLabels(String.valueOf(match.getSecondTeamSingleMatchStats().getGoals()),
                     "allMatches__secondTeamGoals");
             secondTeamNameContainer.getChildren().add(secondTeamName);
             secondTeamGoalsContainer.getChildren().add(secondTeamGoals);
             vBoxSecondTeam.getChildren().addAll(secondTeamNameContainer, secondTeamGoalsContainer);
 
-            HBox hBoxEachRow = GuiElements.hBox();
+            HBox hBoxEachRow = GuiElements.hBox("allMatches__eachRow");
             hBoxEachRow.getChildren().addAll(vBoxFirstTeam, vBoxDate, vBoxSecondTeam);
 
             vBoxContainer.getChildren().addAll(hBoxEachRow);
         }
 
-        ScrollPane scrollPaneContainer = GuiElements.scrollPane(700, 420, 330, 250);
+        ScrollPane scrollPaneContainer = GuiElements.scrollPane(700, 420, 330, 250,
+                "-fx-background: #222; -fx-border-color: #f00;");
         scrollPaneContainer.setContent(vBoxContainer);
 
-        AnchorPane anchorPane = GuiElements.anchor();
-        anchorPane.getChildren().addAll(eplLion2, scrollPaneContainer);
+        AnchorPane anchorPane = GuiElements.anchor("-fx-background-color: #222; -fx-border-color: #f00;");
+        anchorPane.getChildren().addAll(eplLion2, eplTrophy, eplBall, eplBoot, scrollPaneContainer, pointsTableBtn, dateInputField, searchDateBtn);
+
         return guiElements.scene(anchorPane, 1366, 700, "style.css");
     }
 

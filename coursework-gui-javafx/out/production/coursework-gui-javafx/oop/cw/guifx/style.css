@@ -37,7 +37,7 @@
 /*points table section end*/
 
 
-/*points table view *buttons*/
+/*points table view*/
 #pointsTable__goalSorter, #pointsTable__winSorter, #pointsTable__playMatch, #pointsTable__displayMatch {
     -fx-padding: 5px 30px;
     -fx-text-fill: #fff;
@@ -73,5 +73,77 @@
 #pointsTable__playMatch:hover {
     -fx-text-fill: #f00;
 }
-/*points table view buttons end*/
+/*points table view end*/
 
+
+/*all matches view*/
+#allMatches__eachRow:hover {
+    -fx-background-color: #333;
+}
+
+#allMatches__pointsTable {
+    -fx-padding: 5px 30px;
+    -fx-text-fill: #fff;
+    -fx-border-radius: 70px;
+    -fx-background-radius: 70px;
+    -fx-font-size: 20px;
+    -fx-background-color: #ff015b;
+}
+#allMatches__pointsTable:hover {
+    -fx-background-color: #fff;
+    -fx-text-fill: #ff015b;
+}
+
+#allMatches__firstTeamName, #allMatches__secondTeamName {
+    -fx-font-weight: bold;
+    -fx-font-size: 20px;
+}
+
+#allMatches__firstTeamGoals, #allMatches__secondTeamGoals {
+    -fx-font-weight: bold;
+    -fx-font-size: 30px;
+    -fx-text-fill: #04f5ff;
+}
+
+#allMatches__matchDate {
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+}
+
+#allMatches__vs {
+    -fx-font-weight: bold;
+    -fx-font-size: 40px;
+    -fx-text-fill: #555;
+}
+
+#allMatches__dateInput {
+    -fx-background-color: #222;
+    -fx-border-color: #04f5ff;
+    -fx-text-fill: #fff;
+}
+
+#allMatches__dateInput .scroll-pane {
+    -fx-background-color: transparent;
+}
+
+#allMatches__dateInput .scroll-pane .viewport{
+    -fx-background-color: transparent;
+}
+
+
+#allMatches__dateInput .scroll-pane .content{
+    -fx-background-color: transparent;
+}
+
+#allMatches__searchDate {
+    -fx-padding: 4px 30px;
+    -fx-text-fill: #fff;
+    -fx-background-color: #04f5ff;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+#allMatches__searchDate:hover {
+    -fx-background-color: #fff;
+    -fx-text-fill: #04f5ff;
+    -fx-border-color: #04f5ff;
+}

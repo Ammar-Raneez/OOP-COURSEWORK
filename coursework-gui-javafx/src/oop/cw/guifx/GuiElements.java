@@ -21,9 +21,9 @@ import java.util.List;
 public class GuiElements {
     private static DropShadow shadow = new DropShadow();
 
-    public static AnchorPane anchor(){
+    public static AnchorPane anchor(String style){
         AnchorPane anchorPane = new AnchorPane();
-        anchorPane.setStyle("-fx-background-color: #37003d; -fx-border-color: #f00;");
+        anchorPane.setStyle(style);
         return anchorPane;
     }
 
@@ -34,12 +34,14 @@ public class GuiElements {
         return stackPane;
     }
 
-    public static ScrollPane scrollPane(int width, int height, int layX, int layY) {
+    public static ScrollPane scrollPane(int width, int height, int layX, int layY, String style) {
         ScrollPane scrollPane = new ScrollPane();
-        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollPane.setPrefSize(width, height);
         scrollPane.setLayoutX(layX);
         scrollPane.setLayoutY(layY);
+        scrollPane.setStyle(style);
         return scrollPane;
     }
 
@@ -50,8 +52,9 @@ public class GuiElements {
         return scene;
     }
 
-    public static HBox hBox() {
+    public static HBox hBox(String id) {
         HBox hBox = new HBox();
+        hBox.setId(id);
         hBox.setAlignment(Pos.CENTER);
         return hBox;
     }
@@ -72,6 +75,16 @@ public class GuiElements {
         button.setCursor(Cursor.HAND);
         button.setEffect(shadow);
         return button;
+    }
+
+    public static TextField textField(String placeholder, int width, int height, int layX, int layY, String id) {
+        TextField textField = new TextField();
+        textField.setId(id);
+        textField.setPromptText(placeholder);
+        textField.setLayoutX(layX);
+        textField.setLayoutY(layY);
+        textField.setPrefSize(width, height);
+        return textField;
     }
 
     public static Label matchViewLabels(String text, String id) {
