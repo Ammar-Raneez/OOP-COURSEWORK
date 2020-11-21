@@ -19,13 +19,15 @@ public class MainFrontend extends Application {
     public void start(Stage primaryStage) {
         ConsoleApplication.loadData();
         List<FootballClub> allClubs = PremierLeagueManager.getAllFootballClubs();
+        List<FootballMatch> allMatches = PremierLeagueManager.getAllMatches();
         GuiElements guiElements = new GuiElements();
         allClubs.sort(Collections.reverseOrder());
+        allMatches.sort(Collections.reverseOrder());
         primaryStage.getIcons().add(new Image("file:/C:/Users/Ammuuu/Downloads/learning/UNI/OOP-Module/Coursework/OOP-COURSEWORK/images/PL-lion.png"));
-        displayTableWindow(allClubs, primaryStage, guiElements);
+        displayPointsTableWindow(primaryStage, allClubs, allMatches, guiElements);
     }
 
-    public static void displayTableWindow(List<FootballClub> allClubs, Stage window, GuiElements guiElements) {
+    public static void displayPointsTableWindow(Stage window, List<FootballClub> allClubs, List<FootballMatch> allMatches, GuiElements guiElements) {
         //*all gui elements*//
         ImageView eplLion = GuiElements.imageViewLay(
                 "file:/C:/Users/Ammuuu/Downloads/learning/UNI/OOP-Module/Coursework/OOP-COURSEWORK/images/PL-lion.png",
@@ -33,10 +35,14 @@ public class MainFrontend extends Application {
         ImageView eplText = GuiElements.imageViewLay(
                         "file:/C:/Users/Ammuuu/Downloads/learning/UNI/OOP-Module/Coursework/OOP-COURSEWORK/images/PL-text.png",
                 200, 555, 100, 180);
+        ImageView eplRef = GuiElements.imageViewLay(
+                "file:/C:/Users/Ammuuu/Downloads/learning/UNI/OOP-Module/Coursework/OOP-COURSEWORK/images/PL-ref.png",
+                870, 525, 150, 180);
         Button goalSorter = GuiElements.button("GOAL SORT", 400, 590, "goalSorter");
-        Button winSorter = GuiElements.button("WIN SORT", 575, 590, "winSorter");
-        Button searchMatch = GuiElements.button("SEARCH MATCH", 735, 590, "searchMatch");
-        Button displayMatch = GuiElements.button("DISPLAY MATCH", 950, 590, "displayMatch");
+        Button winSorter = GuiElements.button("WIN SORT", 580, 590, "winSorter");
+        Button displayMatch = GuiElements.button("DISPLAY ALL MATCHES", 490, 510, "displayMatch");
+        Scene displayMatchScene = displayAllMatches(allClubs, allMatches, guiElements);
+        displayMatch.setOnAction(event -> window.setScene(displayMatchScene));
         Button playMatch = GuiElements.button("P L A Y!", 1180, 580, "playMatch");
         TableView<FootballClub> tableView = new TableView<>();
         List<TableColumn<FootballClub, String>> allColumns = GuiElements.generatePointsTableColumns(tableView);
@@ -68,11 +74,17 @@ public class MainFrontend extends Application {
         AnchorPane anchorPane = GuiElements.anchor();
         StackPane stackPane = GuiElements.stackPane(1366, 500);
         stackPane.getChildren().add(tableView);
-        anchorPane.getChildren().addAll(stackPane, eplLion, eplText, goalSorter, winSorter, playMatch, displayMatch, searchMatch);
+        anchorPane.getChildren().addAll(stackPane, eplLion, eplText, goalSorter, winSorter, playMatch, displayMatch, eplRef);
         Scene scene = guiElements.scene(anchorPane, 1366, 700, "style.css");
         window.setScene(scene);
         window.setTitle("PREMIER LEAGUE MANAGER");
         window.show();
+    }
+
+    public static Scene displayAllMatches(List<FootballClub> allClubs, List<FootballMatch> allMatches, GuiElements guiElements) {
+        AnchorPane anchorPane = GuiElements.anchor();
+        Scene scene = guiElements.scene(anchorPane, 1366, 700, "style.css");
+        return scene;
     }
 
     public static void main(String[] args) {

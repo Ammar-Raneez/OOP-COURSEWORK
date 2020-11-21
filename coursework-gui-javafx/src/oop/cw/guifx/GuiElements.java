@@ -57,41 +57,49 @@ public class GuiElements {
         columnClub.setCellValueFactory(new PropertyValueFactory<>("clubName"));
 
         TableColumn<FootballClub, String> columnMatches = GuiElements.tableColumns(tableView, "MP", 0.09);
+        columnMatches.setStyle("-fx-alignment: CENTER");
         columnMatches.setCellValueFactory(cellData ->
                 new SimpleStringProperty(String.valueOf(cellData.getValue().getFootballClubTotalStatistics().getMatchesPlayed()))
         );
 
         TableColumn<FootballClub, String> columnWins = GuiElements.tableColumns(tableView, "W", 0.085);
+        columnWins.setStyle("-fx-alignment: CENTER");
         columnWins.setCellValueFactory(cellData ->
                 new SimpleStringProperty(String.valueOf(cellData.getValue().getFootballClubTotalStatistics().getWins()))
         );
 
         TableColumn<FootballClub, String> columnDraws = GuiElements.tableColumns(tableView, "D", 0.085);
+        columnDraws.setStyle("-fx-alignment: CENTER");
         columnDraws.setCellValueFactory(cellData ->
                 new SimpleStringProperty(String.valueOf(cellData.getValue().getFootballClubTotalStatistics().getDraws()))
         );
 
         TableColumn<FootballClub, String> columnLosses = GuiElements.tableColumns(tableView, "L", 0.085);
+        columnLosses.setStyle("-fx-alignment: CENTER");
         columnLosses.setCellValueFactory(cellData ->
                 new SimpleStringProperty(String.valueOf(cellData.getValue().getFootballClubTotalStatistics().getDefeats()))
         );
 
         TableColumn<FootballClub, String> columnGoalsFor = GuiElements.tableColumns(tableView, "GF", 0.085);
+        columnGoalsFor.setStyle("-fx-alignment: CENTER");
         columnGoalsFor.setCellValueFactory(cellData ->
                 new SimpleStringProperty(String.valueOf(cellData.getValue().getFootballClubTotalStatistics().getGoalsFor()))
         );
 
         TableColumn<FootballClub, String> columnGoalsAgainst = GuiElements.tableColumns(tableView, "GA", 0.085);
+        columnGoalsAgainst.setStyle("-fx-alignment: CENTER");
         columnGoalsAgainst.setCellValueFactory(cellData ->
                 new SimpleStringProperty(String.valueOf(cellData.getValue().getFootballClubTotalStatistics().getGoalsAgainst()))
         );
 
         TableColumn<FootballClub, String> columnGoalDifference = GuiElements.tableColumns(tableView, "GD", 0.09);
+        columnGoalDifference.setStyle("-fx-alignment: CENTER");
         columnGoalDifference.setCellValueFactory(cellData ->
                 new SimpleStringProperty(String.valueOf(cellData.getValue().getFootballClubTotalStatistics().getGoalDifference()))
         );
 
         TableColumn<FootballClub, String> columnPoints = GuiElements.tableColumns(tableView, "Pts", 0.09);
+        columnPoints.setStyle("-fx-alignment: CENTER");
         columnPoints.setCellValueFactory(cellData ->
                 new SimpleStringProperty(String.valueOf(cellData.getValue().getFootballClubTotalStatistics().getPoints()))
         );
