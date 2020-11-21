@@ -13,8 +13,11 @@ import javafx.stage.Stage;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class MainFrontend extends Application {
+    private static final Pattern DATE_PATTERN = Pattern.compile("^\\d{4}-\\d{2}-\\d{2}$");
+
     @Override
     public void start(Stage primaryStage) {
         ConsoleApplication.loadData();
@@ -112,13 +115,15 @@ public class MainFrontend extends Application {
         scrollPaneContainer.setContent(vBoxContainer);
 
         searchDateBtn.setOnAction(event -> {
-            vBoxContainer.getChildren().clear();
             String userInput = dateInputField.getText();
-            for (FootballMatch footballMatch: allMatches) {
-                if (String.valueOf(footballMatch.getMatchDate()).equals(userInput)) {
-                    allMatchDisplayAndFilter(vBoxContainer, footballMatch);
+            if (DATE_PATTERN.matcher(userInput).matches()) {
+                vBoxContainer.getChildren().clear();
+                for (FootballMatch footballMatch: allMatches) {
+                    if (String.valueOf(footballMatch.getMatchDate()).equals(userInput)) {
+                        allMatchDisplayAndFilter(vBoxContainer, footballMatch);
+                    }
                 }
-            }
+            } else System.out.println("[ERROR] ==> Please specify a VALID date with format yyyy-mm-dd!");
         });
 
         resetSearchBtn.setOnAction(event -> {
