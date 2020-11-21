@@ -96,6 +96,7 @@
 #allMatches__firstTeamName, #allMatches__secondTeamName {
     -fx-font-weight: bold;
     -fx-font-size: 20px;
+    -fx-effect: dropshadow( one-pass-box , #62ffa4 , 8 , 0.0 , 2 , 0 );
 }
 #allMatches__firstTeamGoals, #allMatches__secondTeamGoals {
     -fx-font-weight: bold;
@@ -151,4 +152,12 @@
 }
 #allMatches__searchReset:hover {
     -fx-background-color: #f00;
+}
+
+#allMatches__noMatches {
+    -fx-font-size: 55px;
+    -fx-padding: 20px;
+    -fx-border-radius: 10px;
+    -fx-text-fill: #f00;
+    -fx-effect: dropshadow( one-pass-box , white , 8 , 0.0 , 2 , 0 );
 }

@@ -72,6 +72,11 @@ public class MainFrontend extends Application {
             tableView.getItems().add(footballClub);
         }
 
+        window.setOnCloseRequest(event -> {
+            event.consume();
+            closeScenes(window);
+        });
+
         AnchorPane anchorPane = GuiElements.anchor("-fx-background-color: #37003d; -fx-border-color: #f00;");
         StackPane stackPane = GuiElements.stackPane(1366, 500);
         stackPane.getChildren().add(tableView);
@@ -115,23 +120,41 @@ public class MainFrontend extends Application {
         scrollPaneContainer.setContent(vBoxContainer);
 
         searchDateBtn.setOnAction(event -> {
+            scrollPaneContainer.setContent(vBoxContainer);
             String userInput = dateInputField.getText();
             if (DATE_PATTERN.matcher(userInput).matches()) {
                 vBoxContainer.getChildren().clear();
+                boolean hasMatch = false;
                 for (FootballMatch footballMatch: allMatches) {
                     if (String.valueOf(footballMatch.getMatchDate()).equals(userInput)) {
                         allMatchDisplayAndFilter(vBoxContainer, footballMatch);
+                        hasMatch = true;
                     }
                 }
-            } else System.out.println("[ERROR] ==> Please specify a VALID date with format yyyy-mm-dd!");
+                if (!hasMatch) {
+                    HBox noMatchHBox = GuiElements.hBox("");
+                    Label noMatchLabel = GuiElements.matchViewLabels("\t\t" + "   " +  "⚠\n\t" + "  " + "NO MATCHES\n" + "\t" +
+                            "\tHAVE\n\t" + "  " + "BEEN PLAYED\n\t\t" + "   " + "⚠", "allMatches__noMatches");
+                    noMatchHBox.getChildren().add(noMatchLabel);
+                    scrollPaneContainer.setContent(noMatchHBox);
+                }
+            } else {
+                GuiElements.errorAlert("Please specify a VALID date with format yyyy-mm-dd!");
+            }
         });
 
         resetSearchBtn.setOnAction(event -> {
+            scrollPaneContainer.setContent(vBoxContainer);
             dateInputField.setText("");
             vBoxContainer.getChildren().clear();
             for (FootballMatch match : allMatches) {
                 allMatchDisplayAndFilter(vBoxContainer, match);
             }
+        });
+
+        window.setOnCloseRequest(event -> {
+            event.consume();
+            closeScenes(window);
         });
 
         AnchorPane anchorPane = GuiElements.anchor("-fx-background-color: #222; -fx-border-color: #f00;");
@@ -171,6 +194,17 @@ public class MainFrontend extends Application {
         hBoxEachRow.getChildren().addAll(vBoxFirstTeam, vBoxDate, vBoxSecondTeam);
 
         vBoxContainer.getChildren().addAll(hBoxEachRow);
+    }
+
+    private static void closeScenes(Stage window) {
+        Alert closeAlert = GuiElements.closeWindowCommon();
+        closeAlert.initOwner(window);
+        closeAlert.showAndWait();
+        if (closeAlert.getResult() == ButtonType.YES) {
+            window.close();
+        } else {
+            closeAlert.close();
+        }
     }
 
     public static void main(String[] args) {

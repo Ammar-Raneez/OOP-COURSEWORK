@@ -93,6 +93,16 @@ public class GuiElements {
         return label;
     }
 
+    public static ImageView imageViewLay(String imageFile, int layX, int layY, int height, int width){
+        Image imageLay = new Image(imageFile);
+        ImageView imageViewLay = new ImageView(imageLay);
+        imageViewLay.setFitHeight(height);
+        imageViewLay.setFitWidth(width);
+        imageViewLay.setX(layX);
+        imageViewLay.setY(layY);
+        return imageViewLay;
+    }
+
     public static List<TableColumn<FootballClub, String>> generatePointsTableColumns(TableView<FootballClub> tableView) {
         tableView.setMinHeight(500);
         TableColumn<FootballClub, String> columnClub = GuiElements.tableColumns(tableView, "Club", 0.3);
@@ -159,13 +169,24 @@ public class GuiElements {
         return column;
     }
 
-    public static ImageView imageViewLay(String imageFile, int layX, int layY, int height, int width){
-        Image imageLay = new Image(imageFile);
-        ImageView imageViewLay = new ImageView(imageLay);
-        imageViewLay.setFitHeight(height);
-        imageViewLay.setFitWidth(width);
-        imageViewLay.setX(layX);
-        imageViewLay.setY(layY);
-        return imageViewLay;
+    public static Alert closeWindowCommon(){
+        ImageView imageConfirm = imageViewLay("file:/C:/Users/Ammuuu/Downloads/learning/UNI/OOP-Module/Coursework/OOP-COURSEWORK/images/PL-person.png",
+                0, 0, 100, 100);
+        Alert closeAlert = new Alert(Alert.AlertType.CONFIRMATION, null, ButtonType.YES, ButtonType.NO);
+        closeAlert.setHeaderText("Do you REALLY want to exit?");
+        closeAlert.setGraphic(imageConfirm);
+        closeAlert.setTitle("Premier League Manager");
+        return closeAlert;
+    }
+
+    public static void errorAlert(String text){
+        ImageView imageConfirm = imageViewLay("file:/C:/Users/Ammuuu/Downloads/learning/UNI/OOP-Module/Coursework/OOP-COURSEWORK/images/PL-error.png",
+                0, 0, 100, 100);
+        Alert closeAlert = new Alert(Alert.AlertType.ERROR, null, ButtonType.OK);
+        closeAlert.setHeaderText(text);
+        closeAlert.setGraphic(imageConfirm);
+        closeAlert.setTitle("Premier League Manager");
+        closeAlert.showAndWait();
+        closeAlert.close();
     }
 }
