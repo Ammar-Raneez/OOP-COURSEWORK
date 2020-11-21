@@ -22,7 +22,7 @@ public class MainFrontend extends Application {
         List<FootballMatch> allMatches = PremierLeagueManager.getAllMatches();
         GuiElements guiElements = new GuiElements();
         allClubs.sort(Collections.reverseOrder());
-        allMatches.sort(Collections.reverseOrder());
+        Collections.sort(allMatches);
         primaryStage.getIcons().add(new Image("file:/C:/Users/Ammuuu/Downloads/learning/UNI/OOP-Module/Coursework/OOP-COURSEWORK/images/PL-lion.png"));
         displayPointsTableWindow(primaryStage, allClubs, allMatches, guiElements);
     }
