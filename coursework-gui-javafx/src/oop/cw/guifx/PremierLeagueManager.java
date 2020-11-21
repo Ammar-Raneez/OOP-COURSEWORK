@@ -1,4 +1,5 @@
 package oop.cw.guifx;
+
 /*
  * oop.cw.guifx.PremierLeagueManager
  * Copyright © 2020 Ammar Raneez. All Rights Reserved.
@@ -6,6 +7,8 @@ package oop.cw.guifx;
 
 import java.awt.*;
 import java.io.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.List;
 
@@ -195,8 +198,9 @@ public class PremierLeagueManager implements LeagueManager {
         boolean hasMatch;
         //*the logic here is to loop infinitely, till a unique match has been generated*//
         while (true){
+            LocalDate localDate = generateRandomDate(20);
             hasMatch = false;
-            footballMatch = new FootballMatch(firstTeam, secondTeam, new Date());
+            footballMatch = new FootballMatch(firstTeam, secondTeam, localDate);
 
             //*check the above generated match against all the matches already played*//
             for (FootballMatch match : allMatches) {
@@ -204,13 +208,6 @@ public class PremierLeagueManager implements LeagueManager {
                     hasMatch = true;
                     break;
                 }
-//                if ((match.getFirstTeam().getClubName().equals(footballMatch.getFirstTeam().getClubName()) &&
-//                        match.getSecondTeam().getClubName().equals(footballMatch.getSecondTeam().getClubName())) ||
-//                            (match.getSecondTeam().getClubName().equals(footballMatch.getFirstTeam().getClubName()) &&
-//                                match.getFirstTeam().getClubName().equals(footballMatch.getSecondTeam().getClubName()))) {
-//                    hasMatch = true;
-//                    break;
-//                }
             }
 
             //*if and only if the hasMatch flag had not turned true (the generated match is unique)*//
@@ -237,6 +234,20 @@ public class PremierLeagueManager implements LeagueManager {
                 break;
             }
         }
+    }
+    /**
+     * Private helper method that generates a random date
+     * @param year - takes year parameter (to be used when multiple season functionality has been added)
+     * @return - a LocalDate object containing the random date created
+     */
+    private static LocalDate generateRandomDate(int year) {
+        String randomDay = String.valueOf(random.nextInt((32 - 1)  + 1));
+        if (Integer.parseInt(randomDay) < 10) randomDay = "0" + randomDay;
+        String randomMonth = String.valueOf(random.nextInt((13 - 1) + 1));
+        if (Integer.parseInt(randomMonth) < 10) randomMonth = "0" + randomMonth;
+        String dateString = randomDay + "/" + randomMonth + "/" + year;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy");
+        return LocalDate.parse(dateString, formatter);
     }
     //*************************************END ADD PLAYED MATCH BETWEEN TWO CLUB**************************************//
 
@@ -298,7 +309,7 @@ public class PremierLeagueManager implements LeagueManager {
         System.out.println("=============================================");
 
         for (FootballMatch footballMatch : allMatches) {
-            System.out.format("%8s %5s", "", footballMatch.getMatchDate());
+            System.out.format("%17s %5s", "", footballMatch.getMatchDate());
             System.out.println();
             System.out.format("%-19s %2s %2s %19s", footballMatch.getFirstTeam().getClubName(),
                               footballMatch.getFirstTeamSingleMatchStats().getGoals(),

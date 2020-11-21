@@ -1,10 +1,12 @@
 package oop.cw.guifx;
+
 /*
  * oop.cw.guifx.FootballMatch
  * Copyright © 2020 Ammar Raneez. All Rights Reserved.
  */
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.*;
 
 /**
@@ -19,7 +21,7 @@ public class FootballMatch implements Serializable, Comparable<FootballMatch> {
     private static Random random = new Random();
     private FootballClub firstTeam;
     private FootballClub secondTeam;
-    private Date matchDate;
+    private LocalDate matchDate;
     private SingleMatchFootballClubStatistic firstTeamSingleMatchStats = new SingleMatchFootballClubStatistic();
     private SingleMatchFootballClubStatistic secondTeamSingleMatchStats = new SingleMatchFootballClubStatistic();
 
@@ -29,7 +31,7 @@ public class FootballMatch implements Serializable, Comparable<FootballMatch> {
      * @param secondTeam - second team
      * @param matchDate - date of a match
      */
-    public FootballMatch(FootballClub firstTeam, FootballClub secondTeam, Date matchDate) {
+    public FootballMatch(FootballClub firstTeam, FootballClub secondTeam, LocalDate matchDate) {
         this.firstTeam = firstTeam;
         this.secondTeam = secondTeam;
         this.matchDate = matchDate;
@@ -218,7 +220,7 @@ public class FootballMatch implements Serializable, Comparable<FootballMatch> {
     /**
      * @return date of a match
      */
-    public Date getMatchDate() {
+    public LocalDate getMatchDate() {
         return matchDate;
     }
 
@@ -226,7 +228,7 @@ public class FootballMatch implements Serializable, Comparable<FootballMatch> {
      * sets date of a match
      * @param matchDate - date of a specific match
      */
-    public void setMatchDate(Date matchDate) {
+    public void setMatchDate(LocalDate matchDate) {
         this.matchDate = matchDate;
     }
 

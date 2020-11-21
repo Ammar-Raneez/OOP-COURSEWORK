@@ -1,4 +1,6 @@
-package oop.cw.guifx;/*
+package oop.cw.guifx;
+
+/*
  * oop.cw.guifx.UniversityFootballClub
  * Copyright © 2020 Ammar Raneez. All Rights Reserved.
  */

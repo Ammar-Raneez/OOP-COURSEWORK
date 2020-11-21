@@ -1,4 +1,5 @@
 package oop.cw.guifx;
+
 /*
  * FootballClubStatistics
  * Copyright © 2020 Ammar Raneez. All Rights Reserved.

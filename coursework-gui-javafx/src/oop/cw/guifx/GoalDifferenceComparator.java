@@ -1,4 +1,5 @@
 package oop.cw.guifx;
+
 /*
  * oop.cw.guifx.GoalDifferenceComparator
  * Copyright © 2020 Ammar Raneez. All Rights Reserved.
