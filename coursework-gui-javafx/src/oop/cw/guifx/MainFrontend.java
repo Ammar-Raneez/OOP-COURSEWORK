@@ -1,5 +1,10 @@
 package oop.cw.guifx;
 
+/*
+ * oop.cw.guifx.MainFrontend
+ * Copyright © 2020 Ammar Raneez. All Rights Reserved.
+ */
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -15,21 +20,33 @@ import java.util.Collections;
 import java.util.List;
 import java.util.regex.Pattern;
 
+/**
+ * oop.cw.guifx.MainFrontend class, the main GUI runner class
+ * @version 1.x November 22th 2020
+ * @author Ammar Raneez | 2019163 | W1761196
+ */
 public class MainFrontend extends Application {
     private static final Pattern DATE_PATTERN = Pattern.compile("^\\d{4}-\\d{2}-\\d{2}$");
 
     @Override
     public void start(Stage primaryStage) {
         ConsoleApplication.loadData();
+        GuiElements guiElements = new GuiElements();
         List<FootballClub> allClubs = PremierLeagueManager.getAllFootballClubs();
         List<FootballMatch> allMatches = PremierLeagueManager.getAllMatches();
-        GuiElements guiElements = new GuiElements();
-        allClubs.sort(Collections.reverseOrder());
-        Collections.sort(allMatches);
+        allClubs.sort(Collections.reverseOrder());                                  //**to display clubs sorted by points**//
+        Collections.sort(allMatches);                                               //**to display all matches ascending order of date**//
         primaryStage.getIcons().add(new Image("file:/C:/Users/Ammuuu/Downloads/learning/UNI/OOP-Module/Coursework/OOP-COURSEWORK/images/PL-lion.png"));
         displayPointsTableWindow(primaryStage, allClubs, allMatches, guiElements);
     }
 
+    /**
+     * Method that handles the display of the first scene aka the Points table
+     * @param window - the stage
+     * @param allClubs - list of clubs
+     * @param allMatches - list of matches
+     * @param guiElements - object of GuiElements class
+     */
     public static void displayPointsTableWindow(Stage window, List<FootballClub> allClubs, List<FootballMatch> allMatches, GuiElements guiElements) {
         //*all gui elements*//
         ImageView eplLion = GuiElements.imageViewLay(
@@ -41,14 +58,15 @@ public class MainFrontend extends Application {
         ImageView eplRef = GuiElements.imageViewLay(
                 "file:/C:/Users/Ammuuu/Downloads/learning/UNI/OOP-Module/Coursework/OOP-COURSEWORK/images/PL-ref.png",
                 870, 525, 150, 180);
-        Button goalSorter = GuiElements.button("GOAL SORT", 400, 590, "pointsTable__goalSorter");
-        Button winSorter = GuiElements.button("WIN SORT", 640, 590, "pointsTable__winSorter");
-        Button displayMatch = GuiElements.button("ALL MATCHES >>>", 510, 510, "pointsTable__displayMatch");
-        Button playMatch = GuiElements.button("P L A Y!", 1180, 580, "pointsTable__playMatch");
+        Button goalSorter = GuiElements.button("GOAL SORT", 400, 590, "pointsTable__goalSorterBtn");
+        Button winSorter = GuiElements.button("WIN SORT", 640, 590, "pointsTable__winSorterBtn");
+        Button displayMatch = GuiElements.button("ALL MATCHES >>>", 510, 510, "pointsTable__displayMatchBtn");
+        Button playMatch = GuiElements.button("P L A Y!", 1180, 580, "pointsTable__playMatchBtn");
         TableView<FootballClub> tableView = new TableView<>();
         List<TableColumn<FootballClub, String>> allColumns = GuiElements.generatePointsTableColumns(tableView);
         //*end gui elements*//
 
+        //*on click of this button, sort the list of clubs by goals for*//
         goalSorter.setOnAction(event -> {
             allClubs.sort(new GoalsForComparator().reversed());
             for (int i=0; i<tableView.getItems().size(); i++) {
@@ -56,6 +74,7 @@ public class MainFrontend extends Application {
             }
         });
 
+        //**on click of this button, sort the list of clubs by wins**//
         winSorter.setOnAction(event -> {
             allClubs.sort(new WinComparator().reversed());
             for (int i=0; i<tableView.getItems().size(); i++) {
@@ -63,7 +82,16 @@ public class MainFrontend extends Application {
             }
         });
 
+        playMatch.setOnAction(event -> {
+            ConsoleApplication.addPlayedMatch();
+            List<FootballMatch> updatedMatches = PremierLeagueManager.getAllMatches();
+            System.out.println("GUI up: " + updatedMatches.size());
+            allMatches.clear();
+            allMatches.addAll(updatedMatches);
+            System.out.println("GUI all: " + allMatches.size());
+        });
 
+        //*using the table helper methods to populate the TableView*//
         for (TableColumn<FootballClub, String> eachColumn : allColumns) {
             tableView.getColumns().add(eachColumn);
         }
@@ -84,6 +112,7 @@ public class MainFrontend extends Application {
 
         Scene pointsTableScene = guiElements.scene(anchorPane, 1366, 700, "style.css");
         Scene displayMatchScene = displayAllMatches(window, allMatches, guiElements, pointsTableScene);
+        //*on click of this button, change scene to display all matches*//
         displayMatch.setOnAction(event -> window.setScene(displayMatchScene));
 
         window.setScene(pointsTableScene);
@@ -91,7 +120,16 @@ public class MainFrontend extends Application {
         window.show();
     }
 
+    /**
+     * Method that handles the display of all matches
+     * @param window - the stage
+     * @param allMatches = list of matches
+     * @param guiElements - a GuiElements object
+     * @param pointsTableScene - Points Table scene passed for button to switch scenes
+     * @return scene - the gui scene is returned and used in the points table scene
+     */
     public static Scene displayAllMatches(Stage window, List<FootballMatch> allMatches, GuiElements guiElements, Scene pointsTableScene) {
+        //**all gui elements**//
         ImageView eplLion2 = GuiElements.imageViewLay(
                 "file:/C:/Users/Ammuuu/Downloads/learning/UNI/OOP-Module/Coursework/OOP-COURSEWORK/images/PL-lion2.png",
                 500, 20, 220, 350);
@@ -104,12 +142,13 @@ public class MainFrontend extends Application {
         ImageView eplBoot = GuiElements.imageViewLay(
                 "file:/C:/Users/Ammuuu/Downloads/learning/UNI/OOP-Module/Coursework/OOP-COURSEWORK/images/PL-boot.png",
                 1100, 450, 200, 200);
-        TextField dateInputField = GuiElements.textField("yyyy-mm-dd", 200, 40, 840, 150, "allMatches__dateInput");
-        Button searchDateBtn = GuiElements.button("Search", 1045, 150, "allMatches__searchDate");
-        Button resetSearchBtn = GuiElements.button("Reset", 1176, 150, "allMatches__searchReset");
-        Button pointsTableBtn = GuiElements.button("<<< POINTS TABLE", 40, 630, "allMatches__pointsTable");
+        TextField dateInputField = GuiElements.textField("yyyy-mm-dd", 200, 40, 840, 150, "allMatches__dateInputTF");
+        Button searchDateBtn = GuiElements.button("Search", 1045, 150, "allMatches__searchDateBtn");
+        Button resetSearchBtn = GuiElements.button("Reset", 1176, 150, "allMatches__searchResetBtn");
+        Button pointsTableBtn = GuiElements.button("<<< POINTS TABLE", 40, 630, "allMatches__pointsTableBtn");
         pointsTableBtn.setOnAction(event -> window.setScene(pointsTableScene));
         VBox vBoxContainer = new VBox();
+        //**end all gui elements**//
 
         for (FootballMatch match : allMatches) {
             allMatchDisplayAndFilter(vBoxContainer, match);
@@ -119,12 +158,14 @@ public class MainFrontend extends Application {
                 "-fx-background: #222; -fx-border-color: #f00;");
         scrollPaneContainer.setContent(vBoxContainer);
 
+        //*on click of this button, displays the matches with date specified*//
         searchDateBtn.setOnAction(event -> {
             scrollPaneContainer.setContent(vBoxContainer);
             String userInput = dateInputField.getText();
-            if (DATE_PATTERN.matcher(userInput).matches()) {
+            if (DATE_PATTERN.matcher(userInput).matches()) {    //*checking input against a regex*//
                 vBoxContainer.getChildren().clear();
                 boolean hasMatch = false;
+                //*the VBox is emptied and only the matches with date specified are added*//
                 for (FootballMatch footballMatch: allMatches) {
                     if (String.valueOf(footballMatch.getMatchDate()).equals(userInput)) {
                         allMatchDisplayAndFilter(vBoxContainer, footballMatch);
@@ -132,9 +173,10 @@ public class MainFrontend extends Application {
                     }
                 }
                 if (!hasMatch) {
+                    //*display a label is there are not any matches with specified date*//
                     HBox noMatchHBox = GuiElements.hBox("");
                     Label noMatchLabel = GuiElements.matchViewLabels("\t\t" + "   " +  "⚠\n\t" + "  " + "NO MATCHES\n" + "\t" +
-                            "\tHAVE\n\t" + "  " + "BEEN PLAYED\n\t\t" + "   " + "⚠", "allMatches__noMatches");
+                            "\tHAVE\n\t" + "  " + "BEEN PLAYED\n\t\t" + "   " + "⚠", "allMatches__noMatchesLbl");
                     noMatchHBox.getChildren().add(noMatchLabel);
                     scrollPaneContainer.setContent(noMatchHBox);
                 }
@@ -143,6 +185,7 @@ public class MainFrontend extends Application {
             }
         });
 
+        //**on click of this button, reset the search and display all matches//
         resetSearchBtn.setOnAction(event -> {
             scrollPaneContainer.setContent(vBoxContainer);
             dateInputField.setText("");
@@ -163,38 +206,47 @@ public class MainFrontend extends Application {
 
         return guiElements.scene(anchorPane, 1366, 700, "style.css");
     }
-
+    /**
+     * Private helper method that is used to display the list of matches
+     * @param vBoxContainer - main container
+     * @param footballMatch - footballMatch to add into the container
+     */
     private static void allMatchDisplayAndFilter(VBox vBoxContainer, FootballMatch footballMatch) {
         VBox vBoxFirstTeam = GuiElements.vBox(300);
         HBox firstTeamNameContainer = GuiElements.hBox("");
         HBox firstTeamGoalContainer = GuiElements.hBox("");
-        Label firstTeamName = GuiElements.matchViewLabels(footballMatch.getFirstTeam().getClubName().toUpperCase(), "allMatches__firstTeamName");
+        Label firstTeamName = GuiElements.matchViewLabels(footballMatch.getFirstTeam().getClubName().toUpperCase(), "allMatches__firstTeamNameLbl");
         Label firstTeamGoals = GuiElements.matchViewLabels(String.valueOf(footballMatch.getFirstTeamSingleMatchStats().getGoals()),
-                "allMatches__firstTeamGoals");
+                "allMatches__firstTeamGoalsLbl");
         firstTeamNameContainer.getChildren().add(firstTeamName);
         firstTeamGoalContainer.getChildren().add(firstTeamGoals);
         vBoxFirstTeam.getChildren().addAll(firstTeamNameContainer, firstTeamGoalContainer);
 
         VBox vBoxDate = GuiElements.vBox(100);
-        Label labelDate = GuiElements.matchViewLabels(String.valueOf(footballMatch.getMatchDate()), "allMatches__matchDate");
-        Label labelVS = GuiElements.matchViewLabels("VS", "allMatches__vs");
+        Label labelDate = GuiElements.matchViewLabels(String.valueOf(footballMatch.getMatchDate()), "allMatches__matchDateLbl");
+        Label labelVS = GuiElements.matchViewLabels("VS", "allMatches__vsLbl");
         vBoxDate.getChildren().addAll(labelDate, labelVS);
 
         VBox vBoxSecondTeam = GuiElements.vBox(300);
         HBox secondTeamNameContainer = GuiElements.hBox("");
         HBox secondTeamGoalsContainer = GuiElements.hBox("");
-        Label secondTeamName = GuiElements.matchViewLabels(footballMatch.getSecondTeam().getClubName().toUpperCase(), "allMatches__secondTeamName");
+        Label secondTeamName = GuiElements.matchViewLabels(footballMatch.getSecondTeam().getClubName().toUpperCase(), "allMatches__secondTeamNameLbl");
         Label secondTeamGoals = GuiElements.matchViewLabels(String.valueOf(footballMatch.getSecondTeamSingleMatchStats().getGoals()),
-                "allMatches__secondTeamGoals");
+                "allMatches__secondTeamGoalsLbl");
         secondTeamNameContainer.getChildren().add(secondTeamName);
         secondTeamGoalsContainer.getChildren().add(secondTeamGoals);
         vBoxSecondTeam.getChildren().addAll(secondTeamNameContainer, secondTeamGoalsContainer);
 
-        HBox hBoxEachRow = GuiElements.hBox("allMatches__eachRow");
+        HBox hBoxEachRow = GuiElements.hBox("allMatches__eachRowHBox");
         hBoxEachRow.getChildren().addAll(vBoxFirstTeam, vBoxDate, vBoxSecondTeam);
 
         vBoxContainer.getChildren().addAll(hBoxEachRow);
     }
+
+//    public static void playMatch(List<FootballMatch> allMatches) {
+//        ConsoleApplication.addPlayedMatch();
+//        allMatches = PremierLeagueManager.getAllMatches();
+//    }
 
     private static void closeScenes(Stage window) {
         Alert closeAlert = GuiElements.closeWindowCommon();
@@ -202,6 +254,7 @@ public class MainFrontend extends Application {
         closeAlert.showAndWait();
         if (closeAlert.getResult() == ButtonType.YES) {
             window.close();
+//            ConsoleApplication.printDisplay();
         } else {
             closeAlert.close();
         }

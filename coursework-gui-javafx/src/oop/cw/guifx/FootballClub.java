@@ -29,8 +29,7 @@ public class FootballClub extends SportsClub implements Comparable<FootballClub>
      * @param clubOwner - owner of club
      * @param kit - club kit (a helper class)
      * @param clubWorth - club net worth
-     * @return no return (constructor)
-     */
+\     */
     public FootballClub(String clubName, String clubLocation, String clubOwner, SportsClubKit kit,
                         String clubWorth) {
         super(clubName, clubLocation, clubOwner, kit, NUMBER_OF_PLAYERS, clubWorth);

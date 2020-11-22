@@ -5,11 +5,13 @@ package oop.cw.guifx;
  * Copyright © 2020 Ammar Raneez. All Rights Reserved.
  */
 
+import javafx.application.Application;
+
 import java.awt.*;
 import java.lang.reflect.Field;
 
 /**
- * oop.cw.guifx.ConsoleApplication class, the main runner class
+ * oop.cw.guifx.ConsoleApplication class, the main cli runner class
  * @version 1.x November 15th 2020
  * @author Ammar Raneez | 2019163 | W1761196
  */
@@ -55,6 +57,7 @@ public class ConsoleApplication {
                     clubExists = true;
                     clubNameInput = PremierLeagueManager.getUserInput("[ERROR] ==> " + clubNameInput +
                             " already exists! Please try again");
+                    //*stop continuous looping*//
                     break;
                 }
             }
@@ -65,6 +68,7 @@ public class ConsoleApplication {
             }
         }
 
+        //*club location validation*//
         String clubLocationInput = PremierLeagueManager.getUserInput("Enter club location");
         while (true) {
             if (clubLocationInput.equals("")) {
@@ -74,6 +78,7 @@ public class ConsoleApplication {
             }
         }
 
+        //*club owner validation*//
         String clubOwnerInput = PremierLeagueManager.getUserInput("Enter club owner");
         while (true) {
             if (clubOwnerInput.equals("")) {
@@ -83,6 +88,7 @@ public class ConsoleApplication {
             }
         }
 
+        //*club sponsor validation*//
         String clubSponsorInput = PremierLeagueManager.getUserInput("Enter club sponsor");
         while (true) {
             if (clubSponsorInput.equals("")) {
@@ -123,6 +129,7 @@ public class ConsoleApplication {
             }
         }
 
+        //*club net worth validation*//
         String clubNetWorth = PremierLeagueManager.getUserInput("Please enter club net worth");
         while (true) {
             if (clubNetWorth.equals("")) {
@@ -216,6 +223,9 @@ public class ConsoleApplication {
         premierLeagueManager.loadData();
     }
 
+    /**
+     * Displays the Menu on the console
+     */
     public static void printDisplay() {
         System.out.println("***************************************************");
         System.out.println("WELCOME TO THE PREMIER LEAGUE");
@@ -227,12 +237,13 @@ public class ConsoleApplication {
         System.out.println("Enter c to display all Match Scores of the Premier League");
         System.out.println("Enter x to display a selected club");
         System.out.println("Enter s to display a selected match statistic");
+        System.out.println("Enter g to display GUI");
         System.out.println("Enter q to exit");
     }
 
     public static void main(String[] args) throws IllegalAccessException, ClassNotFoundException, InterruptedException {
+        //*load data upon start, and display the menu*//
         loadData();
-
         printDisplay();
         String userChoice = PremierLeagueManager.getUserInput("Please choose an option");
         infiniteLoop:
@@ -271,6 +282,10 @@ public class ConsoleApplication {
                 case "s":
                     displaySelectedMatchStatistics();
                     printDisplay();
+                    userChoice = PremierLeagueManager.getUserInput("Please choose an option");
+                    break;
+                case "g":
+                    Application.launch(MainFrontend.class, args);
                     userChoice = PremierLeagueManager.getUserInput("Please choose an option");
                     break;
                 case "q":

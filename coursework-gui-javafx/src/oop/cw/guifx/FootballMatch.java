@@ -224,13 +224,13 @@ public class FootballMatch implements Serializable, Comparable<FootballMatch> {
         return matchDate;
     }
 
-    /**
-     * sets date of a match
-     * @param matchDate - date of a specific match
-     */
-    public void setMatchDate(LocalDate matchDate) {
-        this.matchDate = matchDate;
-    }
+//    /**
+//     * sets date of a match
+//     * @param matchDate - date of a specific match
+//     */
+//    public void setMatchDate(LocalDate matchDate) {
+//        this.matchDate = matchDate;
+//    }
 
     /**
      * @return football club 1

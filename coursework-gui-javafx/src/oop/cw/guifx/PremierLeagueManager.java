@@ -98,7 +98,6 @@ public class PremierLeagueManager implements LeagueManager {
         }
 
         allFootballClubs.add(footballClub);
-//        System.out.println(allFootballClubs);
     }
     //**********************************************END OF ADD METHOD*************************************************//
 
@@ -216,6 +215,8 @@ public class PremierLeagueManager implements LeagueManager {
             if(!hasMatch) {
                 footballMatch.playMatch();
                 allMatches.add(footballMatch);
+                System.out.println(footballMatch);
+                System.out.println("console: " + allMatches.size());
                 break;
             }
 
@@ -229,7 +230,7 @@ public class PremierLeagueManager implements LeagueManager {
             //*based on a common pattern identified, the if condition was created (max number of matches playable)*//
             //*second condition is if you delete a football club after it has already played a match*//
             if ((allMatches.size() == (allFootballClubs.size() * (allFootballClubs.size() - 1) / 2)) ||
-                    (allMatches.size() > allFootballClubs.size())) {
+                    (allMatches.size() > (allFootballClubs.size() * (allFootballClubs.size() - 1) / 2))) {
                 System.out.println("All Possible Matches have already been played!");
                 break;
             }
@@ -237,6 +238,7 @@ public class PremierLeagueManager implements LeagueManager {
     }
     /**
      * Private helper method that generates a random date
+     * If generated value is less than 10, appends a 0 at the beginning so that it can be parsed into a LocalDate
      * @param year - takes year parameter (to be used when multiple season functionality has been added)
      * @return - a LocalDate object containing the random date created
      */
