@@ -160,7 +160,10 @@ public class PremierLeagueManager implements LeagueManager {
         if (!foundFlag) {
             System.out.println("[ERROR] ==> No Such Club Exists");
         } else {
-            System.out.println(foundClub);
+            System.out.println(
+                    "Club: " + foundClub.getClubName() + " | Location: " + foundClub.getClubLocation() + " | Owner: " +
+                            foundClub.getClubOwner() + " | Net Worth: " + foundClub.getClubNetWorth()
+            );
         }
     }
     //******************************************END DISPLAY SELECTED CLUB*********************************************//

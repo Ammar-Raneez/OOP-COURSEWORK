@@ -58,6 +58,13 @@ public class FootballClub extends SportsClub implements Comparable<FootballClub>
     }
 
     /**
+     * @return list of all Players
+     */
+    public List<Player> getAllPlayers() {
+        return allPlayers;
+    }
+
+    /**
      * @return overrun toString() method
      */
     //TODO, improve toString() methods
