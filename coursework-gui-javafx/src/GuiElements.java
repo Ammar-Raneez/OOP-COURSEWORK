@@ -1,5 +1,5 @@
 /**
- * oop.cw.guifx.GuiElements
+ * GuiElements
  * Copyright © 2020 Ammar Raneez. All Rights Reserved.
  */
 
@@ -22,7 +22,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * oop.cw.guifx.GuiElements class, class that handles creation of GUI elements
+ * GuiElements class, class that handles creation of GUI elements
  * @version 1.x November 22 2020
  * @author Ammar Raneez | 2019163 | W1761196
  */

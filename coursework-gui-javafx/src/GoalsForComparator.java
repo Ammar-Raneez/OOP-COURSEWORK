@@ -1,12 +1,12 @@
 /*
- * oop.cw.guifx.GoalsForComparator
+ * GoalsForComparator
  * Copyright © 2020 Ammar Raneez. All Rights Reserved.
  */
 
 import java.util.Comparator;
 
 /**
- * oop.cw.guifx.GoalsForComparator class, which will be used to sort the list of football clubs based on goals
+ * GoalsForComparator class, which will be used to sort the list of football clubs based on goals
  * scored
  * @version 1.x November 20th 2020
  * @author Ammar Raneez | 2019163 | W1761196

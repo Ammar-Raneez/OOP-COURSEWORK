@@ -1,12 +1,12 @@
 /*
- * oop.cw.guifx.WinComparator
+ * WinComparator
  * Copyright © 2020 Ammar Raneez. All Rights Reserved.
  */
 
 import java.util.Comparator;
 
 /**
- * oop.cw.guifx.WinComparator class, which will be used to sort the list of football clubs based on wins
+ * WinComparator class, which will be used to sort the list of football clubs based on wins
  * @version 1.x November 20th 2020
  * @author Ammar Raneez | 2019163 | W1761196
  */

@@ -1,5 +1,5 @@
 /*
- * oop.cw.guifx.MainFrontend
+ * MainFrontend
  * Copyright © 2020 Ammar Raneez. All Rights Reserved.
  */
 
@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 /**
- * oop.cw.guifx.MainFrontend class, the main GUI runner class
+ * MainFrontend class, the main GUI runner class
  * @version 1.x November 22th 2020
  * @author Ammar Raneez | 2019163 | W1761196
  */
