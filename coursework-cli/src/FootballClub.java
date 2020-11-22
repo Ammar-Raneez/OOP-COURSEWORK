@@ -1,12 +1,14 @@
+package oop.cw.guifx;
+
 /*
- * FootballClub
+ * oop.cw.guifx.FootballClub
  * Copyright © 2020 Ammar Raneez. All Rights Reserved.
  */
 
 import java.util.*;
 
 /**
- * FootballClub class, which will be used to represent any football club (sub class of SportsClub)
+ * oop.cw.guifx.FootballClub class, which will be used to represent any football club (sub class of oop.cw.guifx.SportsClub)
  * @version 1.x November 9th 2020
  * @author Ammar Raneez | 2019163 | W1761196
  */
@@ -27,8 +29,7 @@ public class FootballClub extends SportsClub implements Comparable<FootballClub>
      * @param clubOwner - owner of club
      * @param kit - club kit (a helper class)
      * @param clubWorth - club net worth
-     * @return no return (constructor)
-     */
+\     */
     public FootballClub(String clubName, String clubLocation, String clubOwner, SportsClubKit kit,
                         String clubWorth) {
         super(clubName, clubLocation, clubOwner, kit, NUMBER_OF_PLAYERS, clubWorth);
@@ -64,7 +65,7 @@ public class FootballClub extends SportsClub implements Comparable<FootballClub>
     //TODO, improve toString() methods
     @Override
     public String toString() {
-        return "FootballClub{" +
+        return "oop.cw.guifx.FootballClub{" +
                 super.toString() +
                 "footballClubTotalStatistics=" + footballClubTotalStatistics +
                 ", allPlayers=" + allPlayers +
@@ -74,7 +75,7 @@ public class FootballClub extends SportsClub implements Comparable<FootballClub>
     /**
      * Overridden compareTo() method - to sort the clubs based on points
      * Needed for the displayPointsTable() method - to display club with most points on top (descending order of points)
-     * @param o - compare this FootballClub with o
+     * @param o - compare this oop.cw.guifx.FootballClub with o
      * @return - +ve value if this clubs points > o's points, -ve value if vice-versa, 0 if equal
      */
     @Override
@@ -83,7 +84,7 @@ public class FootballClub extends SportsClub implements Comparable<FootballClub>
     }
 
     /**
-     * Equals() method called from the super class - SportsClub
+     * Equals() method called from the super class - oop.cw.guifx.SportsClub
      * @param o - compare this club with o
      * @return - t/f on whether the equality is satisfied
      */

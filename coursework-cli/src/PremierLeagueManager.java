@@ -1,15 +1,19 @@
+package oop.cw.guifx;
+
 /*
- * PremierLeagueManager
+ * oop.cw.guifx.PremierLeagueManager
  * Copyright © 2020 Ammar Raneez. All Rights Reserved.
  */
 
 import java.awt.*;
 import java.io.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.List;
 
 /**
- * PremierLeagueManager class, the class that will implement all the manipulation methods of a FootballClub
+ * oop.cw.guifx.PremierLeagueManager class, the class that will implement all the manipulation methods of a oop.cw.guifx.FootballClub
  * @version 1.x November 9th 2020
  * @author Ammar Raneez | 2019163 | W1761196
  */
@@ -54,7 +58,7 @@ public class PremierLeagueManager implements LeagueManager {
     //************************************************ADD METHOD******************************************************//
 
     /**
-     * Method implementation of addClub(), overrun from the LeagueManager interface
+     * Method implementation of addClub(), overrun from the oop.cw.guifx.LeagueManager interface
      * This method handles the functionality of adding/promoting a club to the PremierLeague
      * @param clubTypeInput - type of club input (university, school or league)
      * @param clubNameInput - name of the club
@@ -94,7 +98,6 @@ public class PremierLeagueManager implements LeagueManager {
         }
 
         allFootballClubs.add(footballClub);
-//        System.out.println(allFootballClubs);
     }
     //**********************************************END OF ADD METHOD*************************************************//
 
@@ -103,7 +106,7 @@ public class PremierLeagueManager implements LeagueManager {
     //***********************************************DELETE METHOD****************************************************//
 
     /**
-     * Method implementation of deleteClub(), overrun from the LeagueManager interface
+     * Method implementation of deleteClub(), overrun from the oop.cw.guifx.LeagueManager interface
      * This method handles the functionality of deleting/relegating a club from the PremierLeague
      * Deletes based on club name input
      * @param clubNameInput - name of club wished to relegate
@@ -138,7 +141,7 @@ public class PremierLeagueManager implements LeagueManager {
     //*********************************************DISPLAY SELECTED CLUB**********************************************//
 
     /**
-     * Method implementation of displaySelectedClub(), overrun from the LeagueManager interface
+     * Method implementation of displaySelectedClub(), overrun from the oop.cw.guifx.LeagueManager interface
      * This method handles the functionality of displaying a club in the PremierLeague
      * Identifies based on club name
      * @param clubNameInput - name of club wished to display
@@ -169,7 +172,7 @@ public class PremierLeagueManager implements LeagueManager {
     //***************************************ADD PLAYED MATCH BETWEEN TWO CLUB****************************************//
 
     /**
-     * Method implementation of addPlayedMatch(), overrun from the LeagueManager interface
+     * Method implementation of addPlayedMatch(), overrun from the oop.cw.guifx.LeagueManager interface
      * This method handles the functionality of playing a match in the PremierLeague
      */
     @Override
@@ -194,8 +197,9 @@ public class PremierLeagueManager implements LeagueManager {
         boolean hasMatch;
         //*the logic here is to loop infinitely, till a unique match has been generated*//
         while (true){
+            LocalDate localDate = generateRandomDate(20);
             hasMatch = false;
-            footballMatch = new FootballMatch(firstTeam, secondTeam, new Date());
+            footballMatch = new FootballMatch(firstTeam, secondTeam, localDate);
 
             //*check the above generated match against all the matches already played*//
             for (FootballMatch match : allMatches) {
@@ -203,13 +207,6 @@ public class PremierLeagueManager implements LeagueManager {
                     hasMatch = true;
                     break;
                 }
-//                if ((match.getFirstTeam().getClubName().equals(footballMatch.getFirstTeam().getClubName()) &&
-//                        match.getSecondTeam().getClubName().equals(footballMatch.getSecondTeam().getClubName())) ||
-//                            (match.getSecondTeam().getClubName().equals(footballMatch.getFirstTeam().getClubName()) &&
-//                                match.getFirstTeam().getClubName().equals(footballMatch.getSecondTeam().getClubName()))) {
-//                    hasMatch = true;
-//                    break;
-//                }
             }
 
             //*if and only if the hasMatch flag had not turned true (the generated match is unique)*//
@@ -231,11 +228,26 @@ public class PremierLeagueManager implements LeagueManager {
             //*based on a common pattern identified, the if condition was created (max number of matches playable)*//
             //*second condition is if you delete a football club after it has already played a match*//
             if ((allMatches.size() == (allFootballClubs.size() * (allFootballClubs.size() - 1) / 2)) ||
-                    (allMatches.size() > allFootballClubs.size())) {
+                    (allMatches.size() > (allFootballClubs.size() * (allFootballClubs.size() - 1) / 2))) {
                 System.out.println("All Possible Matches have already been played!");
                 break;
             }
         }
+    }
+    /**
+     * Private helper method that generates a random date
+     * If generated value is less than 10, appends a 0 at the beginning so that it can be parsed into a LocalDate
+     * @param year - takes year parameter (to be used when multiple season functionality has been added)
+     * @return - a LocalDate object containing the random date created
+     */
+    private static LocalDate generateRandomDate(int year) {
+        String randomDay = String.valueOf(random.nextInt((31)) + 1);
+        if (Integer.parseInt(randomDay) < 10) randomDay = "0" + randomDay;
+        String randomMonth = String.valueOf(random.nextInt((12)) + 1);
+        if (Integer.parseInt(randomMonth) < 10) randomMonth = "0" + randomMonth;
+        String dateString = randomDay + "/" + randomMonth + "/" + year;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy");
+        return LocalDate.parse(dateString, formatter);
     }
     //*************************************END ADD PLAYED MATCH BETWEEN TWO CLUB**************************************//
 
@@ -244,14 +256,14 @@ public class PremierLeagueManager implements LeagueManager {
     //*********************************************DISPLAY POINTS TABLE***********************************************//
 
     /**
-     * Method implementation of displayPointsTable(), overrun from the LeagueManager interface
+     * Method implementation of displayPointsTable(), overrun from the oop.cw.guifx.LeagueManager interface
      * This method handles the functionality of displaying the standings of the Premier League
      */
     @Override
     public void displayPointsTable() {
-        //*sort based on the GoalDifferenceComparator created, in descending order*//
+        //*sort based on the oop.cw.guifx.GoalDifferenceComparator created, in descending order*//
         allFootballClubs.sort(new GoalDifferenceComparator().reversed());
-        //*then use the compareTo() method of FootballClub to sort based on points
+        //*then use the compareTo() method of oop.cw.guifx.FootballClub to sort based on points
         //*(GD sorted first so the GD order is maintained)*//
         allFootballClubs.sort(Collections.reverseOrder());
 
@@ -283,12 +295,12 @@ public class PremierLeagueManager implements LeagueManager {
     //*********************************************DISPLAY MATCH SCORES***********************************************//
 
     /**
-     * Method implementation of displayMatchResults(), overrun from the LeagueManager interface
+     * Method implementation of displayMatchResults(), overrun from the oop.cw.guifx.LeagueManager interface
      * This method handles the functionality of displaying all the match results in the Premier League
      */
     @Override
     public void displayMatchResults() {
-        //*FootballMatch compareTo() method is used to sort (Date sorting), in descending order*//
+        //*oop.cw.guifx.FootballMatch compareTo() method is used to sort (Date sorting), in descending order*//
         //*So it's ordered from the most recent to the least*//
         allMatches.sort(Collections.reverseOrder());
         System.out.println("=============================================");
@@ -297,7 +309,7 @@ public class PremierLeagueManager implements LeagueManager {
         System.out.println("=============================================");
 
         for (FootballMatch footballMatch : allMatches) {
-            System.out.format("%8s %5s", "", footballMatch.getMatchDate());
+            System.out.format("%17s %5s", "", footballMatch.getMatchDate());
             System.out.println();
             System.out.format("%-19s %2s %2s %19s", footballMatch.getFirstTeam().getClubName(),
                               footballMatch.getFirstTeamSingleMatchStats().getGoals(),
@@ -315,7 +327,7 @@ public class PremierLeagueManager implements LeagueManager {
     //*********************************************DISPLAY SELECTED DATE**********************************************//
 
     /**
-     * Method implementation of displaySelectedMatchStatistics(), overrun from the LeagueManager interface
+     * Method implementation of displaySelectedMatchStatistics(), overrun from the oop.cw.guifx.LeagueManager interface
      * This method handles the functionality of displaying a selected match in the Premier League
      * Identifies based on the club name inputs that are involved in the match
      * @param firstTeamInput - club name
@@ -388,7 +400,7 @@ public class PremierLeagueManager implements LeagueManager {
     //**************************************************SAVE DATA*****************************************************//
 
     /**
-     * Method implementation of saveData(), overrun from the LeagueManager interface
+     * Method implementation of saveData(), overrun from the oop.cw.guifx.LeagueManager interface
      * This method handles the functionality of saving all required data
      */
     @Override
@@ -416,7 +428,7 @@ public class PremierLeagueManager implements LeagueManager {
     //************************************************LOAD DATA*******************************************************//
 
     /**
-     * Method implementation of loadData(), overrun from the LeagueManager interface
+     * Method implementation of loadData(), overrun from the oop.cw.guifx.LeagueManager interface
      * This method handles the functionality of loading all the data that had been saved
      */
     @Override

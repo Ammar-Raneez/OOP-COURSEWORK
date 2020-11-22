@@ -1,12 +1,14 @@
+package oop.cw.guifx;
+
 /*
- * SingleMatchFootballClubStatistic
+ * oop.cw.guifx.SingleMatchFootballClubStatistic
  * Copyright © 2020 Ammar Raneez. All Rights Reserved.
  */
 
 import java.io.Serializable;
 
 /**
- * SingleMatchFootballClubStatistic class, which will be used to represent any football clubs single match statistic
+ * oop.cw.guifx.SingleMatchFootballClubStatistic class, which will be used to represent any football clubs single match statistic
  * @version 1.x November 9th 2020
  * @author Ammar Raneez | 2019163 | W1761196
  */
@@ -200,7 +202,7 @@ public class SingleMatchFootballClubStatistic implements Serializable {
     //TODO, improve toString() methods
     @Override
     public String toString() {
-        return "SingleMatchFootballClubStatistic{" +
+        return "oop.cw.guifx.SingleMatchFootballClubStatistic{" +
                 "corners=" + corners +
                 ", fouls=" + fouls +
                 ", goals=" + goals +

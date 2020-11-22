@@ -1,5 +1,7 @@
+package oop.cw.guifx;
+
 /*
- * SportsClub
+ * oop.cw.guifx.SportsClub
  * Copyright © 2020 Ammar Raneez. All Rights Reserved.
  */
 
@@ -7,7 +9,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 /**
- * SportsClub class, which will be used to represent any generic sport club (super class of FootballClub)
+ * oop.cw.guifx.SportsClub class, which will be used to represent any generic sport club (super class of oop.cw.guifx.FootballClub)
  * @version 1.x November 9th 2020
  * @author Ammar Raneez | 2019163 | W1761196
  */
@@ -135,7 +137,7 @@ public abstract class SportsClub implements Serializable {
     //TODO, improve toString() methods
     @Override
     public String toString() {
-        return "SportsClub{" +
+        return "oop.cw.guifx.SportsClub{" +
                 "amountOfPlayers=" + amountOfPlayers +
                 ", kit=" + kit +
                 ", clubLocation='" + clubLocation + '\'' +
@@ -146,10 +148,10 @@ public abstract class SportsClub implements Serializable {
     }
 
     /**
-     * Overrun equals method to check for any SportsClub equality
+     * Overrun equals method to check for any oop.cw.guifx.SportsClub equality
      * Not all attributes are checked against, since they can be duplicated
      * This is placed in the super class, so every class that inherits this, get the equals() method
-     * @param o - compare this SportsClub with o
+     * @param o - compare this oop.cw.guifx.SportsClub with o
      * @return - t/f on whether the equality is satisfied
      */
     @Override
