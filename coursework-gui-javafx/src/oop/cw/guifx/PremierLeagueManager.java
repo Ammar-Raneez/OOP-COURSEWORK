@@ -215,8 +215,6 @@ public class PremierLeagueManager implements LeagueManager {
             if(!hasMatch) {
                 footballMatch.playMatch();
                 allMatches.add(footballMatch);
-                System.out.println(footballMatch);
-                System.out.println("console: " + allMatches.size());
                 break;
             }
 

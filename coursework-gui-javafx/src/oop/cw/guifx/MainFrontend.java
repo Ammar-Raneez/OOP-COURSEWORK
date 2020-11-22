@@ -35,7 +35,6 @@ public class MainFrontend extends Application {
         List<FootballClub> allClubs = PremierLeagueManager.getAllFootballClubs();
         List<FootballMatch> allMatches = PremierLeagueManager.getAllMatches();
         allClubs.sort(Collections.reverseOrder());                                  //**to display clubs sorted by points**//
-        Collections.sort(allMatches);                                               //**to display all matches ascending order of date**//
         primaryStage.getIcons().add(new Image("file:/C:/Users/Ammuuu/Downloads/learning/UNI/OOP-Module/Coursework/OOP-COURSEWORK/images/PL-lion.png"));
         displayPointsTableWindow(primaryStage, allClubs, allMatches, guiElements);
     }
@@ -85,10 +84,12 @@ public class MainFrontend extends Application {
         playMatch.setOnAction(event -> {
             ConsoleApplication.addPlayedMatch();
             List<FootballMatch> updatedMatches = PremierLeagueManager.getAllMatches();
-            System.out.println("GUI up: " + updatedMatches.size());
-            allMatches.clear();
-            allMatches.addAll(updatedMatches);
-            System.out.println("GUI all: " + allMatches.size());
+            for (int i=0; i<updatedMatches.size(); i++) {
+                allMatches.set(i, updatedMatches.get(i));
+            }
+            for (int i=0; i<allClubs.size(); i++) {
+                tableView.getItems().set(i, allClubs.get(i));
+            }
         });
 
         //*using the table helper methods to populate the TableView*//
@@ -111,9 +112,11 @@ public class MainFrontend extends Application {
         anchorPane.getChildren().addAll(stackPane, eplLion, eplText, goalSorter, winSorter, playMatch, displayMatch, eplRef);
 
         Scene pointsTableScene = guiElements.scene(anchorPane, 1366, 700, "style.css");
-        Scene displayMatchScene = displayAllMatches(window, allMatches, guiElements, pointsTableScene);
         //*on click of this button, change scene to display all matches*//
-        displayMatch.setOnAction(event -> window.setScene(displayMatchScene));
+        displayMatch.setOnAction(event -> {
+            Scene displayMatchScene = displayAllMatches(window, allMatches, guiElements, pointsTableScene);
+            window.setScene(displayMatchScene);
+        });
 
         window.setScene(pointsTableScene);
         window.setTitle("PREMIER LEAGUE MANAGER");
@@ -129,6 +132,7 @@ public class MainFrontend extends Application {
      * @return scene - the gui scene is returned and used in the points table scene
      */
     public static Scene displayAllMatches(Stage window, List<FootballMatch> allMatches, GuiElements guiElements, Scene pointsTableScene) {
+        Collections.sort(allMatches);              //**to display all matches ascending order of date**//
         //**all gui elements**//
         ImageView eplLion2 = GuiElements.imageViewLay(
                 "file:/C:/Users/Ammuuu/Downloads/learning/UNI/OOP-Module/Coursework/OOP-COURSEWORK/images/PL-lion2.png",
@@ -254,6 +258,7 @@ public class MainFrontend extends Application {
         closeAlert.showAndWait();
         if (closeAlert.getResult() == ButtonType.YES) {
             window.close();
+            ConsoleApplication.saveData();
 //            ConsoleApplication.printDisplay();
         } else {
             closeAlert.close();
