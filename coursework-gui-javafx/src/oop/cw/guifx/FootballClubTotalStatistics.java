@@ -1,14 +1,14 @@
 package oop.cw.guifx;
 
 /*
- * FootballClubStatistics
+ * oop.cw.guifx.FootballClubStatistics
  * Copyright © 2020 Ammar Raneez. All Rights Reserved.
  */
 
 import java.io.Serializable;
 
 /**
- * FootballClubStatistics class, which will be used to represent any football clubs total statistics
+ * oop.cw.guifx.FootballClubStatistics class, which will be used to represent any football clubs total statistics
  * @version 1.x November 9th 2020
  * @author Ammar Raneez | 2019163 | W1761196
  */

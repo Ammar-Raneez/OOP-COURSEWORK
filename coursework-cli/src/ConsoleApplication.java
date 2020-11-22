@@ -1,17 +1,13 @@
-package oop.cw.guifx;
-
 /*
- * oop.cw.guifx.ConsoleApplication
+ * ConsoleApplication
  * Copyright © 2020 Ammar Raneez. All Rights Reserved.
  */
-
-import javafx.application.Application;
 
 import java.awt.*;
 import java.lang.reflect.Field;
 
 /**
- * oop.cw.guifx.ConsoleApplication class, the main cli runner class
+ * ConsoleApplication class, the main cli runner class
  * @version 1.x November 15th 2020
  * @author Ammar Raneez | 2019163 | W1761196
  */
@@ -20,7 +16,7 @@ public class ConsoleApplication {
 
     /**
      * static method, that handles the adding of a club
-     * Calls the addClub() method of oop.cw.guifx.PremierLeagueManager, passing the inputs obtained as parameters
+     * Calls the addClub() method of PremierLeagueManager, passing the inputs obtained as parameters
      * @throws ClassNotFoundException - thrown in Color input
      * @throws IllegalAccessException - thrown in the get() method of Field
      * @throws InterruptedException - thrown in the sleep() function
@@ -149,7 +145,7 @@ public class ConsoleApplication {
 
     /**
      * static method, that handles the deletion of a club
-     * Calls the deleteClub() method of oop.cw.guifx.PremierLeagueManager, passing the club name obtained as the parameter
+     * Calls the deleteClub() method of PremierLeagueManager, passing the club name obtained as the parameter
      * @throws InterruptedException - thrown in the sleep() method
      */
     public static void deleteClub() throws InterruptedException {
@@ -165,7 +161,7 @@ public class ConsoleApplication {
 
     /**
      * static method, that handles the displaying of a selected club
-     * Calls the displaySelectedClub() method of oop.cw.guifx.PremierLeagueManager, passing the club name obtained as a parameter
+     * Calls the displaySelectedClub() method of PremierLeagueManager, passing the club name obtained as a parameter
      */
     public static void displaySelectedClub() {
         String clubNameInput = PremierLeagueManager.getUserInput("Enter club name to display");
@@ -174,7 +170,7 @@ public class ConsoleApplication {
 
     /**
      * static method, that handles the playing of a match
-     * Calls the addPlayedMatch() method of oop.cw.guifx.PremierLeagueManager
+     * Calls the addPlayedMatch() method of PremierLeagueManager
      */
     public static void addPlayedMatch() {
         premierLeagueManager.addPlayedMatch();
@@ -182,7 +178,7 @@ public class ConsoleApplication {
 
     /**
      * static method, that handles the displaying of the points table
-     * Calls the displayPointsTable() method of oop.cw.guifx.PremierLeagueManager
+     * Calls the displayPointsTable() method of PremierLeagueManager
      */
     public static void displayPointsTable() {
         premierLeagueManager.displayPointsTable();
@@ -190,7 +186,7 @@ public class ConsoleApplication {
 
     /**
      * static method, that handles the displaying of all match results
-     * Calls the displayMatchResults() method of oop.cw.guifx.PremierLeagueManager
+     * Calls the displayMatchResults() method of PremierLeagueManager
      */
     public static void displayMatchResults() {
         premierLeagueManager.displayMatchResults();
@@ -198,7 +194,7 @@ public class ConsoleApplication {
 
     /**
      * static method, that handles the displaying of statistics of a selected match
-     * Calls the displaySelectedMatchStatistics() method of oop.cw.guifx.PremierLeagueManager passing the two clubs involved in a
+     * Calls the displaySelectedMatchStatistics() method of PremierLeagueManager passing the two clubs involved in a
      * match as its parameters
      */
     public static void displaySelectedMatchStatistics() {
@@ -209,7 +205,7 @@ public class ConsoleApplication {
 
     /**
      * static method, that handles the saving of data
-     * Calls the saveData() method of oop.cw.guifx.PremierLeagueManager
+     * Calls the saveData() method of PremierLeagueManager
      */
     public static void saveData() {
         premierLeagueManager.saveData();
@@ -217,7 +213,7 @@ public class ConsoleApplication {
 
     /**
      * static method, that handles the loading of data
-     * Calls the loadData() method of oop.cw.guifx.PremierLeagueManager
+     * Calls the loadData() method of PremierLeagueManager
      */
     public static void loadData() {
         premierLeagueManager.loadData();
@@ -282,10 +278,6 @@ public class ConsoleApplication {
                 case "s":
                     displaySelectedMatchStatistics();
                     printDisplay();
-                    userChoice = PremierLeagueManager.getUserInput("Please choose an option");
-                    break;
-                case "g":
-                    Application.launch(MainFrontend.class, args);
                     userChoice = PremierLeagueManager.getUserInput("Please choose an option");
                     break;
                 case "q":

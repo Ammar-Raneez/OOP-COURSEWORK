@@ -1,7 +1,5 @@
-package oop.cw.guifx;
-
 /*
- * oop.cw.guifx.SportsClubKit
+ * SportsClubKit
  * Copyright © 2020 Ammar Raneez. All Rights Reserved.
  */
 
@@ -9,7 +7,7 @@ import java.awt.*;
 import java.io.Serializable;
 
 /**
- * oop.cw.guifx.SportsClubKit class, which will be used to represent any generic sports club kit
+ * SportsClubKit class, which will be used to represent any generic sports club kit
  * @version 1.x November 9th 2020
  * @author Ammar Raneez | 2019163 | W1761196
  */

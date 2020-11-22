@@ -1,14 +1,12 @@
-package oop.cw.guifx;
-
 /*
- * oop.cw.guifx.LeagueManager
+ * LeagueManager
  * Copyright © 2020 Ammar Raneez. All Rights Reserved.
  */
 
 import java.awt.*;
 
 /**
- * oop.cw.guifx.LeagueManager interface, which will be used to hold generic methods that applies to any sport league
+ * LeagueManager interface, which will be used to hold generic methods that applies to any sport league
  * @version 1.x November 9th 2020
  * @author Ammar Raneez | 2019163 | W1761196
  */
