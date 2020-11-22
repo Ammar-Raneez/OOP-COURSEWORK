@@ -162,7 +162,12 @@ public class PremierLeagueManager implements LeagueManager {
         } else {
             System.out.println(
                     "Club: " + foundClub.getClubName() + " | Location: " + foundClub.getClubLocation() + " | Owner: " +
-                            foundClub.getClubOwner() + " | Net Worth: " + foundClub.getClubNetWorth()
+                            foundClub.getClubOwner() + " | Net Worth: " + foundClub.getClubNetWorth() + "\n Points: " +
+                            foundClub.getFootballClubTotalStatistics().getPoints() + " | Matches Played: " +
+                            foundClub.getFootballClubTotalStatistics().getGoalsFor() + " | Wins: " +
+                            foundClub.getFootballClubTotalStatistics().getWins() + " | Draws: " +
+                            foundClub.getFootballClubTotalStatistics().getDraws() + " | Defeats: " +
+                            foundClub.getFootballClubTotalStatistics().getDefeats()
             );
         }
     }

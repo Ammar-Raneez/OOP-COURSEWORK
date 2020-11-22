@@ -11,6 +11,7 @@ import java.util.*;
  * @author Ammar Raneez | 2019163 | W1761196
  */
 public class FootballClub extends SportsClub implements Comparable<FootballClub> {
+    private static final long serialVersionUID = 2272608864290797607L;
     private static final int NUMBER_OF_PLAYERS = 11;
     private static Random random = new Random();
     private FootballClubTotalStatistics footballClubTotalStatistics;
