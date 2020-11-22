@@ -3,8 +3,6 @@
  * Copyright © 2020 Ammar Raneez. All Rights Reserved.
  */
 
-import javafx.application.Application;
-
 import java.awt.*;
 import java.lang.reflect.Field;
 
@@ -280,10 +278,6 @@ public class ConsoleApplication {
                 case "s":
                     displaySelectedMatchStatistics();
                     printDisplay();
-                    userChoice = PremierLeagueManager.getUserInput("Please choose an option");
-                    break;
-                case "g":
-                    Application.launch(MainFrontend.class, args);
                     userChoice = PremierLeagueManager.getUserInput("Please choose an option");
                     break;
                 case "q":
