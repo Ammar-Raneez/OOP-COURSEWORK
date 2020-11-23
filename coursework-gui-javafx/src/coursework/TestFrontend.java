@@ -84,6 +84,12 @@ public class TestFrontend extends Application {
         });
 
         playMatch.setOnAction(event -> {
+            if ((allMatches.size() == (allClubs.size() * (allClubs.size() - 1) / 2)) ||
+                    (allMatches.size() > (allClubs.size() * (allClubs.size() - 1) / 2))) {
+                GuiElements.errorAlert("All Possible Matches have Already been Played!");
+                return;
+            }
+
             ConsoleApplication.addPlayedMatch();
             List<FootballMatch> updatedMatches = PremierLeagueManager.getAllMatches();
             for (int i=0; i<updatedMatches.size(); i++) {

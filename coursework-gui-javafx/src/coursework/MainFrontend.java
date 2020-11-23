@@ -82,6 +82,12 @@ public class MainFrontend extends Application {
         });
 
         playMatch.setOnAction(event -> {
+            if ((allMatches.size() == (allClubs.size() * (allClubs.size() - 1) / 2)) ||
+                    (allMatches.size() > (allClubs.size() * (allClubs.size() - 1) / 2))) {
+                GuiElements.errorAlert("All Possible Matches have Already been Played!");
+                return;
+            }
+
             ConsoleApplication.addPlayedMatch();
             List<FootballMatch> updatedMatches = PremierLeagueManager.getAllMatches();
             for (int i=0; i<updatedMatches.size(); i++) {
@@ -111,7 +117,7 @@ public class MainFrontend extends Application {
         stackPane.getChildren().add(tableView);
         anchorPane.getChildren().addAll(stackPane, eplLion, eplText, goalSorter, winSorter, playMatch, displayMatch, eplRef);
 
-        Scene pointsTableScene = guiElements.scene(anchorPane, 1366, 700, "coursework/style.css");
+        Scene pointsTableScene = guiElements.scene(anchorPane, 1366, 700, "style.css");
         //*on click of this button, change scene to display all matches*//
         displayMatch.setOnAction(event -> {
             Scene displayMatchScene = displayAllMatches(window, allMatches, guiElements, pointsTableScene);
@@ -208,7 +214,7 @@ public class MainFrontend extends Application {
         anchorPane.getChildren().addAll(eplLion2, eplTrophy, eplBall, eplBoot, scrollPaneContainer, pointsTableBtn, dateInputField,
                 searchDateBtn, resetSearchBtn);
 
-        return guiElements.scene(anchorPane, 1366, 700, "coursework/style.css");
+        return guiElements.scene(anchorPane, 1366, 700, "style.css");
     }
     /**
      * Private helper method that is used to display the list of matches
