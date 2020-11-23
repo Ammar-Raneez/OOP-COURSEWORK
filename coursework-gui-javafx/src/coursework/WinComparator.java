@@ -1,4 +1,6 @@
-package coursework;/*
+package coursework;
+
+/*
  * WinComparator
  * Copyright © 2020 Ammar Raneez. All Rights Reserved.
  */

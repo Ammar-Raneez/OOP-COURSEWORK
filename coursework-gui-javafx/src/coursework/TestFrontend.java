@@ -1,5 +1,7 @@
-package coursework;/*
- * MainFrontend
+package coursework;
+
+/*
+ * TestFrontend
  * Copyright © 2020 Ammar Raneez. All Rights Reserved.
  */
 
@@ -19,7 +21,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 /**
- * MainFrontend class, the main GUI runner class
+ * TestFrontend class
  * @version 1.x November 22th 2020
  * @author Ammar Raneez | 2019163 | W1761196
  */

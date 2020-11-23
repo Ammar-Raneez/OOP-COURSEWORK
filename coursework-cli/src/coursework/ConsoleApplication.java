@@ -1,4 +1,6 @@
-package coursework;/*
+package coursework;
+
+/*
  * oop.cw.ConsoleApplication
  * Copyright © 2020 Ammar Raneez. All Rights Reserved.
  */
@@ -22,6 +24,12 @@ public class ConsoleApplication {
      * @throws InterruptedException - thrown in the sleep() function
      */
     public static void addClub() throws ClassNotFoundException, IllegalAccessException, InterruptedException {
+        //*only 20 teams can be added in the Premier League*//
+        if (PremierLeagueManager.getAllMatches().size() == PremierLeagueManager.getMaxSize()) {
+            System.out.println("[ERROR] ==> There cannot be more than 20 teams in the premier league!");
+            return;
+        }
+
         String clubTypeInput = PremierLeagueManager.getUserInput("Please enter the type of club " +
                 "(University /School /" + "League level)");
 
@@ -233,7 +241,6 @@ public class ConsoleApplication {
         System.out.println("Enter c to display all Match Scores of the Premier League");
         System.out.println("Enter x to display a selected club");
         System.out.println("Enter s to display a selected match statistic");
-        System.out.println("Enter g to display GUI");
         System.out.println("Enter q to exit");
     }
 

@@ -1,4 +1,6 @@
-package coursework;/*
+package coursework;
+
+/*
  * ConsoleApplication
  * Copyright © 2020 Ammar Raneez. All Rights Reserved.
  */
@@ -24,6 +26,12 @@ public class ConsoleApplication {
      * @throws InterruptedException - thrown in the sleep() function
      */
     public static void addClub() throws ClassNotFoundException, IllegalAccessException, InterruptedException {
+        //*only 20 teams can be added in the Premier League*//
+        if (PremierLeagueManager.getAllMatches().size() == PremierLeagueManager.getMaxSize()) {
+            System.out.println("[ERROR] ==> There cannot be more than 20 teams in the premier league!");
+            return;
+        }
+
         String clubTypeInput = PremierLeagueManager.getUserInput("Please enter the type of club " +
                 "(University /School /" + "League level)");
 

@@ -1,4 +1,6 @@
-package coursework;/*
+package coursework;
+
+/*
  * oop.cw.PremierLeagueManager
  * Copyright © 2020 Ammar Raneez. All Rights Reserved.
  */
@@ -18,6 +20,7 @@ import java.util.List;
 public class PremierLeagueManager implements LeagueManager {
     private static final String SAVE_PATH = "C:\\Users\\Ammuuu\\Downloads\\learning\\UNI\\OOP-Module\\Coursework\\" +
                                             "OOP-COURSEWORK\\saveFile-cli";
+    private static final int MAX_SIZE = 20;
     private static List<FootballMatch> allMatches = new ArrayList<>();
     private static List<FootballClub> allFootballClubs = new ArrayList<>();
     private static Scanner sc = new Scanner(System.in);
@@ -471,5 +474,12 @@ public class PremierLeagueManager implements LeagueManager {
      */
     public static List<FootballClub> getAllFootballClubs() {
         return allFootballClubs;
+    }
+
+    /**
+     * @return max number of clubs in premier league
+     */
+    public static int getMaxSize() {
+        return MAX_SIZE;
     }
 }

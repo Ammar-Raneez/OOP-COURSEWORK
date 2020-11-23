@@ -1,4 +1,6 @@
-package coursework;/*
+package coursework;
+
+/*
  * SportsClub
  * Copyright © 2020 Ammar Raneez. All Rights Reserved.
  */
