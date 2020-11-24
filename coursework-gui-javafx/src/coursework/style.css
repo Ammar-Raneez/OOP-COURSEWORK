@@ -163,3 +163,23 @@
     -fx-effect: dropshadow( one-pass-box , white , 8 , 0.0 , 2 , 0 );
 }
 /*all matches view end*/
+
+
+/*individual match stats view*/
+#match__middleBarLbl {
+    -fx-font-size: 20px;
+    -fx-text-fill: white;
+}
+
+#match__firstTeamLbl {
+    -fx-font-size: 20px;
+    -fx-text-fill: '62ffa4';
+    -fx-effect: dropshadow( one-pass-box , white , 8 , 0.0 , 2 , 0 );
+}
+
+#match__secondTeamLbl {
+    -fx-font-size: 20px;
+    -fx-text-fill: red;
+    -fx-effect: dropshadow( one-pass-box , white , 8 , 0.0 , 2 , 0 );
+}
+/*individual match stats view end*/

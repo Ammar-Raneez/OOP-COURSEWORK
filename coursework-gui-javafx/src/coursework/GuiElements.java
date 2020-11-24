@@ -18,6 +18,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -89,6 +90,23 @@ public class GuiElements {
         String css = this.getClass().getResource(file).toExternalForm();
         scene.getStylesheets().add(css);
         return scene;
+    }
+
+    /**
+     * Returns a stage with preferred properties
+     * @param scene - scene to display
+     * @param layX - x position
+     * @param layY - y position
+     * @return - preferred stage
+     */
+    public static Stage stage(Scene scene, int layX, int layY) {
+        Stage innerWindow = new Stage();
+        innerWindow.setScene(scene);
+        innerWindow.setX(layX);
+        innerWindow.setY(layY);
+        innerWindow.setTitle("PREMIER LEAGUE MANAGER");
+        innerWindow.getIcons().add(new Image("file:/C:/Users/Ammuuu/Downloads/learning/UNI/OOP-Module/Coursework/OOP-COURSEWORK/images/PL-lion.png"));
+        return innerWindow;
     }
 
     /**
