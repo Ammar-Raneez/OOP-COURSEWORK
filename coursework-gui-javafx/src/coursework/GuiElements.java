@@ -287,7 +287,7 @@ public class GuiElements {
      * @return - custom confirmation Alert
      */
     public static Alert closeWindowCommon(){
-        ImageView imageConfirm = imageViewLay("file:/C:/Users/Ammuuu/Downloads/learning/UNI/OOP-Module/Coursework/OOP-COURSEWORK/images/PL-person.png",
+        ImageView imageConfirm = imageViewLay("file:/C:/Users/Ammuuu/Downloads/learning/UNI/OOP-Module/Coursework/OOP-COURSEWORK/images/PL-lionAlert.png",
                 0, 0, 100, 100);
         Alert closeAlert = new Alert(Alert.AlertType.CONFIRMATION, null, ButtonType.YES, ButtonType.NO);
         closeAlert.setHeaderText("Do you REALLY want to exit?");
@@ -301,7 +301,7 @@ public class GuiElements {
      * @param text - text to display in the Alert
      */
     public static void errorAlert(String text){
-        ImageView imageConfirm = imageViewLay("file:/C:/Users/Ammuuu/Downloads/learning/UNI/OOP-Module/Coursework/OOP-COURSEWORK/images/PL-error.png",
+        ImageView imageConfirm = imageViewLay("file:/C:/Users/Ammuuu/Downloads/learning/UNI/OOP-Module/Coursework/OOP-COURSEWORK/images/PL-lionAlert.png",
                 0, 0, 100, 100);
         Alert closeAlert = new Alert(Alert.AlertType.ERROR, null, ButtonType.OK);
         closeAlert.setHeaderText(text);

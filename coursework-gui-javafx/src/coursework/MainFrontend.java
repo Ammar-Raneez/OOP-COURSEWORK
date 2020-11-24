@@ -56,7 +56,7 @@ public class MainFrontend extends Application {
                 "file:/C:/Users/Ammuuu/Downloads/learning/UNI/OOP-Module/Coursework/OOP-COURSEWORK/images/PL-lion.png",
                 0, 500, 220, 290);
         ImageView eplText = GuiElements.imageViewLay(
-                        "file:/C:/Users/Ammuuu/Downloads/learning/UNI/OOP-Module/Coursework/OOP-COURSEWORK/images/PL-text.png",
+                "file:/C:/Users/Ammuuu/Downloads/learning/UNI/OOP-Module/Coursework/OOP-COURSEWORK/images/PL-text.png",
                 200, 555, 100, 180);
         ImageView eplRef = GuiElements.imageViewLay(
                 "file:/C:/Users/Ammuuu/Downloads/learning/UNI/OOP-Module/Coursework/OOP-COURSEWORK/images/PL-ref.png",
@@ -85,7 +85,9 @@ public class MainFrontend extends Application {
             }
         });
 
+        //*on click of this button, a match is played*//
         playMatch.setOnAction(event -> {
+            //*max number of matches playable*//
             if ((allMatches.size() == (allClubs.size() * (allClubs.size() - 1) / 2)) ||
                     (allMatches.size() > (allClubs.size() * (allClubs.size() - 1) / 2))) {
                 GuiElements.errorAlert("All Possible Matches have Already been Played!");
@@ -93,10 +95,14 @@ public class MainFrontend extends Application {
             }
 
             ConsoleApplication.addPlayedMatch();
+            //*getting the list of updated matches from the console-side*//
             List<FootballMatch> updatedMatches = PremierLeagueManager.getAllMatches();
+            //*use that to update the matches in the frontend*//
             for (int i=0; i<updatedMatches.size(); i++) {
                 allMatches.set(i, updatedMatches.get(i));
             }
+            //*since club references are passed, upon match list update individual club details are updated too*//
+            //*therefore the new updated club list can be used to update the frontend table*//
             for (int i=0; i<allClubs.size(); i++) {
                 tableView.getItems().set(i, allClubs.get(i));
             }
@@ -106,14 +112,17 @@ public class MainFrontend extends Application {
         for (TableColumn<FootballClub, String> eachColumn : allColumns) {
             tableView.getColumns().add(eachColumn);
         }
-
         for (FootballClub footballClub : allClubs) {
             tableView.getItems().add(footballClub);
         }
 
         window.setOnCloseRequest(event -> {
             event.consume();
-            closeScenes(window);
+            try {
+                closeScenes(window);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         });
 
         AnchorPane anchorPane = GuiElements.anchor("-fx-background-color: #37003d; -fx-border-color: #f00;");

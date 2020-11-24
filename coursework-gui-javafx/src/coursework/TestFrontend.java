@@ -45,7 +45,7 @@ public class TestFrontend extends Application {
         displayMenu(primaryStage, allClubs, allMatches, guiElements);
     }
 
-    
+
     /**
      * Method that handles the display of the first scene aka the Points table
      * @param window - the stage
@@ -88,7 +88,9 @@ public class TestFrontend extends Application {
             }
         });
 
+        //*on click of this button, a match is played*//
         playMatch.setOnAction(event -> {
+            //*max number of matches playable*//
             if ((allMatches.size() == (allClubs.size() * (allClubs.size() - 1) / 2)) ||
                     (allMatches.size() > (allClubs.size() * (allClubs.size() - 1) / 2))) {
                 GuiElements.errorAlert("All Possible Matches have Already been Played!");
@@ -96,10 +98,14 @@ public class TestFrontend extends Application {
             }
 
             ConsoleApplication.addPlayedMatch();
+            //*getting the list of updated matches from the console-side*//
             List<FootballMatch> updatedMatches = PremierLeagueManager.getAllMatches();
+            //*use that to update the matches in the frontend*//
             for (int i=0; i<updatedMatches.size(); i++) {
                 allMatches.set(i, updatedMatches.get(i));
             }
+            //*since club references are passed, upon match list update individual club details are updated too*//
+            //*therefore the new updated club list can be used to update the frontend table*//
             for (int i=0; i<allClubs.size(); i++) {
                 tableView.getItems().set(i, allClubs.get(i));
             }
@@ -109,7 +115,6 @@ public class TestFrontend extends Application {
         for (TableColumn<FootballClub, String> eachColumn : allColumns) {
             tableView.getColumns().add(eachColumn);
         }
-
         for (FootballClub footballClub : allClubs) {
             tableView.getItems().add(footballClub);
         }
