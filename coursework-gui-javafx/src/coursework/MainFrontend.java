@@ -6,6 +6,7 @@ package coursework;
  */
 
 import javafx.application.Application;
+import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -14,8 +15,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -161,7 +165,7 @@ public class MainFrontend extends Application {
         //**end all gui elements**//
 
         for (FootballMatch match : allMatches) {
-            allMatchDisplayAndFilter(vBoxContainer, match);
+            allMatchDisplayAndFilter(vBoxContainer, match, guiElements);
         }
 
         ScrollPane scrollPaneContainer = GuiElements.scrollPane(700, 420, 330, 250,
@@ -178,7 +182,7 @@ public class MainFrontend extends Application {
                 //*the VBox is emptied and only the matches with date specified are added*//
                 for (FootballMatch footballMatch: allMatches) {
                     if (String.valueOf(footballMatch.getMatchDate()).equals(userInput)) {
-                        allMatchDisplayAndFilter(vBoxContainer, footballMatch);
+                        allMatchDisplayAndFilter(vBoxContainer, footballMatch, guiElements);
                         hasMatch = true;
                     }
                 }
@@ -201,7 +205,7 @@ public class MainFrontend extends Application {
             dateInputField.setText("");
             vBoxContainer.getChildren().clear();
             for (FootballMatch match : allMatches) {
-                allMatchDisplayAndFilter(vBoxContainer, match);
+                allMatchDisplayAndFilter(vBoxContainer, match, guiElements);
             }
         });
 
@@ -221,7 +225,7 @@ public class MainFrontend extends Application {
      * @param vBoxContainer - main container
      * @param footballMatch - footballMatch to add into the container
      */
-    private static void allMatchDisplayAndFilter(VBox vBoxContainer, FootballMatch footballMatch) {
+    private static void allMatchDisplayAndFilter(VBox vBoxContainer, FootballMatch footballMatch, GuiElements guiElements) {
         VBox vBoxFirstTeam = GuiElements.vBox(300);
         HBox firstTeamNameContainer = GuiElements.hBox("");
         HBox firstTeamGoalContainer = GuiElements.hBox("");
@@ -248,16 +252,118 @@ public class MainFrontend extends Application {
         vBoxSecondTeam.getChildren().addAll(secondTeamNameContainer, secondTeamGoalsContainer);
 
         HBox hBoxEachRow = GuiElements.hBox("allMatches__eachRowHBox");
+        hBoxEachRow.setOnMouseClicked(event -> specificMatchDisplay(footballMatch, guiElements));
         hBoxEachRow.getChildren().addAll(vBoxFirstTeam, vBoxDate, vBoxSecondTeam);
-
         vBoxContainer.getChildren().addAll(hBoxEachRow);
+        vBoxContainer.setCursor(Cursor.HAND);
+    }
+    /**
+     * private helper method of allMatchDisplayAndFilter() that is used to display a selected match statistic
+     * @param footballMatch - chosen footballMatch
+     * @param guiElements - object of GuiElements class
+     */
+    private static void specificMatchDisplay(FootballMatch footballMatch, GuiElements guiElements) {
+        /*upper hBox (the logo)*/
+        HBox hBoxUpperContainer = GuiElements.hBox("match__upperContainer");
+        ImageView eplLionText = GuiElements.imageViewLay(
+                "file:/C:/Users/Ammuuu/Downloads/learning/UNI/OOP-Module/Coursework/OOP-COURSEWORK/images/PL-LionText-transparent.png",
+                500, 20, 220, 700);
+        hBoxUpperContainer.getChildren().add(eplLionText);
+        /*end of upper hBox*/
+
+        /*main middle hBox (all club content)*/
+        VBox vBoxFirstTeam = GuiElements.vBox(300);
+        VBox vBoxMiddleBar = GuiElements.vBox(300);
+        VBox vBoxSecondTeam = GuiElements.vBox(300);
+
+        HBox firstTeamName = specificMatchColumn(footballMatch.getFirstTeam().getClubName().toUpperCase(), "match__firstTeamNameLbl");
+        vBoxFirstTeam.getChildren().add(firstTeamName);
+        List<String> firstTeamDetailsContent = getClubDetailsContent(footballMatch.getFirstTeamSingleMatchStats());
+        for (String eachRow : firstTeamDetailsContent) {
+            HBox row = specificMatchColumn(eachRow, "match__firstTeamDetailsLbl");
+            vBoxFirstTeam.getChildren().add(row);
+        }
+
+        List<String> middleBarEachRowContent = new ArrayList<>(Arrays.asList(
+                "TEAM STATS", "Goals", "Shots", "Shots on target", "Possession", "Passes", "Pass accuracy", "Fouls", "Yellow cards", "Red cards",
+                "Offsides", "Corners"
+        ));
+        for (String eachRow : middleBarEachRowContent) {
+            HBox row = specificMatchColumn(eachRow, "match__middleBarLbl");
+            vBoxMiddleBar.getChildren().add(row);
+        }
+
+        HBox secondTeamName = specificMatchColumn(footballMatch.getSecondTeam().getClubName().toUpperCase(), "match__secondTeamNameLbl");
+        vBoxSecondTeam.getChildren().add(secondTeamName);
+        List<String> secondTeamDetailsContent = getClubDetailsContent(footballMatch.getSecondTeamSingleMatchStats());
+        for (String eachRow : secondTeamDetailsContent) {
+            HBox row = specificMatchColumn(eachRow, "match__secondTeamDetailsLbl");
+            vBoxSecondTeam.getChildren().add(row);
+        }
+
+        HBox hBoxMiddleContainer = GuiElements.hBox("");
+        hBoxMiddleContainer.getChildren().addAll(vBoxFirstTeam, vBoxMiddleBar, vBoxSecondTeam);
+        /*end of main middle hBox*/
+
+        /*Bottom information hBox*/
+        HBox hBoxLowerContainer = GuiElements.hBox("match__lowerContainer");
+        String labelText =
+                footballMatch.getFirstTeamSingleMatchStats().getGoals() > footballMatch.getSecondTeamSingleMatchStats().getGoals() ?
+                        "\n" + footballMatch.getFirstTeam().getClubName() + " beat " + footballMatch.getSecondTeam().getClubName() + ", scoring " +
+                                footballMatch.getFirstTeamSingleMatchStats().getGoals() + " goals with a possession of " + footballMatch.getFirstTeamSingleMatchStats().getPossession() + "%"
+                        :
+                        footballMatch.getFirstTeamSingleMatchStats().getGoals() < footballMatch.getSecondTeamSingleMatchStats().getGoals() ?
+                                "\n" + footballMatch.getSecondTeam().getClubName() + " beat " + footballMatch.getFirstTeam().getClubName() + ", scoring " +
+                                        footballMatch.getSecondTeamSingleMatchStats().getGoals() + " goals with a possession of " + footballMatch.getSecondTeamSingleMatchStats().getPossession() + "%"
+                                :
+                                "\n" + "The match ended in a draw, with both " + footballMatch.getFirstTeam().getClubName() + " and " + footballMatch.getSecondTeam().getClubName() +
+                                        "scoring " + footballMatch.getFirstTeamSingleMatchStats().getGoals() + " goals each.";
+
+        Text infoText = new Text(labelText);
+        infoText.setId("match__infoText");
+        hBoxLowerContainer.getChildren().add(infoText);
+        /*end of bottom information hBox*/
+
+        VBox hBoxMainContainer = GuiElements.vBox(0);
+        hBoxMainContainer.getChildren().addAll(hBoxUpperContainer, hBoxMiddleContainer, hBoxLowerContainer);
+        AnchorPane anchorPane = GuiElements.anchor("-fx-background-color: #222; -fx-border-color: red");
+        anchorPane.getChildren().addAll(hBoxMainContainer);
+        Scene scene = guiElements.scene(anchorPane, 900, 700, "style.css");
+        Stage innerWindow = GuiElements.stage(scene, 220, 0);
+        innerWindow.showAndWait();
+    }
+    /**
+     * private helper method of specificMatchDisplay() that is used to display each column
+     * @param labelValue - what the label must display
+     * @param id - to be targeted by css
+     * @return - an hBox that holds each row of each column
+     */
+    private static HBox specificMatchColumn(String labelValue, String id) {
+        HBox hBoxContainer = GuiElements.hBox("");
+        Label eachLabel = GuiElements.matchViewLabels(labelValue, id);
+        hBoxContainer.getChildren().add(eachLabel);
+        return hBoxContainer;
+    }
+    /**
+     * private helper method of specificMatchDisplay() that is used to return a list of all the club detail values
+     * @param singleMatchFootballClubStatistic - a football clubs single match statistics
+     * @return - list of statistics
+     */
+    private static List<String> getClubDetailsContent(SingleMatchFootballClubStatistic singleMatchFootballClubStatistic) {
+        return new ArrayList<>(Arrays.asList(
+                String.valueOf(singleMatchFootballClubStatistic.getGoals()), String.valueOf(singleMatchFootballClubStatistic.getShots()),
+                String.valueOf(singleMatchFootballClubStatistic.getShotsOnTarget()), String.valueOf(singleMatchFootballClubStatistic.getPossession()),
+                String.valueOf(singleMatchFootballClubStatistic.getPasses()), String.valueOf(singleMatchFootballClubStatistic.getPassAccuracy()),
+                String.valueOf(singleMatchFootballClubStatistic.getFouls()), String.valueOf(singleMatchFootballClubStatistic.getYellowCards()),
+                String.valueOf(singleMatchFootballClubStatistic.getRedCards()), String.valueOf(singleMatchFootballClubStatistic.getOffsides()),
+                String.valueOf(singleMatchFootballClubStatistic.getCorners())
+        ));
     }
 
-//    public static void playMatch(List<FootballMatch> allMatches) {
-//        ConsoleApplication.addPlayedMatch();
-//        allMatches = PremierLeagueManager.getAllMatches();
-//    }
-
+    /**
+     * private method that handles closing of a window
+     * @param window - stage
+     */
     private static void closeScenes(Stage window) {
         Alert closeAlert = GuiElements.closeWindowCommon();
         closeAlert.initOwner(window);

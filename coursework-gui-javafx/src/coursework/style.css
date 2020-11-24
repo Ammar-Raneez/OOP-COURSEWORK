@@ -169,6 +169,11 @@
 #match__upperContainer, #match__lowerContainer {
     -fx-background-color: #222;
 }
+#match__infoText {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-fill: linear-gradient(from 0% 0% to 100% 200%, repeat, aqua 0%, red 100%);
+}
 
 #match__middleBarLbl {
     -fx-font-size: 20px;

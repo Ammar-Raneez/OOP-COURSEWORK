@@ -6,6 +6,7 @@ package coursework;
  */
 
 import javafx.application.Application;
+import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -14,6 +15,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -43,6 +45,7 @@ public class TestFrontend extends Application {
         displayMenu(primaryStage, allClubs, allMatches, guiElements);
     }
 
+    
     /**
      * Method that handles the display of the first scene aka the Points table
      * @param window - the stage
@@ -136,6 +139,7 @@ public class TestFrontend extends Application {
         window.setTitle("PREMIER LEAGUE MANAGER");
         window.show();
     }
+
 
     /**
      * Method that handles the display of all matches
@@ -263,6 +267,7 @@ public class TestFrontend extends Application {
         hBoxEachRow.setOnMouseClicked(event -> specificMatchDisplay(footballMatch, guiElements));
         hBoxEachRow.getChildren().addAll(vBoxFirstTeam, vBoxDate, vBoxSecondTeam);
         vBoxContainer.getChildren().addAll(hBoxEachRow);
+        vBoxContainer.setCursor(Cursor.HAND);
     }
     /**
      * private helper method of allMatchDisplayAndFilter() that is used to display a selected match statistic
@@ -274,7 +279,7 @@ public class TestFrontend extends Application {
         HBox hBoxUpperContainer = GuiElements.hBox("match__upperContainer");
         ImageView eplLionText = GuiElements.imageViewLay(
                 "file:/C:/Users/Ammuuu/Downloads/learning/UNI/OOP-Module/Coursework/OOP-COURSEWORK/images/PL-LionText-transparent.png",
-                500, 20, 220, 600);
+                500, 20, 220, 700);
         hBoxUpperContainer.getChildren().add(eplLionText);
         /*end of upper hBox*/
 
@@ -285,14 +290,7 @@ public class TestFrontend extends Application {
 
         HBox firstTeamName = specificMatchColumn(footballMatch.getFirstTeam().getClubName().toUpperCase(), "match__firstTeamNameLbl");
         vBoxFirstTeam.getChildren().add(firstTeamName);
-        List<String> firstTeamDetailsContent = new ArrayList<>(Arrays.asList(
-                String.valueOf(footballMatch.getFirstTeamSingleMatchStats().getGoals()), String.valueOf(footballMatch.getFirstTeamSingleMatchStats().getShots()),
-                String.valueOf(footballMatch.getFirstTeamSingleMatchStats().getShotsOnTarget()), String.valueOf(footballMatch.getFirstTeamSingleMatchStats().getPossession()),
-                String.valueOf(footballMatch.getFirstTeamSingleMatchStats().getPasses()), String.valueOf(footballMatch.getFirstTeamSingleMatchStats().getPassAccuracy()),
-                String.valueOf(footballMatch.getFirstTeamSingleMatchStats().getFouls()), String.valueOf(footballMatch.getFirstTeamSingleMatchStats().getYellowCards()),
-                String.valueOf(footballMatch.getFirstTeamSingleMatchStats().getRedCards()), String.valueOf(footballMatch.getFirstTeamSingleMatchStats().getOffsides()),
-                String.valueOf(footballMatch.getFirstTeamSingleMatchStats().getCorners())
-        ));
+        List<String> firstTeamDetailsContent = getClubDetailsContent(footballMatch.getFirstTeamSingleMatchStats());
         for (String eachRow : firstTeamDetailsContent) {
             HBox row = specificMatchColumn(eachRow, "match__firstTeamDetailsLbl");
             vBoxFirstTeam.getChildren().add(row);
@@ -309,14 +307,7 @@ public class TestFrontend extends Application {
 
         HBox secondTeamName = specificMatchColumn(footballMatch.getSecondTeam().getClubName().toUpperCase(), "match__secondTeamNameLbl");
         vBoxSecondTeam.getChildren().add(secondTeamName);
-        List<String> secondTeamDetailsContent = new ArrayList<>(Arrays.asList(
-                String.valueOf(footballMatch.getSecondTeamSingleMatchStats().getGoals()),
-                String.valueOf(footballMatch.getSecondTeamSingleMatchStats().getShots()), String.valueOf(footballMatch.getSecondTeamSingleMatchStats().getShotsOnTarget()),
-                String.valueOf(footballMatch.getSecondTeamSingleMatchStats().getPossession()), String.valueOf(footballMatch.getSecondTeamSingleMatchStats().getPasses()),
-                String.valueOf(footballMatch.getSecondTeamSingleMatchStats().getPassAccuracy()), String.valueOf(footballMatch.getSecondTeamSingleMatchStats().getFouls()),
-                String.valueOf(footballMatch.getSecondTeamSingleMatchStats().getYellowCards()), String.valueOf(footballMatch.getSecondTeamSingleMatchStats().getRedCards()),
-                String.valueOf(footballMatch.getSecondTeamSingleMatchStats().getOffsides()), String.valueOf(footballMatch.getSecondTeamSingleMatchStats().getCorners())
-        ));
+        List<String> secondTeamDetailsContent = getClubDetailsContent(footballMatch.getSecondTeamSingleMatchStats());
         for (String eachRow : secondTeamDetailsContent) {
             HBox row = specificMatchColumn(eachRow, "match__secondTeamDetailsLbl");
             vBoxSecondTeam.getChildren().add(row);
@@ -328,7 +319,21 @@ public class TestFrontend extends Application {
 
         /*Bottom information hBox*/
         HBox hBoxLowerContainer = GuiElements.hBox("match__lowerContainer");
+        String labelText =
+            footballMatch.getFirstTeamSingleMatchStats().getGoals() > footballMatch.getSecondTeamSingleMatchStats().getGoals() ?
+                "\n" + footballMatch.getFirstTeam().getClubName() + " beat " + footballMatch.getSecondTeam().getClubName() + ", scoring " +
+                footballMatch.getFirstTeamSingleMatchStats().getGoals() + " goals with a possession of " + footballMatch.getFirstTeamSingleMatchStats().getPossession() + "%"
+                    :
+                    footballMatch.getFirstTeamSingleMatchStats().getGoals() < footballMatch.getSecondTeamSingleMatchStats().getGoals() ?
+                        "\n" + footballMatch.getSecondTeam().getClubName() + " beat " + footballMatch.getFirstTeam().getClubName() + ", scoring " +
+                        footballMatch.getSecondTeamSingleMatchStats().getGoals() + " goals with a possession of " + footballMatch.getSecondTeamSingleMatchStats().getPossession() + "%"
+                            :
+                            "\n" + "The match ended in a draw, with both " + footballMatch.getFirstTeam().getClubName() + " and " + footballMatch.getSecondTeam().getClubName() +
+                            "scoring " + footballMatch.getFirstTeamSingleMatchStats().getGoals() + " goals each.";
 
+        Text infoText = new Text(labelText);
+        infoText.setId("match__infoText");
+        hBoxLowerContainer.getChildren().add(infoText);
         /*end of bottom information hBox*/
 
         VBox hBoxMainContainer = GuiElements.vBox(0);
@@ -340,7 +345,7 @@ public class TestFrontend extends Application {
         innerWindow.showAndWait();
     }
     /**
-     * private helper method of specificMatchDisplay() that is used to print each column
+     * private helper method of specificMatchDisplay() that is used to display each column
      * @param labelValue - what the label must display
      * @param id - to be targeted by css
      * @return - an hBox that holds each row of each column
@@ -351,6 +356,22 @@ public class TestFrontend extends Application {
         hBoxContainer.getChildren().add(eachLabel);
         return hBoxContainer;
     }
+    /**
+     * private helper method of specificMatchDisplay() that is used to return a list of all the club detail values
+     * @param singleMatchFootballClubStatistic - a football clubs single match statistics
+     * @return - list of statistics
+     */
+    private static List<String> getClubDetailsContent(SingleMatchFootballClubStatistic singleMatchFootballClubStatistic) {
+        return new ArrayList<>(Arrays.asList(
+                String.valueOf(singleMatchFootballClubStatistic.getGoals()), String.valueOf(singleMatchFootballClubStatistic.getShots()),
+                String.valueOf(singleMatchFootballClubStatistic.getShotsOnTarget()), String.valueOf(singleMatchFootballClubStatistic.getPossession()),
+                String.valueOf(singleMatchFootballClubStatistic.getPasses()), String.valueOf(singleMatchFootballClubStatistic.getPassAccuracy()),
+                String.valueOf(singleMatchFootballClubStatistic.getFouls()), String.valueOf(singleMatchFootballClubStatistic.getYellowCards()),
+                String.valueOf(singleMatchFootballClubStatistic.getRedCards()), String.valueOf(singleMatchFootballClubStatistic.getOffsides()),
+                String.valueOf(singleMatchFootballClubStatistic.getCorners())
+        ));
+    }
+
 
     /**
      * Private method that handles closing of the window
