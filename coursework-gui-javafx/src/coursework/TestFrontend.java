@@ -277,16 +277,18 @@ public class TestFrontend extends Application {
         VBox vBoxMiddleBar = GuiElements.vBox(300);
         VBox vBoxSecondTeam = GuiElements.vBox(300);
 
-        List<String> firstTeamEachRowContent = new ArrayList<>(Arrays.asList(
-                footballMatch.getFirstTeam().getClubName().toUpperCase(), String.valueOf(footballMatch.getFirstTeamSingleMatchStats().getGoals()),
-                String.valueOf(footballMatch.getFirstTeamSingleMatchStats().getShots()), String.valueOf(footballMatch.getFirstTeamSingleMatchStats().getShotsOnTarget()),
-                String.valueOf(footballMatch.getFirstTeamSingleMatchStats().getPossession()), String.valueOf(footballMatch.getFirstTeamSingleMatchStats().getPasses()),
-                String.valueOf(footballMatch.getFirstTeamSingleMatchStats().getPassAccuracy()), String.valueOf(footballMatch.getFirstTeamSingleMatchStats().getFouls()),
-                String.valueOf(footballMatch.getFirstTeamSingleMatchStats().getYellowCards()), String.valueOf(footballMatch.getFirstTeamSingleMatchStats().getRedCards()),
-                String.valueOf(footballMatch.getFirstTeamSingleMatchStats().getOffsides()), String.valueOf(footballMatch.getFirstTeamSingleMatchStats().getCorners())
+        HBox firstTeamName = specificMatchColumn(footballMatch.getFirstTeam().getClubName().toUpperCase(), "match__firstTeamNameLbl");
+        vBoxFirstTeam.getChildren().add(firstTeamName);
+        List<String> firstTeamDetailsContent = new ArrayList<>(Arrays.asList(
+                String.valueOf(footballMatch.getFirstTeamSingleMatchStats().getGoals()), String.valueOf(footballMatch.getFirstTeamSingleMatchStats().getShots()),
+                String.valueOf(footballMatch.getFirstTeamSingleMatchStats().getShotsOnTarget()), String.valueOf(footballMatch.getFirstTeamSingleMatchStats().getPossession()),
+                String.valueOf(footballMatch.getFirstTeamSingleMatchStats().getPasses()), String.valueOf(footballMatch.getFirstTeamSingleMatchStats().getPassAccuracy()),
+                String.valueOf(footballMatch.getFirstTeamSingleMatchStats().getFouls()), String.valueOf(footballMatch.getFirstTeamSingleMatchStats().getYellowCards()),
+                String.valueOf(footballMatch.getFirstTeamSingleMatchStats().getRedCards()), String.valueOf(footballMatch.getFirstTeamSingleMatchStats().getOffsides()),
+                String.valueOf(footballMatch.getFirstTeamSingleMatchStats().getCorners())
         ));
-        for (String eachRow : firstTeamEachRowContent) {
-            HBox row = specificMatchColumn(eachRow, "match__firstTeamLbl");
+        for (String eachRow : firstTeamDetailsContent) {
+            HBox row = specificMatchColumn(eachRow, "match__firstTeamDetailsLbl");
             vBoxFirstTeam.getChildren().add(row);
         }
 
@@ -299,22 +301,24 @@ public class TestFrontend extends Application {
             vBoxMiddleBar.getChildren().add(row);
         }
 
-        List<String> secondTeamEachRowContent = new ArrayList<>(Arrays.asList(
-                footballMatch.getSecondTeam().getClubName().toUpperCase(), String.valueOf(footballMatch.getSecondTeamSingleMatchStats().getGoals()),
+        HBox secondTeamName = specificMatchColumn(footballMatch.getSecondTeam().getClubName().toUpperCase(), "match__secondTeamNameLbl");
+        vBoxSecondTeam.getChildren().add(secondTeamName);
+        List<String> secondTeamDetailsContent = new ArrayList<>(Arrays.asList(
+                String.valueOf(footballMatch.getSecondTeamSingleMatchStats().getGoals()),
                 String.valueOf(footballMatch.getSecondTeamSingleMatchStats().getShots()), String.valueOf(footballMatch.getSecondTeamSingleMatchStats().getShotsOnTarget()),
                 String.valueOf(footballMatch.getSecondTeamSingleMatchStats().getPossession()), String.valueOf(footballMatch.getSecondTeamSingleMatchStats().getPasses()),
                 String.valueOf(footballMatch.getSecondTeamSingleMatchStats().getPassAccuracy()), String.valueOf(footballMatch.getSecondTeamSingleMatchStats().getFouls()),
                 String.valueOf(footballMatch.getSecondTeamSingleMatchStats().getYellowCards()), String.valueOf(footballMatch.getSecondTeamSingleMatchStats().getRedCards()),
                 String.valueOf(footballMatch.getSecondTeamSingleMatchStats().getOffsides()), String.valueOf(footballMatch.getSecondTeamSingleMatchStats().getCorners())
         ));
-        for (String eachRow : secondTeamEachRowContent) {
-            HBox row = specificMatchColumn(eachRow, "match__secondTeamLbl");
+        for (String eachRow : secondTeamDetailsContent) {
+            HBox row = specificMatchColumn(eachRow, "match__secondTeamDetailsLbl");
             vBoxSecondTeam.getChildren().add(row);
         }
 
         HBox hBoxMainContainer = GuiElements.hBox("");
         hBoxMainContainer.getChildren().addAll(vBoxFirstTeam, vBoxMiddleBar, vBoxSecondTeam);
-        AnchorPane anchorPane = GuiElements.anchor("-fx-background-color: #222; -fx-border-color: red");
+        AnchorPane anchorPane = GuiElements.anchor("-fx-background-color: #62ffa4");
         anchorPane.getChildren().add(hBoxMainContainer);
         Scene scene = guiElements.scene(anchorPane, 900, 500, "style.css");
         Stage innerWindow = GuiElements.stage(scene, 220, 100);

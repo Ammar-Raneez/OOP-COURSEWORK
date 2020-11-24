@@ -168,18 +168,32 @@
 /*individual match stats view*/
 #match__middleBarLbl {
     -fx-font-size: 20px;
+    -fx-text-fill: #43134c;
+}
+
+#match__firstTeamDetailsLbl {
+    -fx-font-size: 20px;
+    -fx-text-fill: #43134c;
+    -fx-font-weight: bold;
+}
+
+#match__secondTeamDetailsLbl {
+    -fx-font-size: 20px;
+    -fx-text-fill: #ff015b;
+    -fx-font-weight: bold;
+}
+
+#match__firstTeamNameLbl {
+    -fx-font-size: 20px;
     -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow( one-pass-box , #43134c , 8 , 0.0 , 2 , 0 );
 }
 
-#match__firstTeamLbl {
+#match__secondTeamNameLbl {
     -fx-font-size: 20px;
-    -fx-text-fill: '62ffa4';
-    -fx-effect: dropshadow( one-pass-box , white , 8 , 0.0 , 2 , 0 );
-}
-
-#match__secondTeamLbl {
-    -fx-font-size: 20px;
-    -fx-text-fill: red;
-    -fx-effect: dropshadow( one-pass-box , white , 8 , 0.0 , 2 , 0 );
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow( one-pass-box , red , 8 , 0.0 , 2 , 0 );
 }
 /*individual match stats view end*/
