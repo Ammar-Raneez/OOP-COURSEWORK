@@ -1,6 +1,7 @@
-/*points table section*/
+/*points table*/
 .table-view {
-    -fx-border-color: '#ff015b';
+    -fx-border-color: #222;
+    -fx-background-color: #222;
 }
 
 .table-column {
@@ -8,44 +9,44 @@
 }
 
 .table-view .column-header .label {
-    -fx-text-fill: '43134c';
+    -fx-text-fill: #62ffa4;
+    -fx-effect: dropshadow( one-pass-box , white , 1 , 0.0 , 2 , 0 );
 }
 
 .table-view .column-header-background {
-    -fx-background-color: '62ffa4';
+    -fx-background-color: #222;
 }
 
 .table-view .column-header {
-    -fx-background-color: transparent;
+    -fx-background-color: #222;
 }
 
 .table-view .table-cell{
     -fx-border-color: transparent;
+    -fx-text-fill: #04f5ff;
+    -fx-padding: 10px;
+    -fx-font-weight: bold;
 }
 
 .table-view .table-row-cell:odd {
-    -fx-background-color: '#d3f8d3';
+    -fx-background-color: '#222';
 }
 
 .table-view .table-row-cell:even {
-    -fx-background-color: '#defade';
+    -fx-background-color: '#202019';
 }
-
-.table-view .table-row-cell: hover {
-    -fx-text-background-color: 'ff015b';
-}
-/*points table section end*/
+/*points table end*/
 
 
 /*points table view*/
-#pointsTable__goalSorterBtn, #pointsTable__winSorterBtn, #pointsTable__playMatchBtn, #pointsTable__displayMatchBtn {
+#pointsTable__goalSorterBtn, #pointsTable__winSorterBtn, #pointsTable__displayMatchBtn {
     -fx-padding: 5px 30px;
     -fx-text-fill: #fff;
     -fx-border-radius: 70px;
     -fx-background-radius: 70px;
     -fx-font-size: 20px;
 }
-#pointsTable__goalSorterBtn:hover, #pointsTable__winSorterBtn:hover, #pointsTable__playMatchBtn:hover, #pointsTable__displayMatchBtn:hover {
+#pointsTable__goalSorterBtn:hover, #pointsTable__winSorterBtn:hover, #pointsTable__displayMatchBtn:hover {
     -fx-background-color: #fff;
 }
 #pointsTable__goalSorterBtn, #pointsTable__winSorterBtn {
@@ -68,10 +69,17 @@
 }
 #pointsTable__playMatchBtn {
     -fx-font-size: 30px;
+    -fx-text-fill: white;
     -fx-background-color: #f00;
 }
 #pointsTable__playMatchBtn:hover {
     -fx-text-fill: #f00;
+    -fx-background-color: white;
+    -fx-rotate: 10;
+}
+#pointsTable__playMatchBtn:pressed {
+    -fx-text-fill: #f00;
+    -fx-background-color: white;
 }
 /*points table view end*/
 

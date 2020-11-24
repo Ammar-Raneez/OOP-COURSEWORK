@@ -211,7 +211,9 @@ public class GuiElements {
     public static List<TableColumn<FootballClub, String>> generatePointsTableColumns(TableView<FootballClub> tableView) {
         tableView.setMinHeight(500);
         TableColumn<FootballClub, String> columnClub = GuiElements.tableColumns(tableView, "Club", 0.3);
-        columnClub.setCellValueFactory(new PropertyValueFactory<>("clubName"));
+        columnClub.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getClubName().toUpperCase())
+        );
 
         TableColumn<FootballClub, String> columnMatches = GuiElements.tableColumns(tableView, "MP", 0.09);
         columnMatches.setStyle("-fx-alignment: CENTER");

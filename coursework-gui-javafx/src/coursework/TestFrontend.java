@@ -15,9 +15,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -40,7 +43,7 @@ public class TestFrontend extends Application {
         List<FootballClub> allClubs = PremierLeagueManager.getAllFootballClubs();
         List<FootballMatch> allMatches = PremierLeagueManager.getAllMatches();
         allClubs.sort(Collections.reverseOrder());                                  //**to display clubs sorted by points**//
-        primaryStage.getIcons().add(new Image("file:/C:/Users/Ammuuu/Downloads/learning/UNI/OOP-Module/Coursework/OOP-COURSEWORK/images/PL-lion.png"));
+        primaryStage.getIcons().add(new Image("file:/C:/Users/Ammuuu/Downloads/learning/UNI/OOP-Module/Coursework/OOP-COURSEWORK/images/PL-Lion-transparent.png"));
 
         displayMenu(primaryStage, allClubs, allMatches, guiElements);
     }
@@ -61,13 +64,16 @@ public class TestFrontend extends Application {
         ImageView eplText = GuiElements.imageViewLay(
                 "file:/C:/Users/Ammuuu/Downloads/learning/UNI/OOP-Module/Coursework/OOP-COURSEWORK/images/PL-text.png",
                 200, 555, 100, 180);
-        ImageView eplRef = GuiElements.imageViewLay(
-                "file:/C:/Users/Ammuuu/Downloads/learning/UNI/OOP-Module/Coursework/OOP-COURSEWORK/images/PL-ref.png",
-                870, 525, 150, 180);
+        ImageView eplPlayer = GuiElements.imageViewLay(
+                "file:/C:/Users/Ammuuu/Downloads/learning/UNI/OOP-Module/Coursework/OOP-COURSEWORK/images/PL-player.png",
+                850, 500, 210, 180);
+        ImageView eplPlayerTwo = GuiElements.imageViewLay(
+                "file:/C:/Users/Ammuuu/Downloads/learning/UNI/OOP-Module/Coursework/OOP-COURSEWORK/images/PL-player2.png",
+                1000, 500, 210, 180);
         Button goalSorter = GuiElements.button("GOAL SORT", 400, 590, "pointsTable__goalSorterBtn");
         Button winSorter = GuiElements.button("WIN SORT", 640, 590, "pointsTable__winSorterBtn");
         Button displayMatch = GuiElements.button("ALL MATCHES >>>", 510, 510, "pointsTable__displayMatchBtn");
-        Button playMatch = GuiElements.button("P L A Y!", 1180, 580, "pointsTable__playMatchBtn");
+        Button playMatch = GuiElements.button("P L A Y !", 1180, 580, "pointsTable__playMatchBtn");
         TableView<FootballClub> tableView = new TableView<>();
         List<TableColumn<FootballClub, String>> allColumns = GuiElements.generatePointsTableColumns(tableView);
         //*end gui elements*//
@@ -86,6 +92,14 @@ public class TestFrontend extends Application {
             for (int i=0; i<tableView.getItems().size(); i++) {
                 tableView.getItems().set(i, allClubs.get(i));
             }
+        });
+
+        //*some fun*//
+        playMatch.setOnMouseEntered(event -> {
+            String musicFile = "sound.mp3";
+            Media sound = new Media(new File(musicFile).toURI().toString());
+            MediaPlayer mediaPlayer = new MediaPlayer(sound);
+            mediaPlayer.play();
         });
 
         //*on click of this button, a match is played*//
@@ -128,10 +142,12 @@ public class TestFrontend extends Application {
             }
         });
 
-        AnchorPane anchorPane = GuiElements.anchor("-fx-background-color: #37003d; -fx-border-color: #f00;");
+        AnchorPane anchorPane = GuiElements.anchor("-fx-background-color: #222;");
         StackPane stackPane = GuiElements.stackPane(1366, 500);
         stackPane.getChildren().add(tableView);
-        anchorPane.getChildren().addAll(stackPane, eplLion, eplText, goalSorter, winSorter, playMatch, displayMatch, eplRef);
+        ScrollPane scrollPane = GuiElements.scrollPane(1366, 500, 0, 0, "-fx-background-color: #222; -fx-border-color: #222");
+        scrollPane.setContent(stackPane);
+        anchorPane.getChildren().addAll(scrollPane, eplLion, eplText, goalSorter, winSorter, playMatch, displayMatch, eplPlayer, eplPlayerTwo);
 
         Scene pointsTableScene = guiElements.scene(anchorPane, 1366, 700, "style.css");
         //*on click of this button, change scene to display all matches*//
