@@ -260,11 +260,8 @@ public class TestFrontend extends Application {
         vBoxSecondTeam.getChildren().addAll(secondTeamNameContainer, secondTeamGoalsContainer);
 
         HBox hBoxEachRow = GuiElements.hBox("allMatches__eachRowHBox");
-
         hBoxEachRow.setOnMouseClicked(event -> specificMatchDisplay(footballMatch, guiElements));
-
         hBoxEachRow.getChildren().addAll(vBoxFirstTeam, vBoxDate, vBoxSecondTeam);
-
         vBoxContainer.getChildren().addAll(hBoxEachRow);
     }
     /**
@@ -273,6 +270,15 @@ public class TestFrontend extends Application {
      * @param guiElements - object of GuiElements class
      */
     private static void specificMatchDisplay(FootballMatch footballMatch, GuiElements guiElements) {
+        /*upper hBox (the logo)*/
+        HBox hBoxUpperContainer = GuiElements.hBox("match__upperContainer");
+        ImageView eplLionText = GuiElements.imageViewLay(
+                "file:/C:/Users/Ammuuu/Downloads/learning/UNI/OOP-Module/Coursework/OOP-COURSEWORK/images/PL-LionText-transparent.png",
+                500, 20, 220, 600);
+        hBoxUpperContainer.getChildren().add(eplLionText);
+        /*end of upper hBox*/
+
+        /*main middle hBox (all club content)*/
         VBox vBoxFirstTeam = GuiElements.vBox(300);
         VBox vBoxMiddleBar = GuiElements.vBox(300);
         VBox vBoxSecondTeam = GuiElements.vBox(300);
@@ -316,15 +322,23 @@ public class TestFrontend extends Application {
             vBoxSecondTeam.getChildren().add(row);
         }
 
-        HBox hBoxMainContainer = GuiElements.hBox("");
-        hBoxMainContainer.getChildren().addAll(vBoxFirstTeam, vBoxMiddleBar, vBoxSecondTeam);
-        AnchorPane anchorPane = GuiElements.anchor("-fx-background-color: #62ffa4");
-        anchorPane.getChildren().add(hBoxMainContainer);
-        Scene scene = guiElements.scene(anchorPane, 900, 500, "style.css");
-        Stage innerWindow = GuiElements.stage(scene, 220, 100);
+        HBox hBoxMiddleContainer = GuiElements.hBox("");
+        hBoxMiddleContainer.getChildren().addAll(vBoxFirstTeam, vBoxMiddleBar, vBoxSecondTeam);
+        /*end of main middle hBox*/
+
+        /*Bottom information hBox*/
+        HBox hBoxLowerContainer = GuiElements.hBox("match__lowerContainer");
+
+        /*end of bottom information hBox*/
+
+        VBox hBoxMainContainer = GuiElements.vBox(0);
+        hBoxMainContainer.getChildren().addAll(hBoxUpperContainer, hBoxMiddleContainer, hBoxLowerContainer);
+        AnchorPane anchorPane = GuiElements.anchor("-fx-background-color: #222; -fx-border-color: red");
+        anchorPane.getChildren().addAll(hBoxMainContainer);
+        Scene scene = guiElements.scene(anchorPane, 900, 700, "style.css");
+        Stage innerWindow = GuiElements.stage(scene, 220, 0);
         innerWindow.showAndWait();
     }
-
     /**
      * private helper method of specificMatchDisplay() that is used to print each column
      * @param labelValue - what the label must display
@@ -338,12 +352,16 @@ public class TestFrontend extends Application {
         return hBoxContainer;
     }
 
-
-//    public static void playMatch(List<FootballMatch> allMatches) {
-//        ConsoleApplication.addPlayedMatch();
-//        allMatches = PremierLeagueManager.getAllMatches();
-//    }
-
+    /**
+     * Private method that handles closing of the window
+     * @param window - primary stage
+     * @param allClubs  - list of all clubs
+     * @param allMatches - list of all matches
+     * @param guiElements - object of GuiElements
+     * @throws IllegalAccessException - thrown in Color input of the addClub() method
+     * @throws InterruptedException - thrown during Thread.sleep
+     * @throws ClassNotFoundException - thrown in the get() method of Field of the addClub() method
+     */
     private static void closeScenes(Stage window, List<FootballClub> allClubs, List<FootballMatch> allMatches, GuiElements guiElements)
             throws IllegalAccessException, InterruptedException, ClassNotFoundException {
         Alert closeAlert = GuiElements.closeWindowCommon();
@@ -351,17 +369,28 @@ public class TestFrontend extends Application {
         closeAlert.showAndWait();
         if (closeAlert.getResult() == ButtonType.YES) {
             window.close();
-            displayMenu(window, allClubs, allMatches, guiElements);
+            displayMenu(window, allClubs, allMatches, guiElements); /*call the menu upon window closure*/
         } else {
             closeAlert.close();
         }
     }
 
+    /**
+     * The main menu
+     * @param window - primary stage
+     * @param allClubs - list of all clubs
+     * @param allMatches - list of all matches
+     * @param guiElements - object of GuiElements class
+     * @throws IllegalAccessException - thrown in Color input of the addClub() method
+     * @throws InterruptedException - thrown during Thread.sleep
+     * @throws ClassNotFoundException - thrown in the get() method of Field of the addClub() method
+     */
     public static void displayMenu(Stage window, List<FootballClub> allClubs, List<FootballMatch> allMatches, GuiElements guiElements)
             throws IllegalAccessException, InterruptedException, ClassNotFoundException {
         ConsoleApplication.printDisplay();
         String userChoice = PremierLeagueManager.getUserInput("Please choose an option");
 
+        /*match input choice with respective method calls, and recall the menu for an endless recursion loop*/
         switch (userChoice) {
             case "a":
                 ConsoleApplication.addClub();
