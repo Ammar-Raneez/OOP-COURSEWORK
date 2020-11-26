@@ -430,7 +430,7 @@ public class TestFrontend extends Application {
     public static void displayMenu(Stage window, List<FootballClub> allClubs, List<FootballMatch> allMatches, GuiElements guiElements)
             throws IllegalAccessException, InterruptedException, ClassNotFoundException {
         ConsoleApplication.printDisplay();
-        String userChoice = PremierLeagueManager.getUserInput("Please choose an option");
+        String userChoice = ConsoleApplication.getUserInput("Please choose an option");
 
         /*match input choice with respective method calls, and recall the menu for an endless recursion loop*/
         switch (userChoice) {
@@ -459,7 +459,7 @@ public class TestFrontend extends Application {
                 displayMenu(window, allClubs, allMatches, guiElements);
                 break;
             case "s":
-                ConsoleApplication.displaySelectedMatchStatistics();
+                ConsoleApplication.displaySelectedMatch();
                 displayMenu(window, allClubs, allMatches, guiElements);
                 break;
             case "g":

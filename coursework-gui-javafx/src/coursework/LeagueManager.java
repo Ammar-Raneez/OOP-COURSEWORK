@@ -13,14 +13,14 @@ import java.awt.*;
  * @author Ammar Raneez | 2019163 | W1761196
  */
 public interface LeagueManager {
-    void addClub(String clubTypeInput, String clubNameInput, String clubLocationInput, String clubOwnerInput,
-                 String clubSponsorInput, Color colorTop, Color colorShort, String netWorth);
+    void addClub(String clubTypeInput, String lecOrTeachInput, String clubNameInput, String clubLocationInput,
+                 String clubOwnerInput, String clubSponsorInput, Color colorTop, Color colorShort, String netWorth);
     SportsClub deleteClub(String clubNameInput);
-    void displaySelectedClub(String clubNameInput);
+    SportsClub displaySelectedClub(String clubNameInput);
+    FootballMatch displaySelectedMatch(String firstTeamInput, String secondTeamInput);
     void addPlayedMatch();
     void displayPointsTable();
     void displayMatchResults();
-    void displaySelectedMatchStatistics(String firstTeamInput, String secondTeamInput);
     void saveData();
     void loadData();
 }
