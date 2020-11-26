@@ -15,9 +15,9 @@ import java.util.*;
 public class FootballClub extends SportsClub implements Comparable<FootballClub> {
     private static final long serialVersionUID = 2272608864290797607L;
     private static final int NUMBER_OF_PLAYERS = 11;
-    private static Random random = new Random();
+    private static final Random RANDOM = new Random();
+    private final List<Player> ALL_PLAYERS =  new ArrayList<>();
     private FootballClubTotalStatistics footballClubTotalStatistics;
-    private List<Player> allPlayers =  new ArrayList<>();
 
     /**
      * Constructor - takes in values and initializes a Football club object
@@ -64,7 +64,7 @@ public class FootballClub extends SportsClub implements Comparable<FootballClub>
      * @return list of all Players
      */
     public List<Player> getAllPlayers() {
-        return allPlayers;
+        return ALL_PLAYERS;
     }
 
     /**
@@ -76,7 +76,7 @@ public class FootballClub extends SportsClub implements Comparable<FootballClub>
         return "FootballClub{" +
                 super.toString() +
                 "footballClubTotalStatistics=" + footballClubTotalStatistics +
-                ", allPlayers=" + allPlayers +
+                ", allPlayers=" + ALL_PLAYERS +
                 '}';
     }
 
@@ -117,7 +117,7 @@ public class FootballClub extends SportsClub implements Comparable<FootballClub>
     private void generatePlayers() {
         for (int i=0; i<FootballClub.getNumberOfPlayers(); i++) {
             List<Object> allPlayerInformation = playerInformationGeneration();
-            allPlayers.add(new Player((double) allPlayerInformation.get(0), (String) allPlayerInformation.get(1),
+            ALL_PLAYERS.add(new Player((double) allPlayerInformation.get(0), (String) allPlayerInformation.get(1),
                     (String) allPlayerInformation.get(2), (PlayerStats) allPlayerInformation.get(3),
                     (String) allPlayerInformation.get(4), (String) allPlayerInformation.get(5),
                     (int) allPlayerInformation.get(6)
@@ -153,29 +153,30 @@ public class FootballClub extends SportsClub implements Comparable<FootballClub>
         );
         List<String> preferredFoot = new ArrayList<>(Arrays.asList("R", "L", "B"));
 
-        double playerHeight = FootballClub.random.nextInt(250 - 150 + 1) + 150;
-        String playerName = commonNames.get(FootballClub.random.nextInt(commonNames.size()));
-        String playerNationality = nationalities.get(FootballClub.random.nextInt(nationalities.size()));
+        double playerHeight = FootballClub.RANDOM.nextInt(250 - 150 + 1) + 150;
+        String playerName = commonNames.get(FootballClub.RANDOM.nextInt(commonNames.size()));
+        String playerNationality = nationalities.get(FootballClub.RANDOM.nextInt(nationalities.size()));
         PlayerStats playerStats = new PlayerStats(
-                FootballClub.random.nextInt(100 + 1),
-                FootballClub.random.nextInt(100 + 1),
-                FootballClub.random.nextInt(100 + 1),
-                FootballClub.random.nextInt(100 + 1),
-                FootballClub.random.nextInt(100 + 1),
-                FootballClub.random.nextInt(100 + 1),
-                FootballClub.random.nextInt(100 + 1),
-                FootballClub.random.nextInt(100 + 1),
-                FootballClub.random.nextInt(100 + 1),
-                FootballClub.random.nextInt(100 + 1),
-                FootballClub.random.nextInt(100 + 1),
-                FootballClub.random.nextInt(100 + 1),
-                FootballClub.random.nextInt(100 + 1)
+                FootballClub.RANDOM.nextInt(100 + 1),
+                FootballClub.RANDOM.nextInt(100 + 1),
+                FootballClub.RANDOM.nextInt(100 + 1),
+                FootballClub.RANDOM.nextInt(100 + 1),
+                FootballClub.RANDOM.nextInt(100 + 1),
+                FootballClub.RANDOM.nextInt(100 + 1),
+                FootballClub.RANDOM.nextInt(100 + 1),
+                FootballClub.RANDOM.nextInt(100 + 1),
+                FootballClub.RANDOM.nextInt(100 + 1),
+                FootballClub.RANDOM.nextInt(100 + 1),
+                FootballClub.RANDOM.nextInt(100 + 1),
+                FootballClub.RANDOM.nextInt(100 + 1),
+                FootballClub.RANDOM.nextInt(100 + 1)
         );
-        //*call method that sets overall stat*//
+        //*call method that calculates and sets overall stat*//
         playerStats.setOverall();
-        String playerPosition = positions.get(FootballClub.random.nextInt(positions.size()));
-        String playerPreferredFoot = preferredFoot.get(FootballClub.random.nextInt(preferredFoot.size()));
-        int shirtNumber = FootballClub.random.nextInt(15 - 1 + 1) + 1;
+
+        String playerPosition = positions.get(FootballClub.RANDOM.nextInt(positions.size()));
+        String playerPreferredFoot = preferredFoot.get(FootballClub.RANDOM.nextInt(preferredFoot.size()));
+        int shirtNumber = FootballClub.RANDOM.nextInt(15 - 1 + 1) + 1;
 
         return Arrays.asList(playerHeight, playerName, playerNationality, playerStats, playerPosition,
                              playerPreferredFoot, shirtNumber);

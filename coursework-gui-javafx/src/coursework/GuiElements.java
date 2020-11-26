@@ -10,7 +10,6 @@ import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -31,7 +30,7 @@ import java.util.List;
  */
 public class GuiElements {
     //*Shadow Effect*//
-    private static DropShadow shadow = new DropShadow();
+    private static final DropShadow DROP_SHADOW = new DropShadow();
 
     /**
      * Returns a styled anchorPane
@@ -148,7 +147,7 @@ public class GuiElements {
         button.setLayoutY(layY);
         button.setId(id);
         button.setCursor(Cursor.HAND);
-        button.setEffect(shadow);
+        button.setEffect(DROP_SHADOW);
         return button;
     }
 

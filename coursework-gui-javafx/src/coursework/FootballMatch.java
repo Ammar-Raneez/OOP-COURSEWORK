@@ -18,12 +18,12 @@ public class FootballMatch implements Serializable, Comparable<FootballMatch> {
     //*serialization happened to refer to a different serial id for objects of FootballMatch, therefore*//
     //*the expected value shown up on the terminal was hardcoded*//
     private static final long serialVersionUID = 1900807394549689165L;
-    private static Random random = new Random();
-    private FootballClub firstTeam;
-    private FootballClub secondTeam;
-    private LocalDate matchDate;
-    private SingleMatchFootballClubStatistic firstTeamSingleMatchStats = new SingleMatchFootballClubStatistic();
-    private SingleMatchFootballClubStatistic secondTeamSingleMatchStats = new SingleMatchFootballClubStatistic();
+    private static final Random RANDOM = new Random();
+    private final FootballClub FIRST_TEAM;
+    private final FootballClub SECOND_TEAM;
+    private final LocalDate MATCH_DATE;
+    private final SingleMatchFootballClubStatistic FIRST_TEAM_SINGLE_MATCH_STATISTICS = new SingleMatchFootballClubStatistic();
+    private final SingleMatchFootballClubStatistic SECOND_TEAM_SINGLE_MATCH_STATISTICS = new SingleMatchFootballClubStatistic();
 
     /**
      * initializes a match object
@@ -32,9 +32,9 @@ public class FootballMatch implements Serializable, Comparable<FootballMatch> {
      * @param matchDate - date of a match
      */
     public FootballMatch(FootballClub firstTeam, FootballClub secondTeam, LocalDate matchDate) {
-        this.firstTeam = firstTeam;
-        this.secondTeam = secondTeam;
-        this.matchDate = matchDate;
+        this.FIRST_TEAM = firstTeam;
+        this.SECOND_TEAM = secondTeam;
+        this.MATCH_DATE = matchDate;
     }
 
 
@@ -50,20 +50,20 @@ public class FootballMatch implements Serializable, Comparable<FootballMatch> {
         List<Integer> firstTeamRandomStats = singleMatchRandomGeneratedStats();
         List<Integer> secondTeamRandomStats = singleMatchRandomGeneratedStats();
         //*total club statistics of the two teams*//
-        FootballClubTotalStatistics firstTeamTotalStats = firstTeam.getFootballClubTotalStatistics();
-        FootballClubTotalStatistics secondTeamTotalStats = secondTeam.getFootballClubTotalStatistics();
+        FootballClubTotalStatistics firstTeamTotalStats = FIRST_TEAM.getFootballClubTotalStatistics();
+        FootballClubTotalStatistics secondTeamTotalStats = SECOND_TEAM.getFootballClubTotalStatistics();
         //*single match statistics -> values need not be saved*//
 
         //*not randomly generate for both teams, since teams two's possession = 100 - team one's possession*//
-        int firstTeamPossession = FootballMatch.random.nextInt(100 + 1);
+        int firstTeamPossession = FootballMatch.RANDOM.nextInt(100 + 1);
 
-        firstTeamSingleMatchStats.setPossession(firstTeamPossession);
+        FIRST_TEAM_SINGLE_MATCH_STATISTICS.setPossession(firstTeamPossession);
         //*use the randomly generated values to update the attributes of a club*//
-        updateSingleMatchTeamStats(firstTeamSingleMatchStats, firstTeamRandomStats, firstTeamTotalStats);
+        updateSingleMatchTeamStats(FIRST_TEAM_SINGLE_MATCH_STATISTICS, firstTeamRandomStats, firstTeamTotalStats);
 
         //*second team's possession = 100 - first team's*//
-        secondTeamSingleMatchStats.setPossession((100 - firstTeamPossession));
-        updateSingleMatchTeamStats(secondTeamSingleMatchStats, secondTeamRandomStats, secondTeamTotalStats);
+        SECOND_TEAM_SINGLE_MATCH_STATISTICS.setPossession((100 - firstTeamPossession));
+        updateSingleMatchTeamStats(SECOND_TEAM_SINGLE_MATCH_STATISTICS, secondTeamRandomStats, secondTeamTotalStats);
 
         //*to prevent matches from having the same score results*//
         List<FootballMatch> footballMatches = PremierLeagueManager.getAllMatches();
@@ -73,12 +73,12 @@ public class FootballMatch implements Serializable, Comparable<FootballMatch> {
         do {
             uniqueGoal = true;
             for (FootballMatch footballMatch : footballMatches) {
-                if ((footballMatch.getFirstTeamSingleMatchStats().getGoals() == firstTeamSingleMatchStats.getGoals() &&
-                        footballMatch.getSecondTeamSingleMatchStats().getGoals() == secondTeamSingleMatchStats.getGoals()) ||
-                        (footballMatch.getSecondTeamSingleMatchStats().getGoals() == firstTeamSingleMatchStats.getGoals() &&
-                                footballMatch.getFirstTeamSingleMatchStats().getGoals() == secondTeamSingleMatchStats.getGoals())) {
+                if ((footballMatch.getFirstTeamSingleMatchStats().getGoals() == FIRST_TEAM_SINGLE_MATCH_STATISTICS.getGoals() &&
+                        footballMatch.getSecondTeamSingleMatchStats().getGoals() == SECOND_TEAM_SINGLE_MATCH_STATISTICS.getGoals()) ||
+                        (footballMatch.getSecondTeamSingleMatchStats().getGoals() == FIRST_TEAM_SINGLE_MATCH_STATISTICS.getGoals() &&
+                                footballMatch.getFirstTeamSingleMatchStats().getGoals() == SECOND_TEAM_SINGLE_MATCH_STATISTICS.getGoals())) {
                     //*changing one teams goal will be sufficient for generating a new result*//
-                    firstTeamSingleMatchStats.setGoals(FootballMatch.random.nextInt(15 + 1));
+                    FIRST_TEAM_SINGLE_MATCH_STATISTICS.setGoals(FootballMatch.RANDOM.nextInt(15 + 1));
                     uniqueGoal = false;
                 }
             }
@@ -94,10 +94,10 @@ public class FootballMatch implements Serializable, Comparable<FootballMatch> {
      * To update the stats of a club
      */
     private void updateClubTotalStatistics() {
-        FootballClubTotalStatistics firstTeamTotalStats = firstTeam.getFootballClubTotalStatistics();
-        FootballClubTotalStatistics secondTeamTotalStats = secondTeam.getFootballClubTotalStatistics();
-        int firstTeamMatchGoal = firstTeamSingleMatchStats.getGoals();
-        int secondTeamMatchGoal = secondTeamSingleMatchStats.getGoals();
+        FootballClubTotalStatistics firstTeamTotalStats = FIRST_TEAM.getFootballClubTotalStatistics();
+        FootballClubTotalStatistics secondTeamTotalStats = SECOND_TEAM.getFootballClubTotalStatistics();
+        int firstTeamMatchGoal = FIRST_TEAM_SINGLE_MATCH_STATISTICS.getGoals();
+        int secondTeamMatchGoal = SECOND_TEAM_SINGLE_MATCH_STATISTICS.getGoals();
 
         //*if first team wins, they get 3 points, if they lose the second teams gets 3, if its a draw*//
         //*both get a point each*//
@@ -112,8 +112,8 @@ public class FootballMatch implements Serializable, Comparable<FootballMatch> {
             setTeamTotalStats(firstTeamTotalStats, firstTeamMatchGoal, secondTeamTotalStats, secondTeamMatchGoal,
                        1);
         }
-        firstTeam.setFootballClubTotalStatistics(firstTeamTotalStats);
-        secondTeam.setFootballClubTotalStatistics(secondTeamTotalStats);
+        FIRST_TEAM.setFootballClubTotalStatistics(firstTeamTotalStats);
+        SECOND_TEAM.setFootballClubTotalStatistics(secondTeamTotalStats);
     }
 
     /**
@@ -155,16 +155,16 @@ public class FootballMatch implements Serializable, Comparable<FootballMatch> {
      */
     private List<Integer> singleMatchRandomGeneratedStats() {
         //generate random values within reasonable ranges for each stat recorded in a match**//
-        int corners = FootballMatch.random.nextInt(30 - 5 + 1) + 5;
-        int goals = FootballMatch.random.nextInt(15 + 1);
-        int fouls = FootballMatch.random.nextInt(15 - 5 + 1) + 5;
-        int offsides = FootballMatch.random.nextInt(10 - 5 + 1) + 5;
-        int passes = FootballMatch.random.nextInt(700 - 300 + 1) + 300;
-        int passAccuracy = FootballMatch.random.nextInt(100 + 1);
-        int redCards = FootballMatch.random.nextInt(3 + 1);
-        int shots = FootballMatch.random.nextInt(50 - 20 + 1) + 20;
-        int shotsOnTarget = FootballMatch.random.nextInt(50 + 1);
-        int yellowCards = FootballMatch.random.nextInt(5 + 1);
+        int corners = FootballMatch.RANDOM.nextInt(30 - 5 + 1) + 5;
+        int goals = FootballMatch.RANDOM.nextInt(15 + 1);
+        int fouls = FootballMatch.RANDOM.nextInt(15 - 5 + 1) + 5;
+        int offsides = FootballMatch.RANDOM.nextInt(10 - 5 + 1) + 5;
+        int passes = FootballMatch.RANDOM.nextInt(700 - 300 + 1) + 300;
+        int passAccuracy = FootballMatch.RANDOM.nextInt(100 + 1);
+        int redCards = FootballMatch.RANDOM.nextInt(3 + 1);
+        int shots = FootballMatch.RANDOM.nextInt(50 - 20 + 1) + 20;
+        int shotsOnTarget = FootballMatch.RANDOM.nextInt(50 + 1);
+        int yellowCards = FootballMatch.RANDOM.nextInt(5 + 1);
         return Arrays.asList(corners, goals, fouls, offsides, passes, passAccuracy, redCards, shots, shotsOnTarget,
                 yellowCards);
     }
@@ -206,7 +206,7 @@ public class FootballMatch implements Serializable, Comparable<FootballMatch> {
      * @return - first team match stats
      */
     public SingleMatchFootballClubStatistic getFirstTeamSingleMatchStats() {
-        return firstTeamSingleMatchStats;
+        return FIRST_TEAM_SINGLE_MATCH_STATISTICS;
     }
 
     /**
@@ -214,14 +214,14 @@ public class FootballMatch implements Serializable, Comparable<FootballMatch> {
      * @return - second team match stats
      */
     public SingleMatchFootballClubStatistic getSecondTeamSingleMatchStats() {
-        return secondTeamSingleMatchStats;
+        return SECOND_TEAM_SINGLE_MATCH_STATISTICS;
     }
 
     /**
      * @return date of a match
      */
     public LocalDate getMatchDate() {
-        return matchDate;
+        return MATCH_DATE;
     }
 
 //    /**
@@ -236,14 +236,14 @@ public class FootballMatch implements Serializable, Comparable<FootballMatch> {
      * @return football club 1
      */
     public FootballClub getFirstTeam() {
-        return firstTeam;
+        return FIRST_TEAM;
     }
 
     /**
      * @return football club 2
      */
     public FootballClub getSecondTeam() {
-        return secondTeam;
+        return SECOND_TEAM;
     }
 
     /**
@@ -264,11 +264,11 @@ public class FootballMatch implements Serializable, Comparable<FootballMatch> {
     @Override
     public String toString() {
         return "FootballMatch{" +
-                "footballClub1=" + firstTeam +
-                ", footballClub1 match stats=" + firstTeamSingleMatchStats +
-                ", footballClub2=" + secondTeam +
-                ", footballClub2 match stats=" + secondTeamSingleMatchStats +
-                ", matchDate=" + matchDate +
+                "footballClub1=" + FIRST_TEAM +
+                ", footballClub1 match stats=" + FIRST_TEAM_SINGLE_MATCH_STATISTICS +
+                ", footballClub2=" + SECOND_TEAM +
+                ", footballClub2 match stats=" + SECOND_TEAM_SINGLE_MATCH_STATISTICS +
+                ", matchDate=" + MATCH_DATE +
                 '}';
     }
 
@@ -286,10 +286,10 @@ public class FootballMatch implements Serializable, Comparable<FootballMatch> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         FootballMatch that = (FootballMatch) o;
-        return (Objects.equals(firstTeam, that.firstTeam) &&
-                Objects.equals(secondTeam, that.secondTeam)) ||
-                (Objects.equals(secondTeam, that.firstTeam) &&
-                Objects.equals(firstTeam, that.secondTeam));
+        return (Objects.equals(FIRST_TEAM, that.FIRST_TEAM) &&
+                Objects.equals(SECOND_TEAM, that.SECOND_TEAM)) ||
+                (Objects.equals(SECOND_TEAM, that.FIRST_TEAM) &&
+                Objects.equals(FIRST_TEAM, that.SECOND_TEAM));
     }
 
     /**
@@ -298,6 +298,6 @@ public class FootballMatch implements Serializable, Comparable<FootballMatch> {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(firstTeam, secondTeam);
+        return Objects.hash(FIRST_TEAM, SECOND_TEAM);
     }
 }

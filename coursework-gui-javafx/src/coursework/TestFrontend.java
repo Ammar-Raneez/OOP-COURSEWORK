@@ -111,7 +111,11 @@ public class TestFrontend extends Application {
                 return;
             }
 
-            ConsoleApplication.addPlayedMatch();
+            try {
+                ConsoleApplication.addPlayedMatch();
+            } catch (InterruptedException e) {
+                System.out.println("[ERROR] ==> " + e.getMessage());
+            }
             //*getting the list of updated matches from the console-side*//
             List<FootballMatch> updatedMatches = PremierLeagueManager.getAllMatches();
             //*use that to update the matches in the frontend*//

@@ -33,6 +33,25 @@ public class ConsoleApplication {
     }
 
     /**
+     * public helper method that is used for the common input string validation
+     * @param printMessage - sentence to use as an initial prompt
+     * @param retryMessage - sentence to use as the retry prompt (even after the initial one failed)
+     * @return - valid user input
+     */
+    public static String userInputValidation(String printMessage, String retryMessage) {
+        String userInput = getUserInput(printMessage);
+        while (true) {
+            if (userInput.equals("")) {
+                userInput = getUserInput(retryMessage);
+            } else {
+                break;
+            }
+        }
+        return userInput;
+    }
+
+
+    /**
      * static method, that handles the adding of a club
      * Calls the addClub() method of PremierLeagueManager, passing the inputs obtained as parameters
      * @throws ClassNotFoundException - thrown in Color input
@@ -61,10 +80,12 @@ public class ConsoleApplication {
         //*based on type of club input, club type based inputs are taken for school and university*//
         String lecOrTeachInput = null;
         if (clubTypeInput.equals("university") || clubTypeInput.equals("school")) {
+            String formattedPrint = clubTypeInput.equals("university") ? "Please enter the lecturer in charge" :
+                    "Please enter the teacher in charge";
+            lecOrTeachInput = getUserInput(formattedPrint);
             while (true) {
-                lecOrTeachInput = getUserInput("Please enter the " + clubTypeInput + " in charge");
                 if (lecOrTeachInput.equals("")) {
-                    lecOrTeachInput = getUserInput("Please enter the " + clubTypeInput + " in charge");
+                    lecOrTeachInput = getUserInput(formattedPrint + "!");
                 } else {
                     break;
                 }
@@ -72,15 +93,7 @@ public class ConsoleApplication {
         }
 
         //*club name validation - validate all inputs the same way*//
-        String clubNameInput = getUserInput("Enter Club's name");
-        while (true) {
-            if (clubNameInput.equals("")) {
-                clubNameInput = getUserInput("Please enter a club name!");
-            } else {
-                break;
-            }
-        }
-
+        String clubNameInput = userInputValidation("Enter Club name", "Please Enter a Club name!");
         //*allow only unique club names (unique clubs)*//
         boolean clubExists = false;
         while (true) {
@@ -89,6 +102,9 @@ public class ConsoleApplication {
                     clubExists = true;
                     clubNameInput = getUserInput("[ERROR] ==> " + clubNameInput +
                             " already exists! Please try again");
+                    if (clubNameInput.equals("")) {
+                        clubNameInput = userInputValidation("Please Enter a Club name!", "Please Enter a Club name!");
+                    }
                     //*stop continuous looping, after a match has been found*//
                     break;
                 }
@@ -101,36 +117,13 @@ public class ConsoleApplication {
         }
 
         //*club location validation*//
-        String clubLocationInput = getUserInput("Enter club location");
-        while (true) {
-            if (clubLocationInput.equals("")) {
-                clubLocationInput = getUserInput("Please enter a club location!");
-            } else {
-                break;
-            }
-        }
-
+        String clubLocationInput = userInputValidation("Enter club location", "Please Enter a Club location!");
         //*club owner validation*//
-        String clubOwnerInput = getUserInput("Enter club owner");
-        while (true) {
-            if (clubOwnerInput.equals("")) {
-                clubOwnerInput = getUserInput("Please enter a club Owner!");
-            } else {
-                break;
-            }
-        }
-
+        String clubOwnerInput = userInputValidation("Enter club owner", "Please Enter a Club owner!");
         //*club sponsor validation*//
-        String clubSponsorInput = getUserInput("Enter club sponsor");
-        while (true) {
-            if (clubSponsorInput.equals("")) {
-                clubSponsorInput = getUserInput("Please enter a club Sponsor!");
-            } else {
-                break;
-            }
-        }
+        String clubSponsorInput = userInputValidation("Enter club sponsor", "Please Enter a Club sponsor!");
 
-        //*Color and Field variables necessary for top and bottom*//
+        //*Color and Field variables necessary for sports kit*//
         Color colorTop;
         Color colorShort;
         Field fieldTop;
@@ -161,14 +154,7 @@ public class ConsoleApplication {
         }
 
         //*club net worth validation*//
-        String clubNetWorth = getUserInput("Please enter club net worth");
-        while (true) {
-            if (clubNetWorth.equals("")) {
-                clubNetWorth = getUserInput("Please specify a club net worth!");
-            } else {
-                break;
-            }
-        }
+        String clubNetWorth = userInputValidation("Enter club net worth", "Please Enter the Clubs net worth!");
 
         //*call add method passing all the inputs as arguments*//
         premierLeagueManager.addClub(clubTypeInput, lecOrTeachInput, clubNameInput, clubLocationInput, clubOwnerInput,
@@ -185,7 +171,7 @@ public class ConsoleApplication {
      * @throws InterruptedException - thrown in the sleep() method
      */
     public static void deleteClub() throws InterruptedException {
-        String clubNameInput = getUserInput("Enter Club Name you wish to delete");
+        String clubNameInput = userInputValidation("Enter Club Name you wish to delete", "Please Enter a Club name!");
         FootballClub deletedClub = premierLeagueManager.deleteClub(clubNameInput);
 
         if (deletedClub != null) {
@@ -205,7 +191,7 @@ public class ConsoleApplication {
      * Obtains the club and prints the details
      */
     public static void displaySelectedClub() {
-        String clubNameInput = getUserInput("Enter club name to display");
+        String clubNameInput = userInputValidation("Enter club name to display", "Please Enter a Club name!");
         FootballClub foundClub = premierLeagueManager.displaySelectedClub(clubNameInput);
 
         if (foundClub != null) {
@@ -229,8 +215,8 @@ public class ConsoleApplication {
      * match as its parameters
      */
     public static void displaySelectedMatch() {
-        String firstTeamInput = getUserInput("Enter First Club's Name:");
-        String secondTeamInput = getUserInput("Enter Second Club's Name:");
+        String firstTeamInput = userInputValidation("Enter First Club's Name:", "Please Enter the first Clubs name!");
+        String secondTeamInput = userInputValidation("Enter Second Club's Name:", "Please Enter the second Clubs name!");
         FootballMatch foundFootballMatch = premierLeagueManager.displaySelectedMatch(firstTeamInput, secondTeamInput);
 
         if (foundFootballMatch != null) {
@@ -281,9 +267,7 @@ public class ConsoleApplication {
      * static method, that handles the playing of a match
      * Calls the addPlayedMatch() method of PremierLeagueManager
      */
-    public static void addPlayedMatch() {
-        premierLeagueManager.addPlayedMatch();
-    }
+    public static void addPlayedMatch() throws InterruptedException { premierLeagueManager.addPlayedMatch(); }
 
     /**
      * static method, that handles the displaying of the points table
@@ -380,6 +364,7 @@ public class ConsoleApplication {
                     break;
                 case "g":
                     Application.launch(MainFrontend.class, args);
+                    printDisplay();
                     userChoice = getUserInput("Please choose an option");
                     break;
                 case "q":

@@ -172,13 +172,13 @@ public class PremierLeagueManager implements LeagueManager {
      * This method handles the functionality of playing a match in the PremierLeague
      */
     @Override
-    public void addPlayedMatch() {
+    public void addPlayedMatch() throws InterruptedException {
         FootballClub firstTeam;
         FootballClub secondTeam;
 
         //*this if condition checks whether there are enough teams to play a match in the first place*//
         if (allFootballClubs.size() < 2) {
-            System.out.println("There isn't enough teams to play a match!");
+            System.out.println("[ERROR] ==> There isn't enough teams to play a match!");
             return;
         }
 
@@ -199,6 +199,7 @@ public class PremierLeagueManager implements LeagueManager {
 
             //*check the above generated match against all the matches already played*//
             for (FootballMatch match : allMatches) {
+                //*overridden equals() method*//
                 if (match.equals(footballMatch)) {
                     hasMatch = true;
                     break;
@@ -206,9 +207,14 @@ public class PremierLeagueManager implements LeagueManager {
             }
 
             //*if and only if the hasMatch flag had not turned true (the generated match is unique)*//
-            //*the match is played and added into the list of matches, and the entire while loop can be broken*//
+            //*the match is played and added into the list of matches, and the entire while loop is broken*//
             //*since its reason has been fulfilled*//
             if(!hasMatch) {
+                System.out.print("Now playing match between " + footballMatch.getFirstTeam().getClubName() + " and " +
+                                   footballMatch.getSecondTeam().getClubName()
+                        );
+                PremierLeagueManager.threeDotSuspense();
+                System.out.println();
                 footballMatch.playMatch();
                 allMatches.add(footballMatch);
                 break;
@@ -221,11 +227,11 @@ public class PremierLeagueManager implements LeagueManager {
                 secondTeam = allFootballClubs.get(PremierLeagueManager.RANDOM.nextInt(allFootballClubs.size()));
             } while (firstTeam.getClubName().equals(secondTeam.getClubName()));
 
-            //*based on a common pattern identified, the if condition was created (max number of matches playable)*//
+            //*based on a pattern identified, the if condition was created (max number of matches playable)*//
             //*second condition is if you delete a football club after it has already played a match*//
             if ((allMatches.size() == (allFootballClubs.size() * (allFootballClubs.size() - 1) / 2)) ||
                     (allMatches.size() > (allFootballClubs.size() * (allFootballClubs.size() - 1) / 2))) {
-                System.out.println("All Possible Matches have already been played!");
+                System.out.println("[ERROR] ==> All Possible Matches have already been played!");
                 break;
             }
         }
@@ -298,21 +304,25 @@ public class PremierLeagueManager implements LeagueManager {
         //*FootballMatch compareTo() method is used to sort (Date sorting), in descending order*//
         //*So it's ordered from the most recent to the least*//
         allMatches.sort(Collections.reverseOrder());
-        System.out.println("=============================================");
-        System.out.format("%7s %5s", "", "PREMIER LEAGUE - ALL MATCHES");
-        System.out.println();
-        System.out.println("=============================================");
+        if (allMatches.size()>0) {
+            System.out.println("=============================================");
+            System.out.format("%7s %5s", "", "PREMIER LEAGUE - ALL MATCHES");
+            System.out.println();
+            System.out.println("=============================================");
 
-        for (FootballMatch footballMatch : allMatches) {
-            System.out.format("%17s %5s", "", footballMatch.getMatchDate());
-            System.out.println();
-            System.out.format("%-19s %2s %2s %19s", footballMatch.getFirstTeam().getClubName(),
-                              footballMatch.getFirstTeamSingleMatchStats().getGoals(),
-                              footballMatch.getSecondTeamSingleMatchStats().getGoals(),
-                              footballMatch.getSecondTeam().getClubName()
-                              );
-            System.out.println();
-            System.out.println("---------------------------------------------");
+            for (FootballMatch footballMatch : allMatches) {
+                System.out.format("%17s %5s", "", footballMatch.getMatchDate());
+                System.out.println();
+                System.out.format("%-19s %2s %2s %19s", footballMatch.getFirstTeam().getClubName(),
+                        footballMatch.getFirstTeamSingleMatchStats().getGoals(),
+                        footballMatch.getSecondTeamSingleMatchStats().getGoals(),
+                        footballMatch.getSecondTeam().getClubName()
+                );
+                System.out.println();
+                System.out.println("---------------------------------------------");
+            }
+        } else {
+            System.out.println("[ERROR] ==> No matches have been played yet!");
         }
     }
     //******************************************END DISPLAY MATCH SCORES**********************************************//
