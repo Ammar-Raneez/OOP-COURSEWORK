@@ -6,6 +6,7 @@ package coursework;
  */
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -37,7 +38,7 @@ public class MainFrontend extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        ConsoleApplication.loadData();
+//        ConsoleApplication.loadData();
         GuiElements guiElements = new GuiElements();
         List<FootballClub> allClubs = PremierLeagueManager.getAllFootballClubs();
         List<FootballMatch> allMatches = PremierLeagueManager.getAllMatches();
@@ -142,7 +143,9 @@ public class MainFrontend extends Application {
         AnchorPane anchorPane = GuiElements.anchor("-fx-background-color: #222;");
         StackPane stackPane = GuiElements.stackPane(1366, 500);
         stackPane.getChildren().add(tableView);
-        anchorPane.getChildren().addAll(stackPane, eplLion, eplText, goalSorter, winSorter, playMatch, displayMatch, eplPlayer, eplPlayerTwo);
+        ScrollPane scrollPane = GuiElements.scrollPane(1366, 500, 0, 0, "-fx-background-color: #222; -fx-border-color: #222");
+        scrollPane.setContent(stackPane);
+        anchorPane.getChildren().addAll(scrollPane, eplLion, eplText, goalSorter, winSorter, playMatch, displayMatch, eplPlayer, eplPlayerTwo);
 
         Scene pointsTableScene = guiElements.scene(anchorPane, 1366, 700, "style.css");
         //*on click of this button, change scene to display all matches*//
@@ -393,7 +396,9 @@ public class MainFrontend extends Application {
         closeAlert.showAndWait();
         if (closeAlert.getResult() == ButtonType.YES) {
             window.close();
-            ConsoleApplication.saveData();
+            Thread.currentThread().interrupt();
+//            Platform.exit();
+//            ConsoleApplication.saveData();
 //            ConsoleApplication.printDisplay();
         } else {
             closeAlert.close();
