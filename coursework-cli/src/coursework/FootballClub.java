@@ -1,23 +1,23 @@
 package coursework;
 
 /*
- * oop.cw.FootballClub
+ * FootballClub
  * Copyright © 2020 Ammar Raneez. All Rights Reserved.
  */
 
 import java.util.*;
 
 /**
- * oop.cw.FootballClub class, which will be used to represent any football club (sub class of oop.cw.SportsClub)
+ * FootballClub class, which will be used to represent any football club (sub class of SportsClub)
  * @version 1.x November 9th 2020
  * @author Ammar Raneez | 2019163 | W1761196
  */
 public class FootballClub extends SportsClub implements Comparable<FootballClub> {
     private static final long serialVersionUID = 2272608864290797607L;
     private static final int NUMBER_OF_PLAYERS = 11;
-    private static Random random = new Random();
+    private static final Random RANDOM = new Random();
+    private final List<Player> ALL_PLAYERS =  new ArrayList<>();
     private FootballClubTotalStatistics footballClubTotalStatistics;
-    private List<Player> allPlayers =  new ArrayList<>();
 
     /**
      * Constructor - takes in values and initializes a Football club object
@@ -64,7 +64,7 @@ public class FootballClub extends SportsClub implements Comparable<FootballClub>
      * @return list of all Players
      */
     public List<Player> getAllPlayers() {
-        return allPlayers;
+        return ALL_PLAYERS;
     }
 
     /**
@@ -73,17 +73,17 @@ public class FootballClub extends SportsClub implements Comparable<FootballClub>
     //TODO, improve toString() methods
     @Override
     public String toString() {
-        return "oop.cw.FootballClub{" +
+        return "FootballClub{" +
                 super.toString() +
                 "footballClubTotalStatistics=" + footballClubTotalStatistics +
-                ", allPlayers=" + allPlayers +
+                ", allPlayers=" + ALL_PLAYERS +
                 '}';
     }
 
     /**
      * Overridden compareTo() method - to sort the clubs based on points
      * Needed for the displayPointsTable() method - to display club with most points on top (descending order of points)
-     * @param o - compare this oop.cw.FootballClub with o
+     * @param o - compare this FootballClub with o
      * @return - +ve value if this clubs points > o's points, -ve value if vice-versa, 0 if equal
      */
     @Override
@@ -92,7 +92,7 @@ public class FootballClub extends SportsClub implements Comparable<FootballClub>
     }
 
     /**
-     * Equals() method called from the super class - oop.cw.SportsClub
+     * Equals() method called from the super class - SportsClub
      * @param o - compare this club with o
      * @return - t/f on whether the equality is satisfied
      */
@@ -117,7 +117,7 @@ public class FootballClub extends SportsClub implements Comparable<FootballClub>
     private void generatePlayers() {
         for (int i=0; i<FootballClub.getNumberOfPlayers(); i++) {
             List<Object> allPlayerInformation = playerInformationGeneration();
-            allPlayers.add(new Player((double) allPlayerInformation.get(0), (String) allPlayerInformation.get(1),
+            ALL_PLAYERS.add(new Player((double) allPlayerInformation.get(0), (String) allPlayerInformation.get(1),
                     (String) allPlayerInformation.get(2), (PlayerStats) allPlayerInformation.get(3),
                     (String) allPlayerInformation.get(4), (String) allPlayerInformation.get(5),
                     (int) allPlayerInformation.get(6)
@@ -153,29 +153,30 @@ public class FootballClub extends SportsClub implements Comparable<FootballClub>
         );
         List<String> preferredFoot = new ArrayList<>(Arrays.asList("R", "L", "B"));
 
-        double playerHeight = FootballClub.random.nextInt(250 - 150 + 1) + 150;
-        String playerName = commonNames.get(FootballClub.random.nextInt(commonNames.size()));
-        String playerNationality = nationalities.get(FootballClub.random.nextInt(nationalities.size()));
+        double playerHeight = FootballClub.RANDOM.nextInt(250 - 150 + 1) + 150;
+        String playerName = commonNames.get(FootballClub.RANDOM.nextInt(commonNames.size()));
+        String playerNationality = nationalities.get(FootballClub.RANDOM.nextInt(nationalities.size()));
         PlayerStats playerStats = new PlayerStats(
-                FootballClub.random.nextInt(100 + 1),
-                FootballClub.random.nextInt(100 + 1),
-                FootballClub.random.nextInt(100 + 1),
-                FootballClub.random.nextInt(100 + 1),
-                FootballClub.random.nextInt(100 + 1),
-                FootballClub.random.nextInt(100 + 1),
-                FootballClub.random.nextInt(100 + 1),
-                FootballClub.random.nextInt(100 + 1),
-                FootballClub.random.nextInt(100 + 1),
-                FootballClub.random.nextInt(100 + 1),
-                FootballClub.random.nextInt(100 + 1),
-                FootballClub.random.nextInt(100 + 1),
-                FootballClub.random.nextInt(100 + 1)
+                FootballClub.RANDOM.nextInt(100 + 1),
+                FootballClub.RANDOM.nextInt(100 + 1),
+                FootballClub.RANDOM.nextInt(100 + 1),
+                FootballClub.RANDOM.nextInt(100 + 1),
+                FootballClub.RANDOM.nextInt(100 + 1),
+                FootballClub.RANDOM.nextInt(100 + 1),
+                FootballClub.RANDOM.nextInt(100 + 1),
+                FootballClub.RANDOM.nextInt(100 + 1),
+                FootballClub.RANDOM.nextInt(100 + 1),
+                FootballClub.RANDOM.nextInt(100 + 1),
+                FootballClub.RANDOM.nextInt(100 + 1),
+                FootballClub.RANDOM.nextInt(100 + 1),
+                FootballClub.RANDOM.nextInt(100 + 1)
         );
-        //*call method that sets overall stat*//
+        //*call method that calculates and sets overall stat*//
         playerStats.setOverall();
-        String playerPosition = positions.get(FootballClub.random.nextInt(positions.size()));
-        String playerPreferredFoot = preferredFoot.get(FootballClub.random.nextInt(preferredFoot.size()));
-        int shirtNumber = FootballClub.random.nextInt(15 - 1 + 1) + 1;
+
+        String playerPosition = positions.get(FootballClub.RANDOM.nextInt(positions.size()));
+        String playerPreferredFoot = preferredFoot.get(FootballClub.RANDOM.nextInt(preferredFoot.size()));
+        int shirtNumber = FootballClub.RANDOM.nextInt(15 - 1 + 1) + 1;
 
         return Arrays.asList(playerHeight, playerName, playerNationality, playerStats, playerPosition,
                              playerPreferredFoot, shirtNumber);

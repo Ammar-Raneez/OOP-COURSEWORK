@@ -1,7 +1,7 @@
 package coursework;
 
 /*
- * oop.cw.SportsClubKit
+ * SportsClubKit
  * Copyright © 2020 Ammar Raneez. All Rights Reserved.
  */
 
@@ -9,14 +9,14 @@ import java.awt.*;
 import java.io.Serializable;
 
 /**
- * oop.cw.SportsClubKit class, which will be used to represent any generic sports club kit
+ * SportsClubKit class, which will be used to represent any generic sports club kit
  * @version 1.x November 9th 2020
  * @author Ammar Raneez | 2019163 | W1761196
  */
 class SportsClubKit implements Serializable {
-    private Color bottomColor;
-    private String sponsor;
-    private Color topColor;
+    private final Color BOTTOM_COLOR;
+    private final String SPONSOR;
+    private final Color TOP_COLOR;
 
     /**
      * initializes a sports club kit
@@ -25,30 +25,30 @@ class SportsClubKit implements Serializable {
      * @param bottomColor - short color
      */
     public SportsClubKit(String sponsor, Color topColor, Color bottomColor) {
-        this.sponsor = sponsor;
-        this.topColor = topColor;
-        this.bottomColor = bottomColor;
+        this.SPONSOR = sponsor;
+        this.TOP_COLOR = topColor;
+        this.BOTTOM_COLOR = bottomColor;
     }
 
     /**
      * @return bottom color
      */
     public Color getBottomColor() {
-        return bottomColor;
+        return BOTTOM_COLOR;
     }
 
     /**
      * @return sponsor
      */
     public String getSponsor() {
-        return sponsor;
+        return SPONSOR;
     }
 
     /**
      * @return top color
      */
     public Color getTopColor() {
-        return topColor;
+        return TOP_COLOR;
     }
 
     /**
@@ -58,9 +58,9 @@ class SportsClubKit implements Serializable {
     @Override
     public String toString() {
         return "ClubKit{" +
-                "sponsor='" + sponsor + '\'' +
-                ", topColor=" + topColor +
-                ", bottomColor=" + bottomColor +
+                "sponsor='" + SPONSOR + '\'' +
+                ", topColor=" + TOP_COLOR +
+                ", bottomColor=" + BOTTOM_COLOR +
                 '}';
     }
 }

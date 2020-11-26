@@ -1,14 +1,14 @@
 package coursework;
 
 /*
- * oop.cw.UniversityFootballClub
+ * UniversityFootballClub
  * Copyright © 2020 Ammar Raneez. All Rights Reserved.
  */
 
 import java.util.Objects;
 
 /**
- * oop.cw.UniversityFootballClub class, which will be used to represent any university football club (subclass of oop.cw.FootballClub)
+ * UniversityFootballClub class, which will be used to represent any university football club (subclass of FootballClub)
  * @version 1.x November 9th 2020
  * @author Ammar Raneez | 2019163 | W1761196
  */
@@ -16,7 +16,7 @@ public class UniversityFootballClub extends FootballClub {
     private String lecturerInCharge;
 
     /**
-     * initializes a new oop.cw.UniversityFootballClub object
+     * initializes a new UniversityFootballClub object
      * @param clubName - name of club
      * @param clubLocation - location of club
      * @param clubOwner - owner of club
@@ -51,14 +51,14 @@ public class UniversityFootballClub extends FootballClub {
     //TODO, improve toString() methods
     @Override
     public String toString() {
-        return "oop.cw.UniversityFootballClub{" +
+        return "UniversityFootballClub{" +
                 super.toString() +
                 ",lecturerInCharge='" + lecturerInCharge + '\'' +
                 '}';
     }
 
     /**
-     * Equals() method called from the super class - oop.cw.FootballClub
+     * Equals() method called from the super class - FootballClub
      * @param o - compare this club with o
      * @return - t/f on whether the equality is satisfied
      */

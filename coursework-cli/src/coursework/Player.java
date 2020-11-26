@@ -1,29 +1,29 @@
 package coursework;
 
 /*
- * oop.cw.Player
+ * Player
  * Copyright © 2020 Ammar Raneez. All Rights Reserved.
  */
 
 import java.io.Serializable;
 
 /**
- * oop.cw.Player class, which will be used to represent any oop.cw.Player
+ * Player class, which will be used to represent any Player
  * @version 1.x November 17th 2020
  * @author Ammar Raneez | 2019163 | W1761196
  */
 public class Player implements Serializable {
     private static final long serialVersionUID = 5625338058257534947L;
-    private double height;
-    private String name;
-    private String nationality;
-    private PlayerStats playerStats;
-    private String position;
-    private String preferredFoot;
-    private int shirtNumber;
+    private final double HEIGHT;
+    private final String NAME;
+    private final String NATIONALITY;
+    private final PlayerStats PLAYER_STATS;
+    private final String POSITION;
+    private final String PREFERRED_FOOT;
+    private final int SHIRT_NUMBER;
 
     /**
-     * initializes all info of a oop.cw.Player
+     * initializes all info of a Player
      * @param height - player height
      * @param name - player name
      * @param nationality - player nationality
@@ -34,133 +34,77 @@ public class Player implements Serializable {
      */
     public Player(double height, String name, String nationality, PlayerStats playerStats, String position,
                   String preferredFoot, int shirtNumber) {
-        this.height = height;
-        this.name = name;
-        this.nationality = nationality;
-        this.playerStats = playerStats;
-        this.position = position;
-        this.preferredFoot = preferredFoot;
-        this.shirtNumber = shirtNumber;
+        this.HEIGHT = height;
+        this.NAME = name;
+        this.NATIONALITY = nationality;
+        this.PLAYER_STATS = playerStats;
+        this.POSITION = position;
+        this.PREFERRED_FOOT = preferredFoot;
+        this.SHIRT_NUMBER = shirtNumber;
     }
 
     /**
      * @return - this players height
      */
     public double getHeight() {
-        return height;
+        return HEIGHT;
     }
-
-//    /**
-//     * sets player height
-//     * @param height - player height
-//     */
-//    public void setHeight(double height) {
-//        this.height = height;
-//    }
 
     /**
      * @return - this players name
      */
     public String getName() {
-        return name;
+        return NAME;
     }
-
-//    /**
-//     * sets player name
-//     * @param name - player name
-//     */
-//    public void setName(String name) {
-//        this.name = name;
-//    }
 
     /**
      * @return - this players nationality
      */
     public String getNationality() {
-        return nationality;
+        return NATIONALITY;
     }
-
-//    /**
-//     * sets player nationality
-//     * @param nationality - player nationality
-//     */
-//    public void setNationality(String nationality) {
-//        this.nationality = nationality;
-//    }
 
     /**
      * @return - this players stats
      */
     public PlayerStats getPlayerStats() {
-        return playerStats;
+        return PLAYER_STATS;
     }
-
-//    /**
-//     * sets player stats
-//     * @param playerStats - player stats
-//     */
-//    public void setPlayerStats(oop.cw.PlayerStats playerStats) {
-//        this.playerStats = playerStats;
-//    }
 
     /**
      * @return - this players position
      */
     public String getPosition() {
-        return position;
+        return POSITION;
     }
-
-//    /**
-//     * sets this players position
-//     * @param position - player position
-//     */
-//    public void setPosition(String position) {
-//        this.position = position;
-//    }
 
     /**
      * @return - this players preferred foot
      */
     public String getPreferredFoot() {
-        return preferredFoot;
+        return PREFERRED_FOOT;
     }
-
-//    /**
-//     * sets this players preferred foot
-//     * @param preferredFoot - player preferred foot
-//     */
-//    public void setPreferredFoot(String preferredFoot) {
-//        this.preferredFoot = preferredFoot;
-//    }
 
     /**
      * @return - this players shirt number
      */
     public int getShirtNumber() {
-        return shirtNumber;
+        return SHIRT_NUMBER;
     }
-
-//    /**
-//     * sets this players shirt number
-//     * @param shirtNumber - player shirt number
-//     */
-//    public void setShirtNumber(int shirtNumber) {
-//        this.shirtNumber = shirtNumber;
-//    }
 
     /**
      * @return - overrun toString() method
      */
     @Override
     public String toString() {
-        return "oop.cw.Player{" +
-                "height=" + height +
-                ", name='" + name + '\'' +
-                ", nationality='" + nationality + '\'' +
-                ", playerStats=" + playerStats +
-                ", position='" + position + '\'' +
-                ", preferredFoot='" + preferredFoot + '\'' +
-                ", shirtNumber=" + shirtNumber +
+        return "Player{" +
+                "height=" + HEIGHT +
+                ", name='" + NAME + '\'' +
+                ", nationality='" + NATIONALITY + '\'' +
+                ", playerStats=" + PLAYER_STATS +
+                ", position='" + POSITION + '\'' +
+                ", preferredFoot='" + PREFERRED_FOOT + '\'' +
+                ", shirtNumber=" + SHIRT_NUMBER +
                 '}';
     }
 }
