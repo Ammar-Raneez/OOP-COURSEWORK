@@ -5,7 +5,7 @@ package coursework;
  * Copyright © 2020 Ammar Raneez. All Rights Reserved.
  */
 
-import javafx.application.Application;
+//import javafx.application.Application;
 
 import java.awt.*;
 import java.lang.reflect.Field;
@@ -319,61 +319,61 @@ public class ConsoleApplication {
         System.out.println("Enter q to exit");
     }
 
-    public static void main(String[] args) throws IllegalAccessException, ClassNotFoundException, InterruptedException {
-        //*load data upon start, and display the menu*//
-        loadData();
-        printDisplay();
-        String userChoice = getUserInput("Please choose an option");
-        infiniteLoop:
-        while (true) {
-            switch (userChoice) {
-                case "a":
-                    addClub();
-                    printDisplay();
-                    userChoice = getUserInput("Please choose an option");
-                    break;
-                case "d":
-                    deleteClub();
-                    printDisplay();
-                    userChoice = getUserInput("Please choose an option");
-                    break;
-                case "p":
-                    addPlayedMatch();
-                    printDisplay();
-                    userChoice = getUserInput("Please choose an option");
-                    break;
-                case "z":
-                    displayPointsTable();
-                    printDisplay();
-                    userChoice = getUserInput("Please choose an option");
-                    break;
-                case "c":
-                    displayMatchResults();
-                    printDisplay();
-                    userChoice = getUserInput("Please choose an option");
-                    break;
-                case "x":
-                    displaySelectedClub();
-                    printDisplay();
-                    userChoice = getUserInput("Please choose an option");
-                    break;
-                case "s":
-                    displaySelectedMatch();
-                    printDisplay();
-                    userChoice = getUserInput("Please choose an option");
-                    break;
-                case "g":
-                    Application.launch(MainFrontend.class, args);
-                    printDisplay();
-                    userChoice = getUserInput("Please choose an option");
-                    break;
-                case "q":
-                    saveData();
-                    break infiniteLoop;
-                default:
-                    printDisplay();
-                    userChoice = getUserInput("Please choose a valid option");
-            }
-        }
-    }
+//    public static void main(String[] args) throws IllegalAccessException, ClassNotFoundException, InterruptedException {
+//        //*load data upon start, and display the menu*//
+//        loadData();
+//        printDisplay();
+//        String userChoice = getUserInput("Please choose an option");
+//        infiniteLoop:
+//        while (true) {
+//            switch (userChoice) {
+//                case "a":
+//                    addClub();
+//                    printDisplay();
+//                    userChoice = getUserInput("Please choose an option");
+//                    break;
+//                case "d":
+//                    deleteClub();
+//                    printDisplay();
+//                    userChoice = getUserInput("Please choose an option");
+//                    break;
+//                case "p":
+//                    addPlayedMatch();
+//                    printDisplay();
+//                    userChoice = getUserInput("Please choose an option");
+//                    break;
+//                case "z":
+//                    displayPointsTable();
+//                    printDisplay();
+//                    userChoice = getUserInput("Please choose an option");
+//                    break;
+//                case "c":
+//                    displayMatchResults();
+//                    printDisplay();
+//                    userChoice = getUserInput("Please choose an option");
+//                    break;
+//                case "x":
+//                    displaySelectedClub();
+//                    printDisplay();
+//                    userChoice = getUserInput("Please choose an option");
+//                    break;
+//                case "s":
+//                    displaySelectedMatch();
+//                    printDisplay();
+//                    userChoice = getUserInput("Please choose an option");
+//                    break;
+//                case "g":
+//                    Application.launch(TestFrontend.class, args);
+//                    printDisplay();
+//                    userChoice = getUserInput("Please choose an option");
+//                    break;
+//                case "q":
+//                    saveData();
+//                    break infiniteLoop;
+//                default:
+//                    printDisplay();
+//                    userChoice = getUserInput("Please choose a valid option");
+//            }
+//        }
+//    }
 }

@@ -247,7 +247,7 @@ public class TestFrontend extends Application {
             try {
                 closeScenes(window, allClubs, allMatches, guiElements);
             } catch (Exception e) {
-                e.printStackTrace();
+                System.out.println("[ERROR] ==> something went wrong " + e.getMessage());
             }
         });
 
