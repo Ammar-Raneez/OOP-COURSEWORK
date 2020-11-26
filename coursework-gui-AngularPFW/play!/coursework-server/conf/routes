@@ -2,9 +2,9 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-# An example controller showing a sample home page
+# An example controller showing a sample helloworld page
 GET     /                           controllers.HomeController.index
-
+GET     /testAnother                controllers.HomeController.testAnother
 #a get request to /test calls the test method of TestController class of controllers package
 GET     /test                       controllers.TestController.test
 
