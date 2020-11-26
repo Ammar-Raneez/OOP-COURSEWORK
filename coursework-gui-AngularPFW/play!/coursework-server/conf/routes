@@ -5,6 +5,7 @@
 # An example controller showing a sample home page
 GET     /                           controllers.HomeController.index
 
+#a get request to /test calls the test method of TestController class of controllers package
 GET     /test                       controllers.TestController.test
 
 # Map static resources from the /public folder to the /assets URL path
