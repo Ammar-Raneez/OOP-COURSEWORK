@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
-import { FootballClub } from '../models/FootballClub';
+import { FootballClub } from 'src/app/models/FootballClub';
 
 @Injectable({
   providedIn: 'root'

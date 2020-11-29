@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FootballClub } from 'src/app/models/FootballClub';
-import { PointsTableService } from 'src/app/services/points-table.service';
+import { PointsTableService } from 'src/app/services/points-table/points-table.service';
 
 @Component({
   selector: 'app-points-table',
