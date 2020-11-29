@@ -362,11 +362,11 @@ public class ConsoleApplication {
                     printDisplay();
                     userChoice = getUserInput("Please choose an option");
                     break;
-                case "g":
-                    Application.launch(TestFrontend.class, args);
-                    printDisplay();
-                    userChoice = getUserInput("Please choose an option");
-                    break;
+//                case "g":
+//                    Application.launch(TestFrontend.class, args);
+//                    printDisplay();
+//                    userChoice = getUserInput("Please choose an option");
+//                    break;
                 case "q":
                     saveData();
                     break infiniteLoop;
