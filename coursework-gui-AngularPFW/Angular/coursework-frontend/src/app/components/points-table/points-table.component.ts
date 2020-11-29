@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FootballClub } from 'src/app/models/FootballClub';
-import { Player } from 'src/app/models/Player';
 import { PointsTableService } from 'src/app/services/points-table.service';
 
 @Component({
@@ -9,25 +8,25 @@ import { PointsTableService } from 'src/app/services/points-table.service';
   styleUrls: ['./points-table.component.css']
 })
 export class PointsTableComponent implements OnInit {
-  playMessage : Player[];
+  allClubs : FootballClub[];
 
   constructor(private pointsTableService : PointsTableService) { }
 
   ngOnInit(): void {
   }
 
-  displayWelcomeMessage() : void {
-    this.pointsTableService.executeTestPlayFramework().subscribe(
+  getFootballClubs() : void {
+    this.pointsTableService.getAllFootballClubs().subscribe(
       response => this.handleSuccessfulResponse(response),
       error => this.handleErrorResponse(error)
     );
   }
   handleSuccessfulResponse(response : any) : void {
-    this.playMessage = response[0].allPlayers;
+    this.allClubs = response;
     console.log(response);
   }
   handleErrorResponse(error : any) : void {
-    this.playMessage = error.message;
+    this.allClubs = error.message;
     console.log(error);
   }
 }

@@ -8,7 +8,7 @@ import { FootballClub } from '../models/FootballClub';
 export class PointsTableService {
   constructor(private httpClient : HttpClient) { }
 
-  executeTestPlayFramework() { 
+  getAllFootballClubs() { 
     return this.httpClient.get<FootballClub>("http://localhost:9000/pointstable");
   }
 }
