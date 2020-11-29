@@ -120,5 +120,8 @@
       }
     }
   },
-  "defaultProject": "coursework-frontend"
+  "defaultProject": "coursework-frontend",
+  "cli": {
+    "analytics": false
+  }
 }
