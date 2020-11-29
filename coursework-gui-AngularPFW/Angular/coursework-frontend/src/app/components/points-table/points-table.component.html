@@ -1,2 +1,24 @@
-<h1 *ngIf="allClubs">{{ allClubs }}</h1>
-<button (click) = "getFootballClubs()" >Display Clubs</button>
+<table class="table">
+    <tr>
+        <th class="longSpan">Club</th>
+        <th>MP</th>
+        <th>W</th>
+        <th>D</th>
+        <th>L</th>
+        <th>GF</th>
+        <th>GA</th>
+        <th>GD</th>
+        <th>Pts</th>
+    </tr>
+    <tr *ngFor="let club of allClubs">
+        <td class="longSpan">{{ club.clubName }}</td>
+        <td>{{ club.footballClubTotalStatistics.matchesPlayed }}</td>
+        <td>{{ club.footballClubTotalStatistics.wins }}</td>
+        <td>{{ club.footballClubTotalStatistics.draws }}</td>
+        <td>{{ club.footballClubTotalStatistics.defeats }}</td>
+        <td>{{ club.footballClubTotalStatistics.goalsFor }}</td>
+        <td>{{ club.footballClubTotalStatistics.goalsAgainst }}</td>
+        <td>{{ club.footballClubTotalStatistics.goalDifference }}</td>
+        <td>{{ club.footballClubTotalStatistics.points }}</td>
+    </tr>
+</table>

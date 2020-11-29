@@ -13,6 +13,7 @@ export class PointsTableComponent implements OnInit {
   constructor(private allClubsService : AllClubsService) { }
 
   ngOnInit(): void {
+    this.getFootballClubs();
   }
 
   getFootballClubs() : void {

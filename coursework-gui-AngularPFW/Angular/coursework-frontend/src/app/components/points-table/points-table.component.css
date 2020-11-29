@@ -1,0 +1,13 @@
+.table {
+    border: 1px solid black;
+    width: 100%;
+}
+
+th, td {
+    width: 8%;
+    text-align: center;
+}
+
+.table tr .longSpan {
+    width: 28%;
+}
