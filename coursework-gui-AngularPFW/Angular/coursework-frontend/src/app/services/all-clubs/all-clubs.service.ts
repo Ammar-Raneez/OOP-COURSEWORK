@@ -5,7 +5,7 @@ import { FootballClub } from 'src/app/models/FootballClub';
 @Injectable({
   providedIn: 'root'
 })
-export class PointsTableService {
+export class AllClubsService {
   constructor(private httpClient : HttpClient) { }
 
   getAllFootballClubs() { 

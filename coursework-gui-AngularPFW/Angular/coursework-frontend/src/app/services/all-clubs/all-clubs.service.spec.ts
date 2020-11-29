@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { PointsTableService } from './points-table.service';
+import { AllClubsService } from './all-clubs.service';
 
 describe('PointsTableService', () => {
-  let service: PointsTableService;
+  let service: AllClubsService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(PointsTableService);
+    service = TestBed.inject(AllClubsService);
   });
 
   it('should be created', () => {

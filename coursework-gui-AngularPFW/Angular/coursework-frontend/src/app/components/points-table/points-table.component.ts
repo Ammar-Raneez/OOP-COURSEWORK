@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FootballClub } from 'src/app/models/FootballClub';
-import { PointsTableService } from 'src/app/services/points-table/points-table.service';
+import { AllClubsService } from 'src/app/services/all-clubs/all-clubs.service';
 
 @Component({
   selector: 'app-points-table',
@@ -10,13 +10,13 @@ import { PointsTableService } from 'src/app/services/points-table/points-table.s
 export class PointsTableComponent implements OnInit {
   allClubs : FootballClub[];
 
-  constructor(private pointsTableService : PointsTableService) { }
+  constructor(private allClubsService : AllClubsService) { }
 
   ngOnInit(): void {
   }
 
   getFootballClubs() : void {
-    this.pointsTableService.getAllFootballClubs().subscribe(
+    this.allClubsService.getAllFootballClubs().subscribe(
       response => this.handleSuccessfulResponse(response),
       error => this.handleErrorResponse(error)
     );
