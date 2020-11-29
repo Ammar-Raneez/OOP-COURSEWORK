@@ -1,12 +1,16 @@
 package controllers;
 
 import play.mvc.*;
+import play.libs.Json;
 
 public class TestController extends Controller {
     public Result test() {
-        //ok - status code 200
-        //this return is of type Result
-        //renders the test html file inside the views folder passing two parameters
-        return ok(views.html.test.render("some parameter text", "second parameter"));
+        models.Test testModel = new models.Test("This message is from play!");
+        return ok(Json.toJson(testModel));
+    }
+
+    public Result testWithParam(String param) {
+        models.Test testModel = new models.Test("Welcome!, " + param);
+        return  ok(Json.toJson(testModel));
     }
 }
