@@ -8,6 +8,7 @@ import { PointsTableComponent } from './components/points-table/points-table.com
 import { HttpClientModule } from '@angular/common/http';
 import { AllMatchesComponent } from './components/all-matches/all-matches.component';
 import { SelectedMatchComponent } from './components/selected-match/selected-match.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { SelectedMatchComponent } from './components/selected-match/selected-mat
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

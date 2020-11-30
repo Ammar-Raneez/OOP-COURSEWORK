@@ -7,8 +7,9 @@ import java.util.*;
 public class ClubController extends Controller {
     public Result returnAllClubs() {
         coursework.ConsoleApplication.loadData();
-        List<coursework.FootballClub> allData = coursework.PremierLeagueManager.getAllFootballClubs();
-        return ok(Json.toJson(allData));
+        List<coursework.FootballClub> allClubs = coursework.PremierLeagueManager.getAllFootballClubs();
+        allClubs.sort(Collections.reverseOrder());
+        return ok(Json.toJson(allClubs));
     }
 
 

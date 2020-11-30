@@ -2,9 +2,9 @@
     <div class="top-header">
         <img class="top-header-img" src="assets/images/PL-lion2.png" />
         <div class="top-header-right">
-            <input class="top-header-right-input" type="text" placeholder="yyyy-mm-dd" />
-            <button class="top-header-right-search" >Search</button>
-            <button class="top-header-right-reset">Reset</button>
+            <input class="top-header-right-input" type="text" placeholder="yyyy-mm-dd" [(ngModel)] = "date" />
+            <button class="top-header-right-search" (click) = "getFootballMatchesOnDate()">Search</button>
+            <button class="top-header-right-reset" (click) = "getFootballMatches()">Reset</button>
         </div>
     </div>
 
