@@ -160,8 +160,8 @@ public class ConsoleApplication {
         premierLeagueManager.addClub(clubTypeInput, lecOrTeachInput, clubNameInput, clubLocationInput, clubOwnerInput,
                                      clubSponsorInput, colorTop, colorShort, clubNetWorth);
         System.out.print("Now adding Football Club " + clubNameInput);
-        PremierLeagueManager.threeDotSuspense();
-        Thread.sleep(500);
+//        PremierLeagueManager.threeDotSuspense();
+//        Thread.sleep(500);
         System.out.println(clubNameInput + " was successfully Promoted to the Premier League!");
     }
 
@@ -176,9 +176,9 @@ public class ConsoleApplication {
 
         if (deletedClub != null) {
             System.out.print("Now deleting " + clubNameInput);
-            PremierLeagueManager.threeDotSuspense();
+//            PremierLeagueManager.threeDotSuspense();
             System.out.println("Size decreased: " + PremierLeagueManager.getAllFootballClubs().size());
-            Thread.sleep(500);
+//            Thread.sleep(500);
             System.out.println(clubNameInput + " was successfully Relegated from the Premier League!");
         } else {
             System.out.println("[ERROR] ==> No Such Club Exists");

@@ -27,9 +27,10 @@ export class PointsTableComponent implements OnInit {
     )
   }
   handleSuccessfulResponseAfterPlay(response : any) : void {
-    this.allClubs = response[0];
+    MatchAndClub.setClubs(response[0]);
+    MatchAndClub.setMatches(response[1]);
+    this.allClubs = MatchAndClub.clubs;
   }
-
 
   getFootballClubsSortedOnWins() : void {
     this.allClubsFilterService.getMatchesWinFilter().subscribe(

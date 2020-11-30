@@ -38,6 +38,11 @@ th, td {
 .table tr .longSpan {
     width: 28%;
     text-align: left;
+    font-weight: bolder;
+}
+.table tr td.longSpan {
+
+    color: #f00;
 }
 
 .table tr:nth-child(even) {
@@ -59,19 +64,32 @@ th, td {
 }
 
 .lower-footer-sortBtn {
-    background-color: #ff015b;
-    color: white;
+    background-color: #222;
+    color: #04f5ff;
     height: 50px;
     padding: 8px;
     width: 200px;
-    border-radius: 30px;
+    border-color: #04f5ff;
     transition: 0.3s ease;
     font-size: 18px;
     outline: none;
+    font-weight: bolder;
+
 }
 .lower-footer-sortBtn:hover {
-    color: #ff015b;
-    background-color: #fff;
-    transform: scale(1.1);
     cursor: pointer;
+    color: white;
+    transform: scaleX(1.1);
+}
+
+.reset-btn {
+    background-color: #222;
+    border: 1px solid #f00;
+    color: #f00;
+}
+
+.play-btn {
+    background-color: #222;
+    border: 1px solid #62ffa4;
+    color: #62ffa4;
 }

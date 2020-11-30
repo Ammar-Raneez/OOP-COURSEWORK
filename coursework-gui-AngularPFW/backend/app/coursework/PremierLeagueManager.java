@@ -213,7 +213,7 @@ public class PremierLeagueManager implements LeagueManager {
                 System.out.print("Now playing match between " + footballMatch.getFirstTeam().getClubName() + " and " +
                                    footballMatch.getSecondTeam().getClubName()
                         );
-                PremierLeagueManager.threeDotSuspense();
+//                PremierLeagueManager.threeDotSuspense();
                 System.out.println();
                 footballMatch.playMatch();
                 allMatches.add(footballMatch);
@@ -344,9 +344,9 @@ public class PremierLeagueManager implements LeagueManager {
         try (FileOutputStream fileOutputStream = new FileOutputStream(new File(SAVE_PATH + "\\saveFile.txt"));
              ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
             System.out.print("Now saving data");
-            PremierLeagueManager.threeDotSuspense();
+//            PremierLeagueManager.threeDotSuspense();
             objectOutputStream.writeObject(allData);
-            Thread.sleep(500);
+//            Thread.sleep(500);
             System.out.println("Data saved successfully!");
         } catch (Exception e) {
             System.out.println("[ERROR] ==> Something went wrong while saving the file! " + e.getMessage());
@@ -368,13 +368,13 @@ public class PremierLeagueManager implements LeagueManager {
         try (FileInputStream fileInputStream = new FileInputStream(new File(SAVE_PATH + "\\saveFile.txt"));
              ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream)) {
             System.out.println("saveFile.txt found!");
-            System.out.print("Now loading data");
-            PremierLeagueManager.threeDotSuspense();
+//            System.out.print("Now loading data");
+//            PremierLeagueManager.threeDotSuspense();
             allData = (List<Object>) objectInputStream.readObject();
             //*load based on the index it was saved (allData is a list of two lists)*//
             allFootballClubs = (List<FootballClub>) allData.get(0);
             allMatches = (List<FootballMatch>) allData.get(1);
-            Thread.sleep(500);
+//            Thread.sleep(500);
             System.out.println("Data loaded successfully!");
         } catch (FileNotFoundException ex) {
             System.out.println("[ERROR] ==> There weren't any files to load!");

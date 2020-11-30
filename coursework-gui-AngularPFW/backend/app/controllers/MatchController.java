@@ -3,11 +3,8 @@ package controllers;
 import play.mvc.*;
 import play.libs.Json;
 import java.util.*;
-//import java.util.regex.Pattern;
 
 public class MatchController extends Controller {
-//    private static final Pattern DATE_PATTERN = Pattern.compile("^\\d{4}-\\d{2}-\\d{2}$");
-//    public coursework.PremierLeagueManager premierLeagueManager = new coursework.PremierLeagueManager();
     public Result returnAllMatches() {
 //        coursework.ConsoleApplication.loadData();
         List<coursework.FootballMatch> allMatches = coursework.PremierLeagueManager.getAllMatches();
@@ -36,7 +33,7 @@ public class MatchController extends Controller {
     }
 
     public Result playMatch() {
-        coursework.ConsoleApplication.loadData();
+//        coursework.ConsoleApplication.loadData();
         try {
             coursework.ConsoleApplication.addPlayedMatch();
         } catch (Exception ignored) {}

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FootballMatch } from 'src/app/models/FootballMatch';
+import { MatchAndClub } from 'src/app/models/MatchAndClub';
 import { AllMatchesService } from 'src/app/services/all-matches/all-matches.service';
 import { MatchesOnDateService } from 'src/app/services/matches-on-date/matches-on-date.service';
 
@@ -15,17 +16,10 @@ export class AllMatchesComponent implements OnInit {
   constructor(private allMatchesService : AllMatchesService, private matchesByDateService : MatchesOnDateService) { }
   ngOnInit(): void {
     this.getFootballMatches();
-    this.updateFootballMatchesAfterPlay();
-  }
 
-  updateFootballMatchesAfterPlay() : void {
-    this.allMatchesService.playMatch().subscribe(
-      response => this.handleSuccessfulResponseAfterPlay(response),
-      error => this.handleErrorResponse(error)
-    )
-  }
-  handleSuccessfulResponseAfterPlay(response : any) : void {
-    this.allMatches = response[1];
+    if (MatchAndClub.matches) {
+      this.allMatches = MatchAndClub.matches;
+    }
   }
 
   getFootballMatchesOnDate() : void {
@@ -48,7 +42,6 @@ export class AllMatchesComponent implements OnInit {
       let month = parseInt(match.matchDate[1]) < 10? "0" + match.matchDate[1] : match.matchDate[2];
       let day = parseInt(match.matchDate[2]) < 10? "0" + match.matchDate[2] : match.matchDate[2];
       match.matchDate = match.matchDate[0] + "-" + month + "-" + day;
-      console.log(match.matchDate)
     }
     console.log(response);
   }
