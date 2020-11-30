@@ -1,0 +1,26 @@
+.container {
+    background-color: #222;
+    height: 92.6vh;
+}
+
+.top-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.top-header > img {
+    object-fit: contain;
+    height: 150px;
+}
+
+.main-center {
+    display: flex;
+    justify-content: center;
+}
+.main-center-left, .main-center-center, .main-center-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
