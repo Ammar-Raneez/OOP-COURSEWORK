@@ -1,7 +1,6 @@
 .topnav {
     background-color: #222;
     overflow: hidden;
-    position: sticky;
 }
 
 .topnav a {
@@ -25,6 +24,15 @@
     font-weight: bolder;
 }
 
-.topnav .icon {
-    display: none;
+.topnav .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float: right;
+    padding-right: 16px;
+}
+
+.topnav img {
+    height: 50px;
+    object-fit: contain;
 }
