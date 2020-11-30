@@ -1,0 +1,86 @@
+.container {
+    background-color: #222;
+    padding: 0px 20px;
+    height: 92.6vh;
+}
+
+
+.top-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.top-header-img {
+    object-fit: contain;
+    height: 200px;
+}
+
+
+.main-center {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+}
+.main-center-center {
+    border: 1px solid #f00;
+    height: 400px;
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+    width: 700px;
+}
+.main-center-center-row {
+    display: flex;
+    margin: 12px;
+    transition: 0.3s ease;
+    height: 80px;
+}
+.main-center-center-row:hover {
+    transform: scale(1.1);
+    border: 1px solid #62ffa7;
+    cursor: pointer;
+}
+.main-center-center-row-left, .main-center-center-row-right, .main-center-center-row-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.main-center-center-row-left, .main-center-center-row-right {
+    width: 300px;
+}
+.main-center-center-row-center {
+    width: 100px;
+}
+.main-center-left-img {
+    object-fit: contain;
+    height: 300px;
+}
+.main-center-right {
+    display: flex;
+    flex-direction: column;
+}
+.main-center-right-img {
+    object-fit: contain;
+    height: 200px;
+}
+.main-center-center-row-clubName {
+    font-weight: 600;
+    color: white;
+    text-shadow: 1.5px 1.5px #62ffa7;
+    font-size: 18px;
+}
+.main-center-center-row-clubScore {
+    font-weight: 600;
+    color: #04f5ff;
+    font-size: 30px;
+}
+.main-center-center-row-center-date {
+    color: white;
+}
+.main-center-center-row-center-vs {
+    color: #555;
+    font-size: 40px;
+    font-weight: 900;
+}

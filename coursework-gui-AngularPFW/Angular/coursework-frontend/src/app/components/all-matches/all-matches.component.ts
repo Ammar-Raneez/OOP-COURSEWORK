@@ -13,6 +13,7 @@ export class AllMatchesComponent implements OnInit {
   constructor(private allMatchesService : AllMatchesService) { }
 
   ngOnInit(): void {
+    this.getFootballMatches();
   }
 
   getFootballMatches() : void {
