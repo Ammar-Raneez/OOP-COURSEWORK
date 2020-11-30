@@ -8,11 +8,49 @@
 .top-header {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
+    padding-right: 60px;
 }
 .top-header-img {
     object-fit: contain;
     height: 200px;
+}
+.top-header-right > input {
+    width: 300px;
+    margin: 4px;
+    padding: 8px;
+    border: 1px solid #04f5ff;
+    background-color: transparent;
+    color: white;
+    font-size: 16px;
+}
+.top-header-right > input:focus, .top-header-right > input:active {
+    outline: none;
+}
+.top-header-right button {
+    margin: 4px;
+    padding: 8px;
+    background-color: #222;
+    font-size: 16px;
+    transition: 0.2s ease;
+}
+.top-header-right-search {
+    color: #04f5ff;
+    border: 1px solid #04f5ff;
+}
+.top-header-right-search:hover {
+    background-color: #04f5ff;
+    color: white;
+    cursor: pointer;
+}
+.top-header-right-reset {
+    color: #f00;
+    border: 1px solid #f00;
+}
+.top-header-right-reset:hover {
+    background-color: #f00;
+    color: white;
+    cursor: pointer;
 }
 
 
