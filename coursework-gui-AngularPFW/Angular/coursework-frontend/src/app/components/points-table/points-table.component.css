@@ -67,6 +67,7 @@ th, td {
     border-radius: 30px;
     transition: 0.3s ease;
     font-size: 18px;
+    outline: none;
 }
 .lower-footer-sortBtn:hover {
     color: #ff015b;
