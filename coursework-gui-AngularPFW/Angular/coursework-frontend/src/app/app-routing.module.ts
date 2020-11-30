@@ -6,7 +6,7 @@ import { SelectedMatchComponent } from './components/selected-match/selected-mat
 
 const routes: Routes = [
   {
-    path: "",
+    path: "standings",
     component: PointsTableComponent
   },
   {
