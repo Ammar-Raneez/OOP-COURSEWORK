@@ -7,7 +7,7 @@ import { MatchesOnDateService } from 'src/app/services/matches-on-date/matches-o
 @Component({
   selector: 'app-all-matches',
   templateUrl: './all-matches.component.html',
-  styleUrls: ['./all-matches.component.css']
+  styleUrls: ['./all-matches.component.css'],
 })
 export class AllMatchesComponent implements OnInit {
   allMatches : FootballMatch[];

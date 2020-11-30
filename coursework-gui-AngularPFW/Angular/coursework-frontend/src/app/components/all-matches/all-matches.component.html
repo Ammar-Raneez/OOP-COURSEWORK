@@ -11,6 +11,9 @@
     <div class="main-center">
         <img class="main-center-left-img" src="assets/images/PL-trophy.png" />
         <div class="main-center-center">
+            <ngx-spinner size="medium" *ngIf="!allMatches" bdColor="rgba(51,51,51,0)" type="line-scale-pulse-out" [zIndex]="0" [fullScreen]="false">
+                <p style="color : white">Loading...</p>
+            </ngx-spinner>
             <div *ngFor="let match of allMatches; let i = index"  routerLink="{{ i }}" class="main-center-center-row">
                 <div class="main-center-center-row-left" >
                     <h3 class="main-center-center-row-clubName">{{ match.firstTeam.clubName.toLocaleUpperCase() }}</h3>

@@ -9,6 +9,8 @@
     max-height:400px;
     width: 100%;
     scroll-behavior: smooth;
+    position: relative;
+    height: 400px;
 }
 
 .table {
