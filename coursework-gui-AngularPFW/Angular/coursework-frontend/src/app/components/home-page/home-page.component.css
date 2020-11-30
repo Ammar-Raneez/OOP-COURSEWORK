@@ -1,0 +1,101 @@
+.container {
+    background-color: #222;
+    height: 100%;
+    padding: 8px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.top-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.top-header h1 {
+    color: white;
+    font-size: 60px;
+    background: url("/assets/images/PL-lionTextBg.jpg") no-repeat;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+	background-size:auto;  
+	animation-timing-function: ease;
+    animation: image infinite 20s;	
+    font-family: 'Oxanium';
+}
+
+.main-center {
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+}
+
+.main-center-row {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+    border: 1px solid #f00;
+    border-radius: 30px;
+    height: 220px;
+    transition: 0.3s ease;
+    background: url("/assets/images/PL-ballHomeBg.png") no-repeat;
+    -webkit-background-clip: image;
+	background-size:auto;  
+	animation-timing-function: ease;
+    animation: image infinite 20s;
+    margin-bottom: 16px;
+}
+@keyframes image {
+    100% {
+		background-position: 0%;
+	}
+    50% {
+		background-position: 100%;	
+	}
+	0% {
+		background-position: 0%;	
+	}
+}
+.main-center-row:hover {
+    transform: scale(1.05);
+    border: 5px solid #62ffaf;
+    cursor: pointer;
+}
+
+.main-center-row-upper {
+    width: 100%;
+}
+.main-center-row-upper > h1 {
+    color: #04f5ff;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.main-center-row-lower {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.main-center-row-lower-left {
+    height: 150px;
+    margin-right: 20px;
+    min-width: 150px;
+}
+.main-center-row-lower-right {
+    padding: 10px 16px;
+}
+.main-center-row-lower-left > img {
+    height: 100%;
+    width: 150px;
+    padding: 12px;
+    object-fit: contain;
+}
+.main-center-row-lower-right > h1 {
+    font-size: 20px;
+    color: white;
+    font-family: 'Roboto';
+    text-align: justify;
+}
