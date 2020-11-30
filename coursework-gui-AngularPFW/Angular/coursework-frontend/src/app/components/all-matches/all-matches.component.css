@@ -38,17 +38,11 @@
     color: #04f5ff;
     border: 1px solid #04f5ff;
 }
-.top-header-right-search:hover {
-    background-color: #04f5ff;
-    color: white;
-    cursor: pointer;
-}
 .top-header-right-reset {
     color: #f00;
     border: 1px solid #f00;
 }
-.top-header-right-reset:hover {
-    background-color: #f00;
+.top-header-right-search:hover, .top-header-right-reset:hover {
     color: white;
     cursor: pointer;
 }

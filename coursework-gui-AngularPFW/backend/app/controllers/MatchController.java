@@ -6,7 +6,7 @@ import java.util.*;
 
 public class MatchController extends Controller {
     public Result returnAllMatches() {
-        coursework.ConsoleApplication.loadData();
+//        coursework.ConsoleApplication.loadData();
         List<coursework.FootballMatch> allData = coursework.PremierLeagueManager.getAllMatches();
         return ok(Json.toJson(allData));
     }

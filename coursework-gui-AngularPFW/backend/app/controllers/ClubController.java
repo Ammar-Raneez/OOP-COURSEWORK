@@ -10,4 +10,6 @@ public class ClubController extends Controller {
         List<coursework.FootballClub> allData = coursework.PremierLeagueManager.getAllFootballClubs();
         return ok(Json.toJson(allData));
     }
+
+
 }
