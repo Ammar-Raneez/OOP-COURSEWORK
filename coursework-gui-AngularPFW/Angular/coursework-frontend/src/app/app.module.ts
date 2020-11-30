@@ -7,13 +7,15 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { PointsTableComponent } from './components/points-table/points-table.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AllMatchesComponent } from './components/all-matches/all-matches.component';
+import { SelectedMatchComponent } from './components/selected-match/selected-match.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     PointsTableComponent,
-    AllMatchesComponent
+    AllMatchesComponent,
+    SelectedMatchComponent
   ],
   imports: [
     BrowserModule,

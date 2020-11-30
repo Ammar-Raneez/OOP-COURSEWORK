@@ -5,9 +5,16 @@ import play.libs.Json;
 import java.util.*;
 
 public class MatchController extends Controller {
+    public coursework.PremierLeagueManager premierLeagueManager = new coursework.PremierLeagueManager();
     public Result returnAllMatches() {
 //        coursework.ConsoleApplication.loadData();
         List<coursework.FootballMatch> allData = coursework.PremierLeagueManager.getAllMatches();
         return ok(Json.toJson(allData));
+    }
+
+    public Result returnSelectedMatch(Integer arrIndex) {
+//        coursework.ConsoleApplication.loadData();
+        coursework.FootballMatch selectedMatch = coursework.PremierLeagueManager.getAllMatches().get(arrIndex);
+        return ok(Json.toJson(selectedMatch));
     }
 }
