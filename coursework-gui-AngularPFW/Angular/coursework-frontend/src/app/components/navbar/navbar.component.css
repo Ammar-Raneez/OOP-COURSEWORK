@@ -11,15 +11,17 @@
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
+    transition: 0.2s ease;
 }
 
 .topnav a:hover {
-    background-color: #ddd;
     color: black;
+    color: #62ffa4;
 }
 
 .topnav a.active {
     color: #62ffa4;
+    font-weight: bolder;
 }
 
 .topnav .icon {

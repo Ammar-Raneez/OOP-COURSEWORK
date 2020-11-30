@@ -4,7 +4,7 @@ import { SingleMatchFootballClubStatistic } from './SingleMatchFootballClubStati
 export class FootballMatch {
     secondTeamSingleMatchStats : SingleMatchFootballClubStatistic;
     firstTeamSingleMatchStats : SingleMatchFootballClubStatistic;
-    matchDate : Date;
+    matchDate : string;
     secondTeam : FootballClub;
     firstTeam : FootballClub;
 }

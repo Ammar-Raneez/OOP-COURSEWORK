@@ -24,6 +24,14 @@ export class AllMatchesComponent implements OnInit {
   }
   handleSuccessfulResponse(response : any) : void {
     this.allMatches = response;
+
+    for(let match of this.allMatches) {
+      let month = parseInt(match.matchDate[1]) < 10? "0" + match.matchDate[1] : match.matchDate[2];
+      let day = parseInt(match.matchDate[2]) < 10? "0" + match.matchDate[2] : match.matchDate[2];
+      match.matchDate = match.matchDate[0] + "-" + month + "-" + day;
+      console.log(match.matchDate)
+    }
+
     console.log(response);
   }
   handleErrorResponse(error : any) : void {

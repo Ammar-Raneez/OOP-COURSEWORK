@@ -1,6 +1,7 @@
 .container {
     background-color: #222;
     height: 92.6vh;
+    border: 1px solid #f00;
 }
 
 .top-header {
@@ -15,12 +16,56 @@
 
 .main-center {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
 }
 .main-center-left, .main-center-center, .main-center-right {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin: 10px;
+}
+.main-center-left h3, .main-center-center h3, .main-center-right h3 {
+    margin: 2px;
+    font-size: 22px;
+}
+.main-center-left {
+    color: #04f5ff;
+    /* margin-left: 50px; */
+    width: 500px;
+}
+.main-center-left-clubName {
+    color: white;
+    text-shadow: 1.5px 1.5px #04f5ff;
+    font-size: 25px;
+}
+.main-center-center {
+    color: white;
+}
+.main-center-right {
+    color: #f00;
+    /* margin-right: 50px; */
+    width: 500px;
+}
+.main-center-right-clubName {
+    color: white;
+    text-shadow: 1.5px 1.5px #f00;
+    font-size: 25px;
 }
 
+.bottom-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.bottom-footer h3 {
+    font-size: 30px;
+    background: -webkit-linear-gradient(left, #04f5ff , #f00);
+    background: -o-linear-gradient(right, #04f5ff, #f00);
+    background: -moz-linear-gradient(right, #04f5ff, #f00);
+    background: linear-gradient(to right, #04f5ff , #f00); 
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}

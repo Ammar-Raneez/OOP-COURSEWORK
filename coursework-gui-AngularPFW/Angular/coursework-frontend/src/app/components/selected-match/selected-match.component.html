@@ -5,7 +5,7 @@
 
     <div class="main-center">
         <div class="main-center-left">
-            <h3>{{ footballMatch.firstTeam.clubName.toLocaleUpperCase() }}</h3>
+            <h3 class="main-center-left-clubName">{{ footballMatch.firstTeam.clubName.toLocaleUpperCase() }}</h3>
             <h3>{{ footballMatch.firstTeamSingleMatchStats.goals }}</h3>
             <h3>{{ footballMatch.firstTeamSingleMatchStats.shots }}</h3>
             <h3>{{ footballMatch.firstTeamSingleMatchStats.shotsOnTarget }}</h3>
@@ -33,7 +33,7 @@
             <h3>Corners</h3>
         </div>
         <div class="main-center-right">
-            <h3>{{ footballMatch.secondTeam.clubName.toLocaleUpperCase() }}</h3>
+            <h3 class="main-center-right-clubName">{{ footballMatch.secondTeam.clubName.toLocaleUpperCase() }}</h3>
             <h3>{{ footballMatch.secondTeamSingleMatchStats.goals }}</h3>
             <h3>{{ footballMatch.secondTeamSingleMatchStats.shots }}</h3>
             <h3>{{ footballMatch.secondTeamSingleMatchStats.shotsOnTarget }}</h3>
@@ -46,5 +46,9 @@
             <h3>{{ footballMatch.secondTeamSingleMatchStats.offsides }}</h3>
             <h3>{{ footballMatch.secondTeamSingleMatchStats.corners }}</h3>
         </div>
+    </div>
+
+    <div class="bottom-footer">
+        <h3 class="bottom-footer-text">{{ footerMsg }}</h3>
     </div>
 </div>
