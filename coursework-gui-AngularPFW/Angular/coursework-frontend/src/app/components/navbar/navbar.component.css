@@ -1,5 +1,5 @@
 .topnav {
-    background-color: #333;
+    background-color: #222;
     overflow: hidden;
 }
 
@@ -19,7 +19,7 @@
 }
 
 .topnav a.active {
-    color: #00ff87;
+    color: #62ffa4;
 }
 
 .topnav .icon {

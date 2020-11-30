@@ -24,7 +24,6 @@ export class PointsTableComponent implements OnInit {
   }
   handleSuccessfulResponse(response : any) : void {
     this.allClubs = response;
-    console.log(response);
   }
   handleErrorResponse(error : any) : void {
     this.allClubs = error.message;
