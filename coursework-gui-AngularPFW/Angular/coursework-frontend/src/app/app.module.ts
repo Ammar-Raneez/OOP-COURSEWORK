@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AllMatchesComponent } from './components/all-matches/all-matches.component';
 import { SelectedMatchComponent } from './components/selected-match/selected-match.component';
 import { FormsModule } from '@angular/forms';
+import { HomePageComponent } from './components/home-page/home-page.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { FormsModule } from '@angular/forms';
     NavbarComponent,
     PointsTableComponent,
     AllMatchesComponent,
-    SelectedMatchComponent
+    SelectedMatchComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
