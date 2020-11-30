@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { FootballMatch } from 'src/app/models/FootballMatch';
 import { SelectedMatchService } from 'src/app/services/selected-match.service';
 
@@ -11,10 +12,10 @@ export class SelectedMatchComponent implements OnInit {
   id : string;
   footballMatch : FootballMatch;
 
-  constructor(private selectedMatchService : SelectedMatchService) { }
+  constructor(private selectedMatchService : SelectedMatchService, private route : ActivatedRoute) { }
 
   ngOnInit(): void {
-    
+    this.id = this.route.snapshot.params["id"];
     this.getFootballMatches();
   }
 
