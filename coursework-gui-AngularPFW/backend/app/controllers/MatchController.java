@@ -3,10 +3,10 @@ package controllers;
 import play.mvc.*;
 import play.libs.Json;
 import java.util.*;
-import java.util.regex.Pattern;
+//import java.util.regex.Pattern;
 
 public class MatchController extends Controller {
-    private static final Pattern DATE_PATTERN = Pattern.compile("^\\d{4}-\\d{2}-\\d{2}$");
+//    private static final Pattern DATE_PATTERN = Pattern.compile("^\\d{4}-\\d{2}-\\d{2}$");
 //    public coursework.PremierLeagueManager premierLeagueManager = new coursework.PremierLeagueManager();
     public Result returnAllMatches() {
 //        coursework.ConsoleApplication.loadData();
@@ -22,7 +22,7 @@ public class MatchController extends Controller {
     }
 
     public Result returnMatchesOnDate(String obtainedDate) {
-        coursework.ConsoleApplication.loadData();
+//        coursework.ConsoleApplication.loadData();
         List<coursework.FootballMatch> allMatches = coursework.PremierLeagueManager.getAllMatches();
         List<coursework.FootballMatch> filteredMatches = new ArrayList<>();
 
@@ -33,5 +33,21 @@ public class MatchController extends Controller {
         }
 
         return ok(Json.toJson(filteredMatches));
+    }
+
+    public Result playMatch() {
+        coursework.ConsoleApplication.loadData();
+        try {
+            coursework.ConsoleApplication.addPlayedMatch();
+        } catch (Exception ignored) {}
+
+        List<coursework.FootballClub> updatedClubs = coursework.PremierLeagueManager.getAllFootballClubs();
+        updatedClubs.sort(Collections.reverseOrder());
+        List<coursework.FootballMatch> updatedMatches = coursework.PremierLeagueManager.getAllMatches();
+        Collections.sort(updatedMatches);
+
+        List<Object> allData = new ArrayList<>(Arrays.asList(updatedClubs, updatedMatches));
+
+        return ok(Json.toJson(allData));
     }
 }

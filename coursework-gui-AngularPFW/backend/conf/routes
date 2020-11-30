@@ -6,6 +6,7 @@
 GET     /pointstable                controllers.ClubController.returnAllClubs
 GET     /pointstable/winfilter      controllers.ClubController.winSortClubFilter
 GET     /pointstable/goalfilter     controllers.ClubController.goalSortClubFilter
+GET     /pointstable/playmatch      controllers.MatchController.playMatch
 GET     /pointstable/*arrIndex      controllers.MatchController.returnSelectedMatch(arrIndex : Integer)
 GET     /allmatches                 controllers.MatchController.returnAllMatches
 GET     /specificMatches/*date      controllers.MatchController.returnMatchesOnDate(date : String)

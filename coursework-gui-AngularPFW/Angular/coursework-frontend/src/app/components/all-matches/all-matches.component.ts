@@ -13,9 +13,19 @@ export class AllMatchesComponent implements OnInit {
   date : string;
 
   constructor(private allMatchesService : AllMatchesService, private matchesByDateService : MatchesOnDateService) { }
-
   ngOnInit(): void {
     this.getFootballMatches();
+    this.updateFootballMatchesAfterPlay();
+  }
+
+  updateFootballMatchesAfterPlay() : void {
+    this.allMatchesService.playMatch().subscribe(
+      response => this.handleSuccessfulResponseAfterPlay(response),
+      error => this.handleErrorResponse(error)
+    )
+  }
+  handleSuccessfulResponseAfterPlay(response : any) : void {
+    this.allMatches = response[1];
   }
 
   getFootballMatchesOnDate() : void {
