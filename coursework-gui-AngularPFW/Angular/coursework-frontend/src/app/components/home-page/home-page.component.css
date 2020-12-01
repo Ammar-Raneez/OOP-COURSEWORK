@@ -79,6 +79,13 @@ a {
     padding: 50px;
 }
 
+.main-center > a, .main-center-row, .main-center-row-upper, .main-center-row-upper > h1, .main-center-row-lower,
+.main-center-row-lower-left, .main-center-row-lower-left > img, .main-center-row-lower-right,
+.main-center-row-lower-right > h1
+{
+    background: transparent;
+}
+
 .main-center-row {
     display: flex;
     align-items: center;
@@ -87,7 +94,7 @@ a {
     padding: 10px;
     border: 1px solid #f00;
     border-radius: 30px;
-    height: 220px;
+    height: 230px;
     transition: 0.3s ease;
     background: url("/assets/images/PL-ballHomeBg.png") no-repeat;
     -webkit-background-clip: image;
