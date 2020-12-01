@@ -1,8 +1,13 @@
 .container {
-    background-color: purple;
+    background-color: #222;
+    border: 5px solid purple;
     height: 100%;
     padding: 8px;
     margin-top: 3%;
+    width: 100%;
+    background-image: url(/assets/images/background.png);
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 .container {
     font-size: 21px;
@@ -106,7 +111,7 @@ a {
 }
 .main-center-row:hover {
     transform: scale(1.05);
-    border: 5px solid #ff2882;
+    border: 2px solid #ff2882;
     cursor: pointer;
 }
 
@@ -143,4 +148,50 @@ a {
     color: #62ffaf;
     font-family: 'Roboto';
     text-align: justify;
+}
+
+.main-center-lowerSection {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.main-center-lowerSectionI {
+    position: relative;
+    margin-bottom: 40px;
+    /* max-width: 400px; */
+    /* max-height: 300px; */
+    transition: 0.3s ease;
+}
+
+.main-center-lowerSectionI img {
+    width: 400px;
+    object-fit: contain;
+}
+
+.main-center-lowerSectionIO {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: auto;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    transition: 0.3s ease;
+}
+
+.main-center-lowerSectionIOT {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.main-center-lowerSectionI:hover {
+    transform: scale(1.1);
+}
+.main-center-lowerSectionIO:hover {
+    border: 2px solid purple;
+    opacity: 1;
 }
