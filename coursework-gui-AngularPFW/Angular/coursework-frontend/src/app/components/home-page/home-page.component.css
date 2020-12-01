@@ -110,7 +110,7 @@ a {
 	}
 }
 .main-center-row:hover {
-    transform: scale(1.05);
+    transform: scale(1.02);
     border: 2px solid #ff2882;
     cursor: pointer;
 }
@@ -122,6 +122,14 @@ a {
     color: white;
     display: flex;
     justify-content: flex-start;
+}
+
+.main-center-lowerSectionTopic {
+    text-align: left;
+    color: white;
+    margin-left: 35px;
+    margin-bottom: 10px;
+    font-family: 'Oxanium';
 }
 
 .main-center-row-lower {
@@ -151,20 +159,30 @@ a {
 }
 
 .main-center-lowerSection {
+    margin-left: 16px;
+    margin-right: 16px;
+}
+.main-center-lowerSectionContainer {
     display: flex;
-    justify-content: space-evenly;
+    overflow-y: hidden;
+    overflow-x: scroll;
+    padding: 10px 10px 0 0;
+}
+.main-center-lowerSectionContainer::-webkit-scrollbar {
+    display: none;
 }
 
 .main-center-lowerSectionI {
     position: relative;
     margin-bottom: 40px;
-    /* max-width: 400px; */
-    /* max-height: 300px; */
+    margin-right: 20px;
+    margin-left: 10px;
     transition: 0.3s ease;
 }
 
 .main-center-lowerSectionI img {
     width: 400px;
+    height: 225px;
     object-fit: contain;
 }
 
@@ -176,13 +194,14 @@ a {
     bottom: 0;
     width: 100%;
     height: auto;
-    background: rgba(255, 255, 255, 0.5);
+    background-size: contain;
     opacity: 0;
     transition: 0.3s ease;
 }
 
 .main-center-lowerSectionIOT {
     position: absolute;
+    color: white;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -194,4 +213,23 @@ a {
 .main-center-lowerSectionIO:hover {
     border: 2px solid purple;
     opacity: 1;
+    cursor: pointer;
+}
+
+.backToTopButton {
+    display: flex;
+    justify-content: left;
+    padding: 5px 15px 5px 15px;
+    font-size: 20px;
+    outline: none;
+    color: #ffffff;
+    font-weight: bold;
+    border: 1px solid black;
+    background-color: black;
+    transition: 0.2s ease;
+}
+.backToTopButton:hover {
+    background-color: #ff2882;
+    border-color: #ff2882;
+    cursor: pointer;
 }
