@@ -7,6 +7,10 @@
     -moz-animation: fadein 1s; 
     -webkit-animation: fadein 1s; 
     -o-animation: fadein 1s; 
+    border-left: 5px solid purple;
+    border-right: 5px solid purple;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 1)), url(/assets/images/PL-aguero.jpg);
+    background-size: cover;
 }
 @keyframes fadein {
     from {
@@ -53,12 +57,17 @@
 .top-header {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: space-between;
     padding-right: 60px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding-top: 70px;
 }
-.top-header-img {
-    object-fit: contain;
-    height: 200px;
+.top-header-text {
+    color: white;
+    font-size: 45px;
+    margin-left: 50px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 }
 .top-header-right > input {
     width: 300px;
@@ -96,7 +105,7 @@
 .main-center {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     text-align: center;
 }
 .main-center-center {
@@ -105,7 +114,7 @@
     overflow: scroll;
     display: flex;
     flex-direction: column;
-    width: 700px;
+    width: 1200px;
     position: relative;
 }
 .main-center-center-row {
@@ -130,18 +139,6 @@
 }
 .main-center-center-row-center {
     width: 100px;
-}
-.main-center-left-img {
-    object-fit: contain;
-    height: 300px;
-}
-.main-center-right {
-    display: flex;
-    flex-direction: column;
-}
-.main-center-right-img {
-    object-fit: contain;
-    height: 200px;
 }
 .main-center-center-row-clubName {
     font-weight: 600;
