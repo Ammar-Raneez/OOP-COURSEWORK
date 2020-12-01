@@ -1,13 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { fadeInDownAnimation, fadeInUpAnimation } from 'angular-animations-library';
 
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
-  styleUrls: ['./home-page.component.css'],
-  animations: [
-    fadeInDownAnimation()
-  ]
+  styleUrls: ['./home-page.component.css']
 })
 export class HomePageComponent implements OnInit {
 
