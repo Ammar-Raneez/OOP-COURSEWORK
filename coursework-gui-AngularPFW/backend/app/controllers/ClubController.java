@@ -24,7 +24,7 @@ public class ClubController extends Controller {
 //        coursework.ConsoleApplication.loadData();
 
         List<coursework.FootballClub> allClubs = coursework.PremierLeagueManager.getAllFootballClubs();
-        allClubs.sort(new coursework.GoalDifferenceComparator().reversed());
+        allClubs.sort(new coursework.GoalsForComparator().reversed());
         return ok(Json.toJson(allClubs));
     }
 }
