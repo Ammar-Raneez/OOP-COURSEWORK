@@ -183,7 +183,7 @@ a {
 .main-center-lowerSectionI img {
     width: 400px;
     height: 225px;
-    object-fit: contain;
+    object-fit: cover;
 }
 
 .main-center-lowerSectionIO {
