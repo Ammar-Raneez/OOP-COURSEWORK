@@ -1,6 +1,10 @@
 .topnav {
     background-color: #222;
     overflow: hidden;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9999;
 }
 
 .topnav a {
@@ -12,15 +16,16 @@
     text-decoration: none;
     font-size: 17px;
     transition: 0.2s ease;
+    font-weight: bold;
 }
 
 .topnav a:hover {
     color: black;
-    color: #62ffa4;
+    color: #ff2882;
 }
 
 .topnav a.active {
-    color: #62ffa4;
+    color: #ff2882;
     font-weight: bolder;
 }
 
@@ -28,8 +33,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    float: right;
-    padding-right: 16px;
+    float: left;
 }
 
 .topnav img {

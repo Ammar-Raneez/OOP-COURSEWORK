@@ -1,7 +1,8 @@
 .container {
-    background-color: #222;
+    background-color: purple;
     height: 100%;
     padding: 8px;
+    margin-top: 3%;
 }
 .container {
     font-size: 21px;
@@ -61,24 +62,16 @@ a {
     justify-content: center;
     align-items: center;
 }
-.top-header h1 {
-    color: white;
-    font-size: 60px;
-    background: url("/assets/images/PL-lionTextBg.jpg") no-repeat;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-	background-size:auto;  
-	animation-timing-function: ease;
-    animation: image infinite 20s;	
-    font-family: 'Oxanium';
+
+.top-header > img {
+    height: 250px;
 }
 
 .main-center {
     display: flex;
     flex-direction: column;
-    padding: 50px;
+    padding: 0px 50px 50px 50px;
 }
-
 .main-center > a, .main-center-row, .main-center-row-upper, .main-center-row-upper > h1, .main-center-row-lower,
 .main-center-row-lower-left, .main-center-row-lower-left > img, .main-center-row-lower-right,
 .main-center-row-lower-right > h1
@@ -88,16 +81,13 @@ a {
 
 .main-center-row {
     display: flex;
+    position: relative;
     align-items: center;
     flex-direction: column;
     justify-content: space-between;
     padding: 10px;
-    border: 1px solid #f00;
     border-radius: 30px;
-    height: 230px;
     transition: 0.3s ease;
-    background: url("/assets/images/PL-ballHomeBg.png") no-repeat;
-    -webkit-background-clip: image;
 	background-size:auto;  
 	animation-timing-function: ease;
     animation: image infinite 20s;
@@ -116,7 +106,7 @@ a {
 }
 .main-center-row:hover {
     transform: scale(1.05);
-    border: 5px solid #62ffaf;
+    border: 5px solid #ff2882;
     cursor: pointer;
 }
 
@@ -124,7 +114,7 @@ a {
     width: 100%;
 }
 .main-center-row-upper > h1 {
-    color: #04f5ff;
+    color: white;
     display: flex;
     justify-content: flex-start;
 }
@@ -134,23 +124,23 @@ a {
     justify-content: center;
     align-items: center;
 }
-.main-center-row-lower-left {
-    height: 150px;
-    margin-right: 20px;
-    min-width: 150px;
-}
+
 .main-center-row-lower-right {
     padding: 10px 16px;
 }
 .main-center-row-lower-left > img {
     height: 100%;
-    width: 150px;
+    width: 300px;
     padding: 12px;
     object-fit: contain;
+    transition: 0.2s ease;
+}
+.main-center-row-lower-left > img:hover {
+    transform: scale(1.1);
 }
 .main-center-row-lower-right > h1 {
     font-size: 20px;
-    color: white;
+    color: #62ffaf;
     font-family: 'Roboto';
     text-align: justify;
 }
