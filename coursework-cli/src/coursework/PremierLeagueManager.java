@@ -245,9 +245,14 @@ public class PremierLeagueManager implements LeagueManager {
     //TODO multi season functionality
     private static LocalDate generateRandomDate(int year) {
         String randomDay = String.valueOf(RANDOM.nextInt((31)) + 1);
-        if (Integer.parseInt(randomDay) < 10) randomDay = "0" + randomDay;
+        if (Integer.parseInt(randomDay) < 10) {
+            randomDay = "0" + randomDay;
+        }
+
         String randomMonth = String.valueOf(RANDOM.nextInt((12)) + 1);
-        if (Integer.parseInt(randomMonth) < 10) randomMonth = "0" + randomMonth;
+        if (Integer.parseInt(randomMonth) < 10) {
+            randomMonth = "0" + randomMonth;
+        }
         String dateString = randomDay + "/" + randomMonth + "/" + year;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy");
         return LocalDate.parse(dateString, formatter);
