@@ -224,12 +224,14 @@ a {
     outline: none;
     color: #ffffff;
     font-weight: bold;
-    border: 1px solid black;
-    background-color: black;
+    border: 1px solid #ff2882;
+    background-color: #222;
     transition: 0.2s ease;
 }
 .backToTopButton:hover {
     background-color: #ff2882;
     border-color: #ff2882;
     cursor: pointer;
+    transform: scaleX(1.05);
+    /* border-radius: 50px; */
 }
