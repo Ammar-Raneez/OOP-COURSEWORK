@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AllClubsComponent } from './components/all-clubs/all-clubs.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     PointsTableComponent,
     AllMatchesComponent,
     SelectedMatchComponent,
-    HomePageComponent
+    HomePageComponent,
+    AllClubsComponent
   ],
   imports: [
     BrowserModule,
