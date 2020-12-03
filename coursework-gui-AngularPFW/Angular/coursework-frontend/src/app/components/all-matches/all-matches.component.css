@@ -65,8 +65,9 @@
 }
 .top-header-text {
     color: white;
-    font-size: 45px;
+    font-size: 40px;
     margin-left: 50px;
+    font-weight: bolder;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 }
 .top-header-right > input {
