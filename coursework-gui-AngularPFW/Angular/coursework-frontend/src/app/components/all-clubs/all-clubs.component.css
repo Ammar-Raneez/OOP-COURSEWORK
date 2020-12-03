@@ -4,9 +4,10 @@
 .container {
     background-color: #222;
     padding: 0px 20px;
-    height: 94vh;
+    height: 100%;
     margin-top: 3%;
     animation: fadein 1s;
+    padding: 70px 60px 0px 60px;
     -moz-animation: fadein 1s; 
     -webkit-animation: fadein 1s; 
     -o-animation: fadein 1s; 
@@ -59,9 +60,8 @@
 .top-header-text {
     display: flex;
     align-items: center;
-    margin-top: 50px;
+    /* margin-top: 50px; */
     margin-bottom: 40px;
-    padding: 70px 60px 0px 60px;
 }
 
 .top-header-text > h1 {
@@ -71,4 +71,66 @@
     font-family: 'Satisfy', cursive;
     font-size: 50px;
     color: white;
+}
+
+.main-center-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.main-center-container .main-center-content {
+    color: #62ffaf;
+    position: relative;
+    transition: 0.3s ease;
+    /* border: 1px solid red; */
+    width: 380px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.main-center-hoverContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: auto;
+    background-size: contain;
+    opacity: 0;
+    text-align: center;
+    transition: 0.3s ease;
+}
+
+.main-center-hoverContainerText {
+    position: absolute;
+    color: white;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    transform: translate(-50%, -50%);
+    transform: 0.3s ease;
+}
+
+.main-center-content:hover {
+    transform: scale(1.1);
+    border: 2px solid purple;
+}
+.main-center-hoverContainer:hover {
+    opacity: 1;
+    cursor: pointer;
 }

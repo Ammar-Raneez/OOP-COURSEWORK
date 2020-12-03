@@ -2,4 +2,30 @@
     <div class="top-header-text">
         <h1>Witness the Greatness</h1>
     </div>
+
+    <div class="main-center-container">
+        <!-- <div style="background-image: linear-gradient(rgba({{ club.kit.topColor.red }}, {{ club.kit.topColor.green }}, {{ club.kit.topColor.blue }}, 0.5), rgba({{ club.kit.bottomColor.red }}, {{ club.kit.bottomColor.green }}, {{ club.kit.bottomColor.blue }}, 0.3));" class="main-center-content" *ngFor="let club of allClubs">
+            <h1>{{ club.clubName }}</h1>
+            <h3>Sponsored By</h3>
+            <h3>{{ club.kit.sponsor }}</h3>
+            <div class="main-center-hoverContainer">
+                <div style="background-image: linear-gradient(rgba({{ club.kit.bottomColor.red }}, {{ club.kit.bottomColor.green }}, {{ club.kit.bottomColor.blue }}, 0.5), rgba({{ club.kit.topColor.red }}, {{ club.kit.topColor.green }}, {{ club.kit.topColor.blue }}, 0.3));" class="main-center-hoverContainerText">
+                    <h3>{{ club.clubOwner }}</h3>
+                    <h3>{{ club.clubLocation }}</h3>
+                </div>
+            </div>
+        </div> -->
+
+        <div style="border: 1px solid rgb({{ club.kit.topColor.red }}, {{ club.kit.topColor.green }}, {{ club.kit.topColor.blue }})" class="main-center-content" *ngFor="let club of allClubs">
+            <h1>{{ club.clubName }}</h1>
+            <h3>Sponsored By</h3>
+            <h3>{{ club.kit.sponsor }}</h3>
+            <div class="main-center-hoverContainer">
+                <div style="background-image: linear-gradient(rgba({{ club.kit.topColor.red }}, {{ club.kit.topColor.green }}, {{ club.kit.topColor.blue }}, 0.5), rgba({{ club.kit.bottomColor.red }}, {{ club.kit.bottomColor.green }}, {{ club.kit.bottomColor.blue }}, 0.3));" class="main-center-hoverContainerText">
+                    <h3>Owner {{ club.clubOwner }}</h3>
+                    <h4>Location {{ club.clubLocation }}</h4>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
