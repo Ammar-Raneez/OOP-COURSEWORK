@@ -13,7 +13,7 @@
     -o-animation: fadein 1s; 
     border-left: 5px solid purple;
     border-right: 5px solid purple;
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 1)), url(/assets/images/PL-salah.jpg);
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 1)), url(/assets/images/PL-salah.jpg);
     background-size: cover;
 }
 @keyframes fadein {

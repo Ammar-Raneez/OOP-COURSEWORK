@@ -8,6 +8,8 @@
     -moz-animation: fadein 1s; 
     -webkit-animation: fadein 1s; 
     -o-animation: fadein 1s; 
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 1)), url(/assets/images/PL-mahrez.jpg);
+    background-size: cover;
 }
 @keyframes fadein {
     from {
