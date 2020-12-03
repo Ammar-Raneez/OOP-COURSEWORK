@@ -1,5 +1,5 @@
 .container {
-    background-color: #222;
+    /* background-color: #222; */
     height: 94vh;
     margin-top: 3%;
     animation: fadein 1s;
@@ -8,6 +8,8 @@
     -o-animation: fadein 1s; 
     border-left: 5px solid purple;
     border-right: 5px solid purple;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 1)), url(/assets/images/PL-kane2.jpg);
+    background-size: cover;
 }
 @keyframes fadein {
     from {
@@ -61,8 +63,9 @@
 }
 
 .table {
-    border: 1px solid #222;
-    background-color: #222;
+    /* border: 1px solid #222; */
+    /* background-color: #222; */
+    background-color: transparent;
     width: 100%;
     border-collapse: collapse;
     color: #04f5ff;
@@ -101,7 +104,8 @@ th, td {
 
 .lower-footer {
     height: 213px;
-    background-color: #222;
+    /* background-color: #222; */
+    background-color: transparent;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -112,9 +116,13 @@ th, td {
     height: 210px;
 }
 
+.lower-footer button {
+    /* background-color: #222; */
+    background-color: transparent;
+}
+
 .lower-footer-sortBtn {
-    background-color: #222;
-    color: #04f5ff;
+    color: #adadad;
     height: 50px;
     padding: 8px;
     width: 200px;
@@ -132,13 +140,11 @@ th, td {
 }
 
 .reset-btn {
-    background-color: #222;
     border: 1px solid #f00;
     color: #f00;
 }
 
 .play-btn {
-    background-color: #222;
     border: 1px solid #62ffa4;
     color: #62ffa4;
 }
