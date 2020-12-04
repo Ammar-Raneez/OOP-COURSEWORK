@@ -15,6 +15,10 @@ public class ClubController extends Controller {
     }
 
     public Result returnSelectedClub(String clubName) {
+        if (clubName.contains("%")) {
+            String[] whitespaceParamSplit = clubName.split("%20");
+            clubName = whitespaceParamSplit[0] + " " + whitespaceParamSplit[1];
+        }
         coursework.FootballClub selectedClub = leagueManager.displaySelectedClub(clubName);
         return ok(Json.toJson(selectedClub));
     }

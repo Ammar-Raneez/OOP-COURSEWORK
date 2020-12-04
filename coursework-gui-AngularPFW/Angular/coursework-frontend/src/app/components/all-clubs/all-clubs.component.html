@@ -9,7 +9,7 @@
         </ngx-spinner>
         <!--{ 'border-color': 'rgb({{club.kit.topColor.red}} , {{club.kit.topColor.green}} , {{club.kit.topColor.blue}})' }"-->
         <div [ngStyle] = "{ 'border' : '1px solid rgb(' + club.kit.topColor.red + ',' + club.kit.topColor.green + ',' + club.kit.topColor.blue + ')' }"
-            class="main-center-content" *ngFor="let club of allClubs"
+            class="main-center-content" *ngFor="let club of allClubs" routerLink="{{ club.clubName }}"
         >
             <h1>{{ club.clubName }}</h1>
             <h3>Sponsored By</h3>

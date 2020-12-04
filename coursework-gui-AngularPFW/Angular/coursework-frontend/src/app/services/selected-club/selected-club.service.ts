@@ -9,6 +9,6 @@ export class SelectedClubService {
   constructor(private httpClient : HttpClient) {  }
   
   getSelectedClub(clubName : string) {
-    return this.httpClient.get<FootballClub>(`http://localhost:9000/allmatches/${clubName}`);
+    return this.httpClient.get<FootballClub>(`http://localhost:9000/clubs/${clubName}`);
   }
 }
