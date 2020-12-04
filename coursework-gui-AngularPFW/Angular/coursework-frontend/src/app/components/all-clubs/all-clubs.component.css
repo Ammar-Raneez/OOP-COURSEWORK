@@ -5,6 +5,7 @@
     background-color: #222;
     padding: 0px 20px;
     height: 100%;
+    min-height: 94vh;
     margin-top: 3%;
     animation: fadein 1s;
     padding: 70px 60px 0px 60px;
