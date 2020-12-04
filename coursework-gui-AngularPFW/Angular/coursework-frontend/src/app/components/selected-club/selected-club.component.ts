@@ -13,6 +13,7 @@ export class SelectedClubComponent implements OnInit {
   clubName : string;
   positionBackgroundColor: string[] = [];
   starRatingCount: number[] = [];
+  imageLink: string[] = [];
 
   constructor(private selectedClubService : SelectedClubService, private route : ActivatedRoute) { }
 
@@ -31,6 +32,7 @@ export class SelectedClubComponent implements OnInit {
     this.selectedClub = response;
     this.determinePositionBackgroundColor();
     this.determineStarRatingCount();
+    this.determineImageLink();
     console.log(response);
   }
   handleErrorResponse(error : any) : void {
@@ -46,7 +48,6 @@ export class SelectedClubComponent implements OnInit {
 
     if (this.selectedClub) {
       for(let player of this.selectedClub.allPlayers) {
-        console.log(player.position)
         if(goldenRod.includes(player.position)) {
           this.positionBackgroundColor.push('goldenrod');
         } else if(red.includes(player.position)) {
@@ -70,6 +71,16 @@ export class SelectedClubComponent implements OnInit {
         } else {
           this.starRatingCount.push(5);
         }
+      }
+    }
+  }
+
+  determineImageLink() : void {
+    let threeImagePaths: string[] = ['assets/images/PL-player.png', 'assets/images/PL-player2.png', 'assets/images/PL-player3.png'];
+    if(this.selectedClub) {
+      for(let player of this.selectedClub.allPlayers) {
+        let randomNum = Math.floor(Math.random() * 3);
+        this.imageLink.push(threeImagePaths[randomNum]);
       }
     }
   }
