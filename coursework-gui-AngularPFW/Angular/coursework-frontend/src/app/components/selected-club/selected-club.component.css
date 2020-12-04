@@ -115,7 +115,8 @@
     height: auto;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
-    background-color: black;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 1)), url(/assets/images/PL-kevin.jpg);
+    background-size: contain;
     opacity: 0;
     text-align: center;
     transition: 0.3s ease;
@@ -146,11 +147,21 @@
 .colOne, .colTwo, .colThree {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .colStat {
     color: #04f5ff;
     font-weight: bolder;
     margin-left: 4px;
-    /* background-color: rgba(255, 255, 255, 0.5); */
+}
+
+.colThree .colThreeContainer .playerPosition {
+    color: white;
+    font-weight: bolder;
+    background-color: goldenrod;
+}
+
+.colThree .colThreeContainer .playerNationality {
+    font-weight: bolder;
 }

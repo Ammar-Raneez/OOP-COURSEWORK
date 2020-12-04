@@ -16,9 +16,9 @@
                         {{ player.name }}
                     </div>
                     <div class="hoverLowerSection">
-                        <div class="colAvatar">
+                        <!-- <div class="colAvatar">
 
-                        </div>
+                        </div> -->
                         <div class="colOne">
                             <div class="colLabel">
                                 <p>SPE</p>
@@ -55,11 +55,11 @@
 
                         <div class="colThree">
                             <div class="colThreeContainer">
-                                <p>{{ player.nationality }}</p>
-                                <p>{{ player.preferredFoot }}</p>
-                                <p>{{ player.height }}</p>
-                                <p>{{ player.position }}</p>
-                                <p>{{ player.playerStats.overall < 10? "0" + player.playerStats.overall : player.playerStats.overall }}</p>
+                                <p class="playerNationality">{{ player.nationality }}<span class="material-icons">outlined_flag</span></p>
+                                <p>🦶🏻{{ player.preferredFoot }}</p>
+                                <p><i class="material-icons">accessibility</i><i class="material-icons">height</i>{{ player.height }}</p>
+                                <p class="playerPosition">{{ player.position }}</p>
+                                <p style="font-size: 30px;"><span class="colStat">{{player.playerStats.overall < 10? "0" + player.playerStats.overall : player.playerStats.overall }}</span></p>
                             </div>
 
                         </div>
