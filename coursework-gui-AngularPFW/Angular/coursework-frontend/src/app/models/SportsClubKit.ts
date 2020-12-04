@@ -1,5 +1,7 @@
+import { Color } from './Color';
+
 export class SportsClubKit {
     sponsor : string;
-    topColor : object;
-    bottomColor : object;
+    topColor : Color;
+    bottomColor : Color;
 }

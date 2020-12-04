@@ -76,6 +76,7 @@
 
 .main-center-container {
     display: flex;
+    min-height: 400px;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
