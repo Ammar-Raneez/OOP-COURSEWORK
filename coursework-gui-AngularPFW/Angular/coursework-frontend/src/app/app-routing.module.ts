@@ -4,6 +4,7 @@ import { AllClubsComponent } from './components/all-clubs/all-clubs.component';
 import { AllMatchesComponent } from './components/all-matches/all-matches.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { PointsTableComponent } from './components/points-table/points-table.component';
+import { SelectedClubComponent } from './components/selected-club/selected-club.component';
 import { SelectedMatchComponent } from './components/selected-match/selected-match.component';
 
 const routes: Routes = [
@@ -14,6 +15,10 @@ const routes: Routes = [
   {
     path: "clubs",
     component: AllClubsComponent
+  },
+  {
+    path: "clubs/:clubName",
+    component: SelectedClubComponent
   },
   {
     path: "standings",
