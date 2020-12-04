@@ -8,7 +8,7 @@ export class PlayerStats {
     crossing : number;
     accuracy : number;
     strength : number;
-    control : 47;
+    control : number;
     goalKeeperHandling : number;
     goalKeepingPressure : number;
     goalKeepingReaction : number;

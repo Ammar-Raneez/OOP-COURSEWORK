@@ -13,7 +13,7 @@
             <div class="hoverContainer">
                 <div class="hoverText">
                     <div class="hoverTextName">
-                        {{ player.name }}
+                        <h2>{{ player.name.toLocaleUpperCase() }}</h2>
                     </div>
                     <div class="hoverLowerSection">
                         <!-- <div class="colAvatar">
@@ -59,7 +59,7 @@
                                 <p>🦶🏻{{ player.preferredFoot }}</p>
                                 <p><i class="material-icons">accessibility</i><i class="material-icons">height</i>{{ player.height }}</p>
                                 <p class="playerPosition">{{ player.position }}</p>
-                                <p style="font-size: 30px;"><span class="colStat">{{player.playerStats.overall < 10? "0" + player.playerStats.overall : player.playerStats.overall }}</span></p>
+                                <!-- <p style="font-size: 30px;"><span class="colStat">{{player.playerStats.overall < 10? "0" + player.playerStats.overall : player.playerStats.overall }}</span></p> -->
                             </div>
 
                         </div>
