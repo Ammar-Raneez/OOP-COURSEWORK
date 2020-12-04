@@ -12,7 +12,58 @@
 
             <div class="hoverContainer">
                 <div class="hoverText">
-                    
+                    <div class="hoverTextName">
+                        {{ player.name }}
+                    </div>
+                    <div class="hoverLowerSection">
+                        <div class="colAvatar">
+
+                        </div>
+                        <div class="colOne">
+                            <div class="colLabel">
+                                <p>SPE</p>
+                                <p>ACC</p>
+                                <p>STA</p>
+                                <p>CON</p>
+                                <p>STR</p>
+                            </div>
+                            <div class="colStat">
+                                <p><span class="colStat">{{ player.playerStats.speed < 10? "0" + player.playerStats.speed : player.playerStats.speed }}</span></p>
+                                <p><span class="colStat">{{ player.playerStats.accuracy < 10? "0" + player.playerStats.accuracy : player.playerStats.accuracy }}</span></p>
+                                <p><span class="colStat">{{ player.playerStats.stamina < 10? "0" + player.playerStats.stamina : player.playerStats.stamina }}</span></p>
+                                <p><span class="colStat">{{ player.playerStats.control < 10? "0" + player.playerStats.control : player.playerStats.control }}</span></p>
+                                <p><span class="colStat">{{ player.playerStats.strength < 10? "0" + player.playerStats.strength : player.playerStats.strength }}</span></p>
+                            </div>
+                        </div>
+
+                        <div class="colTwo">
+                            <div class="colLabel">
+                                <p>TAC</p>
+                                <p>PAS</p>
+                                <p>CRO</p>
+                                <p>SHO</p>
+                                <p>HEA</p>
+                            </div>
+                            <div class="colStat">
+                                <p><span class="colStat">{{ player.playerStats.tackle < 10? "0" + player.playerStats.tackle : player.playerStats.tackle }}</span></p>
+                                <p><span class="colStat">{{ player.playerStats.passing < 10? "0" + player.playerStats.passing : player.playerStats.passing }}</span></p>
+                                <p><span class="colStat">{{ player.playerStats.crossing < 10? "0" + player.playerStats.crossing : player.playerStats.crossing }}</span></p>
+                                <p><span class="colStat">{{ player.playerStats.shooting < 10? "0" + player.playerStats.shooting : player.playerStats.shooting }}</span></p>
+                                <p><span class="colStat">{{ player.playerStats.heading < 10? "0" + player.playerStats.heading : player.playerStats.heading }}</span></p>
+                            </div>
+                        </div>
+
+                        <div class="colThree">
+                            <div class="colThreeContainer">
+                                <p>{{ player.nationality }}</p>
+                                <p>{{ player.preferredFoot }}</p>
+                                <p>{{ player.height }}</p>
+                                <p>{{ player.position }}</p>
+                                <p>{{ player.playerStats.overall < 10? "0" + player.playerStats.overall : player.playerStats.overall }}</p>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

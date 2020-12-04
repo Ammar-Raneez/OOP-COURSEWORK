@@ -85,6 +85,7 @@
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     background-color: rgba(0, 0, 0, 0.5);
+    position: relative;
     /* border: 1px solid #ff2882; */
 }
 
@@ -102,4 +103,54 @@
 .cardContent > h1 {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     letter-spacing: 2px;
+}
+
+.hoverContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: auto;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    background-color: black;
+    opacity: 0;
+    text-align: center;
+    transition: 0.3s ease;
+}
+.hoverContainer:hover {
+    opacity: 1;
+}
+.hoverText {
+    position: absolute;
+    color: white;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    transform: translate(-50%, -50%);
+    transform: 0.3s ease;
+    font-size: 20px;
+}
+
+.hoverLowerSection {
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.colOne, .colTwo, .colThree {
+    display: flex;
+    justify-content: space-between;
+}
+
+.colStat {
+    color: #04f5ff;
+    font-weight: bolder;
+    margin-left: 4px;
+    /* background-color: rgba(255, 255, 255, 0.5); */
 }
