@@ -159,7 +159,7 @@
 .colThree .colThreeContainer .playerPosition {
     color: black;
     font-weight: bolder;
-    background-color: goldenrod;
+    /* background-color: goldenrod; */
 }
 
 .colThree .colThreeContainer .playerNationality {

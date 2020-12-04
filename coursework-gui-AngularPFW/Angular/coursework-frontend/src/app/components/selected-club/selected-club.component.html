@@ -4,10 +4,13 @@
     </div>
 
     <div class="main-center-player">
-        <div *ngFor="let player of selectedClub.allPlayers" class="main-center-eachPlayerCard">
+        <div *ngFor="let player of selectedClub.allPlayers; let i = index" class="main-center-eachPlayerCard">
             <img src="assets/images/PL-player.png" style="width: 100%;" />
             <div class="cardContent">
-                <h1>{{ player.name.toLocaleUpperCase() }}</h1>
+                <h1>
+                    {{ player.name.toLocaleUpperCase() }}
+                    <i style="color: gold;" class="material-icons" *ngFor="let numOfStar of [].constructor(starRatingCount[i])">star</i>
+                </h1>
             </div>
 
             <div class="hoverContainer">
@@ -58,10 +61,9 @@
                                 <p class="playerNationality">{{ player.nationality }}<span class="material-icons">outlined_flag</span></p>
                                 <p>🦶🏻{{ player.preferredFoot }}</p>
                                 <p><i class="material-icons">accessibility</i><i class="material-icons">height</i>{{ player.height }}</p>
-                                <p class="playerPosition">{{ player.position }}</p>
+                                <p [ngStyle] = "{ 'background-color' : positionBackgroundColor[i] }" class="playerPosition">{{ player.position }}</p>
                                 <!-- <p style="font-size: 30px;"><span class="colStat">{{player.playerStats.overall < 10? "0" + player.playerStats.overall : player.playerStats.overall }}</span></p> -->
                             </div>
-
                         </div>
                     </div>
                 </div>
