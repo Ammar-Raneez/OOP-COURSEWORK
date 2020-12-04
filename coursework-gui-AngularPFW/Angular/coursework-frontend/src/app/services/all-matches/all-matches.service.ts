@@ -12,8 +12,4 @@ export class AllMatchesService {
   getAllFootballMatches() { 
     return this.httpClient.get<FootballMatch>("http://localhost:9000/allmatches");
   }
-
-  playMatch() {
-    return this.httpClient.get<MatchAndClub>("http://localhost:9000/pointstable/playmatch");
-  }
 }
