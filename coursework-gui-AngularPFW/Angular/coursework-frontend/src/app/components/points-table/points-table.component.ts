@@ -16,28 +16,24 @@ export class PointsTableComponent implements OnInit {
   allClubs : FootballClub[];
 
   constructor(private allClubsService : AllClubsService, private allClubsFilterService : AllMatchesFilterService,
-    private playMatchService : PlayMatchService, private spinner: NgxSpinnerService
-    ) { }
-  ngOnInit(): void {
-    this.spinner.show();
-    this.getFootballClubs();
+    private playMatchService : PlayMatchService) { }
 
-    if(this.allClubs) {
-      this.spinner.hide();
-    }
+  ngOnInit(): void {
+    this.getFootballClubs();
   }
 
   updateFootballClubsAfterPlay() : void {
     this.playMatchService.playMatch().subscribe(
-      response => this.handleSuccessfulResponseAfterPlay(response),
+      // response => this.handleSuccessfulResponseAfterPlay(response),
+      response => this.handleSuccessfulResponse(response),
       error => this.handleErrorResponse(error)
     )
   }
-  handleSuccessfulResponseAfterPlay(response : any) : void {
-    MatchAndClub.setClubs(response[0]);
-    MatchAndClub.setMatches(response[1]);
-    this.allClubs = MatchAndClub.clubs;
-  }
+  // handleSuccessfulResponseAfterPlay(response : any) : void {
+  //   MatchAndClub.setClubs(response[0]);
+  //   MatchAndClub.setMatches(response[1]);
+  //   this.allClubs = MatchAndClub.clubs;
+  // }
 
   getFootballClubsSortedOnWins() : void {
     this.allClubsFilterService.getMatchesWinFilter().subscribe(
