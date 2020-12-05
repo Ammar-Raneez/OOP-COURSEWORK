@@ -11,9 +11,8 @@ import { MatchesOnDateService } from 'src/app/services/matches-on-date/matches-o
 })
 export class AllMatchesComponent implements OnInit {
   private static dateRegex : RegExp = /^\d{4}-\d{2}-\d{2}$/;
-
-  allMatches : FootballMatch[];
-  date : string;
+  private static allMatches : FootballMatch[];
+  public date : string;
 
   constructor(private allMatchesService : AllMatchesService, private matchesByDateService : MatchesOnDateService) { }
   ngOnInit(): void {
@@ -24,7 +23,7 @@ export class AllMatchesComponent implements OnInit {
     // }
   }
 
-  getFootballMatchesOnDate() : void {
+  public getFootballMatchesOnDate() : void {
     if(this.date.match(AllMatchesComponent.dateRegex)) {
       this.matchesByDateService.getMatchesOnDate(this.date).subscribe(
         response => this.handleSuccessfulResponse(response),
@@ -35,24 +34,28 @@ export class AllMatchesComponent implements OnInit {
     }
   }
 
-  getFootballMatches() : void {
+  public getFootballMatches() : void {
     this.date = "";
     this.allMatchesService.getAllFootballMatches().subscribe(
       response => this.handleSuccessfulResponse(response),
       error => this.handleErrorResponse(error)
     );
   }
-  handleSuccessfulResponse(response : any) : void {
-    this.allMatches = response;
-    for(let match of this.allMatches) {
+  private handleSuccessfulResponse(response : any) : void {
+    AllMatchesComponent.allMatches = response;
+    for(let match of AllMatchesComponent.allMatches) {
       let month = parseInt(match.matchDate[1]) < 10? "0" + match.matchDate[1] : match.matchDate[2];
       let day = parseInt(match.matchDate[2]) < 10? "0" + match.matchDate[2] : match.matchDate[2];
       match.matchDate = match.matchDate[0] + "-" + month + "-" + day;
     }
     console.log(response);
   }
-  handleErrorResponse(error : any) : void {
-    this.allMatches = error.message;
+  private handleErrorResponse(error : any) : void {
+    AllMatchesComponent.allMatches = error.message;
     console.log(error);
+  }
+
+  public getAllFootballMatches() : FootballMatch[] {
+    return AllMatchesComponent.allMatches;
   }
 }
