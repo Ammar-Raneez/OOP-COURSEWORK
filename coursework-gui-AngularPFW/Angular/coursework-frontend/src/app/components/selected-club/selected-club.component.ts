@@ -78,11 +78,11 @@ export class SelectedClubComponent implements OnInit {
   }
 
   determinePlayerImageLink() : void {
-    let threeImagePaths: string[] = ['assets/images/PL-player.png', 'assets/images/PL-player2.png', 'assets/images/PL-player3.png'];
+    let imagePaths: string[] = ['assets/images/PL-player.png', 'assets/images/PL-player2.png', 'assets/images/PL-player3.png', 'assets/images/PL-player4.png', 'assets/images/PL-player5.png', 'assets/images/PL-player6.png', 'assets/images/PL-player7.png', 'assets/images/PL-player8.png'];
     if(this.selectedClub) {
       for(let _ of this.selectedClub.allPlayers) {
-        let randomNum = Math.floor(Math.random() * threeImagePaths.length);
-        this.playerImageLink.push(threeImagePaths[randomNum]);
+        let randomNum = Math.floor(Math.random() * imagePaths.length);
+        this.playerImageLink.push(imagePaths[randomNum]);
       }
     }
   }
