@@ -14,7 +14,6 @@ export class SelectedClubComponent implements OnInit {
   public positionBackgroundColor: string[] = [];
   public starRatingCount: number[] = [];
   public playerImageLink: string[] = [];
-  public playerHoverBackgroundImageLink : string[] = [];
 
   constructor(private selectedClubService : SelectedClubService, private route : ActivatedRoute) { }
 
@@ -32,9 +31,8 @@ export class SelectedClubComponent implements OnInit {
   private handleSuccessfulResponse(response : any) : void {
     this.selectedClub = response;
     this.determinePositionBackgroundColor();
-  this.determineStarRatingCount();
+    this.determineStarRatingCount();
     this.determinePlayerImageLink();
-    this.determinePlayerHoverbackgroundImageLink();
     console.log(response);
   }
   private handleErrorResponse(error : any) : void {
@@ -83,16 +81,6 @@ export class SelectedClubComponent implements OnInit {
       for(let _ of this.selectedClub.allPlayers) {
         let randomNum = Math.floor(Math.random() * imagePaths.length);
         this.playerImageLink.push(imagePaths[randomNum]);
-      }
-    }
-  }
-
-  private determinePlayerHoverbackgroundImageLink() : void {
-    let imagePaths: string[] = ['assets/images/PL-aguero.jpg', 'assets/images/PL-kevin.jpg', 'assets/images/PL-mahrez.jpg', 'assets/images/PL-kane2.jpg', 'assets/images/PL-salah.jpg'];
-    if(this.selectedClub) {
-      for(let _ of this.selectedClub.allPlayers) {
-        let randomNum = Math.floor(Math.random() * imagePaths.length);
-        this.playerHoverBackgroundImageLink.push(imagePaths[randomNum]);
       }
     }
   }
