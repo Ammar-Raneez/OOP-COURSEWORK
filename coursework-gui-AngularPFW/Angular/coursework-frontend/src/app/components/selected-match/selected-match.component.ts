@@ -9,24 +9,24 @@ import { SelectedMatchService } from 'src/app/services/selected-match/selected-m
   styleUrls: ['./selected-match.component.css']
 })
 export class SelectedMatchComponent implements OnInit {
-  id : string;
-  footballMatch : FootballMatch;
-  footerMsg : string;
+  private id : string;
+  private footballMatch : FootballMatch;
+  private footerMsg : string;
 
   constructor(private selectedMatchService : SelectedMatchService, private route : ActivatedRoute) { }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params["id"];
-    this.getFootballMatches();
+    this.getFootballMatch();
   }
 
-  getFootballMatches() : void {
+  public getFootballMatch() : void {
     this.selectedMatchService.getSelectedMatch(this.id).subscribe(
       response => this.handleSuccessfulResponse(response),
       error => this.handleErrorResponse(error)
     );
   }
-  handleSuccessfulResponse(response : any) : void {
+  private handleSuccessfulResponse(response : any) : void {
     this.footballMatch = response;
     console.log(response);
     this.footerMsg = this.footballMatch.firstTeamSingleMatchStats.goals > this.footballMatch.secondTeamSingleMatchStats.goals ? 
@@ -39,8 +39,16 @@ export class SelectedMatchComponent implements OnInit {
                       this.footballMatch.secondTeamSingleMatchStats.possession + "%" :  
                         "The match was a draw, with both teams scoring " + this.footballMatch.firstTeamSingleMatchStats.goals + " goals."
   }
-  handleErrorResponse(error : any) : void {
+  private handleErrorResponse(error : any) : void {
     this.footballMatch = error.message;
     console.log(error);
+  }
+
+  public getSelectedMatch() : FootballMatch {
+    return this.footballMatch;
+  }
+
+  public getFooterMsg() : string {
+    return this.footerMsg;
   }
 }

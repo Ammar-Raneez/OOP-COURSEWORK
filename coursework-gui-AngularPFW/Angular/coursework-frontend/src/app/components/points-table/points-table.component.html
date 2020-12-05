@@ -1,9 +1,9 @@
 <div class="container">
     <div class="pane">
-        <ngx-spinner size="medium" *ngIf="!allClubs" bdColor="rgba(51,51,51,0)" type="line-scale-pulse-out" [zIndex]="0" [fullScreen]="false">
+        <ngx-spinner size="medium" *ngIf="!getAllFootballClubs()" bdColor="rgba(51,51,51,0)" type="line-scale-pulse-out" [zIndex]="0" [fullScreen]="false">
             <p style="color : white">Loading Standings...</p>
         </ngx-spinner>
-        <table *ngIf="allClubs" class="table">
+        <table *ngIf="getAllFootballClubs()" class="table">
             <tr>
                 <th class="longSpan">Club</th>
                 <th>MP</th>
@@ -15,7 +15,7 @@
                 <th>GD</th>
                 <th>Pts</th>
             </tr>
-            <tr *ngFor="let club of allClubs">
+            <tr *ngFor="let club of getAllFootballClubs()">
                 <td class="longSpan">{{ club.clubName }}</td>
                 <td>{{ club.footballClubTotalStatistics.matchesPlayed }}</td>
                 <td>{{ club.footballClubTotalStatistics.wins }}</td>

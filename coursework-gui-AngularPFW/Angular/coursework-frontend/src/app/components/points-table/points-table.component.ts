@@ -13,7 +13,7 @@ import { NgxSpinnerService } from "ngx-spinner";
   styleUrls: ['./points-table.component.css']
 })
 export class PointsTableComponent implements OnInit {
-  allClubs : FootballClub[];
+  private allClubs : FootballClub[];
 
   constructor(private allClubsService : AllClubsService, private allClubsFilterService : AllMatchesFilterService,
     private playMatchService : PlayMatchService, private ngxSpinnerService : NgxSpinnerService) { }
@@ -29,7 +29,7 @@ export class PointsTableComponent implements OnInit {
     }
   }
 
-  updateFootballClubsAfterPlay() : void {
+  public updateFootballClubsAfterPlay() : void {
     this.playMatchService.playMatch().subscribe(
       // response => this.handleSuccessfulResponseAfterPlay(response),
       response => this.handleSuccessfulResponse(response),
@@ -42,32 +42,35 @@ export class PointsTableComponent implements OnInit {
   //   this.allClubs = MatchAndClub.clubs;
   // }
 
-  getFootballClubsSortedOnWins() : void {
+  public getFootballClubsSortedOnWins() : void {
     this.allClubsFilterService.getMatchesWinFilter().subscribe(
       response => this.handleSuccessfulResponse(response),
       error => this.handleErrorResponse(error)
     );
   }
 
-  getFootballClubsSortedOnGoals() : void {
+  public getFootballClubsSortedOnGoals() : void {
     this.allClubsFilterService.getMatchesGoalFilter().subscribe(
       response => this.handleSuccessfulResponse(response),
       error => this.handleErrorResponse(error)
     );
   }
 
-  getFootballClubs() : void {
+  public getFootballClubs() : void {
     this.allClubsService.getAllFootballClubs().subscribe(
       response => this.handleSuccessfulResponse(response),
       error => this.handleErrorResponse(error)
     );
   }
-
-  handleSuccessfulResponse(response : any) : void {
+  private handleSuccessfulResponse(response : any) : void {
     this.allClubs = response;
   }
-  handleErrorResponse(error : any) : void {
+  private handleErrorResponse(error : any) : void {
     this.allClubs = error.message;
     console.log(error);
+  }
+
+  public getAllFootballClubs() : FootballClub[] {
+    return this.allClubs;
   }
 }

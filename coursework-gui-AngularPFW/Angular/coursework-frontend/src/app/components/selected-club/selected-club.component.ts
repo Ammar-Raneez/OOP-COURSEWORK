@@ -9,11 +9,11 @@ import { SelectedClubService } from 'src/app/services/selected-club/selected-clu
   styleUrls: ['./selected-club.component.css']
 })
 export class SelectedClubComponent implements OnInit {
-  public selectedClub : FootballClub;
-  public clubName : string;
-  public positionBackgroundColor: string[] = [];
-  public starRatingCount: number[] = [];
-  public playerImageLink: string[] = [];
+  private selectedClub : FootballClub;
+  private clubName : string;
+  private positionBackgroundColor: string[] = [];
+  private starRatingCount: number[] = [];
+  private playerImageLink: string[] = [];
 
   constructor(private selectedClubService : SelectedClubService, private route : ActivatedRoute) { }
 
@@ -22,7 +22,7 @@ export class SelectedClubComponent implements OnInit {
     this.getSelectedClub();
   }
 
-  private getSelectedClub() : void{
+  public getSelectedClub() : void {
     this.selectedClubService.getSelectedClub(this.clubName).subscribe(
       response => this.handleSuccessfulResponse(response),
       error => this.handleErrorResponse(error)
@@ -60,7 +60,6 @@ export class SelectedClubComponent implements OnInit {
       }
     }
   }
-
   private determineStarRatingCount() : void {
     if(this.selectedClub) {
       for(let player of this.selectedClub.allPlayers) {
@@ -74,7 +73,6 @@ export class SelectedClubComponent implements OnInit {
       }
     }
   }
-
   private determinePlayerImageLink() : void {
     let imagePaths: string[] = ['assets/images/PL-player.png', 'assets/images/PL-player2.png', 'assets/images/PL-player3.png', 'assets/images/PL-player4.png', 'assets/images/PL-player5.png', 'assets/images/PL-player6.png', 'assets/images/PL-player7.png', 'assets/images/PL-player8.png'];
     if(this.selectedClub) {
@@ -83,5 +81,17 @@ export class SelectedClubComponent implements OnInit {
         this.playerImageLink.push(imagePaths[randomNum]);
       }
     }
+  }
+
+  public getTheSelectedClub() : FootballClub {
+    return this.selectedClub;
+  }
+
+  public getPositionBgColor() : string[] {
+    return this.positionBackgroundColor;
+  }
+
+  public getImageLink() : string[] {
+    return this.playerImageLink;
   }
 }

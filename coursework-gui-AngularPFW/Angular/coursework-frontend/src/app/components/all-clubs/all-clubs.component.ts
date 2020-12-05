@@ -8,7 +8,7 @@ import { AllClubsService } from 'src/app/services/all-clubs/all-clubs.service';
   styleUrls: ['./all-clubs.component.css']
 })
 export class AllClubsComponent implements OnInit {
-  allClubs : FootballClub[];
+  private allClubs : FootballClub[];
 
   constructor(private allClubsService : AllClubsService) { }
 
@@ -16,19 +16,22 @@ export class AllClubsComponent implements OnInit {
     this.getFootballClubs();
   }
 
-  getFootballClubs() : void {
+  public getFootballClubs() : void {
     this.allClubsService.getAllFootballClubs().subscribe(
       response => this.handleSuccessfulResponse(response),
       error => this.handleErrorResponse(error)
     );
   }
-
-  handleSuccessfulResponse(response : any) : void {
+  private handleSuccessfulResponse(response : any) : void {
     console.log(response)
     this.allClubs = response;
   }
-  handleErrorResponse(error : any) : void {
+  private handleErrorResponse(error : any) : void {
     this.allClubs = error.message;
     console.log(error);
+  }
+
+  public getAllFootballClubs() : FootballClub[] {
+    return this.allClubs;
   }
 }

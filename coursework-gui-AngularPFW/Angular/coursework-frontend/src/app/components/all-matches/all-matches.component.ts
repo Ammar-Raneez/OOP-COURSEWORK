@@ -10,8 +10,8 @@ import { MatchesOnDateService } from 'src/app/services/matches-on-date/matches-o
   styleUrls: ['./all-matches.component.css'],
 })
 export class AllMatchesComponent implements OnInit {
-  private static dateRegex : RegExp = /^\d{4}-\d{2}-\d{2}$/;
-  private static allMatches : FootballMatch[];
+  private dateRegex : RegExp = /^\d{4}-\d{2}-\d{2}$/;
+  private allMatches : FootballMatch[];
   public date : string;
 
   constructor(private allMatchesService : AllMatchesService, private matchesByDateService : MatchesOnDateService) { }
@@ -24,7 +24,7 @@ export class AllMatchesComponent implements OnInit {
   }
 
   public getFootballMatchesOnDate() : void {
-    if(this.date.match(AllMatchesComponent.dateRegex)) {
+    if(this.date.match(this.dateRegex)) {
       this.matchesByDateService.getMatchesOnDate(this.date).subscribe(
         response => this.handleSuccessfulResponse(response),
         error => this.handleErrorResponse(error)
@@ -42,8 +42,8 @@ export class AllMatchesComponent implements OnInit {
     );
   }
   private handleSuccessfulResponse(response : any) : void {
-    AllMatchesComponent.allMatches = response;
-    for(let match of AllMatchesComponent.allMatches) {
+    this.allMatches = response;
+    for(let match of this.allMatches) {
       let month = parseInt(match.matchDate[1]) < 10? "0" + match.matchDate[1] : match.matchDate[2];
       let day = parseInt(match.matchDate[2]) < 10? "0" + match.matchDate[2] : match.matchDate[2];
       match.matchDate = match.matchDate[0] + "-" + month + "-" + day;
@@ -51,11 +51,11 @@ export class AllMatchesComponent implements OnInit {
     console.log(response);
   }
   private handleErrorResponse(error : any) : void {
-    AllMatchesComponent.allMatches = error.message;
+    this.allMatches = error.message;
     console.log(error);
   }
 
   public getAllFootballMatches() : FootballMatch[] {
-    return AllMatchesComponent.allMatches;
+    return this.allMatches;
   }
 }
