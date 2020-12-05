@@ -9,12 +9,12 @@ import { SelectedClubService } from 'src/app/services/selected-club/selected-clu
   styleUrls: ['./selected-club.component.css']
 })
 export class SelectedClubComponent implements OnInit {
-  selectedClub : FootballClub;
-  clubName : string;
-  positionBackgroundColor: string[] = [];
-  starRatingCount: number[] = [];
-  playerImageLink: string[] = [];
-  playerHoverBackgroundImageLink : string[] = [];
+  public selectedClub : FootballClub;
+  public clubName : string;
+  public positionBackgroundColor: string[] = [];
+  public starRatingCount: number[] = [];
+  public playerImageLink: string[] = [];
+  public playerHoverBackgroundImageLink : string[] = [];
 
   constructor(private selectedClubService : SelectedClubService, private route : ActivatedRoute) { }
 
@@ -23,13 +23,13 @@ export class SelectedClubComponent implements OnInit {
     this.getSelectedClub();
   }
 
-  getSelectedClub() : void{
+  private getSelectedClub() : void{
     this.selectedClubService.getSelectedClub(this.clubName).subscribe(
       response => this.handleSuccessfulResponse(response),
       error => this.handleErrorResponse(error)
     )
   }
-  handleSuccessfulResponse(response : any) : void {
+  private handleSuccessfulResponse(response : any) : void {
     this.selectedClub = response;
     this.determinePositionBackgroundColor();
     this.determineStarRatingCount();
@@ -37,12 +37,12 @@ export class SelectedClubComponent implements OnInit {
     this.determinePlayerHoverbackgroundImageLink();
     console.log(response);
   }
-  handleErrorResponse(error : any) : void {
+  private handleErrorResponse(error : any) : void {
     this.selectedClub = error.message;
     console.log(error);
   }
 
-  determinePositionBackgroundColor() : void {
+  private determinePositionBackgroundColor() : void {
     const goldenRod = [ 'SW', 'LM', 'RM', 'CM', 'DM', 'AM' ];
     const red = ['CF', 'SS', 'S', 'WF'];
     const green = ['LB', 'RB', 'CB', 'LWB', 'RWB'];
@@ -63,7 +63,7 @@ export class SelectedClubComponent implements OnInit {
     }
   }
 
-  determineStarRatingCount() : void {
+  private determineStarRatingCount() : void {
     if(this.selectedClub) {
       for(let player of this.selectedClub.allPlayers) {
         if(player.playerStats.overall < 50) {
@@ -77,7 +77,7 @@ export class SelectedClubComponent implements OnInit {
     }
   }
 
-  determinePlayerImageLink() : void {
+  private determinePlayerImageLink() : void {
     let imagePaths: string[] = ['assets/images/PL-player.png', 'assets/images/PL-player2.png', 'assets/images/PL-player3.png', 'assets/images/PL-player4.png', 'assets/images/PL-player5.png', 'assets/images/PL-player6.png', 'assets/images/PL-player7.png', 'assets/images/PL-player8.png'];
     if(this.selectedClub) {
       for(let _ of this.selectedClub.allPlayers) {
@@ -87,12 +87,12 @@ export class SelectedClubComponent implements OnInit {
     }
   }
 
-  determinePlayerHoverbackgroundImageLink() : void {
+  private determinePlayerHoverbackgroundImageLink() : void {
     let imagePaths: string[] = ['assets/images/PL-aguero.jpg', 'assets/images/PL-kevin.jpg', 'assets/images/PL-mahrez.jpg', 'assets/images/PL-kane2.jpg', 'assets/images/PL-salah.jpg'];
     if(this.selectedClub) {
       for(let _ of this.selectedClub.allPlayers) {
         let randomNum = Math.floor(Math.random() * imagePaths.length);
-        this.playerImageLink.push(imagePaths[randomNum]);
+        this.playerHoverBackgroundImageLink.push(imagePaths[randomNum]);
       }
     }
   }
