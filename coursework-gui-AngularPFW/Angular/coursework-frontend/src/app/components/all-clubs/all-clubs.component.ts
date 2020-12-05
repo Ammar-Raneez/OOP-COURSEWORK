@@ -24,7 +24,9 @@ export class AllClubsComponent implements OnInit {
   }
 
   handleSuccessfulResponse(response : any) : void {
+    console.log(response)
     this.allClubs = response;
+    console.log(this.allClubs)
   }
   handleErrorResponse(error : any) : void {
     this.allClubs = error.message;

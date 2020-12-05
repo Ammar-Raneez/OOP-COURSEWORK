@@ -3,12 +3,13 @@ import { Player } from './Player';
 import { SportsClubKit } from './SportsClubKit';
 
 export class FootballClub {
+    allPlayers : Player[];
     amountOfPlayers : number;
-    kit : SportsClubKit;
     clubLocation : string;
     clubName : string;
     clubOwner : string;
-    clubNetWorth : string;
+    netWorth : string;
     footballClubTotalStatistics : FootballClubTotalStatistics;
-    allPlayers : Player[];
+    kit : SportsClubKit;
+    lecOrTeachInCharge: string;
 }
