@@ -376,6 +376,7 @@ public class PremierLeagueManager implements LeagueManager {
             allMatches = (List<FootballMatch>) allData.get(1);
 //            Thread.sleep(500);
             System.out.println("Data loaded successfully!");
+
         } catch (FileNotFoundException ex) {
             System.out.println("[ERROR] ==> There weren't any files to load!");
         } catch (Exception e) {
@@ -395,9 +396,7 @@ public class PremierLeagueManager implements LeagueManager {
     /**
      * @return list containing all the football clubs
      */
-    public static List<FootballClub> getAllFootballClubs() {
-        return allFootballClubs;
-    }
+    public static List<FootballClub> getAllFootballClubs() { return allFootballClubs; }
 
     /**
      * @return max number of clubs in premier league

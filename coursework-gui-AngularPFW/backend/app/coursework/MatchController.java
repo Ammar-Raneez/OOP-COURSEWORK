@@ -1,4 +1,4 @@
-package controllers;
+package coursework;
 
 import play.mvc.*;
 import play.libs.Json;
@@ -6,47 +6,47 @@ import java.util.*;
 
 public class MatchController extends Controller {
     public Result returnAllMatches() {
-//        coursework.ConsoleApplication.loadData();
-        List<coursework.FootballMatch> allMatches = coursework.PremierLeagueManager.getAllMatches();
+        ConsoleApplication.loadData();
+
+        List<FootballMatch> allMatches = PremierLeagueManager.getAllMatches();
         Collections.sort(allMatches);
+        ConsoleApplication.saveData();
         return ok(Json.toJson(allMatches));
     }
 
     public Result returnSelectedMatch(Integer arrIndex) {
-//        coursework.ConsoleApplication.loadData();
-        coursework.FootballMatch selectedMatch = coursework.PremierLeagueManager.getAllMatches().get(arrIndex);
+        ConsoleApplication.loadData();
+
+        FootballMatch selectedMatch = PremierLeagueManager.getAllMatches().get(arrIndex);
+        ConsoleApplication.saveData();
         return ok(Json.toJson(selectedMatch));
     }
 
     public Result returnMatchesOnDate(String obtainedDate) {
-//        coursework.ConsoleApplication.loadData();
-        List<coursework.FootballMatch> allMatches = coursework.PremierLeagueManager.getAllMatches();
-        List<coursework.FootballMatch> filteredMatches = new ArrayList<>();
+        ConsoleApplication.loadData();
 
-        for (coursework.FootballMatch footballMatch : allMatches) {
+        List<FootballMatch> allMatches = PremierLeagueManager.getAllMatches();
+        List<FootballMatch> filteredMatches = new ArrayList<>();
+
+        for (FootballMatch footballMatch : allMatches) {
             if (String.valueOf(footballMatch.getMatchDate()).equals(obtainedDate)) {
                 filteredMatches.add(footballMatch);
             }
         }
-
+        ConsoleApplication.saveData();
         return ok(Json.toJson(filteredMatches));
     }
 
     public Result playMatch() {
-//        coursework.ConsoleApplication.loadData();
+        ConsoleApplication.loadData();
 
         try {
-            coursework.ConsoleApplication.addPlayedMatch();
+            ConsoleApplication.addPlayedMatch();
         } catch (Exception ignored) {}
 
-
-        List<coursework.FootballClub> updatedClubs = coursework.PremierLeagueManager.getAllFootballClubs();
+        ConsoleApplication.saveData();
+        List<FootballClub> updatedClubs = PremierLeagueManager.getAllFootballClubs();
         updatedClubs.sort(Collections.reverseOrder());
         return ok(Json.toJson(updatedClubs));
-//        List<coursework.FootballMatch> updatedMatches = coursework.PremierLeagueManager.getAllMatches();
-//        Collections.sort(updatedMatches);
-
-//        List<Object> allData = new ArrayList<>(Arrays.asList(updatedClubs, updatedMatches));
-//        return ok(Json.toJson(allData));
     }
 }

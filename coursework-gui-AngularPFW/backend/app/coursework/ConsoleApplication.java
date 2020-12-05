@@ -8,7 +8,10 @@ package coursework;
 //import javafx.application.Application;
 
 import java.awt.*;
+import java.io.IOException;
 import java.lang.reflect.Field;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Scanner;
 
 /**
@@ -302,6 +305,21 @@ public class ConsoleApplication {
     }
 
     /**
+     * static method, that handles opening of the localhost of angular for the GUI
+     */
+    public static void openGui() {
+        Desktop desktop = Desktop.getDesktop();
+
+        try {
+            desktop.browse(new URI("http://localhost:4200/"));
+        } catch (URISyntaxException e) {
+            System.out.println("URI was incorrect!");
+        } catch (IOException e) {
+            System.out.println("Something went wrong!");
+        }
+    }
+
+    /**
      * Displays the Menu on the console
      */
     public static void printDisplay() {
@@ -320,53 +338,65 @@ public class ConsoleApplication {
     }
 
     public static void main(String[] args) throws IllegalAccessException, ClassNotFoundException, InterruptedException {
-        //*load data upon start, and display the menu*//
-        loadData();
         printDisplay();
         String userChoice = getUserInput("Please choose an option");
         infiniteLoop:
         while (true) {
             switch (userChoice) {
                 case "a":
+                    loadData();
                     addClub();
+                    saveData();
                     printDisplay();
                     userChoice = getUserInput("Please choose an option");
                     break;
                 case "d":
+                    loadData();
                     deleteClub();
+                    saveData();
                     printDisplay();
                     userChoice = getUserInput("Please choose an option");
                     break;
                 case "p":
+                    loadData();
                     addPlayedMatch();
+                    saveData();
                     printDisplay();
                     userChoice = getUserInput("Please choose an option");
                     break;
                 case "z":
+                    loadData();
                     displayPointsTable();
+                    saveData();
                     printDisplay();
                     userChoice = getUserInput("Please choose an option");
                     break;
                 case "c":
+                    loadData();
                     displayMatchResults();
+                    saveData();
                     printDisplay();
                     userChoice = getUserInput("Please choose an option");
                     break;
                 case "x":
+                    loadData();
                     displaySelectedClub();
+                    saveData();
                     printDisplay();
                     userChoice = getUserInput("Please choose an option");
                     break;
                 case "s":
+                    loadData();
                     displaySelectedMatch();
+                    saveData();
                     printDisplay();
                     userChoice = getUserInput("Please choose an option");
                     break;
-//                case "g":
-//                    Application.launch(TestFrontend.class, args);
-//                    printDisplay();
-//                    userChoice = getUserInput("Please choose an option");
-//                    break;
+                case "g":
+                    openGui();
+                    printDisplay();
+                    userChoice = getUserInput("Please choose an option");
+                    break;
                 case "q":
                     saveData();
                     break infiniteLoop;

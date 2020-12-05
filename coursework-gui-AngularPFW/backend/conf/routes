@@ -3,13 +3,13 @@
 # ~~~~
 
 #All Getter Methods
-GET     /pointstable                controllers.ClubController.returnAllClubs
-GET     /pointstable/winfilter      controllers.ClubController.winSortClubFilter
-GET     /pointstable/goalfilter     controllers.ClubController.goalSortClubFilter
-GET     /pointstable/playmatch      controllers.MatchController.playMatch
-GET     /clubs/*clubName            controllers.ClubController.returnSelectedClub(clubName : String)
-GET     /allmatches/*arrIndex       controllers.MatchController.returnSelectedMatch(arrIndex : Integer)
-GET     /allmatches                 controllers.MatchController.returnAllMatches
-GET     /specificMatches/*date      controllers.MatchController.returnMatchesOnDate(date : String)
+GET     /pointstable                   coursework.ClubController.returnAllClubs
+GET     /pointstable/winfilter         coursework.ClubController.winSortClubFilter
+GET     /pointstable/goalfilter        coursework.ClubController.goalSortClubFilter
+GET     /pointstable/playmatch         coursework.MatchController.playMatch
+GET     /clubs/*clubName               coursework.ClubController.returnSelectedClub(clubName : String)
+GET     /allmatches/*arrIndex          coursework.MatchController.returnSelectedMatch(arrIndex : Integer)
+GET     /allmatches                    coursework.MatchController.returnAllMatches
+GET     /specificMatches/*date         coursework.MatchController.returnMatchesOnDate(date : String)
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
