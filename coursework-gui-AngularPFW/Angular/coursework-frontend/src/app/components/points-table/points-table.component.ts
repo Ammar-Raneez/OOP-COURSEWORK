@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FootballClub } from 'src/app/models/FootballClub';
-// import { MatchAndClub } from 'src/app/models/MatchAndClub';
 import { AllClubsService } from 'src/app/services/all-clubs/all-clubs.service';
 import { AllMatchesFilterService } from 'src/app/services/all-matches-filter/all-matches-filter.service';
 import { PlayMatchService } from 'src/app/services/play-match/play-match.service';
@@ -65,5 +64,9 @@ export class PointsTableComponent implements OnInit {
   private handleErrorResponse(error : any) : void {
     this.allClubs = error.message;
     console.log(error);
+  }
+
+  public getAllFootballClubs() : FootballClub[] {
+    return this.allClubs;
   }
 }

@@ -1,5 +1,4 @@
 .container {
-    /* background-color: #222; */
     height: 94vh;
     margin-top: 3%;
     animation: fadein 1s;
@@ -63,8 +62,6 @@
 }
 
 .table {
-    /* border: 1px solid #222; */
-    /* background-color: #222; */
     background-color: transparent;
     width: 100%;
     border-collapse: collapse;
@@ -98,14 +95,12 @@ th, td {
 }
 
 .table tr:nth-child(even) {
-    /* background-color: #202020; */
     background-color: transparent;
 }
 
 
 .lower-footer {
     height: 213px;
-    /* background-color: #222; */
     background-color: transparent;
     display: flex;
     justify-content: space-evenly;
@@ -118,7 +113,6 @@ th, td {
 }
 
 .lower-footer button {
-    /* background-color: #222; */
     background-color: transparent;
 }
 

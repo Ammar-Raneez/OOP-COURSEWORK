@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FootballMatch } from 'src/app/models/FootballMatch';
-// import { MatchAndClub } from 'src/app/models/MatchAndClub';
 import { AllMatchesService } from 'src/app/services/all-matches/all-matches.service';
 import { MatchesOnDateService } from 'src/app/services/matches-on-date/matches-on-date.service';
 
@@ -15,12 +14,9 @@ export class AllMatchesComponent implements OnInit {
   public date : string;
 
   constructor(private allMatchesService : AllMatchesService, private matchesByDateService : MatchesOnDateService) { }
+
   ngOnInit(): void {
     this.getFootballMatches();
-
-    // if (MatchAndClub.matches) {
-    //   this.allMatches = MatchAndClub.matches;
-    // }
   }
 
   public getFootballMatchesOnDate() : void {

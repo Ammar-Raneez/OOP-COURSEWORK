@@ -63,7 +63,6 @@
     justify-content: center;
     align-items: flex-start;
     flex-direction: column;
-    /* margin-top: 50px; */
     margin-bottom: 40px;
 }
 
@@ -78,16 +77,13 @@
 
 .top-header-text .clubDetails {
     color: #62ffaf;
-    /* font-style: italic; */
     font-family: 'East Sea Dokdo', cursive;
     font-family: 'Sansita Swashed', cursive;
-    /* font-family: 'Satisfy', cursive; */
 }
 .top-header-text .clubDetails .clubDetailsStat {
     font-family: 'East Sea Dokdo', cursive;
     font-family: 'Sansita Swashed', cursive;
     color: white;
-    /* font-size: 30px; */
     font-weight: bolder;
 }
 
@@ -106,7 +102,6 @@
     border-top-right-radius: 20px;
     background-color: rgba(0, 0, 0, 0.5);
     position: relative;
-    /* border: 1px solid #ff2882; */
 }
 
 .main-center-eachPlayerCard:hover {
