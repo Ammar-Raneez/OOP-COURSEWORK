@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { FootballMatch } from '../../models/FootballMatch';
 
 @Injectable({
@@ -8,7 +9,7 @@ import { FootballMatch } from '../../models/FootballMatch';
 export class SelectedMatchService {
   constructor(private httpClient : HttpClient) { }
 
-  getSelectedMatch(id : string) {
+  public getSelectedMatch(id : string) : Observable<FootballMatch> {
     return this.httpClient.get<FootballMatch>(`http://localhost:9000/allmatches/${id}`);
   }
 }

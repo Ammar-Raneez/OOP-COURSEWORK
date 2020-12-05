@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { FootballClub } from 'src/app/models/FootballClub';
 
 @Injectable({
@@ -8,11 +9,11 @@ import { FootballClub } from 'src/app/models/FootballClub';
 export class AllMatchesFilterService {
   constructor(private httpClient : HttpClient) { }
 
-  getMatchesGoalFilter() {
+  public getMatchesGoalFilter() : Observable<FootballClub> {
     return this.httpClient.get<FootballClub>("http://localhost:9000/pointstable/goalfilter");
   }
 
-  getMatchesWinFilter() {
+  public getMatchesWinFilter() : Observable<FootballClub> {
     return this.httpClient.get<FootballClub>("http://localhost:9000/pointstable/winfilter");
   }
 }
