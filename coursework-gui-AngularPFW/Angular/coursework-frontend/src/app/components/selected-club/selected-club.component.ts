@@ -13,7 +13,8 @@ export class SelectedClubComponent implements OnInit {
   clubName : string;
   positionBackgroundColor: string[] = [];
   starRatingCount: number[] = [];
-  imageLink: string[] = [];
+  playerImageLink: string[] = [];
+  playerHoverBackgroundImageLink : string[] = [];
 
   constructor(private selectedClubService : SelectedClubService, private route : ActivatedRoute) { }
 
@@ -32,7 +33,8 @@ export class SelectedClubComponent implements OnInit {
     this.selectedClub = response;
     this.determinePositionBackgroundColor();
     this.determineStarRatingCount();
-    this.determineImageLink();
+    this.determinePlayerImageLink();
+    this.determinePlayerHoverbackgroundImageLink();
     console.log(response);
   }
   handleErrorResponse(error : any) : void {
@@ -75,12 +77,22 @@ export class SelectedClubComponent implements OnInit {
     }
   }
 
-  determineImageLink() : void {
+  determinePlayerImageLink() : void {
     let threeImagePaths: string[] = ['assets/images/PL-player.png', 'assets/images/PL-player2.png', 'assets/images/PL-player3.png'];
     if(this.selectedClub) {
-      for(let player of this.selectedClub.allPlayers) {
-        let randomNum = Math.floor(Math.random() * 3);
-        this.imageLink.push(threeImagePaths[randomNum]);
+      for(let _ of this.selectedClub.allPlayers) {
+        let randomNum = Math.floor(Math.random() * threeImagePaths.length);
+        this.playerImageLink.push(threeImagePaths[randomNum]);
+      }
+    }
+  }
+
+  determinePlayerHoverbackgroundImageLink() : void {
+    let imagePaths: string[] = ['assets/images/PL-aguero.jpg', 'assets/images/PL-kevin.jpg', 'assets/images/PL-mahrez.jpg', 'assets/images/PL-kane2.jpg', 'assets/images/PL-salah.jpg'];
+    if(this.selectedClub) {
+      for(let _ of this.selectedClub.allPlayers) {
+        let randomNum = Math.floor(Math.random() * imagePaths.length);
+        this.playerImageLink.push(imagePaths[randomNum]);
       }
     }
   }

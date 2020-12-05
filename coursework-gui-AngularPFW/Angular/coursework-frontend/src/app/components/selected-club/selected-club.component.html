@@ -5,7 +5,7 @@
 
     <div class="main-center-player">
         <div *ngFor="let player of selectedClub.allPlayers; let i = index" class="main-center-eachPlayerCard">
-            <img src="{{ imageLink[i] }}" style="width: 100%; height: 300px; object-fit: contain" />
+            <img src="{{ playerImageLink[i] }}" style="width: 100%; height: 300px; object-fit: contain" />
             <div class="cardContent">
                 <h1>
                     {{ player.name.toLocaleUpperCase() }}
@@ -13,15 +13,12 @@
                 </h1>
             </div>
 
-            <div class="hoverContainer">
+            <div class="hoverContainer" [ngStyle]="{ 'background-image': 'linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 1)), url(/assets/images/' + playerHoverBackgroundImageLink[i] + ')' }">
                 <div class="hoverText">
                     <div class="hoverTextName">
                         <h2>{{ player.name.toLocaleUpperCase() }}</h2>
                     </div>
                     <div class="hoverLowerSection">
-                        <!-- <div class="colAvatar">
-
-                        </div> -->
                         <div class="colOne">
                             <div class="colLabel">
                                 <p>SPE</p>
