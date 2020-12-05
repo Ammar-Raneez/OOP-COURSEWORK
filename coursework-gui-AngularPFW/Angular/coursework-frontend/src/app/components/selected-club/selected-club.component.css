@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&family=Sansita+Swashed:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+
 .container {
     padding: 70px 60px 0px 60px;
     min-height: 94vh;
@@ -57,7 +60,9 @@
 
 .top-header-text {
     display: flex;
-    align-items: center;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
     /* margin-top: 50px; */
     margin-bottom: 40px;
 }
@@ -69,6 +74,21 @@
     font-family: 'Satisfy', cursive;
     font-size: 50px;
     color: white;
+}
+
+.top-header-text .clubDetails {
+    color: #62ffaf;
+    /* font-style: italic; */
+    font-family: 'East Sea Dokdo', cursive;
+    font-family: 'Sansita Swashed', cursive;
+    /* font-family: 'Satisfy', cursive; */
+}
+.top-header-text .clubDetails .clubDetailsStat {
+    font-family: 'East Sea Dokdo', cursive;
+    font-family: 'Sansita Swashed', cursive;
+    color: white;
+    /* font-size: 30px; */
+    font-weight: bolder;
 }
 
 .main-center-player {
@@ -91,7 +111,8 @@
 
 .main-center-eachPlayerCard:hover {
     transform: scale(1.07);
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 8px 16px 0 rgba(255,0,0,0.2);
+    border: 2px solid red;
 }
 
 .cardContent {
