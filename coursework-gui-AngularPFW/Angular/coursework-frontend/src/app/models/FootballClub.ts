@@ -8,8 +8,9 @@ export class FootballClub {
     clubLocation : string;
     clubName : string;
     clubOwner : string;
-    netWorth : string;
+    clubNetWorth : string;
     footballClubTotalStatistics : FootballClubTotalStatistics;
     kit : SportsClubKit;
-    lecOrTeachInCharge: string;
+    lecturerInCharge : string;
+    teacherInCharge : string;
 }
