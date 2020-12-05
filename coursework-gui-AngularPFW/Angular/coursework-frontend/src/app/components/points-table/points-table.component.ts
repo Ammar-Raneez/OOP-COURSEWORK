@@ -4,7 +4,7 @@ import { FootballClub } from 'src/app/models/FootballClub';
 import { AllClubsService } from 'src/app/services/all-clubs/all-clubs.service';
 import { AllMatchesFilterService } from 'src/app/services/all-matches-filter/all-matches-filter.service';
 import { PlayMatchService } from 'src/app/services/play-match/play-match.service';
-// import { NgxSpinnerService } from "ngx-spinner";
+import { NgxSpinnerService } from "ngx-spinner";
 
 
 @Component({
@@ -16,10 +16,17 @@ export class PointsTableComponent implements OnInit {
   allClubs : FootballClub[];
 
   constructor(private allClubsService : AllClubsService, private allClubsFilterService : AllMatchesFilterService,
-    private playMatchService : PlayMatchService) { }
+    private playMatchService : PlayMatchService, private ngxSpinnerService : NgxSpinnerService) { }
 
   ngOnInit(): void {
     this.getFootballClubs();
+
+    //show a spinner until the data has been retrieved.
+    if(this.allClubs) {
+      this.ngxSpinnerService.hide();
+    } else {
+      this.ngxSpinnerService.show();
+    }
   }
 
   updateFootballClubsAfterPlay() : void {
