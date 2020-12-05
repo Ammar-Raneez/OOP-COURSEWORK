@@ -59,9 +59,9 @@ public class ConsoleApplication {
      * Calls the addClub() method of PremierLeagueManager, passing the inputs obtained as parameters
      * @throws ClassNotFoundException - thrown in Color input
      * @throws IllegalAccessException - thrown in the get() method of Field
-     * @throws InterruptedException - thrown in the sleep() function
+//     * @throws InterruptedException - thrown in the sleep() function
      */
-    public static void addClub() throws ClassNotFoundException, IllegalAccessException, InterruptedException {
+    public static void addClub() throws ClassNotFoundException, IllegalAccessException/*, InterruptedException*/ {
         //*only 20 teams can be added in the Premier League*//
         if (PremierLeagueManager.getAllMatches().size() == PremierLeagueManager.getMaxSize()) {
             System.out.println("[ERROR] ==> There cannot be more than 20 teams in the premier league!");
@@ -171,9 +171,9 @@ public class ConsoleApplication {
     /**
      * static method, that handles the deletion of a club
      * Calls the deleteClub() method of PremierLeagueManager, passing the club name obtained as the parameter
-     * @throws InterruptedException - thrown in the sleep() method
+//     * @throws InterruptedException - thrown in the sleep() method
      */
-    public static void deleteClub() throws InterruptedException {
+    public static void deleteClub() /*throws InterruptedException*/ {
         String clubNameInput = userInputValidation("Enter Club Name you wish to delete", "Please Enter a Club name!");
         FootballClub deletedClub = premierLeagueManager.deleteClub(clubNameInput);
 
@@ -270,7 +270,7 @@ public class ConsoleApplication {
      * static method, that handles the playing of a match
      * Calls the addPlayedMatch() method of PremierLeagueManager
      */
-    public static void addPlayedMatch() throws InterruptedException { premierLeagueManager.addPlayedMatch(); }
+    public static void addPlayedMatch() /*throws InterruptedException*/ { premierLeagueManager.addPlayedMatch(); }
 
     /**
      * static method, that handles the displaying of the points table
@@ -337,7 +337,7 @@ public class ConsoleApplication {
         System.out.println("Enter q to exit");
     }
 
-    public static void main(String[] args) throws IllegalAccessException, ClassNotFoundException, InterruptedException {
+    public static void main(String[] args) throws IllegalAccessException, ClassNotFoundException/*, InterruptedException*/ {
         printDisplay();
         String userChoice = getUserInput("Please choose an option");
         infiniteLoop:

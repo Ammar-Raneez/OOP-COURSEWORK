@@ -1,4 +1,4 @@
-package controllers;
+package coursework;
 
 import coursework.*;
 import play.mvc.*;

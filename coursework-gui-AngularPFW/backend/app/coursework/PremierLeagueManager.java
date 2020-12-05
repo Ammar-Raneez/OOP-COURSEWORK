@@ -26,19 +26,19 @@ public class PremierLeagueManager implements LeagueManager {
     private static List<FootballClub> allFootballClubs = new ArrayList<>();
 
     //************************************************HELPER METHODS**************************************************//
-    /**
-     * Public helper method that generates the popular 3 dot loading
-     * @throws InterruptedException - Threads are used, to avoid any synchronization issues
-     */
-    public static void threeDotSuspense() throws InterruptedException {
-        for (int i=0; i<2; i++) {
-            Thread.sleep(500);
-            System.out.print(".");
-        }
-        Thread.sleep(500);
-        System.out.println(".");
-        Thread.sleep(500);
-    }
+//    /**
+//     * Public helper method that generates the popular 3 dot loading
+//     * @throws InterruptedException - Threads are used, to avoid any synchronization issues
+//     */
+//    public static void threeDotSuspense() throws InterruptedException {
+//        for (int i=0; i<2; i++) {
+//            Thread.sleep(500);
+//            System.out.print(".");
+//        }
+//        Thread.sleep(500);
+//        System.out.println(".");
+//        Thread.sleep(500);
+//    }
     //*************************************************END HELPER METHODS*********************************************//
 
 
@@ -172,7 +172,7 @@ public class PremierLeagueManager implements LeagueManager {
      * This method handles the functionality of playing a match in the PremierLeague
      */
     @Override
-    public void addPlayedMatch() throws InterruptedException {
+    public void addPlayedMatch() /*throws InterruptedException*/ {
         FootballClub firstTeam;
         FootballClub secondTeam;
 
@@ -343,7 +343,7 @@ public class PremierLeagueManager implements LeagueManager {
 
         try (FileOutputStream fileOutputStream = new FileOutputStream(new File(SAVE_PATH + "\\saveFile.txt"));
              ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
-            System.out.print("Now saving data");
+//            System.out.print("Now saving data");
 //            PremierLeagueManager.threeDotSuspense();
             objectOutputStream.writeObject(allData);
 //            Thread.sleep(500);
