@@ -33,7 +33,7 @@ import { SelectedClubComponent } from './components/selected-club/selected-club.
     HttpClientModule,
     FormsModule,
     NgxSpinnerModule,
-    BrowserAnimationsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

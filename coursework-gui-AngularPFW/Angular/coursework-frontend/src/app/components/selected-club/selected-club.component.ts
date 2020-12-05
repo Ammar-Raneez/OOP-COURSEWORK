@@ -32,7 +32,7 @@ export class SelectedClubComponent implements OnInit {
   private handleSuccessfulResponse(response : any) : void {
     this.selectedClub = response;
     this.determinePositionBackgroundColor();
-    this.determineStarRatingCount();
+  this.determineStarRatingCount();
     this.determinePlayerImageLink();
     this.determinePlayerHoverbackgroundImageLink();
     console.log(response);
