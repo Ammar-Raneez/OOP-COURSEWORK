@@ -34,17 +34,19 @@ public class MatchController extends Controller {
 
     public Result playMatch() {
 //        coursework.ConsoleApplication.loadData();
+
         try {
             coursework.ConsoleApplication.addPlayedMatch();
         } catch (Exception ignored) {}
 
+
         List<coursework.FootballClub> updatedClubs = coursework.PremierLeagueManager.getAllFootballClubs();
         updatedClubs.sort(Collections.reverseOrder());
+        return ok(Json.toJson(updatedClubs));
 //        List<coursework.FootballMatch> updatedMatches = coursework.PremierLeagueManager.getAllMatches();
 //        Collections.sort(updatedMatches);
 
 //        List<Object> allData = new ArrayList<>(Arrays.asList(updatedClubs, updatedMatches));
 //        return ok(Json.toJson(allData));
-        return ok(Json.toJson(updatedClubs));
     }
 }

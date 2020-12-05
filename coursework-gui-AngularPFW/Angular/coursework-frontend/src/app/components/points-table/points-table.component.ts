@@ -41,21 +41,18 @@ export class PointsTableComponent implements OnInit {
   //   MatchAndClub.setMatches(response[1]);
   //   this.allClubs = MatchAndClub.clubs;
   // }
-
   public getFootballClubsSortedOnWins() : void {
     this.allClubsFilterService.getMatchesWinFilter().subscribe(
       response => this.handleSuccessfulResponse(response),
       error => this.handleErrorResponse(error)
     );
   }
-
   public getFootballClubsSortedOnGoals() : void {
     this.allClubsFilterService.getMatchesGoalFilter().subscribe(
       response => this.handleSuccessfulResponse(response),
       error => this.handleErrorResponse(error)
     );
   }
-
   public getFootballClubs() : void {
     this.allClubsService.getAllFootballClubs().subscribe(
       response => this.handleSuccessfulResponse(response),
@@ -68,9 +65,5 @@ export class PointsTableComponent implements OnInit {
   private handleErrorResponse(error : any) : void {
     this.allClubs = error.message;
     console.log(error);
-  }
-
-  public getAllFootballClubs() : FootballClub[] {
-    return this.allClubs;
   }
 }
