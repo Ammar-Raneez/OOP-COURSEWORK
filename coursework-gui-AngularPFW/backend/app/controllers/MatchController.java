@@ -1,5 +1,6 @@
-package coursework;
+package controllers;
 
+import coursework.*;
 import play.mvc.*;
 import play.libs.Json;
 import java.util.*;
