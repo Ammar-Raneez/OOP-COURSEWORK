@@ -8,8 +8,9 @@ public class ClubController extends Controller {
     coursework.PremierLeagueManager leagueManager = new coursework.PremierLeagueManager();
 
     public Result returnAllClubs() {
-        coursework.ConsoleApplication.loadData();
+//        coursework.ConsoleApplication.loadData();
         List<coursework.FootballClub> allClubs = coursework.PremierLeagueManager.getAllFootballClubs();
+        System.out.println(allClubs);
         allClubs.sort(Collections.reverseOrder());
         return ok(Json.toJson(allClubs));
     }
