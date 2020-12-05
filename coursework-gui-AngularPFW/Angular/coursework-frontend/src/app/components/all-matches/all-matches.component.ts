@@ -10,6 +10,8 @@ import { MatchesOnDateService } from 'src/app/services/matches-on-date/matches-o
   styleUrls: ['./all-matches.component.css'],
 })
 export class AllMatchesComponent implements OnInit {
+  private static dateRegex : RegExp = /^\d{4}-\d{2}-\d{2}$/;
+  
   allMatches : FootballMatch[];
   date : string;
 
@@ -23,10 +25,14 @@ export class AllMatchesComponent implements OnInit {
   }
 
   getFootballMatchesOnDate() : void {
-    this.matchesByDateService.getMatchesOnDate(this.date).subscribe(
-      response => this.handleSuccessfulResponse(response),
-      error => this.handleErrorResponse(error)
-    );
+    if(this.date.match(AllMatchesComponent.dateRegex)) {
+      this.matchesByDateService.getMatchesOnDate(this.date).subscribe(
+        response => this.handleSuccessfulResponse(response),
+        error => this.handleErrorResponse(error)
+      );
+    } else {
+      window.alert("Invalid Date Format!")
+    }
   }
 
   getFootballMatches() : void {
