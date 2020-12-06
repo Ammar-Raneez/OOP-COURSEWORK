@@ -158,7 +158,7 @@ public class ConsoleApplication {
 
         //*call add method passing all the inputs as arguments*//
         premierLeagueManager.addClub(clubTypeInput, lecOrTeachInput, clubNameInput, clubLocationInput, clubOwnerInput,
-                                     clubSponsorInput, colorTop, colorShort, clubNetWorth);
+                clubSponsorInput, colorTop, colorShort, clubNetWorth);
         System.out.print("Now adding Football Club " + clubNameInput);
         PremierLeagueManager.threeDotSuspense();
         Thread.sleep(500);

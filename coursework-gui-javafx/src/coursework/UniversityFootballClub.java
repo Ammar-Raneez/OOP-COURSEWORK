@@ -13,7 +13,7 @@ import java.util.Objects;
  * @author Ammar Raneez | 2019163 | W1761196
  */
 public class UniversityFootballClub extends FootballClub {
-    private String lecturerInCharge;
+    private final String LECTURER_IN_CHARGE;
 
     /**
      * initializes a new UniversityFootballClub object
@@ -27,23 +27,23 @@ public class UniversityFootballClub extends FootballClub {
     public UniversityFootballClub(String clubName, String clubLocation, String clubOwner, SportsClubKit kit,
                                   String lecturerInCharge, String clubWorth) {
         super(clubName, clubLocation, clubOwner, kit, clubWorth);
-        this.lecturerInCharge = lecturerInCharge;
+        this.LECTURER_IN_CHARGE = lecturerInCharge;
     }
 
     /**
      * @return lecturer in-charge of the university club
      */
     public String getLecturerInCharge() {
-        return lecturerInCharge;
+        return LECTURER_IN_CHARGE;
     }
 
-    /**
-     * sets lecturer in-charge of the university club
-     * @param lecturerInCharge - teacher in-charge of the university club
-     */
-    public void setLecturerInCharge(String lecturerInCharge) {
-        this.lecturerInCharge = lecturerInCharge;
-    }
+//    /**
+//     * sets lecturer in-charge of the university club
+//     * @param lecturerInCharge - teacher in-charge of the university club
+//     */
+//    public void setLecturerInCharge(String lecturerInCharge) {
+//        this.lecturerInCharge = lecturerInCharge;
+//    }
 
     /**
      * @return overrun toString() method
@@ -53,7 +53,7 @@ public class UniversityFootballClub extends FootballClub {
     public String toString() {
         return "UniversityFootballClub{" +
                 super.toString() +
-                ",lecturerInCharge='" + lecturerInCharge + '\'' +
+                ",lecturerInCharge='" + LECTURER_IN_CHARGE + '\'' +
                 '}';
     }
 

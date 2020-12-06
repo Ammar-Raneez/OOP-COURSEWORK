@@ -15,12 +15,12 @@ import java.util.Objects;
  */
 public abstract class SportsClub implements Serializable {
     private static final long serialVersionUID = -1367205871791753063L;
-    private int amountOfPlayers;
-    private SportsClubKit kit;
-    private String clubLocation;
-    private String clubName;
-    private String clubOwner;
-    private String clubNetWorth;
+    private final int AMOUNT_OF_PLAYERS;
+    private final SportsClubKit KIT;
+    private final String CLUB_LOCATION;
+    private final String CLUB_NAME;
+    private final String CLUB_OWNER;
+    private final String CLUB_NET_WORTH;
 
     /**
      * initializes a new sports club
@@ -33,103 +33,103 @@ public abstract class SportsClub implements Serializable {
      */
     public SportsClub(String clubName, String clubLocation, String clubOwner, SportsClubKit kit, int amountOfPlayers,
                       String clubNetWorth) {
-        this.clubName = clubName;
-        this.clubLocation = clubLocation;
-        this.clubOwner = clubOwner;
-        this.kit = kit;
-        this.amountOfPlayers = amountOfPlayers;
-        this.clubNetWorth = clubNetWorth;
+        this.CLUB_NAME = clubName;
+        this.CLUB_LOCATION = clubLocation;
+        this.CLUB_OWNER = clubOwner;
+        this.KIT = kit;
+        this.AMOUNT_OF_PLAYERS = amountOfPlayers;
+        this.CLUB_NET_WORTH = clubNetWorth;
     }
 
     /**
      * @return amount of players in a team of a sports club
      */
     public int getAmountOfPlayers() {
-        return amountOfPlayers;
+        return AMOUNT_OF_PLAYERS;
     }
 
-    /**
-     * sets number of players of a sports club
-     * @param amountOfPlayers - number of players of a sports club
-     */
-    public void setAmountOfPlayers(int amountOfPlayers) {
-        this.amountOfPlayers = amountOfPlayers;
-    }
+//    /**
+//     * sets number of players of a sports club
+//     * @param amountOfPlayers - number of players of a sports club
+//     */
+//    public void setAmountOfPlayers(int amountOfPlayers) {
+//        this.amountOfPlayers = amountOfPlayers;
+//    }
 
     /**
      * @return kit of club
      */
     public SportsClubKit getKit() {
-        return kit;
+        return KIT;
     }
 
-    /**
-     * sets a new club kit  of a club
-     * @param kit - club kit of a club
-     */
-    public void setKit(SportsClubKit kit) {
-        this.kit = kit;
-    }
+//    /**
+//     * sets a new club kit  of a club
+//     * @param kit - club kit of a club
+//     */
+//    public void setKit(SportsClubKit kit) {
+//        this.kit = kit;
+//    }
 
     /**
      * @return location of club
      */
     public String getClubLocation() {
-        return clubLocation;
+        return CLUB_LOCATION;
     }
 
-    /**
-     * sets location of a club
-     * @param clubLocation - location of club
-     */
-    public void setClubLocation(String clubLocation) {
-        this.clubLocation = clubLocation;
-    }
+//    /**
+//     * sets location of a club
+//     * @param clubLocation - location of club
+//     */
+//    public void setClubLocation(String clubLocation) {
+//        this.clubLocation = clubLocation;
+//    }
 
     /**
      * @return name of club
      */
     public String getClubName() {
-        return clubName;
+        return CLUB_NAME;
     }
 
-    /**
-     * sets name of a club
-     * @param clubName - name of club
-     */
-    public void setClubName(String clubName) {
-        this.clubName = clubName;
-    }
+//    /**
+//     * sets name of a club
+//     * @param clubName - name of club
+//     */
+//    public void setClubName(String clubName) {
+//        this.clubName = clubName;
+//    }
 
     /**
      * @return owner of club
      */
     public String getClubOwner() {
-        return clubOwner;
+        return CLUB_OWNER;
     }
 
-    /**
-     * sets owner of a club
-     * @param clubOwner - owner of club
-     */
-    public void setClubOwner(String clubOwner) {
-        this.clubOwner = clubOwner;
-    }
+//    /**
+//     * sets owner of a club
+//     * @param clubOwner - owner of club
+//     */
+//    public void setClubOwner(String clubOwner) {
+//        this.clubOwner = clubOwner;
+//    }
 
     /**
      * @return club net worth
      */
     public String getClubNetWorth() {
-        return clubNetWorth;
+        return CLUB_NET_WORTH;
     }
 
-    /**
-     * sets net worth of a club
-     * @param clubNetWorth - net worth of club
-     */
-    public void setClubNetWorth(String clubNetWorth) {
-        this.clubNetWorth = clubNetWorth;
-    }
+//    /**
+//     * sets net worth of a club
+//     * @param clubNetWorth - net worth of club
+//     */
+//    public void setClubNetWorth(String clubNetWorth) {
+//        this.clubNetWorth = clubNetWorth;
+//    }
 
     /**
      * @return overrun toString() method
@@ -138,12 +138,12 @@ public abstract class SportsClub implements Serializable {
     @Override
     public String toString() {
         return "SportsClub{" +
-                "amountOfPlayers=" + amountOfPlayers +
-                ", kit=" + kit +
-                ", clubLocation='" + clubLocation + '\'' +
-                ", clubName='" + clubName + '\'' +
-                ", clubOwner='" + clubOwner + '\'' +
-                ", clubNetWorth=" + clubNetWorth +
+                "amountOfPlayers=" + AMOUNT_OF_PLAYERS +
+                ", kit=" + KIT +
+                ", clubLocation='" + CLUB_LOCATION + '\'' +
+                ", clubName='" + CLUB_NAME + '\'' +
+                ", clubOwner='" + CLUB_OWNER + '\'' +
+                ", clubNetWorth=" + CLUB_NET_WORTH +
                 '}';
     }
 
@@ -159,9 +159,9 @@ public abstract class SportsClub implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         SportsClub that = (SportsClub) o;
-        return Objects.equals(clubLocation, that.clubLocation) &&
-                Objects.equals(clubName, that.clubName) &&
-                Objects.equals(clubOwner, that.clubOwner);
+        return Objects.equals(CLUB_LOCATION, that.CLUB_LOCATION) &&
+                Objects.equals(CLUB_NAME, that.CLUB_NAME) &&
+                Objects.equals(CLUB_OWNER, that.CLUB_OWNER);
     }
 
     /**
@@ -170,6 +170,6 @@ public abstract class SportsClub implements Serializable {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(clubLocation, clubName, clubOwner);
+        return Objects.hash(CLUB_LOCATION, CLUB_NAME, CLUB_OWNER);
     }
 }

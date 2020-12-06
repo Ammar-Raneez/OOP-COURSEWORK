@@ -19,7 +19,7 @@ import java.util.List;
  */
 public class PremierLeagueManager implements LeagueManager {
     private static final String SAVE_PATH = "C:\\Users\\Ammuuu\\Downloads\\learning\\UNI\\OOP-Module\\Coursework\\" +
-                                            "OOP-COURSEWORK\\saveFile-cli";
+            "OOP-COURSEWORK\\saveFile-cli";
     private static final int MAX_SIZE = 20;
     private static final Random RANDOM = new Random();
     private static List<FootballMatch> allMatches = new ArrayList<>();
@@ -66,17 +66,17 @@ public class PremierLeagueManager implements LeagueManager {
         switch (clubTypeInput) {
             case "university":
                 footballClub = new UniversityFootballClub(clubNameInput, clubLocationInput, clubOwnerInput,
-                                                          new SportsClubKit(clubSponsorInput, colorTop, colorShort),
-                                                          lecOrTeachInput, netWorth);
+                        new SportsClubKit(clubSponsorInput, colorTop, colorShort),
+                        lecOrTeachInput, netWorth);
                 break;
             case "school":
                 footballClub = new SchoolFootballClub(clubNameInput, clubLocationInput, clubOwnerInput,
-                                                      new SportsClubKit(clubSponsorInput, colorTop, colorShort),
-                                                      lecOrTeachInput, netWorth);
+                        new SportsClubKit(clubSponsorInput, colorTop, colorShort),
+                        lecOrTeachInput, netWorth);
                 break;
             case "league":
                 footballClub = new FootballClub(clubNameInput, clubLocationInput, clubOwnerInput,
-                                                new SportsClubKit(clubSponsorInput, colorTop, colorShort), netWorth);
+                        new SportsClubKit(clubSponsorInput, colorTop, colorShort), netWorth);
                 break;
         }
 
@@ -211,8 +211,8 @@ public class PremierLeagueManager implements LeagueManager {
             //*since its reason has been fulfilled*//
             if(!hasMatch) {
                 System.out.print("Now playing match between " + footballMatch.getFirstTeam().getClubName() + " and " +
-                                   footballMatch.getSecondTeam().getClubName()
-                        );
+                        footballMatch.getSecondTeam().getClubName()
+                );
                 PremierLeagueManager.threeDotSuspense();
                 System.out.println();
                 footballMatch.playMatch();
@@ -278,19 +278,19 @@ public class PremierLeagueManager implements LeagueManager {
         System.out.println("PREMIER LEAGUE STANDINGS");
         System.out.println("=======================================================================");
         System.out.format("%-20s %-5s %-5s %-5s %-5s %-5s %-5s %-5s %-5s", "Club", "MP", "W", "D", "L", "GF", "GA",
-                          "GD", "Pts");
+                "GD", "Pts");
         System.out.println();
         //*A simple formatted string is used to print*//
         for (FootballClub footballClub : allFootballClubs) {
             System.out.format("%-20s %-5s %-5s %-5s %-5s %-5s %-5s %-5s %-5s", footballClub.getClubName(),
-                               footballClub.getFootballClubTotalStatistics().getMatchesPlayed(),
-                               footballClub.getFootballClubTotalStatistics().getWins(),
-                               footballClub.getFootballClubTotalStatistics().getDraws(),
-                               footballClub.getFootballClubTotalStatistics().getDefeats(),
-                               footballClub.getFootballClubTotalStatistics().getGoalsFor(),
-                               footballClub.getFootballClubTotalStatistics().getGoalsAgainst(),
-                               footballClub.getFootballClubTotalStatistics().getGoalDifference(),
-                               footballClub.getFootballClubTotalStatistics().getPoints());
+                    footballClub.getFootballClubTotalStatistics().getMatchesPlayed(),
+                    footballClub.getFootballClubTotalStatistics().getWins(),
+                    footballClub.getFootballClubTotalStatistics().getDraws(),
+                    footballClub.getFootballClubTotalStatistics().getDefeats(),
+                    footballClub.getFootballClubTotalStatistics().getGoalsFor(),
+                    footballClub.getFootballClubTotalStatistics().getGoalsAgainst(),
+                    footballClub.getFootballClubTotalStatistics().getGoalDifference(),
+                    footballClub.getFootballClubTotalStatistics().getPoints());
             System.out.println();
         }
         System.out.println("=======================================================================");
