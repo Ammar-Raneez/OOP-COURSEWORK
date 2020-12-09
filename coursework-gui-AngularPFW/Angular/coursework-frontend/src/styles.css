@@ -8,6 +8,7 @@
     box-sizing: border-box;    
     font-family: 'Roboto', sans-serif;
     scroll-behavior: smooth;
+    scrollbar-width: none;
 }
 
 *::-webkit-scrollbar {

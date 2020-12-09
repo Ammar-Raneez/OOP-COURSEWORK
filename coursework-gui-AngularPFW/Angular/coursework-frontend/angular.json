@@ -65,7 +65,8 @@
           },
           "configurations": {
             "production": {
-              "browserTarget": "coursework-frontend:build:production"
+              "browserTarget": "coursework-frontend:build:production",
+              "proxyConfig": "src/proxy.conf.json"
             }
           }
         },
