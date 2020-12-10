@@ -1,4 +1,4 @@
-export class PlayerStats {
+export interface PlayerStats {
     overall : number;
     tackle : number;
     passing : number;

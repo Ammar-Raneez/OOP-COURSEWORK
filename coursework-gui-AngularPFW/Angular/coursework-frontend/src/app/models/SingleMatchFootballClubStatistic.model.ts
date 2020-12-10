@@ -1,4 +1,4 @@
-export class SingleMatchFootballClubStatistic {
+export interface SingleMatchFootballClubStatistic {
     corners : number;
     fouls : number;
     goals : number;

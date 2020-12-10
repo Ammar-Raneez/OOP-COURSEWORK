@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
-import { FootballClub } from 'src/app/models/FootballClub';
+import { FootballClub } from 'src/app/models/FootballClub.model';
 import { Observable } from 'rxjs';
 import { BASE_URL } from 'src/app/app.constants';
 

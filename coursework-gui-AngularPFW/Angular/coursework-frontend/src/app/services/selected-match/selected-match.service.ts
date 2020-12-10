@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BASE_URL } from 'src/app/app.constants';
-import { FootballMatch } from '../../models/FootballMatch';
+import { FootballMatch } from '../../models/FootballMatch.model';
 
 @Injectable({
   providedIn: 'root'

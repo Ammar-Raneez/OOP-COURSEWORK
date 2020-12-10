@@ -1,6 +1,6 @@
-import { PlayerStats } from './PlayerStats';
+import { PlayerStats } from './PlayerStats.model';
 
-export class Player {
+export interface Player {
     name : string;
     position : string;
     height : number;

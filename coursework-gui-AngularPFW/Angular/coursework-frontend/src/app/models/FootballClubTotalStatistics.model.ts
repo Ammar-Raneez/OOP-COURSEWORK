@@ -1,4 +1,4 @@
-export class FootballClubTotalStatistics {
+export interface FootballClubTotalStatistics {
     defeats : number;
     draws : number;
     goalsAgainst : number;

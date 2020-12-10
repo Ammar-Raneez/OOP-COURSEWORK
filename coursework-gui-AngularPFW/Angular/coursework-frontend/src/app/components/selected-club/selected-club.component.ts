@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FootballClub } from 'src/app/models/FootballClub';
+import { FootballClub } from 'src/app/models/FootballClub.model';
 import { SelectedClubService } from 'src/app/services/selected-club/selected-club.service';
 
 @Component({

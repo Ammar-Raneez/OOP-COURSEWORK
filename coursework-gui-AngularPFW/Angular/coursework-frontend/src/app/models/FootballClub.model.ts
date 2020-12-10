@@ -1,8 +1,8 @@
-import { FootballClubTotalStatistics } from './FootballClubTotalStatistics';
-import { Player } from './Player';
-import { SportsClubKit } from './SportsClubKit';
+import { FootballClubTotalStatistics } from './FootballClubTotalStatistics.model';
+import { Player } from './Player.model';
+import { SportsClubKit } from './SportsClubKit.model';
 
-export class FootballClub {
+export interface FootballClub {
     allPlayers : Player[];
     amountOfPlayers : number;
     clubLocation : string;

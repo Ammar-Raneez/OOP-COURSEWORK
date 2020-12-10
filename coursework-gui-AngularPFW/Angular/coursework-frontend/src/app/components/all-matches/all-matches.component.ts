@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FootballMatch } from 'src/app/models/FootballMatch';
+import { FootballMatch } from 'src/app/models/FootballMatch.model';
 import { AllMatchesService } from 'src/app/services/all-matches/all-matches.service';
 import { MatchesOnDateService } from 'src/app/services/matches-on-date/matches-on-date.service';
 
