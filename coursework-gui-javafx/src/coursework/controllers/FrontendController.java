@@ -42,13 +42,26 @@ import java.util.regex.Pattern;
 public class FrontendController extends Application {
     //*Date regex*//
     private static final Pattern DATE_PATTERN = Pattern.compile("^\\d{4}-\\d{2}-\\d{2}$");
+    //*season regex*//
+    private static final Pattern SEASON_PATTERN = Pattern.compile("^\\d{4}");
 
     @Override
     public void start(Stage primaryStage) throws IllegalAccessException, InterruptedException, ClassNotFoundException {
-        ConsoleController.loadData();
         GuiElements guiElements = new GuiElements();
         List<FootballClub> allClubs = PremierLeagueManager.getAllFootballClubs();
         List<FootballMatch> allMatches = PremierLeagueManager.getAllMatches();
+
+        String userSeasonChoice = ConsoleController.getUserInput("Please enter the season (Ex: 2020 OR 2021)");
+        while (true) {
+            if (SEASON_PATTERN.matcher(userSeasonChoice).matches()) {
+                break;
+            } else {
+                System.out.println("INVALID Input!");
+                userSeasonChoice = ConsoleController.getUserInput("Please enter the season (Ex: 2020 OR 2021) appropriately!");
+            }
+        }
+
+        ConsoleController.loadData();
         allClubs.sort(Collections.reverseOrder());                                  //**to display clubs sorted by points**//
         primaryStage.getIcons().add(new Image("file:/C:/Users/Ammuuu/Downloads/learning/UNI/OOP-Module/Coursework/OOP-COURSEWORK/images/PL-Lion-transparent.png"));
 

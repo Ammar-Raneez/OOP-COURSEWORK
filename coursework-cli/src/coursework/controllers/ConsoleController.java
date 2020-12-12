@@ -5,8 +5,6 @@ package coursework.controllers;
  * Copyright © 2020 Ammar Raneez. All Rights Reserved.
  */
 
-//import javafx.application.Application;
-
 import coursework.models.FootballClub;
 import coursework.models.FootballMatch;
 import coursework.services.PremierLeagueManager;
@@ -24,6 +22,7 @@ import java.util.regex.Pattern;
 public class ConsoleController {
     private static final Scanner SCANNER = new Scanner(System.in);
     private static final PremierLeagueManager PREMIER_LEAGUE_MANAGER = new PremierLeagueManager();
+    //*regex for season input validation*//
     private static final Pattern SEASON_PATTERN = Pattern.compile("^\\d{4}");
 
     /**
@@ -321,13 +320,15 @@ public class ConsoleController {
         System.out.println("Enter c to display all Match Scores of the Premier League");
         System.out.println("Enter x to display a selected club");
         System.out.println("Enter s to display a selected match statistic");
-//        System.out.println("Enter g to display GUI");
         System.out.println("Enter q to exit");
     }
 
     public static void main(String[] args) throws IllegalAccessException, ClassNotFoundException, InterruptedException {
+        //*initially asks user to input year of season*//
         String userSeasonChoice = getUserInput("Please enter the season (Ex: 2020 OR 2021)");
+        //*validation using the regex defined initially*//
         while (true) {
+            //*if and only if the input matches the pattern will the program continue*//
             if (SEASON_PATTERN.matcher(userSeasonChoice).matches()) {
                 break;
             } else {
@@ -379,11 +380,6 @@ public class ConsoleController {
                     printDisplay();
                     userChoice = getUserInput("Please choose an option");
                     break;
-//                case "g":
-//                    Application.launch(TestFrontend.class, args);
-//                    printDisplay();
-//                    userChoice = getUserInput("Please choose an option");
-//                    break;
                 case "q":
                     saveData(userSeasonChoice);
                     break infiniteLoop;

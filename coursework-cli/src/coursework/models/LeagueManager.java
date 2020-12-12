@@ -5,9 +5,6 @@ package coursework.models;
  * Copyright © 2020 Ammar Raneez. All Rights Reserved.
  */
 
-import coursework.models.FootballMatch;
-import coursework.models.SportsClub;
-
 import java.awt.*;
 
 /**
