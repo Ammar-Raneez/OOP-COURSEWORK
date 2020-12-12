@@ -14,6 +14,7 @@ import coursework.services.PremierLeagueManager;
 import java.awt.*;
 import java.lang.reflect.Field;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 /**
  * ConsoleApplication class, the main cli runner class
@@ -23,6 +24,7 @@ import java.util.Scanner;
 public class ConsoleController {
     private static final Scanner SCANNER = new Scanner(System.in);
     private static final PremierLeagueManager PREMIER_LEAGUE_MANAGER = new PremierLeagueManager();
+    private static final Pattern SEASON_PATTERN = Pattern.compile("^\\d{4}");
 
     /**
      * Public helper method that displays a sentence and returns user's input transformed to lowercase and whitespaces
@@ -293,16 +295,16 @@ public class ConsoleController {
      * static method, that handles the saving of data
      * Calls the saveData() method of PremierLeagueManager
      */
-    public static void saveData() {
-        PREMIER_LEAGUE_MANAGER.saveData();
+    public static void saveData(String season) {
+        PREMIER_LEAGUE_MANAGER.saveData(season);
     }
 
     /**
      * static method, that handles the loading of data
      * Calls the loadData() method of PremierLeagueManager
      */
-    public static void loadData() {
-        PREMIER_LEAGUE_MANAGER.loadData();
+    public static void loadData(String season) {
+        PREMIER_LEAGUE_MANAGER.loadData(season);
     }
 
     /**
@@ -324,9 +326,19 @@ public class ConsoleController {
     }
 
     public static void main(String[] args) throws IllegalAccessException, ClassNotFoundException, InterruptedException {
-        //*load data upon start, and display the menu*//
+        String userSeasonChoice = getUserInput("Please enter the season (Ex: 2020 OR 2021)");
+        while (true) {
+            if (SEASON_PATTERN.matcher(userSeasonChoice).matches()) {
+                break;
+            } else {
+                System.out.println("INVALID Input!");
+                userSeasonChoice = getUserInput("Please enter the season (Ex: 2020 OR 2021) appropriately!");
+            }
+        }
 
-        loadData();
+        //*load data upon start, and display the menu*//
+        loadData(userSeasonChoice);
+
         printDisplay();
         String userChoice = getUserInput("Please choose an option");
         infiniteLoop:
@@ -373,7 +385,7 @@ public class ConsoleController {
 //                    userChoice = getUserInput("Please choose an option");
 //                    break;
                 case "q":
-                    saveData();
+                    saveData(userSeasonChoice);
                     break infiniteLoop;
                 default:
                     printDisplay();

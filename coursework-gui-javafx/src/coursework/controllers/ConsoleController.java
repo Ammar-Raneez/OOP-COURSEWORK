@@ -367,7 +367,7 @@ public class ConsoleController {
 //                    userChoice = getUserInput("Please choose an option");
 //                    break;
 //                case "g":
-//                    Application.launch(TestFrontend.class, args);
+//                    Application.launch(FrontendController.class, args);
 //                    printDisplay();
 //                    userChoice = getUserInput("Please choose an option");
 //                    break;

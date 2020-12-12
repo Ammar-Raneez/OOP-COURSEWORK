@@ -24,6 +24,6 @@ public interface LeagueManager {
     void addPlayedMatch() throws InterruptedException;
     void displayPointsTable();
     void displayMatchResults();
-    void saveData();
-    void loadData();
+    void saveData(String season);
+    void loadData(String season);
 }

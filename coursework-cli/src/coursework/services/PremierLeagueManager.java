@@ -343,13 +343,13 @@ public class PremierLeagueManager implements LeagueManager {
      * This method handles the functionality of saving all required data
      */
     @Override
-    public void saveData() {
+    public void saveData(String season) {
         //*list of type Object, to store both the Clubs and Matches*//
         List<Object> allData = new ArrayList<>();
         allData.add(allFootballClubs);
         allData.add(allMatches);
 
-        try (FileOutputStream fileOutputStream = new FileOutputStream(new File(SAVE_PATH + "\\saveFile.txt"));
+        try (FileOutputStream fileOutputStream = new FileOutputStream(new File(SAVE_PATH + "\\" + season + ".txt"));
              ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
             System.out.print("Now saving data");
             PremierLeagueManager.threeDotSuspense();
@@ -370,12 +370,12 @@ public class PremierLeagueManager implements LeagueManager {
      * This method handles the functionality of loading all the data that had been saved
      */
     @Override
-    public void loadData() {
+    public void loadData(String season) {
         List<Object> allData;
 
-        try (FileInputStream fileInputStream = new FileInputStream(new File(SAVE_PATH + "\\saveFile.txt"));
+        try (FileInputStream fileInputStream = new FileInputStream(new File(SAVE_PATH + "\\" + season + ".txt"));
              ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream)) {
-            System.out.println("saveFile.txt found!");
+            System.out.println(season + ".txt found!");
             System.out.print("Now loading data");
             PremierLeagueManager.threeDotSuspense();
             allData = (List<Object>) objectInputStream.readObject();
