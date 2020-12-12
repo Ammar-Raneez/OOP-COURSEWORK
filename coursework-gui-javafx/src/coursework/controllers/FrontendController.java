@@ -61,11 +61,11 @@ public class FrontendController extends Application {
             }
         }
 
-        ConsoleController.loadData();
+        ConsoleController.loadData(userSeasonChoice);
         allClubs.sort(Collections.reverseOrder());                                  //**to display clubs sorted by points**//
         primaryStage.getIcons().add(new Image("file:/C:/Users/Ammuuu/Downloads/learning/UNI/OOP-Module/Coursework/OOP-COURSEWORK/images/PL-Lion-transparent.png"));
 
-        displayMenu(primaryStage, allClubs, allMatches, guiElements);
+        displayMenu(primaryStage, allClubs, allMatches, guiElements, userSeasonChoice);
     }
 
 
@@ -74,9 +74,11 @@ public class FrontendController extends Application {
      * @param window - the stage
      * @param allClubs - list of clubs
      * @param allMatches - list of matches
+     * @param userSeasonChoice - season of tournament
      * @param guiElements - object of GuiElements class
      */
-    public static void displayPointsTableWindow(Stage window, List<FootballClub> allClubs, List<FootballMatch> allMatches, GuiElements guiElements) {
+    public static void displayPointsTableWindow(Stage window, List<FootballClub> allClubs, List<FootballMatch> allMatches, GuiElements guiElements,
+                                                String userSeasonChoice) {
         //*all gui elements*//
         ImageView eplLion = GuiElements.imageViewLay(
                 "file:/C:/Users/Ammuuu/Downloads/learning/UNI/OOP-Module/Coursework/OOP-COURSEWORK/images/PL-lion.png",
@@ -132,7 +134,7 @@ public class FrontendController extends Application {
             }
 
             try {
-                ConsoleController.addPlayedMatch();
+                ConsoleController.addPlayedMatch(userSeasonChoice);
             } catch (InterruptedException e) {
                 System.out.println("[ERROR] ==> " + e.getMessage());
             }
@@ -160,7 +162,7 @@ public class FrontendController extends Application {
         window.setOnCloseRequest(event -> {
             event.consume();
             try {
-                closeScenes(window, allClubs, allMatches, guiElements);
+                closeScenes(window, allClubs, allMatches, guiElements, userSeasonChoice);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -176,7 +178,7 @@ public class FrontendController extends Application {
         Scene pointsTableScene = guiElements.scene(anchorPane, 1366, 700, "style.css");
         //*on click of this button, change scene to display all matches*//
         displayMatch.setOnAction(event -> {
-            Scene displayMatchScene = displayAllMatches(window, allClubs, allMatches, guiElements, pointsTableScene);
+            Scene displayMatchScene = displayAllMatches(window, allClubs, allMatches, guiElements, pointsTableScene, userSeasonChoice);
             window.setScene(displayMatchScene);
         });
 
@@ -192,9 +194,11 @@ public class FrontendController extends Application {
      * @param allMatches = list of matches
      * @param guiElements - a GuiElements object
      * @param pointsTableScene - Points Table scene passed for button to switch scenes
+     * @param userSeasonChoice - season of tournament
      * @return scene - the gui scene is returned and used in the points table scene
      */
-    public static Scene displayAllMatches(Stage window, List<FootballClub> allClubs, List<FootballMatch> allMatches, GuiElements guiElements, Scene pointsTableScene) {
+    public static Scene displayAllMatches(Stage window, List<FootballClub> allClubs, List<FootballMatch> allMatches, GuiElements guiElements,
+                                          Scene pointsTableScene, String userSeasonChoice) {
         Collections.sort(allMatches);              //**to display all matches ascending order of date**//
         //**all gui elements**//
         ImageView eplLion2 = GuiElements.imageViewLay(
@@ -265,7 +269,7 @@ public class FrontendController extends Application {
         window.setOnCloseRequest(event -> {
             event.consume();
             try {
-                closeScenes(window, allClubs, allMatches, guiElements);
+                closeScenes(window, allClubs, allMatches, guiElements, userSeasonChoice);
             } catch (Exception e) {
                 System.out.println("[ERROR] ==> something went wrong " + e.getMessage());
             }
@@ -424,18 +428,20 @@ public class FrontendController extends Application {
      * @param allClubs  - list of all clubs
      * @param allMatches - list of all matches
      * @param guiElements - object of GuiElements
+     * @param userSeasonChoice - season of tournament
      * @throws IllegalAccessException - thrown in Color input of the addClub() method
      * @throws InterruptedException - thrown during Thread.sleep
      * @throws ClassNotFoundException - thrown in the get() method of Field of the addClub() method
      */
-    private static void closeScenes(Stage window, List<FootballClub> allClubs, List<FootballMatch> allMatches, GuiElements guiElements)
+    private static void closeScenes(Stage window, List<FootballClub> allClubs, List<FootballMatch> allMatches, GuiElements guiElements,
+                                    String userSeasonChoice)
             throws IllegalAccessException, InterruptedException, ClassNotFoundException {
         Alert closeAlert = GuiElements.closeWindowCommon();
         closeAlert.initOwner(window);
         closeAlert.showAndWait();
         if (closeAlert.getResult() == ButtonType.YES) {
             window.close();
-            displayMenu(window, allClubs, allMatches, guiElements); /*call the menu upon window closure*/
+            displayMenu(window, allClubs, allMatches, guiElements, userSeasonChoice); /*call the menu upon window closure*/
         } else {
             closeAlert.close();
         }
@@ -447,11 +453,13 @@ public class FrontendController extends Application {
      * @param allClubs - list of all clubs
      * @param allMatches - list of all matches
      * @param guiElements - object of GuiElements class
+     * @param userSeasonChoice - season of tournament
      * @throws IllegalAccessException - thrown in Color input of the addClub() method
      * @throws InterruptedException - thrown during Thread.sleep
      * @throws ClassNotFoundException - thrown in the get() method of Field of the addClub() method
      */
-    public static void displayMenu(Stage window, List<FootballClub> allClubs, List<FootballMatch> allMatches, GuiElements guiElements)
+    public static void displayMenu(Stage window, List<FootballClub> allClubs, List<FootballMatch> allMatches, GuiElements guiElements,
+                                   String userSeasonChoice)
             throws IllegalAccessException, InterruptedException, ClassNotFoundException {
         ConsoleController.printDisplay();
         String userChoice = ConsoleController.getUserInput("Please choose an option");
@@ -460,41 +468,41 @@ public class FrontendController extends Application {
         switch (userChoice) {
             case "a":
                 ConsoleController.addClub();
-                displayMenu(window, allClubs, allMatches, guiElements);
+                displayMenu(window, allClubs, allMatches, guiElements, userSeasonChoice);
                 break;
             case "d":
                 ConsoleController.deleteClub();
-                displayMenu(window, allClubs, allMatches, guiElements);
+                displayMenu(window, allClubs, allMatches, guiElements, userSeasonChoice);
                 break;
             case "p":
-                ConsoleController.addPlayedMatch();
-                displayMenu(window, allClubs, allMatches, guiElements);
+                ConsoleController.addPlayedMatch(userSeasonChoice);
+                displayMenu(window, allClubs, allMatches, guiElements, userSeasonChoice);
                 break;
             case "z":
                 ConsoleController.displayPointsTable();
-                displayMenu(window, allClubs, allMatches, guiElements);
+                displayMenu(window, allClubs, allMatches, guiElements, userSeasonChoice);
                 break;
             case "c":
                 ConsoleController.displayMatchResults();
-                displayMenu(window, allClubs, allMatches, guiElements);
+                displayMenu(window, allClubs, allMatches, guiElements, userSeasonChoice);
                 break;
             case "x":
                 ConsoleController.displaySelectedClub();
-                displayMenu(window, allClubs, allMatches, guiElements);
+                displayMenu(window, allClubs, allMatches, guiElements, userSeasonChoice);
                 break;
             case "s":
                 ConsoleController.displaySelectedMatch();
-                displayMenu(window, allClubs, allMatches, guiElements);
+                displayMenu(window, allClubs, allMatches, guiElements, userSeasonChoice);
                 break;
             case "g":
-                FrontendController.displayPointsTableWindow(window, allClubs, allMatches, guiElements);
+                FrontendController.displayPointsTableWindow(window, allClubs, allMatches, guiElements, userSeasonChoice);
                 break;
             case "q":
-                ConsoleController.saveData();
+                ConsoleController.saveData(userSeasonChoice);
                 break;
             default:
                 System.out.println("Please enter a VALID option");
-                displayMenu(window, allClubs, allMatches, guiElements);
+                displayMenu(window, allClubs, allMatches, guiElements, userSeasonChoice);
         }
     }
 
