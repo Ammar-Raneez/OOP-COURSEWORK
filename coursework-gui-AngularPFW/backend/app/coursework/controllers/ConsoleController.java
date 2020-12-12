@@ -16,6 +16,7 @@ import java.lang.reflect.Field;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 /**
  * ConsoleApplication class, the main cli runner class
@@ -24,7 +25,8 @@ import java.util.Scanner;
  */
 public class ConsoleController {
     private static final Scanner SCANNER = new Scanner(System.in);
-    private static final PremierLeagueManager premierLeagueManager = new PremierLeagueManager();
+    private static final Pattern SEASON_PATTERN = Pattern.compile("^\\d{4}");
+    private static final PremierLeagueManager PREMIER_LEAGUE_MANAGER = new PremierLeagueManager();
 
     /**
      * Public helper method that displays a sentence and returns user's input transformed to lowercase and whitespaces
@@ -162,7 +164,7 @@ public class ConsoleController {
         String clubNetWorth = userInputValidation("Enter club net worth", "Please Enter the Clubs net worth!");
 
         //*call add method passing all the inputs as arguments*//
-        premierLeagueManager.addClub(clubTypeInput, lecOrTeachInput, clubNameInput, clubLocationInput, clubOwnerInput,
+        PREMIER_LEAGUE_MANAGER.addClub(clubTypeInput, lecOrTeachInput, clubNameInput, clubLocationInput, clubOwnerInput,
                                      clubSponsorInput, colorTop, colorShort, clubNetWorth);
         System.out.print("Now adding Football Club " + clubNameInput);
         System.out.println(clubNameInput + " was successfully Promoted to the Premier League!");
@@ -174,7 +176,7 @@ public class ConsoleController {
 -     */
     public static void deleteClub() {
         String clubNameInput = userInputValidation("Enter Club Name you wish to delete", "Please Enter a Club name!");
-        FootballClub deletedClub = premierLeagueManager.deleteClub(clubNameInput);
+        FootballClub deletedClub = PREMIER_LEAGUE_MANAGER.deleteClub(clubNameInput);
 
         if (deletedClub != null) {
             System.out.print("Now deleting " + clubNameInput);
@@ -192,7 +194,7 @@ public class ConsoleController {
      */
     public static void displaySelectedClub() {
         String clubNameInput = userInputValidation("Enter club name to display", "Please Enter a Club name!");
-        FootballClub foundClub = premierLeagueManager.displaySelectedClub(clubNameInput);
+        FootballClub foundClub = PREMIER_LEAGUE_MANAGER.displaySelectedClub(clubNameInput);
 
         if (foundClub != null) {
             System.out.println(
@@ -217,7 +219,7 @@ public class ConsoleController {
     public static void displaySelectedMatch() {
         String firstTeamInput = userInputValidation("Enter First Club's Name:", "Please Enter the first Clubs name!");
         String secondTeamInput = userInputValidation("Enter Second Club's Name:", "Please Enter the second Clubs name!");
-        FootballMatch foundFootballMatch = premierLeagueManager.displaySelectedMatch(firstTeamInput, secondTeamInput);
+        FootballMatch foundFootballMatch = PREMIER_LEAGUE_MANAGER.displaySelectedMatch(firstTeamInput, secondTeamInput);
 
         if (foundFootballMatch != null) {
             //*display all stats of the match, in a simple formatted string*//
@@ -267,14 +269,14 @@ public class ConsoleController {
      * static method, that handles the playing of a match
      * Calls the addPlayedMatch() method of PremierLeagueManager
      */
-    public static void addPlayedMatch() { premierLeagueManager.addPlayedMatch(); }
+    public static void addPlayedMatch() { PREMIER_LEAGUE_MANAGER.addPlayedMatch(); }
 
     /**
      * static method, that handles the displaying of the points table
      * Calls the displayPointsTable() method of PremierLeagueManager
      */
     public static void displayPointsTable() {
-        premierLeagueManager.displayPointsTable();
+        PREMIER_LEAGUE_MANAGER.displayPointsTable();
     }
 
     /**
@@ -282,7 +284,7 @@ public class ConsoleController {
      * Calls the displayMatchResults() method of PremierLeagueManager
      */
     public static void displayMatchResults() {
-        premierLeagueManager.displayMatchResults();
+        PREMIER_LEAGUE_MANAGER.displayMatchResults();
     }
 
     /**
@@ -290,7 +292,7 @@ public class ConsoleController {
      * Calls the saveData() method of PremierLeagueManager
      */
     public static void saveData() {
-        premierLeagueManager.saveData();
+        PREMIER_LEAGUE_MANAGER.saveData();
     }
 
     /**
@@ -298,7 +300,7 @@ public class ConsoleController {
      * Calls the loadData() method of PremierLeagueManager
      */
     public static void loadData() {
-        premierLeagueManager.loadData();
+        PREMIER_LEAGUE_MANAGER.loadData();
     }
 
     /**
@@ -334,7 +336,26 @@ public class ConsoleController {
         System.out.println("Enter q to exit");
     }
 
-    public static void main(String[] args) throws IllegalAccessException, ClassNotFoundException/*, InterruptedException*/ {
+    /**
+     * Gets the user input of the season year
+     * @return - the season year
+     */
+    public static String getSeasonInput() {
+        String userSeasonChoice = getUserInput("Please enter the season (Ex: 2020 OR 2021)");
+
+        while (true) {
+            if (SEASON_PATTERN.matcher(userSeasonChoice).matches()) {
+                break;
+            } else {
+                System.out.println("INVALID Input!");
+                userSeasonChoice = getUserInput("Please enter the season (Ex: 2020 OR 2021) appropriately!");
+            }
+        }
+
+        return userSeasonChoice;
+    }
+
+    public static void main(String[] args) throws IllegalAccessException, ClassNotFoundException {
         printDisplay();
         String userChoice = getUserInput("Please choose an option");
         infiniteLoop:
