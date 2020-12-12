@@ -175,7 +175,7 @@ public class PremierLeagueManager implements LeagueManager {
      * This method handles the functionality of playing a match in the PremierLeague
      */
     @Override
-    public void addPlayedMatch() throws InterruptedException {
+    public void addPlayedMatch(String season) throws InterruptedException {
         FootballClub firstTeam;
         FootballClub secondTeam;
 
@@ -196,7 +196,7 @@ public class PremierLeagueManager implements LeagueManager {
         boolean hasMatch;
         //*the logic here is to loop infinitely, till a unique match has been generated*//
         while (true){
-            LocalDate localDate = generateRandomDate(20);
+            LocalDate localDate = generateRandomDate(season);
             hasMatch = false;
             footballMatch = new FootballMatch(firstTeam, secondTeam, localDate);
 
@@ -242,16 +242,15 @@ public class PremierLeagueManager implements LeagueManager {
     /**
      * Private helper method that generates a random date
      * If generated value is less than 10, appends a 0 at the beginning so that it can be parsed into a LocalDate
-     * @param year - takes year parameter (to be used when multiple season functionality has been added)
+     * @param season - takes season parameter (to be used when multiple season functionality has been added)
      * @return - a LocalDate object containing the random date created
      */
-    //TODO multi season functionality
-    private static LocalDate generateRandomDate(int year) {
+    private static LocalDate generateRandomDate(String season) {
         String randomDay = String.valueOf(RANDOM.nextInt((31)) + 1);
         if (Integer.parseInt(randomDay) < 10) randomDay = "0" + randomDay;
         String randomMonth = String.valueOf(RANDOM.nextInt((12)) + 1);
         if (Integer.parseInt(randomMonth) < 10) randomMonth = "0" + randomMonth;
-        String dateString = randomDay + "/" + randomMonth + "/" + year;
+        String dateString = randomDay + "/" + randomMonth + "/" + season;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy");
         return LocalDate.parse(dateString, formatter);
     }
@@ -338,13 +337,13 @@ public class PremierLeagueManager implements LeagueManager {
      * This method handles the functionality of saving all required data
      */
     @Override
-    public void saveData() {
+    public void saveData(String season) {
         //*list of type Object, to store both the Clubs and Matches*//
         List<Object> allData = new ArrayList<>();
         allData.add(allFootballClubs);
         allData.add(allMatches);
 
-        try (FileOutputStream fileOutputStream = new FileOutputStream(new File(SAVE_PATH + "\\saveFile.txt"));
+        try (FileOutputStream fileOutputStream = new FileOutputStream(new File(SAVE_PATH + "\\" + season + ".txt"));
              ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
             System.out.print("Now saving data");
             PremierLeagueManager.threeDotSuspense();
@@ -365,12 +364,12 @@ public class PremierLeagueManager implements LeagueManager {
      * This method handles the functionality of loading all the data that had been saved
      */
     @Override
-    public void loadData() {
+    public void loadData(String season) {
         List<Object> allData;
 
-        try (FileInputStream fileInputStream = new FileInputStream(new File(SAVE_PATH + "\\saveFile.txt"));
+        try (FileInputStream fileInputStream = new FileInputStream(new File(SAVE_PATH + "\\" + season + ".txt"));
              ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream)) {
-            System.out.println("saveFile.txt found!");
+            System.out.println(season + ".txt found!");
             System.out.print("Now loading data");
             PremierLeagueManager.threeDotSuspense();
             allData = (List<Object>) objectInputStream.readObject();

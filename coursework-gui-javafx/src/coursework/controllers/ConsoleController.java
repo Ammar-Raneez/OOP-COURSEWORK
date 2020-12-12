@@ -271,7 +271,7 @@ public class ConsoleController {
      * static method, that handles the playing of a match
      * Calls the addPlayedMatch() method of PremierLeagueManager
      */
-    public static void addPlayedMatch() throws InterruptedException { premierLeagueManager.addPlayedMatch(); }
+    public static void addPlayedMatch(String season) throws InterruptedException { premierLeagueManager.addPlayedMatch(season); }
 
     /**
      * static method, that handles the displaying of the points table
@@ -293,16 +293,16 @@ public class ConsoleController {
      * static method, that handles the saving of data
      * Calls the saveData() method of PremierLeagueManager
      */
-    public static void saveData() {
-        premierLeagueManager.saveData();
+    public static void saveData(String season) {
+        premierLeagueManager.saveData(season);
     }
 
     /**
      * static method, that handles the loading of data
      * Calls the loadData() method of PremierLeagueManager
      */
-    public static void loadData() {
-        premierLeagueManager.loadData();
+    public static void loadData(String season) {
+        premierLeagueManager.loadData(season);
     }
 
     /**
