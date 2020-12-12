@@ -271,8 +271,9 @@ public class ConsoleController {
     /**
      * static method, that handles the playing of a match
      * Calls the addPlayedMatch() method of PremierLeagueManager
+     * @param season - season of tournament
      */
-    public static void addPlayedMatch() throws InterruptedException { PREMIER_LEAGUE_MANAGER.addPlayedMatch(); }
+    public static void addPlayedMatch(String season) throws InterruptedException { PREMIER_LEAGUE_MANAGER.addPlayedMatch(season); }
 
     /**
      * static method, that handles the displaying of the points table
@@ -293,6 +294,7 @@ public class ConsoleController {
     /**
      * static method, that handles the saving of data
      * Calls the saveData() method of PremierLeagueManager
+     * @param season - season of tournament
      */
     public static void saveData(String season) {
         PREMIER_LEAGUE_MANAGER.saveData(season);
@@ -301,6 +303,7 @@ public class ConsoleController {
     /**
      * static method, that handles the loading of data
      * Calls the loadData() method of PremierLeagueManager
+     * @param season - season of tournament
      */
     public static void loadData(String season) {
         PREMIER_LEAGUE_MANAGER.loadData(season);
@@ -356,7 +359,7 @@ public class ConsoleController {
                     userChoice = getUserInput("Please choose an option");
                     break;
                 case "p":
-                    addPlayedMatch();
+                    addPlayedMatch(userSeasonChoice);
                     printDisplay();
                     userChoice = getUserInput("Please choose an option");
                     break;
