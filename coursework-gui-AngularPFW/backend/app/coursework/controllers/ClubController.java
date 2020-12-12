@@ -9,7 +9,7 @@ import play.libs.Json;
 import java.util.*;
 
 public class ClubController extends Controller {
-    private final PremierLeagueManager LEAGUE_MANAGER = new PremierLeagueManager();
+    private final PremierLeagueManager PREMIER_LEAGUE_MANAGER = new PremierLeagueManager();
 
     public Result returnAllClubs() {
         ConsoleController.loadData();
@@ -25,7 +25,7 @@ public class ClubController extends Controller {
             String[] whitespaceParamSplit = clubName.split("%20");
             clubName = whitespaceParamSplit[0] + " " + whitespaceParamSplit[1];
         }
-        FootballClub selectedClub = LEAGUE_MANAGER.displaySelectedClub(clubName);
+        FootballClub selectedClub = PREMIER_LEAGUE_MANAGER.displaySelectedClub(clubName);
         ConsoleController.saveData();
         return ok(Json.toJson(selectedClub));
     }

@@ -5,7 +5,6 @@ package coursework.controllers;
  * Copyright © 2020 Ammar Raneez. All Rights Reserved.
  */
 
-//import javafx.application.Application;
 
 import coursework.models.FootballClub;
 import coursework.models.FootballMatch;
@@ -63,9 +62,8 @@ public class ConsoleController {
      * Calls the addClub() method of PremierLeagueManager, passing the inputs obtained as parameters
      * @throws ClassNotFoundException - thrown in Color input
      * @throws IllegalAccessException - thrown in the get() method of Field
-//     * @throws InterruptedException - thrown in the sleep() function
      */
-    public static void addClub() throws ClassNotFoundException, IllegalAccessException/*, InterruptedException*/ {
+    public static void addClub() throws ClassNotFoundException, IllegalAccessException {
         //*only 20 teams can be added in the Premier League*//
         if (PremierLeagueManager.getAllMatches().size() == PremierLeagueManager.getMaxSize()) {
             System.out.println("[ERROR] ==> There cannot be more than 20 teams in the premier league!");
@@ -167,25 +165,20 @@ public class ConsoleController {
         premierLeagueManager.addClub(clubTypeInput, lecOrTeachInput, clubNameInput, clubLocationInput, clubOwnerInput,
                                      clubSponsorInput, colorTop, colorShort, clubNetWorth);
         System.out.print("Now adding Football Club " + clubNameInput);
-//        PremierLeagueManager.threeDotSuspense();
-//        Thread.sleep(500);
         System.out.println(clubNameInput + " was successfully Promoted to the Premier League!");
     }
 
     /**
      * static method, that handles the deletion of a club
      * Calls the deleteClub() method of PremierLeagueManager, passing the club name obtained as the parameter
-//     * @throws InterruptedException - thrown in the sleep() method
-     */
-    public static void deleteClub() /*throws InterruptedException*/ {
+-     */
+    public static void deleteClub() {
         String clubNameInput = userInputValidation("Enter Club Name you wish to delete", "Please Enter a Club name!");
         FootballClub deletedClub = premierLeagueManager.deleteClub(clubNameInput);
 
         if (deletedClub != null) {
             System.out.print("Now deleting " + clubNameInput);
-//            PremierLeagueManager.threeDotSuspense();
             System.out.println("Size decreased: " + PremierLeagueManager.getAllFootballClubs().size());
-//            Thread.sleep(500);
             System.out.println(clubNameInput + " was successfully Relegated from the Premier League!");
         } else {
             System.out.println("[ERROR] ==> No Such Club Exists");
@@ -274,7 +267,7 @@ public class ConsoleController {
      * static method, that handles the playing of a match
      * Calls the addPlayedMatch() method of PremierLeagueManager
      */
-    public static void addPlayedMatch() /*throws InterruptedException*/ { premierLeagueManager.addPlayedMatch(); }
+    public static void addPlayedMatch() { premierLeagueManager.addPlayedMatch(); }
 
     /**
      * static method, that handles the displaying of the points table
