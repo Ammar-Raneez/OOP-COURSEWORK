@@ -22,7 +22,7 @@ import java.util.List;
  */
 public class PremierLeagueManager implements LeagueManager {
     private static final String SAVE_PATH = "C:\\Users\\Ammuuu\\Downloads\\learning\\UNI\\OOP-Module\\Coursework\\" +
-            "OOP-COURSEWORK\\saveFile-cli";
+            "OOP-COURSEWORK\\saveFile";
     private static final int MAX_SIZE = 20;
     private static final Random RANDOM = new Random();
     private static List<FootballMatch> allMatches = new ArrayList<>();

@@ -18,9 +18,9 @@ public interface LeagueManager {
     SportsClub deleteClub(String clubNameInput);
     SportsClub displaySelectedClub(String clubNameInput);
     FootballMatch displaySelectedMatch(String firstTeamInput, String secondTeamInput);
-    void addPlayedMatch() throws InterruptedException;
+    void addPlayedMatch(String season);
     void displayPointsTable();
     void displayMatchResults();
-    void saveData();
-    void loadData();
+    void saveData(String season);
+    void loadData(String season);
 }

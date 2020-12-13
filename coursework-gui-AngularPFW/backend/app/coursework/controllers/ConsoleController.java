@@ -166,7 +166,7 @@ public class ConsoleController {
         //*call add method passing all the inputs as arguments*//
         PREMIER_LEAGUE_MANAGER.addClub(clubTypeInput, lecOrTeachInput, clubNameInput, clubLocationInput, clubOwnerInput,
                                      clubSponsorInput, colorTop, colorShort, clubNetWorth);
-        System.out.print("Now adding Football Club " + clubNameInput);
+        System.out.println("Now adding Football Club " + clubNameInput);
         System.out.println(clubNameInput + " was successfully Promoted to the Premier League!");
     }
 
@@ -179,7 +179,7 @@ public class ConsoleController {
         FootballClub deletedClub = PREMIER_LEAGUE_MANAGER.deleteClub(clubNameInput);
 
         if (deletedClub != null) {
-            System.out.print("Now deleting " + clubNameInput);
+            System.out.println("Now deleting " + clubNameInput);
             System.out.println("Size decreased: " + PremierLeagueManager.getAllFootballClubs().size());
             System.out.println(clubNameInput + " was successfully Relegated from the Premier League!");
         } else {
@@ -269,7 +269,7 @@ public class ConsoleController {
      * static method, that handles the playing of a match
      * Calls the addPlayedMatch() method of PremierLeagueManager
      */
-    public static void addPlayedMatch() { PREMIER_LEAGUE_MANAGER.addPlayedMatch(); }
+    public static void addPlayedMatch(String season) { PREMIER_LEAGUE_MANAGER.addPlayedMatch(season); }
 
     /**
      * static method, that handles the displaying of the points table
@@ -291,16 +291,16 @@ public class ConsoleController {
      * static method, that handles the saving of data
      * Calls the saveData() method of PremierLeagueManager
      */
-    public static void saveData() {
-        PREMIER_LEAGUE_MANAGER.saveData();
+    public static void saveData(String season) {
+        PREMIER_LEAGUE_MANAGER.saveData(season);
     }
 
     /**
      * static method, that handles the loading of data
      * Calls the loadData() method of PremierLeagueManager
      */
-    public static void loadData() {
-        PREMIER_LEAGUE_MANAGER.loadData();
+    public static void loadData(String season) {
+        PREMIER_LEAGUE_MANAGER.loadData(season);
     }
 
     /**
@@ -337,12 +337,13 @@ public class ConsoleController {
     }
 
     /**
-     * Gets the user input of the season year
+     * Gets and returns the user input of the season year
      * @return - the season year
      */
     public static String getSeasonInput() {
         String userSeasonChoice = getUserInput("Please enter the season (Ex: 2020 OR 2021)");
 
+        //*loop infinitely till the inout matches the 4 digit regex defined initially*//
         while (true) {
             if (SEASON_PATTERN.matcher(userSeasonChoice).matches()) {
                 break;
@@ -351,62 +352,63 @@ public class ConsoleController {
                 userSeasonChoice = getUserInput("Please enter the season (Ex: 2020 OR 2021) appropriately!");
             }
         }
-
+        PremierLeagueManager.setSeasonFile(userSeasonChoice);
         return userSeasonChoice;
     }
 
     public static void main(String[] args) throws IllegalAccessException, ClassNotFoundException {
+        String season = getSeasonInput();
         printDisplay();
         String userChoice = getUserInput("Please choose an option");
         infiniteLoop:
         while (true) {
             switch (userChoice) {
                 case "a":
-                    loadData();
+                    loadData(season);
                     addClub();
-                    saveData();
+                    saveData(season);
                     printDisplay();
                     userChoice = getUserInput("Please choose an option");
                     break;
                 case "d":
-                    loadData();
+                    loadData(season);
                     deleteClub();
-                    saveData();
+                    saveData(season);
                     printDisplay();
                     userChoice = getUserInput("Please choose an option");
                     break;
                 case "p":
-                    loadData();
-                    addPlayedMatch();
-                    saveData();
+                    loadData(season);
+                    addPlayedMatch(season);
+                    saveData(season);
                     printDisplay();
                     userChoice = getUserInput("Please choose an option");
                     break;
                 case "z":
-                    loadData();
+                    loadData(season);
                     displayPointsTable();
-                    saveData();
+                    saveData(season);
                     printDisplay();
                     userChoice = getUserInput("Please choose an option");
                     break;
                 case "c":
-                    loadData();
+                    loadData(season);
                     displayMatchResults();
-                    saveData();
+                    saveData(season);
                     printDisplay();
                     userChoice = getUserInput("Please choose an option");
                     break;
                 case "x":
-                    loadData();
+                    loadData(season);
                     displaySelectedClub();
-                    saveData();
+                    saveData(season);
                     printDisplay();
                     userChoice = getUserInput("Please choose an option");
                     break;
                 case "s":
-                    loadData();
+                    loadData(season);
                     displaySelectedMatch();
-                    saveData();
+                    saveData(season);
                     printDisplay();
                     userChoice = getUserInput("Please choose an option");
                     break;
@@ -416,7 +418,7 @@ public class ConsoleController {
                     userChoice = getUserInput("Please choose an option");
                     break;
                 case "q":
-                    saveData();
+                    saveData(season);
                     break infiniteLoop;
                 default:
                     printDisplay();

@@ -2,6 +2,7 @@ package coursework.controllers;
 
 import coursework.utils.GoalsForComparator;
 import coursework.services.PremierLeagueManager;
+import coursework.utils.SeasonRetriever;
 import coursework.utils.WinComparator;
 import coursework.models.FootballClub;
 import play.mvc.*;
@@ -12,37 +13,41 @@ public class ClubController extends Controller {
     private final PremierLeagueManager PREMIER_LEAGUE_MANAGER = new PremierLeagueManager();
 
     public Result returnAllClubs() {
-        ConsoleController.loadData();
+        String season = SeasonRetriever.getSeason();
+        ConsoleController.loadData(season);
         List<FootballClub> allClubs = PremierLeagueManager.getAllFootballClubs();
         allClubs.sort(Collections.reverseOrder());
-        ConsoleController.saveData();
+        ConsoleController.saveData(season);
         return ok(Json.toJson(allClubs));
     }
 
     public Result returnSelectedClub(String clubName) {
-        ConsoleController.loadData();
+        String season = SeasonRetriever.getSeason();
+        ConsoleController.loadData(season);
         if (clubName.contains("%")) {
             String[] whitespaceParamSplit = clubName.split("%20");
             clubName = whitespaceParamSplit[0] + " " + whitespaceParamSplit[1];
         }
         FootballClub selectedClub = PREMIER_LEAGUE_MANAGER.displaySelectedClub(clubName);
-        ConsoleController.saveData();
+        ConsoleController.saveData(season);
         return ok(Json.toJson(selectedClub));
     }
 
     public Result winSortClubFilter() {
-        ConsoleController.loadData();
+        String season = SeasonRetriever.getSeason();
+        ConsoleController.loadData(season);
         List<FootballClub> allClubs = PremierLeagueManager.getAllFootballClubs();
         allClubs.sort(new WinComparator().reversed());
-        ConsoleController.saveData();
+        ConsoleController.saveData(season);
         return ok(Json.toJson(allClubs));
     }
 
     public Result goalSortClubFilter() {
-        ConsoleController.loadData();
+        String season = SeasonRetriever.getSeason();
+        ConsoleController.loadData(season);
         List<FootballClub> allClubs = PremierLeagueManager.getAllFootballClubs();
         allClubs.sort(new GoalsForComparator().reversed());
-        ConsoleController.saveData();
+        ConsoleController.saveData(season);
         return ok(Json.toJson(allClubs));
     }
 }

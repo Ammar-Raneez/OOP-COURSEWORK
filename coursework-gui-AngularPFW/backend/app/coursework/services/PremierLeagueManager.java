@@ -22,7 +22,9 @@ import java.util.List;
  */
 public class PremierLeagueManager implements LeagueManager {
     private static final String SAVE_PATH = "C:\\Users\\Ammuuu\\Downloads\\learning\\UNI\\OOP-Module\\Coursework\\" +
-                                            "OOP-COURSEWORK\\saveFile-cli";
+                                            "OOP-COURSEWORK\\saveFile";
+    private static final String SEASON_INPUT = "C:\\Users\\Ammuuu\\Downloads\\learning\\UNI\\OOP-Module\\Coursework\\" +
+            "OOP-COURSEWORK\\SeasonInputPlay";
     private static final int MAX_SIZE = 20;
     private static final Random RANDOM = new Random();
     private static List<FootballMatch> allMatches = new ArrayList<>();
@@ -159,7 +161,7 @@ public class PremierLeagueManager implements LeagueManager {
      * This method handles the functionality of playing a match in the PremierLeague
      */
     @Override
-    public void addPlayedMatch() /*throws InterruptedException*/ {
+    public void addPlayedMatch(String season) {
         FootballClub firstTeam;
         FootballClub secondTeam;
 
@@ -180,7 +182,7 @@ public class PremierLeagueManager implements LeagueManager {
         boolean hasMatch;
         //*the logic here is to loop infinitely, till a unique match has been generated*//
         while (true){
-            LocalDate localDate = generateRandomDate(20);
+            LocalDate localDate = generateRandomDate(season);
             hasMatch = false;
             footballMatch = new FootballMatch(firstTeam, secondTeam, localDate);
 
@@ -225,17 +227,16 @@ public class PremierLeagueManager implements LeagueManager {
     /**
      * Private helper method that generates a random date
      * If generated value is less than 10, appends a 0 at the beginning so that it can be parsed into a LocalDate
-     * @param year - takes year parameter (to be used when multiple season functionality has been added)
+     * @param season - takes season parameter (to be used when multiple season functionality has been added)
      * @return - a LocalDate object containing the random date created
      */
-    //TODO multi season functionality
-    private static LocalDate generateRandomDate(int year) {
+    private static LocalDate generateRandomDate(String season) {
         String randomDay = String.valueOf(RANDOM.nextInt((31)) + 1);
         if (Integer.parseInt(randomDay) < 10) randomDay = "0" + randomDay;
         String randomMonth = String.valueOf(RANDOM.nextInt((12)) + 1);
         if (Integer.parseInt(randomMonth) < 10) randomMonth = "0" + randomMonth;
-        String dateString = randomDay + "/" + randomMonth + "/" + year;
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy");
+        String dateString = randomDay + "/" + randomMonth + "/" + season;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return LocalDate.parse(dateString, formatter);
     }
     //*************************************END ADD PLAYED MATCH BETWEEN TWO CLUB**************************************//
@@ -321,13 +322,13 @@ public class PremierLeagueManager implements LeagueManager {
      * This method handles the functionality of saving all required data
      */
     @Override
-    public void saveData() {
+    public void saveData(String season) {
         //*list of type Object, to store both the Clubs and Matches*//
         List<Object> allData = new ArrayList<>();
         allData.add(allFootballClubs);
         allData.add(allMatches);
 
-        try (FileOutputStream fileOutputStream = new FileOutputStream(new File(SAVE_PATH + "\\saveFile.txt"));
+        try (FileOutputStream fileOutputStream = new FileOutputStream(new File(SAVE_PATH + "\\" + season + ".txt"));
              ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
             objectOutputStream.writeObject(allData);
             System.out.println("Data saved successfully!");
@@ -345,12 +346,12 @@ public class PremierLeagueManager implements LeagueManager {
      * This method handles the functionality of loading all the data that had been saved
      */
     @Override
-    public void loadData() {
+    public void loadData(String season) {
         List<Object> allData;
 
-        try (FileInputStream fileInputStream = new FileInputStream(new File(SAVE_PATH + "\\saveFile.txt"));
+        try (FileInputStream fileInputStream = new FileInputStream(new File(SAVE_PATH + "\\" + season + ".txt"));
              ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream)) {
-            System.out.println("saveFile.txt found!");
+            System.out.println(season + ".txt found!");
             allData = (List<Object>) objectInputStream.readObject();
             //*load based on the index it was saved (allData is a list of two lists)*//
             allFootballClubs = (List<FootballClub>) allData.get(0);
@@ -365,7 +366,19 @@ public class PremierLeagueManager implements LeagueManager {
     }
     //**********************************************END LOAD DATA*****************************************************//
 
-    //********************************GETTER METHODS TO ACCESS THROUGHOUT THE PROJECT*********************************//
+    //****************************GETTER AND SETTER METHODS TO ACCESS THROUGHOUT THE PROJECT**************************//
+    /**
+     * sets the season choice
+     * This is needed for the Play Controllers to get access to the season of choice
+     */
+    public static void setSeasonFile(String season) {
+        try (FileWriter file = new FileWriter(SEASON_INPUT + "\\season.txt")) {
+            file.write(season);
+        } catch (Exception e) {
+            System.out.println("[ERROR] ==> Something went wrong!");
+        }
+    }
+
     /**
      * @return list containing all the matches
      */
