@@ -61,12 +61,14 @@ public class ConsoleController {
      * Calls the addClub() method of PremierLeagueManager, passing the inputs obtained as parameters
      * @throws ClassNotFoundException - thrown in Color input
      * @throws IllegalAccessException - thrown in the get() method of Field
-     * @throws InterruptedException - thrown in the sleep() function
+     * @throws InterruptedException - thrown in the sleep() function of the Thread class
      */
     public static void addClub() throws ClassNotFoundException, IllegalAccessException, InterruptedException {
         //*only 20 teams can be added in the Premier League*//
         if (PremierLeagueManager.getAllMatches().size() == PremierLeagueManager.getMaxSize()) {
-            System.out.println("[ERROR] ==> There cannot be more than 20 teams in the premier league!");
+            System.out.println("[ERROR] ==> There cannot be more than " + PremierLeagueManager.getMaxSize() +
+                    " teams in the premier league!");
+            //*prevent further execution of program*//
             return;
         }
 
@@ -97,20 +99,23 @@ public class ConsoleController {
             }
         }
 
-        //*club name validation - validate all inputs the same way*//
+        //*club name validation - validate all remaining inputs the same way*//
         String clubNameInput = userInputValidation("Enter Club name", "Please Enter a Club name!");
-        //*allow only unique club names (unique clubs)*//
+        //*allow only unique club names (unique clubs), by looping over all the clubs already in the Premier League*//
         boolean clubExists = false;
         while (true) {
             for (FootballClub footballClub : PremierLeagueManager.getAllFootballClubs()) {
                 if (footballClub.getClubName().equals(clubNameInput)) {
                     clubExists = true;
-                    clubNameInput = getUserInput("[ERROR] ==> " + clubNameInput +
-                            " already exists! Please try again");
-                    if (clubNameInput.equals("")) {
-                        clubNameInput = userInputValidation("Please Enter a Club name!", "Please Enter a Club name!");
-                    }
-                    //*stop continuous looping, after a match has been found*//
+                    //*club already exists*//
+//                    clubNameInput = getUserInput("[ERROR] ==> " + clubNameInput +
+//                            " already exists! Please try again");
+//                    if (clubNameInput.equals("")) {
+//                        clubNameInput = userInputValidation("Please Enter a Club name!", "Please Enter a Club name!");
+//                    }
+                    clubNameInput = userInputValidation("[ERROR] ==> " + clubNameInput +
+                            " already exists! Please try again", "Please Enter a Club name!");
+                    //*stop continuous looping, after a club has been found, to prevent unnecessary continuous looping*//
                     break;
                 }
             }
@@ -216,8 +221,8 @@ public class ConsoleController {
 
     /**
      * static method, that handles the displaying of statistics of a selected match
-     * Calls the displaySelectedMatchStatistics() method of PremierLeagueManager passing the two clubs involved in a
-     * match as its parameters
+     * Calls the displaySelectedMatchStatistics() method of PremierLeagueManager passing the two clubs involved in a match as its parameters
+     * obtains the match and prints the statistics
      */
     public static void displaySelectedMatch() {
         String firstTeamInput = userInputValidation("Enter First Club's Name:", "Please Enter the first Clubs name!");
@@ -327,9 +332,9 @@ public class ConsoleController {
     }
 
     public static void main(String[] args) throws IllegalAccessException, ClassNotFoundException, InterruptedException {
-        //*initially asks user to input year of season*//
+        //*initially asks user to input year of season, validated using the regex defined initially*//
         String userSeasonChoice = getUserInput("Please enter the season (Ex: 2020 OR 2021)");
-        //*validation using the regex defined initially*//
+
         while (true) {
             //*if and only if the input matches the pattern will the program continue*//
             if (SEASON_PATTERN.matcher(userSeasonChoice).matches()) {
