@@ -29,7 +29,7 @@ import java.util.List;
  * @version 1.x November 22 2020
  * @author Ammar Raneez | 2019163 | W1761196
  */
-public class GuiElements {
+public abstract class GuiElements {
     //*Shadow Effect*//
     private static final DropShadow DROP_SHADOW = new DropShadow();
 
@@ -82,12 +82,11 @@ public class GuiElements {
      * @param anchorPane - what pane should the scene display
      * @param width - preferred width
      * @param height - preferred height
-     * @param file - path to css file
      * @return - preferred scene
      */
-    public Scene scene(AnchorPane anchorPane, int width, int height, String file) {
+    public static Scene scene(AnchorPane anchorPane, int width, int height) {
         Scene scene = new Scene(anchorPane, width, height);
-        String css = this.getClass().getResource(file).toExternalForm();
+        String css = GuiElements.class.getResource("style.css").toExternalForm();
         scene.getStylesheets().add(css);
         return scene;
     }

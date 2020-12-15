@@ -1,11 +1,9 @@
 package coursework.controllers;
 
 /*
- * ConsoleApplication
+ * ConsoleController
  * Copyright © 2020 Ammar Raneez. All Rights Reserved.
  */
-
-//import javafx.application.Application;
 
 import coursework.models.FootballClub;
 import coursework.models.FootballMatch;
@@ -16,7 +14,7 @@ import java.lang.reflect.Field;
 import java.util.Scanner;
 
 /**
- * ConsoleApplication class, the main cli runner class
+ * ConsoleController class, will be used to call the methods from PremierLeagueManager
  * @version 1.x November 15th 2020
  * @author Ammar Raneez | 2019163 | W1761196
  */
@@ -321,62 +319,4 @@ public class ConsoleController {
         System.out.println("Enter g to display GUI");
         System.out.println("Enter q to exit");
     }
-
-//    public static void main(String[] args) throws IllegalAccessException, ClassNotFoundException, InterruptedException {
-//        //*load data upon start, and display the menu*//
-//        loadData();
-//        printDisplay();
-//        String userChoice = getUserInput("Please choose an option");
-//        infiniteLoop:
-//        while (true) {
-//            switch (userChoice) {
-//                case "a":
-//                    addClub();
-//                    printDisplay();
-//                    userChoice = getUserInput("Please choose an option");
-//                    break;
-//                case "d":
-//                    deleteClub();
-//                    printDisplay();
-//                    userChoice = getUserInput("Please choose an option");
-//                    break;
-//                case "p":
-//                    addPlayedMatch();
-//                    printDisplay();
-//                    userChoice = getUserInput("Please choose an option");
-//                    break;
-//                case "z":
-//                    displayPointsTable();
-//                    printDisplay();
-//                    userChoice = getUserInput("Please choose an option");
-//                    break;
-//                case "c":
-//                    displayMatchResults();
-//                    printDisplay();
-//                    userChoice = getUserInput("Please choose an option");
-//                    break;
-//                case "x":
-//                    displaySelectedClub();
-//                    printDisplay();
-//                    userChoice = getUserInput("Please choose an option");
-//                    break;
-//                case "s":
-//                    displaySelectedMatch();
-//                    printDisplay();
-//                    userChoice = getUserInput("Please choose an option");
-//                    break;
-//                case "g":
-//                    Application.launch(FrontendController.class, args);
-//                    printDisplay();
-//                    userChoice = getUserInput("Please choose an option");
-//                    break;
-//                case "q":
-//                    saveData();
-//                    break infiniteLoop;
-//                default:
-//                    printDisplay();
-//                    userChoice = getUserInput("Please choose a valid option");
-//            }
-//        }
-//    }
 }
