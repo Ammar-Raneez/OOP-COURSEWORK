@@ -243,7 +243,7 @@ public class PremierLeagueManager implements LeagueManager {
     /**
      * Private helper method that generates a random date
      * If generated value is less than 10, appends a 0 at the beginning so that it can be parsed into a LocalDate
-     * @param season - takes season parameter (to be used when multiple season functionality has been added)
+     * @param season - takes season parameter
      * @return - a LocalDate object containing the random date created
      */
     private static LocalDate generateRandomDate(String season) {
@@ -257,7 +257,7 @@ public class PremierLeagueManager implements LeagueManager {
             randomMonth = "0" + randomMonth;
         }
         String dateString = randomDay + "/" + randomMonth + "/" + season;
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return LocalDate.parse(dateString, formatter);
     }
     //*************************************END ADD PLAYED MATCH BETWEEN TWO CLUB**************************************//
