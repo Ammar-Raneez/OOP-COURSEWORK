@@ -65,7 +65,9 @@ public class ConsoleController {
     public static void addClub() throws ClassNotFoundException, IllegalAccessException, InterruptedException {
         //*only 20 teams can be added in the Premier League*//
         if (PremierLeagueManager.getAllMatches().size() == PremierLeagueManager.getMaxSize()) {
-            System.out.println("[ERROR] ==> There cannot be more than 20 teams in the premier league!");
+            System.out.println("[ERROR] ==> There cannot be more than " + PremierLeagueManager.getMaxSize() +
+                    " teams in the premier league!");
+            //*prevent further execution of program*//
             return;
         }
 
@@ -104,12 +106,9 @@ public class ConsoleController {
             for (FootballClub footballClub : PremierLeagueManager.getAllFootballClubs()) {
                 if (footballClub.getClubName().equals(clubNameInput)) {
                     clubExists = true;
-                    clubNameInput = getUserInput("[ERROR] ==> " + clubNameInput +
-                            " already exists! Please try again");
-                    if (clubNameInput.equals("")) {
-                        clubNameInput = userInputValidation("Please Enter a Club name!", "Please Enter a Club name!");
-                    }
-                    //*stop continuous looping, after a match has been found*//
+                    clubNameInput = userInputValidation("[ERROR] ==> " + clubNameInput +
+                            " already exists! Please try again", "Please Enter a Club name!");
+                    //*stop continuous looping, after a club has been found, to prevent unnecessary continuous looping*//
                     break;
                 }
             }
@@ -215,8 +214,8 @@ public class ConsoleController {
 
     /**
      * static method, that handles the displaying of statistics of a selected match
-     * Calls the displaySelectedMatchStatistics() method of PremierLeagueManager passing the two clubs involved in a
-     * match as its parameters
+     * Calls the displaySelectedMatchStatistics() method of PremierLeagueManager passing the two clubs involved in a match as its parameters
+     * obtains the match and prints the statistics
      */
     public static void displaySelectedMatch() {
         String firstTeamInput = userInputValidation("Enter First Club's Name:", "Please Enter the first Clubs name!");
