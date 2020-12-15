@@ -303,13 +303,15 @@ public class GuiElements {
     /**
      * Displays a custom Error Alert with a graphic
      * @param text - text to display in the Alert
+     * @param owner - the Stage will take ownership of the Alert
      */
-    public static void errorAlert(String text){
+    public static void errorAlert(String text, Stage owner){
         ImageView imageConfirm = imageViewLay("file:/C:/Users/Ammuuu/Downloads/learning/UNI/OOP-Module/Coursework/OOP-COURSEWORK/images/PL-lionAlert.png",
                 0, 0, 100, 100);
         Alert closeAlert = new Alert(Alert.AlertType.ERROR, null, ButtonType.OK);
         closeAlert.setHeaderText(text);
         closeAlert.setGraphic(imageConfirm);
+        closeAlert.initOwner(owner);
         closeAlert.setTitle("Premier League Manager");
         closeAlert.showAndWait();
         closeAlert.close();

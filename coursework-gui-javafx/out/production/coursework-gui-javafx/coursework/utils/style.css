@@ -27,15 +27,14 @@
     -fx-padding: 10px;
     -fx-font-weight: bold;
 }
-
 .table-view .table-row-cell:odd {
     -fx-background-color: '#222';
 }
-
 .table-view .table-row-cell:even {
     -fx-background-color: '#202019';
 }
 /*points table end*/
+
 
 
 /*points table view*/
@@ -49,6 +48,7 @@
 #pointsTable__goalSorterBtn:hover, #pointsTable__winSorterBtn:hover, #pointsTable__displayMatchBtn:hover {
     -fx-background-color: #fff;
 }
+
 #pointsTable__goalSorterBtn, #pointsTable__winSorterBtn {
     -fx-background-color: #ff015b;
 }
@@ -59,6 +59,7 @@
 #pointsTable__displayMatchBtn, #pointsTable__playMatchBtn {
     -fx-font-weight: bold;
 }
+
 #pointsTable__displayMatchBtn {
     -fx-text-fill: #000;
     -fx-padding: 5px 50px;
@@ -67,6 +68,7 @@
 #pointsTable__displayMatchBtn:hover {
     -fx-text-fill: #62ffa4;
 }
+
 #pointsTable__playMatchBtn {
     -fx-font-size: 30px;
     -fx-text-fill: white;
@@ -82,6 +84,7 @@
     -fx-background-color: white;
 }
 /*points table view end*/
+
 
 
 /*all matches view*/
@@ -107,15 +110,18 @@
     -fx-font-size: 20px;
     -fx-effect: dropshadow( one-pass-box , #62ffa4 , 8 , 0.0 , 2 , 0 );
 }
+
 #allMatches__firstTeamGoalsLbl, #allMatches__secondTeamGoalsLbl {
     -fx-font-weight: bold;
     -fx-font-size: 30px;
     -fx-text-fill: #04f5ff;
 }
+
 #allMatches__matchDateLbl {
     -fx-font-weight: bold;
     -fx-font-size: 16px;
 }
+
 #allMatches__vsLbl {
     -fx-font-weight: bold;
     -fx-font-size: 40px;
@@ -146,6 +152,7 @@
 #allMatches__searchDateBtn:hover, #allMatches__searchResetBtn:hover {
     -fx-text-fill: #fff;
 }
+
 #allMatches__searchDateBtn {
     -fx-background-color: #222;
     -fx-border-color: #62ffa4;
@@ -154,6 +161,7 @@
 #allMatches__searchDateBtn:hover {
     -fx-background-color: #62ffa4;
 }
+
 #allMatches__searchResetBtn {
     -fx-text-fill: #f00;
     -fx-background-color: #222;
@@ -173,10 +181,12 @@
 /*all matches view end*/
 
 
+
 /*individual match stats view*/
 #match__upperContainer, #match__lowerContainer {
     -fx-background-color: #222;
 }
+
 #match__infoText {
     -fx-font-size: 22px;
     -fx-font-weight: bold;
@@ -192,9 +202,11 @@
     -fx-font-size: 20px;
     -fx-font-weight: bold;
 }
+
 #match__firstTeamDetailsLbl {
     -fx-text-fill: #04f5ff;
 }
+
 #match__secondTeamDetailsLbl {
     -fx-text-fill: #ff015b;
 }
@@ -204,6 +216,7 @@
     -fx-text-fill: white;
     -fx-font-weight: bold;
 }
+
 #match__firstTeamNameLbl {
     -fx-effect: dropshadow( one-pass-box , #04f5ff , 8 , 0.0 , 2 , 0 );
 }
