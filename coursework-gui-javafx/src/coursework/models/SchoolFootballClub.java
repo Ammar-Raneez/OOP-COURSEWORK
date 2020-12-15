@@ -48,7 +48,6 @@ public class SchoolFootballClub extends FootballClub {
     /**
      * @return overrun toString() method
      */
-    //TODO, improve toString() methods
     @Override
     public String toString() {
         return "SchoolFootballClub{" +

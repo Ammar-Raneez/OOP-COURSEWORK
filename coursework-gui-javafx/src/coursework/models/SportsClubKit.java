@@ -54,7 +54,6 @@ public class SportsClubKit implements Serializable {
     /**
      * @return overrun toString() method
      */
-    //TODO, improve toString() methods
     @Override
     public String toString() {
         return "ClubKit{" +
