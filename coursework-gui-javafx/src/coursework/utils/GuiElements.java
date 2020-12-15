@@ -178,7 +178,7 @@ public class GuiElements {
      * @param id - id to target in css
      * @return - preferred Label
      */
-    public static Label matchViewLabels(String text, String id) {
+    public static Label label(String text, String id) {
         Label label = new Label(text);
         label.setId(id);
         return label;
@@ -206,7 +206,7 @@ public class GuiElements {
     /**
      * Main table method, that populates the table data
      * @param tableView - what TableView it is to manipulate
-     * @return - all Columns to populate the TableView with
+     * @return - a List consisting of all the columns with their associated data to populate the TableView with
      */
     public static List<TableColumn<FootballClub, String>> generatePointsTableColumns(TableView<FootballClub> tableView) {
         tableView.setMinHeight(500);
@@ -215,8 +215,11 @@ public class GuiElements {
                 new SimpleStringProperty(cellData.getValue().getClubName().toUpperCase())
         );
 
+        //*creates the column*//
         TableColumn<FootballClub, String> columnMatches = GuiElements.tableColumns(tableView, "MP", 0.09);
+        //*center align the content*//
         columnMatches.setStyle("-fx-alignment: CENTER");
+        //*set the values the column cells will take*//
         columnMatches.setCellValueFactory(cellData ->
                 new SimpleStringProperty(String.valueOf(cellData.getValue().getFootballClubTotalStatistics().getMatchesPlayed()))
         );
@@ -269,9 +272,8 @@ public class GuiElements {
                 )
         );
     }
-
     /**
-     * Private helper method that is used to create the header row columns
+     * Private helper method that is used to create the columns
      * @param tableView - the TableView the columns will be placed in
      * @param columnName - value of the column header
      * @param columnWidthMultiplier - width of the column
@@ -288,7 +290,7 @@ public class GuiElements {
      * Returns a custom confirmation Alert with a graphic
      * @return - custom confirmation Alert
      */
-    public static Alert closeWindowCommon(){
+    public static Alert confirmAlert(){
         ImageView imageConfirm = imageViewLay("file:/C:/Users/Ammuuu/Downloads/learning/UNI/OOP-Module/Coursework/OOP-COURSEWORK/images/PL-lionAlert.png",
                 0, 0, 100, 100);
         Alert closeAlert = new Alert(Alert.AlertType.CONFIRMATION, null, ButtonType.YES, ButtonType.NO);
