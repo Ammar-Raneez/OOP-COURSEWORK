@@ -48,11 +48,11 @@ public class FrontendController extends Application {
     @Override
     public void start(Stage primaryStage) throws IllegalAccessException, InterruptedException, ClassNotFoundException {
         GuiElements guiElements = new GuiElements();
-        List<FootballClub> allClubs = PremierLeagueManager.getAllFootballClubs();
-        List<FootballMatch> allMatches = PremierLeagueManager.getAllMatches();
 
+        //*initially asks user to input year of season, validated using the regex defined initially*//
         String userSeasonChoice = ConsoleController.getUserInput("Please enter the season (Ex: 2020 OR 2021)");
         while (true) {
+            //*if and only if the input matches the pattern will the program continue*//
             if (SEASON_PATTERN.matcher(userSeasonChoice).matches()) {
                 break;
             } else {
@@ -62,6 +62,8 @@ public class FrontendController extends Application {
         }
 
         ConsoleController.loadData(userSeasonChoice);
+        List<FootballClub> allClubs = PremierLeagueManager.getAllFootballClubs();
+        List<FootballMatch> allMatches = PremierLeagueManager.getAllMatches();
         allClubs.sort(Collections.reverseOrder());                                  //**to display clubs sorted by points**//
         primaryStage.getIcons().add(new Image("file:/C:/Users/Ammuuu/Downloads/learning/UNI/OOP-Module/Coursework/OOP-COURSEWORK/images/PL-Lion-transparent.png"));
 
@@ -126,10 +128,15 @@ public class FrontendController extends Application {
 
         //*on click of this button, a match is played*//
         playMatch.setOnAction(event -> {
+            //*this if condition checks whether there are enough teams to play a match in the first place*//
+            if (allClubs.size() < 2) {
+                GuiElements.errorAlert("[ERROR] ==> There isn't enough teams to play a match!", window);
+                return;
+            }
             //*max number of matches playable*//
             if ((allMatches.size() == (allClubs.size() * (allClubs.size() - 1) / 2)) ||
                     (allMatches.size() > (allClubs.size() * (allClubs.size() - 1) / 2))) {
-                GuiElements.errorAlert("All Possible Matches have Already been Played!");
+                GuiElements.errorAlert("All Possible Matches have Already been Played!", window);
                 return;
             }
 
@@ -144,7 +151,7 @@ public class FrontendController extends Application {
             for (int i=0; i<updatedMatches.size(); i++) {
                 allMatches.set(i, updatedMatches.get(i));
             }
-            //*since club references are passed, upon match list update individual club details are updated too*//
+            //*since club references are passed, upon match list update, individual club details are updated too*//
             //*therefore the new updated club list can be used to update the frontend table*//
             for (int i=0; i<allClubs.size(); i++) {
                 tableView.getItems().set(i, allClubs.get(i));
@@ -160,6 +167,7 @@ public class FrontendController extends Application {
         }
 
         window.setOnCloseRequest(event -> {
+            //*call helper closeScenes method to handle the closing of the window*//
             event.consume();
             try {
                 closeScenes(window, allClubs, allMatches, guiElements, userSeasonChoice);
@@ -172,6 +180,8 @@ public class FrontendController extends Application {
         StackPane stackPane = GuiElements.stackPane(1366, 500);
         stackPane.getChildren().add(tableView);
         ScrollPane scrollPane = GuiElements.scrollPane(1366, 500, 0, 0, "-fx-background-color: #222; -fx-border-color: #222");
+        //*add the table into a stackPane to enable scrollable functionality*//
+        //*add the stackPane to a scrollPane to provide the scrollable functionality*//
         scrollPane.setContent(stackPane);
         anchorPane.getChildren().addAll(scrollPane, eplLion, eplText, goalSorter, winSorter, playMatch, displayMatch, eplPlayer, eplPlayerTwo);
 
@@ -199,7 +209,9 @@ public class FrontendController extends Application {
      */
     public static Scene displayAllMatches(Stage window, List<FootballClub> allClubs, List<FootballMatch> allMatches, GuiElements guiElements,
                                           Scene pointsTableScene, String userSeasonChoice) {
-        Collections.sort(allMatches);              //**to display all matches ascending order of date**//
+        //**to display all matches ascending order of date**//
+        Collections.sort(allMatches);
+
         //**all gui elements**//
         ImageView eplLion2 = GuiElements.imageViewLay(
                 "file:/C:/Users/Ammuuu/Downloads/learning/UNI/OOP-Module/Coursework/OOP-COURSEWORK/images/PL-lion2.png",
@@ -222,6 +234,7 @@ public class FrontendController extends Application {
         //**end all gui elements**//
 
         for (FootballMatch match : allMatches) {
+            //*use the helper method to display all the matches*//
             allMatchDisplayAndFilter(vBoxContainer, match, guiElements);
         }
 
@@ -229,34 +242,36 @@ public class FrontendController extends Application {
                 "-fx-background: #222; -fx-border-color: #f00;");
         scrollPaneContainer.setContent(vBoxContainer);
 
-        //*on click of this button, displays the matches with date specified*//
+        //*on click of this button, it displays the matches with date specified*//
         searchDateBtn.setOnAction(event -> {
             scrollPaneContainer.setContent(vBoxContainer);
             String userInput = dateInputField.getText();
-            if (DATE_PATTERN.matcher(userInput).matches()) {    //*checking input against a regex*//
+            //*checking input against a regex, therefore only the specific format is accepted*//
+            if (DATE_PATTERN.matcher(userInput).matches()) {
                 vBoxContainer.getChildren().clear();
                 boolean hasMatch = false;
                 //*the VBox is emptied and only the matches with date specified are added*//
                 for (FootballMatch footballMatch: allMatches) {
                     if (String.valueOf(footballMatch.getMatchDate()).equals(userInput)) {
+                        //*use the helper method to display the matches whose date is equal to specified*//
                         allMatchDisplayAndFilter(vBoxContainer, footballMatch, guiElements);
                         hasMatch = true;
                     }
                 }
                 if (!hasMatch) {
-                    //*display a label is there are not any matches with specified date*//
+                    //*display a label is there are not any matches played on the specified date*//
                     HBox noMatchHBox = GuiElements.hBox("");
-                    Label noMatchLabel = GuiElements.matchViewLabels("\t\t" + "   " +  "⚠\n\t" + "  " + "NO MATCHES\n" + "\t" +
+                    Label noMatchLabel = GuiElements.label("\t\t" + "   " +  "⚠\n\t" + "  " + "NO MATCHES\n" + "\t" +
                             "\tHAVE\n\t" + "  " + "BEEN PLAYED\n\t\t" + "   " + "⚠", "allMatches__noMatchesLbl");
                     noMatchHBox.getChildren().add(noMatchLabel);
                     scrollPaneContainer.setContent(noMatchHBox);
                 }
             } else {
-                GuiElements.errorAlert("Please specify a VALID date with format yyyy-mm-dd!");
+                GuiElements.errorAlert("Please specify a VALID date with format yyyy-mm-dd!", window);
             }
         });
 
-        //**on click of this button, reset the search and display all matches//
+        //*on click of this button, reset the search and display back all matches*//
         resetSearchBtn.setOnAction(event -> {
             scrollPaneContainer.setContent(vBoxContainer);
             dateInputField.setText("");
@@ -283,40 +298,52 @@ public class FrontendController extends Application {
     }
     /**
      * Private helper method of displayAllMatches() that is used to display the list of matches
-     * @param vBoxContainer - main container
-     * @param footballMatch - footballMatch to add into the container
+     * @param vBoxContainer - main container that will hold all the matches
+     * @param footballMatch - footballMatch to add into the main container
      */
     private static void allMatchDisplayAndFilter(VBox vBoxContainer, FootballMatch footballMatch, GuiElements guiElements) {
-        VBox vBoxFirstTeam = GuiElements.vBox(300);
-        HBox firstTeamNameContainer = GuiElements.hBox("");
-        HBox firstTeamGoalContainer = GuiElements.hBox("");
-        Label firstTeamName = GuiElements.matchViewLabels(footballMatch.getFirstTeam().getClubName().toUpperCase(), "allMatches__firstTeamNameLbl");
-        Label firstTeamGoals = GuiElements.matchViewLabels(String.valueOf(footballMatch.getFirstTeamSingleMatchStats().getGoals()),
-                "allMatches__firstTeamGoalsLbl");
-        firstTeamNameContainer.getChildren().add(firstTeamName);
-        firstTeamGoalContainer.getChildren().add(firstTeamGoals);
-        vBoxFirstTeam.getChildren().addAll(firstTeamNameContainer, firstTeamGoalContainer);
+        //*the idea here is to use VBoxes and HBoxes as div tags, to achieve CSS FlexBox functionality*//
+        //*In order to align the content perfectly*//
+        //*Each match will be a HBox inside the main VBox container (the container that will hold all the matches*//
+        //*Each match will then hold three VBoxes aligned next to each other, one for each team who have participated the specific match*//
+        //*And the other for the middle bar (the date container)*//
+        VBox vBoxFirstTeam = allMatchesDisplayAndFilterEachTeam(footballMatch.getFirstTeam(), footballMatch.getFirstTeamSingleMatchStats(),
+                "allMatches__firstTeamNameLbl", "allMatches__firstTeamGoalsLbl");
+        VBox vBoxSecondTeam = allMatchesDisplayAndFilterEachTeam(footballMatch.getSecondTeam(), footballMatch.getSecondTeamSingleMatchStats(),
+                "allMatches__secondTeamNameLbl", "allMatches__secondTeamGoalsLbl");
 
         VBox vBoxDate = GuiElements.vBox(100);
-        Label labelDate = GuiElements.matchViewLabels(String.valueOf(footballMatch.getMatchDate()), "allMatches__matchDateLbl");
-        Label labelVS = GuiElements.matchViewLabels("VS", "allMatches__vsLbl");
+        Label labelDate = GuiElements.label(String.valueOf(footballMatch.getMatchDate()), "allMatches__matchDateLbl");
+        Label labelVS = GuiElements.label("VS", "allMatches__vsLbl");
         vBoxDate.getChildren().addAll(labelDate, labelVS);
 
-        VBox vBoxSecondTeam = GuiElements.vBox(300);
-        HBox secondTeamNameContainer = GuiElements.hBox("");
-        HBox secondTeamGoalsContainer = GuiElements.hBox("");
-        Label secondTeamName = GuiElements.matchViewLabels(footballMatch.getSecondTeam().getClubName().toUpperCase(), "allMatches__secondTeamNameLbl");
-        Label secondTeamGoals = GuiElements.matchViewLabels(String.valueOf(footballMatch.getSecondTeamSingleMatchStats().getGoals()),
-                "allMatches__secondTeamGoalsLbl");
-        secondTeamNameContainer.getChildren().add(secondTeamName);
-        secondTeamGoalsContainer.getChildren().add(secondTeamGoals);
-        vBoxSecondTeam.getChildren().addAll(secondTeamNameContainer, secondTeamGoalsContainer);
-
+        //*The HBox that will hold each match*//
         HBox hBoxEachRow = GuiElements.hBox("allMatches__eachRowHBox");
+        //*calls another scene to display the specific match statistics*//
         hBoxEachRow.setOnMouseClicked(event -> specificMatchDisplay(footballMatch, guiElements));
         hBoxEachRow.getChildren().addAll(vBoxFirstTeam, vBoxDate, vBoxSecondTeam);
-        vBoxContainer.getChildren().addAll(hBoxEachRow);
         vBoxContainer.setCursor(Cursor.HAND);
+        vBoxContainer.getChildren().addAll(hBoxEachRow);
+    }
+    /**
+     * private helper method of allMatchDisplayAndFilter() that is used to display each team participating in a match
+     * @param footballClub - one of the clubs that participated in a match
+     * @param teamMatchStat - the stat the specific club obtained for the match
+     * @param nameId - an id for the name label, to be styled through CSS
+     * @param  goalId - an id for the goal label, to be styled through CSS
+     * @return - the VBox of each team holding the necessary details
+     */
+    private static VBox allMatchesDisplayAndFilterEachTeam(FootballClub footballClub, SingleMatchFootballClubStatistic teamMatchStat, String nameId,
+                                                           String goalId) {
+        VBox vBoxSpecificTeam = GuiElements.vBox(300);
+        HBox teamNameContainer = GuiElements.hBox("");
+        HBox teamGoalContainer = GuiElements.hBox("");
+        Label teamName = GuiElements.label(footballClub.getClubName().toUpperCase(), nameId);
+        Label teamGoals = GuiElements.label(String.valueOf(teamMatchStat.getGoals()), goalId);
+        teamNameContainer.getChildren().add(teamName);
+        teamGoalContainer.getChildren().add(teamGoals);
+        vBoxSpecificTeam.getChildren().addAll(teamNameContainer, teamGoalContainer);
+        return vBoxSpecificTeam;
     }
     /**
      * private helper method of allMatchDisplayAndFilter() that is used to display a selected match statistic
@@ -332,33 +359,36 @@ public class FrontendController extends Application {
         hBoxUpperContainer.getChildren().add(eplLionText);
         /*end of upper hBox*/
 
-        /*main middle hBox (all club content)*/
+        /*main middle hBox (all match statistic content)*/
         VBox vBoxFirstTeam = GuiElements.vBox(300);
         VBox vBoxMiddleBar = GuiElements.vBox(300);
         VBox vBoxSecondTeam = GuiElements.vBox(300);
 
-        HBox firstTeamName = specificMatchColumn(footballMatch.getFirstTeam().getClubName().toUpperCase(), "match__firstTeamNameLbl");
+        //*column that will hold and display the stats of the first team that has participated in the specific match*//
+        HBox firstTeamName = specificMatchTeamStat(footballMatch.getFirstTeam().getClubName().toUpperCase(), "match__firstTeamNameLbl");
         vBoxFirstTeam.getChildren().add(firstTeamName);
-        List<String> firstTeamDetailsContent = getClubDetailsContent(footballMatch.getFirstTeamSingleMatchStats());
-        for (String eachRow : firstTeamDetailsContent) {
-            HBox row = specificMatchColumn(eachRow, "match__firstTeamDetailsLbl");
+        List<String> firstTeamStats = getSpecificMatchTeamStats(footballMatch.getFirstTeamSingleMatchStats());
+        for (String eachRow : firstTeamStats) {
+            HBox row = specificMatchTeamStat(eachRow, "match__firstTeamDetailsLbl");
             vBoxFirstTeam.getChildren().add(row);
         }
 
-        List<String> middleBarEachRowContent = new ArrayList<>(Arrays.asList(
+        //*the middle bar that will display what each stat is*//
+        List<String> middleBarEachRowStat = new ArrayList<>(Arrays.asList(
                 "TEAM STATS", "Goals", "Shots", "Shots on target", "Possession", "Passes", "Pass accuracy", "Fouls", "Yellow cards", "Red cards",
                 "Offsides", "Corners"
         ));
-        for (String eachRow : middleBarEachRowContent) {
-            HBox row = specificMatchColumn(eachRow, "match__middleBarLbl");
+        for (String eachRow : middleBarEachRowStat) {
+            HBox row = specificMatchTeamStat(eachRow, "match__middleBarLbl");
             vBoxMiddleBar.getChildren().add(row);
         }
 
-        HBox secondTeamName = specificMatchColumn(footballMatch.getSecondTeam().getClubName().toUpperCase(), "match__secondTeamNameLbl");
+        //*column that will hold and display the stats of the second team that has participated in the specific match*//
+        HBox secondTeamName = specificMatchTeamStat(footballMatch.getSecondTeam().getClubName().toUpperCase(), "match__secondTeamNameLbl");
         vBoxSecondTeam.getChildren().add(secondTeamName);
-        List<String> secondTeamDetailsContent = getClubDetailsContent(footballMatch.getSecondTeamSingleMatchStats());
+        List<String> secondTeamDetailsContent = getSpecificMatchTeamStats(footballMatch.getSecondTeamSingleMatchStats());
         for (String eachRow : secondTeamDetailsContent) {
-            HBox row = specificMatchColumn(eachRow, "match__secondTeamDetailsLbl");
+            HBox row = specificMatchTeamStat(eachRow, "match__secondTeamDetailsLbl");
             vBoxSecondTeam.getChildren().add(row);
         }
 
@@ -369,16 +399,20 @@ public class FrontendController extends Application {
         /*Bottom information hBox*/
         HBox hBoxLowerContainer = GuiElements.hBox("match__lowerContainer");
         String labelText =
+            //*format a text based on who won, or if it was a draw, based on the goals scored*//
             footballMatch.getFirstTeamSingleMatchStats().getGoals() > footballMatch.getSecondTeamSingleMatchStats().getGoals() ?
                 "\n" + footballMatch.getFirstTeam().getClubName() + " beat " + footballMatch.getSecondTeam().getClubName() + ", scoring " +
-                footballMatch.getFirstTeamSingleMatchStats().getGoals() + " goals with a possession of " + footballMatch.getFirstTeamSingleMatchStats().getPossession() + "%"
-                    :
-                    footballMatch.getFirstTeamSingleMatchStats().getGoals() < footballMatch.getSecondTeamSingleMatchStats().getGoals() ?
-                        "\n" + footballMatch.getSecondTeam().getClubName() + " beat " + footballMatch.getFirstTeam().getClubName() + ", scoring " +
-                        footballMatch.getSecondTeamSingleMatchStats().getGoals() + " goals with a possession of " + footballMatch.getSecondTeamSingleMatchStats().getPossession() + "%"
-                            :
-                            "\n" + "The match ended in a draw, with both " + footballMatch.getFirstTeam().getClubName() + " and " + footballMatch.getSecondTeam().getClubName() +
-                            "scoring " + footballMatch.getFirstTeamSingleMatchStats().getGoals() + " goals each.";
+                footballMatch.getFirstTeamSingleMatchStats().getGoals() + " goals with a possession of " +
+                footballMatch.getFirstTeamSingleMatchStats().getPossession() + "%"
+            :
+                footballMatch.getFirstTeamSingleMatchStats().getGoals() < footballMatch.getSecondTeamSingleMatchStats().getGoals() ?
+                    "\n" + footballMatch.getSecondTeam().getClubName() + " beat " + footballMatch.getFirstTeam().getClubName() + ", scoring " +
+                    footballMatch.getSecondTeamSingleMatchStats().getGoals() + " goals with a possession of " +
+                    footballMatch.getSecondTeamSingleMatchStats().getPossession() + "%"
+                :
+                    "\n" + "The match ended in a draw, with both " + footballMatch.getFirstTeam().getClubName() + " and " +
+                    footballMatch.getSecondTeam().getClubName() + "scoring " +
+                    footballMatch.getFirstTeamSingleMatchStats().getGoals() + " goals each.";
 
         Text infoText = new Text(labelText);
         infoText.setId("match__infoText");
@@ -394,23 +428,11 @@ public class FrontendController extends Application {
         innerWindow.showAndWait();
     }
     /**
-     * private helper method of specificMatchDisplay() that is used to display each column
-     * @param labelValue - what the label must display
-     * @param id - to be targeted by css
-     * @return - an hBox that holds each row of each column
-     */
-    private static HBox specificMatchColumn(String labelValue, String id) {
-        HBox hBoxContainer = GuiElements.hBox("");
-        Label eachLabel = GuiElements.matchViewLabels(labelValue, id);
-        hBoxContainer.getChildren().add(eachLabel);
-        return hBoxContainer;
-    }
-    /**
      * private helper method of specificMatchDisplay() that is used to return a list of all the club detail values
      * @param singleMatchFootballClubStatistic - a football clubs single match statistics
      * @return - list of statistics
      */
-    private static List<String> getClubDetailsContent(SingleMatchFootballClubStatistic singleMatchFootballClubStatistic) {
+    private static List<String> getSpecificMatchTeamStats(SingleMatchFootballClubStatistic singleMatchFootballClubStatistic) {
         return new ArrayList<>(Arrays.asList(
                 String.valueOf(singleMatchFootballClubStatistic.getGoals()), String.valueOf(singleMatchFootballClubStatistic.getShots()),
                 String.valueOf(singleMatchFootballClubStatistic.getShotsOnTarget()), String.valueOf(singleMatchFootballClubStatistic.getPossession()),
@@ -420,7 +442,18 @@ public class FrontendController extends Application {
                 String.valueOf(singleMatchFootballClubStatistic.getCorners())
         ));
     }
-
+    /**
+     * private helper method of specificMatchDisplay() that is used to display each column
+     * @param labelValue - what the label must display
+     * @param id - to be targeted by css
+     * @return - an hBox that holds each row of each column
+     */
+    private static HBox specificMatchTeamStat(String labelValue, String id) {
+        HBox hBoxContainer = GuiElements.hBox("");
+        Label eachLabel = GuiElements.label(labelValue, id);
+        hBoxContainer.getChildren().add(eachLabel);
+        return hBoxContainer;
+    }
 
     /**
      * Private method that handles closing of the window
@@ -436,12 +469,13 @@ public class FrontendController extends Application {
     private static void closeScenes(Stage window, List<FootballClub> allClubs, List<FootballMatch> allMatches, GuiElements guiElements,
                                     String userSeasonChoice)
             throws IllegalAccessException, InterruptedException, ClassNotFoundException {
-        Alert closeAlert = GuiElements.closeWindowCommon();
+        Alert closeAlert = GuiElements.confirmAlert();
         closeAlert.initOwner(window);
         closeAlert.showAndWait();
         if (closeAlert.getResult() == ButtonType.YES) {
             window.close();
-            displayMenu(window, allClubs, allMatches, guiElements, userSeasonChoice); /*call the menu upon window closure*/
+            /*call the menu again upon window closure, to continue the program*/
+            displayMenu(window, allClubs, allMatches, guiElements, userSeasonChoice);
         } else {
             closeAlert.close();
         }
@@ -464,7 +498,7 @@ public class FrontendController extends Application {
         ConsoleController.printDisplay();
         String userChoice = ConsoleController.getUserInput("Please choose an option");
 
-        /*match input choice with respective method calls, and recall the menu for an endless recursion loop*/
+        /*match input choice with respective method calls, and recall the menu for an endless recursive loop*/
         switch (userChoice) {
             case "a":
                 ConsoleController.addClub();
