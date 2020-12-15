@@ -1,7 +1,7 @@
 package coursework.controllers;
 
 /*
- * ConsoleApplication
+ * ConsoleController
  * Copyright © 2020 Ammar Raneez. All Rights Reserved.
  */
 
@@ -15,7 +15,7 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 
 /**
- * ConsoleApplication class, the main cli runner class
+ * ConsoleController class, the main cli runner class
  * @version 1.x November 15th 2020
  * @author Ammar Raneez | 2019163 | W1761196
  */
