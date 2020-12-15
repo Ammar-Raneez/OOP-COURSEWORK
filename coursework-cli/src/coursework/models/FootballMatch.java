@@ -262,7 +262,6 @@ public class FootballMatch implements Serializable, Comparable<FootballMatch> {
     /**
      * @return overrun toString() method
      */
-    //TODO, improve toString() methods
     @Override
     public String toString() {
         return "FootballMatch{" +

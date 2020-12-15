@@ -69,7 +69,6 @@ public class FootballClub extends SportsClub implements Comparable<FootballClub>
     /**
      * @return overrun toString() method
      */
-    //TODO, improve toString() methods
     @Override
     public String toString() {
         return "FootballClub{" +
