@@ -22,7 +22,6 @@ public class FootballClub extends SportsClub implements Comparable<FootballClub>
     /**
      * Constructor - takes in values and initializes a Football club object
      * (common attributes initialized through super class)
-     * match score required as a temporary placeholder for a match score
      * footballClubTotalStatistics - another helper class that contains all club statistics
      * singleMatchFootballClubStatistic - another helper class that will holds statistics of a club of a single match
      * @param clubName - name of club
@@ -117,6 +116,7 @@ public class FootballClub extends SportsClub implements Comparable<FootballClub>
     private void generatePlayers() {
         for (int i=0; i<FootballClub.getNumberOfPlayers(); i++) {
             List<Object> allPlayerInformation = playerInformationGeneration();
+            //*each value is casted to their respective data types*//
             ALL_PLAYERS.add(new Player((double) allPlayerInformation.get(0), (String) allPlayerInformation.get(1),
                     (String) allPlayerInformation.get(2), (PlayerStats) allPlayerInformation.get(3),
                     (String) allPlayerInformation.get(4), (String) allPlayerInformation.get(5),
@@ -178,6 +178,8 @@ public class FootballClub extends SportsClub implements Comparable<FootballClub>
         String playerPreferredFoot = preferredFoot.get(FootballClub.RANDOM.nextInt(preferredFoot.size()));
         int shirtNumber = FootballClub.RANDOM.nextInt(15 - 1 + 1) + 1;
 
+        //*list consists of all randomly generated values for a specific player*//
+        //*values are placed in an Object list, cuz it consists of values of different data types*//
         return Arrays.asList(playerHeight, playerName, playerNationality, playerStats, playerPosition,
                              playerPreferredFoot, shirtNumber);
     }
