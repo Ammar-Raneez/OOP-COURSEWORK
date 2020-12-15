@@ -25,6 +25,7 @@ import java.util.regex.Pattern;
  */
 public class ConsoleController {
     private static final Scanner SCANNER = new Scanner(System.in);
+    //*regex for season input validation*//
     private static final Pattern SEASON_PATTERN = Pattern.compile("^\\d{4}");
     private static final PremierLeagueManager PREMIER_LEAGUE_MANAGER = new PremierLeagueManager();
 
@@ -69,6 +70,7 @@ public class ConsoleController {
         //*only 20 teams can be added in the Premier League*//
         if (PremierLeagueManager.getAllMatches().size() == PremierLeagueManager.getMaxSize()) {
             System.out.println("[ERROR] ==> There cannot be more than 20 teams in the premier league!");
+	    //*prevent further execution of program*//
             return;
         }
 
@@ -107,12 +109,9 @@ public class ConsoleController {
             for (FootballClub footballClub : PremierLeagueManager.getAllFootballClubs()) {
                 if (footballClub.getClubName().equals(clubNameInput)) {
                     clubExists = true;
-                    clubNameInput = getUserInput("[ERROR] ==> " + clubNameInput +
-                            " already exists! Please try again");
-                    if (clubNameInput.equals("")) {
-                        clubNameInput = userInputValidation("Please Enter a Club name!", "Please Enter a Club name!");
-                    }
-                    //*stop continuous looping, after a match has been found*//
+                    //*club already exists*//
+                    clubNameInput = userInputValidation("[ERROR] ==> " + 		    clubNameInput + " already exists! Please try again", "Please Enter a Club name!");
+                    //*stop continuous looping, after a club has been found, to prevent unnecessary continuous looping*//
                     break;
                 }
             }
@@ -213,8 +212,8 @@ public class ConsoleController {
 
     /**
      * static method, that handles the displaying of statistics of a selected match
-     * Calls the displaySelectedMatchStatistics() method of PremierLeagueManager passing the two clubs involved in a
-     * match as its parameters
+     * Calls the displaySelectedMatchStatistics() method of PremierLeagueManager passing the two clubs involved in a match as its parameters
+     * obtains the match and prints the statistics
      */
     public static void displaySelectedMatch() {
         String firstTeamInput = userInputValidation("Enter First Club's Name:", "Please Enter the first Clubs name!");
@@ -345,6 +344,7 @@ public class ConsoleController {
 
         //*loop infinitely till the inout matches the 4 digit regex defined initially*//
         while (true) {
+            //*if and only if the input matches the pattern will the program continue*//
             if (SEASON_PATTERN.matcher(userSeasonChoice).matches()) {
                 break;
             } else {
