@@ -224,20 +224,34 @@ public class PremierLeagueManager implements LeagueManager {
                 break;
             }
 
+            //*ensure whether all matches have already been played this is done by generating every possible match of*//
+            //*a team, and checking whether the list of matches consists of that match, if and only if the list does*//
+            //*contain all possible matches, no more matches can be played*//
+            boolean allMatchesPlayed = true;
+            for(FootballClub eachClub : allFootballClubs) {
+                for(FootballClub otherClub : allFootballClubs) {
+                    if (eachClub.getClubName().equals(otherClub.getClubName())) {
+                        continue;
+                    }
+                    FootballMatch checkMatch = new FootballMatch(eachClub, otherClub, generateRandomDate(season));
+                    for (FootballMatch validPlayedMatch : allMatches) {
+                        allMatchesPlayed = validPlayedMatch.equals(checkMatch);
+                    }
+                }
+            }
+            if (allMatchesPlayed) {
+                System.out.println("[ERROR] ==> All Possible Matches have already been played!");
+                break;
+            }
+
+            //*if the program has reached this statement, it means that the generated random match has already been*//
+            //*played, but there are more legal matches that can be generated that can be played*//
             //*if it was the case that the match generated was already played (hasMatch turned true during for loop)*//
-            //*another two teams are picked at random*//
+            //*another two teams are picked at random, and the while loop continues from the beginning*//
             do {
                 firstTeam = allFootballClubs.get(PremierLeagueManager.RANDOM.nextInt(allFootballClubs.size()));
                 secondTeam = allFootballClubs.get(PremierLeagueManager.RANDOM.nextInt(allFootballClubs.size()));
             } while (firstTeam.getClubName().equals(secondTeam.getClubName()));
-
-            //*based on a pattern identified, the if condition was created (max number of matches playable)*//
-            //*second condition is if you delete a football club after it has already played a match*//
-            if ((allMatches.size() == (allFootballClubs.size() * (allFootballClubs.size() - 1) / 2)) ||
-                    (allMatches.size() > (allFootballClubs.size() * (allFootballClubs.size() - 1) / 2))) {
-                System.out.println("[ERROR] ==> All Possible Matches have already been played!");
-                break;
-            }
         }
     }
     /**
