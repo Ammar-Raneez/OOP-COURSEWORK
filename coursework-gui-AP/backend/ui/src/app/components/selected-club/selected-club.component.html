@@ -1,0 +1,93 @@
+<div class="container">
+    <div class="top-header-text">
+        <h1>{{ getTheSelectedClub().clubName }}</h1>
+        <h2 class="clubDetails">
+          <!--     Render a specific message based on attributes       -->
+            <span class="clubDetailsStat">{{ getTheSelectedClub().clubName }}</span>
+            is worth <span class="clubDetailsStat">${{ getTheSelectedClub().clubNetWorth }}</span>.
+            It is currently being owned by <span class="clubDetailsStat">{{ getTheSelectedClub().clubOwner }}</span>
+            and located at <span class="clubDetailsStat">{{ getTheSelectedClub().clubLocation }}</span>.
+            {{ getTheSelectedClub().lecturerInCharge?
+                " This university club is further handled by " + getTheSelectedClub().lecturerInCharge  + '.'
+                    :
+                    getTheSelectedClub().teacherInCharge?
+                        " This school club is further handled by " + getTheSelectedClub().teacherInCharge + '.'
+                            :
+                                "" }}
+            <br>
+            As of now, they have <span class="clubDetailsStat">{{ getTheSelectedClub().footballClubTotalStatistics.wins }}</span> wins,
+            <span class="clubDetailsStat">{{ getTheSelectedClub().footballClubTotalStatistics.defeats }}</span> defeats,
+            and <span class="clubDetailsStat">{{ getTheSelectedClub().footballClubTotalStatistics.draws }}</span> draws to their name,
+            thereby currently holding <span class="clubDetailsStat">{{ getTheSelectedClub().footballClubTotalStatistics.points }}</span> points.
+        </h2>
+    </div>
+
+    <div class="main-center-player">
+        <!--   All used simply for UI. Display all the players of the club     -->
+        <div *ngFor="let player of getTheSelectedClub().allPlayers; let i = index" class="main-center-eachPlayerCard">
+            <img src="{{ getImageLink()[i] }}" style="width: 100%; height: 300px; object-fit: contain" alt="playerImage" />
+            <div class="cardContent">
+                <h1>
+                    {{ player.name.toLocaleUpperCase() }}
+                    <i style="color: gold;" class="material-icons" *ngFor="let numOfStar of [].constructor(getStarRatingCount()[i])">star</i>
+                </h1>
+            </div>
+
+            <!--    render each player of the club      -->
+            <div class="hoverContainer" [ngStyle]="{ 'background-image': 'linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 1))' }">
+                <div class="hoverText">
+                    <div class="hoverTextName">
+                        <h2>{{ player.name.toLocaleUpperCase() }}</h2>
+                    </div>
+                    <div class="hoverLowerSection">
+                        <div class="colOne">
+                            <div class="colLabel">
+                                <p>SPE</p>
+                                <p>ACC</p>
+                                <p>STA</p>
+                                <p>CON</p>
+                                <p>STR</p>
+                            </div>
+                            <div class="colStat">
+                                <p><span class="colStat">{{ player.playerStats.speed < 10? "0" + player.playerStats.speed : player.playerStats.speed }}</span></p>
+                                <p><span class="colStat">{{ player.playerStats.accuracy < 10? "0" + player.playerStats.accuracy : player.playerStats.accuracy }}</span></p>
+                                <p><span class="colStat">{{ player.playerStats.stamina < 10? "0" + player.playerStats.stamina : player.playerStats.stamina }}</span></p>
+                                <p><span class="colStat">{{ player.playerStats.control < 10? "0" + player.playerStats.control : player.playerStats.control }}</span></p>
+                                <p><span class="colStat">{{ player.playerStats.strength < 10? "0" + player.playerStats.strength : player.playerStats.strength }}</span></p>
+                            </div>
+                        </div>
+
+                        <div class="colTwo">
+                            <div class="colLabel">
+                                <p>TAC</p>
+                                <p>PAS</p>
+                                <p>CRO</p>
+                                <p>SHO</p>
+                                <p>HEA</p>
+                            </div>
+                            <div class="colStat">
+                                <p><span class="colStat">{{ player.playerStats.tackle < 10? "0" + player.playerStats.tackle : player.playerStats.tackle }}</span></p>
+                                <p><span class="colStat">{{ player.playerStats.passing < 10? "0" + player.playerStats.passing : player.playerStats.passing }}</span></p>
+                                <p><span class="colStat">{{ player.playerStats.crossing < 10? "0" + player.playerStats.crossing : player.playerStats.crossing }}</span></p>
+                                <p><span class="colStat">{{ player.playerStats.shooting < 10? "0" + player.playerStats.shooting : player.playerStats.shooting }}</span></p>
+                                <p><span class="colStat">{{ player.playerStats.heading < 10? "0" + player.playerStats.heading : player.playerStats.heading }}</span></p>
+                            </div>
+                        </div>
+
+                        <div class="colThree">
+                            <div class="colThreeContainer">
+                                <p class="playerNationality">{{ player.nationality }}<span class="material-icons">outlined_flag</span></p>
+                                <p>🦶🏻{{ player.preferredFoot }}</p>
+                                <p><i class="material-icons">accessibility</i><i class="material-icons">height</i>{{ player.height }}</p>
+                                <p [ngStyle] = "{ 'background-color' : getPositionBgColor()[i] }" class="playerPosition">{{ player.position }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hoverFooter">
+                        <p style="font-size: 20px"><span class="colStat" style=" color: #62ffaf">Holds and maintains an overall stat of {{player.playerStats.overall < 10? "0" + player.playerStats.overall : player.playerStats.overall }}%</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

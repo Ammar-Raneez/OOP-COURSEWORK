@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="top-header-text">
+        <h1>Witness the Greatness</h1>
+    </div>
+
+    <div class="main-center-container">
+        <!--   Display a spinner as a loading indication, if the array hasn't been populated yet  -->
+        <ngx-spinner size="medium" *ngIf="!getAllFootballClubs()" bdColor="rgba(51,51,51,0)" type="line-scale-pulse-out" [zIndex]="0" [fullScreen]="false">
+            <p style="color : white">Loading Clubs...</p>
+        </ngx-spinner>
+
+        <!--  Display a styled div tag for each club in the array of clubs. Style the div tags based on the specific club kit  -->
+        <div [ngStyle] = "{ 'border' : '1px solid rgb(' + club.kit.topColor.red + ',' + club.kit.topColor.green + ',' + club.kit.topColor.blue + ')' }"
+            class="main-center-content" *ngFor="let club of getAllFootballClubs()" routerLink="{{ club.clubName }}"
+        >
+            <!--     Two way data binding,      -->
+            <h1>{{ club.clubName }}</h1>
+            <h3>Sponsored By</h3>
+            <h3>{{ club.kit.sponsor }}</h3>
+            <div class="main-center-hoverContainer"
+                [ngStyle] ="{ 'background-image' : 'linear-gradient(rgba(' + club.kit.topColor.red + ',' + club.kit.topColor.green + ',' + club.kit.topColor.blue + ', 0.2' + '), rgba(' + club.kit.bottomColor.red + ',' + club.kit.bottomColor.green + ',' + club.kit.bottomColor.blue + ', 0.2))' }"
+            >
+            </div>
+        </div>
+    </div>
+</div>

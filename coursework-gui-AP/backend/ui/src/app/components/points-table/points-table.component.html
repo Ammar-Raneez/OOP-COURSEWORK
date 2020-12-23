@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="pane">
+        <ngx-spinner size="medium" *ngIf="!getAllFootballClubs()" bdColor="rgba(51,51,51,0)" type="line-scale-pulse-out" [zIndex]="0" [fullScreen]="false">
+            <p style="color : white">Loading Standings...</p>
+        </ngx-spinner>
+        <!--   Render table only if the clubs have been populated     -->
+        <table *ngIf="getAllFootballClubs()" class="table">
+            <tr>
+                <th class="longSpan">Club</th>
+                <th>MP</th>
+                <th>W</th>
+                <th>D</th>
+                <th>L</th>
+                <th>GF</th>
+                <th>GA</th>
+                <th>GD</th>
+                <th>Pts</th>
+            </tr>
+            <!--    loop over the array of clubs and render each as a table row        -->
+            <tr *ngFor="let club of getAllFootballClubs()">
+                <td class="longSpan">{{ club.clubName }}</td>
+                <td>{{ club.footballClubTotalStatistics.matchesPlayed }}</td>
+                <td>{{ club.footballClubTotalStatistics.wins }}</td>
+                <td>{{ club.footballClubTotalStatistics.draws }}</td>
+                <td>{{ club.footballClubTotalStatistics.defeats }}</td>
+                <td>{{ club.footballClubTotalStatistics.goalsFor }}</td>
+                <td>{{ club.footballClubTotalStatistics.goalsAgainst }}</td>
+                <td>{{ club.footballClubTotalStatistics.goalDifference }}</td>
+                <td>{{ club.footballClubTotalStatistics.points }}</td>
+            </tr>
+        </table>
+    </div>
+    <div class="lower-footer">
+        <button class="lower-footer-sortBtn reset-btn" (click) = "getFootballClubs()" >R E S E T</button>
+        <button class="lower-footer-sortBtn" (click) = "getFootballClubsSortedOnWins()">W I N &nbsp; S O R T</button>
+        <img class="lower-footer-img" src="assets/images/PL-Lion-transparent.png" alt="plLionTransparent" />
+        <button class="lower-footer-sortBtn" (click) = "getFootballClubsSortedOnGoals()" >G O A L &nbsp; S O R T</button>
+        <button class="lower-footer-sortBtn play-btn" (click) = "updateFootballClubsAfterPlay()" >P L A Y !</button>
+    </div>
+</div>
