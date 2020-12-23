@@ -1,3 +1,6 @@
+/*
+ *
+ */
 import { Component, OnInit } from '@angular/core';
 import { FootballClub } from 'src/app/models/FootballClub.model';
 import { AllClubsService } from 'src/app/services/all-clubs/all-clubs.service';

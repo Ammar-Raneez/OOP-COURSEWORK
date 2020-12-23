@@ -2,6 +2,7 @@
     <div class="top-header">
         <h1 class="top-header-text">Reminisce the Highlights</h1>
         <div class="top-header-right">
+            <!--     tie date attribute to input tag       -->
             <input class="top-header-right-input" type="text" placeholder="yyyy-mm-dd" [(ngModel)] = "date" />
             <button class="top-header-right-search" (click) = "getFootballMatchesOnDate()">Search</button>
             <button class="top-header-right-reset" (click) = "getFootballMatches()">Reset</button>
@@ -13,6 +14,7 @@
             <ngx-spinner size="medium" *ngIf="!getAllFootballMatches()" bdColor="rgba(51,51,51,0)" type="line-scale-pulse-out" [zIndex]="0" [fullScreen]="false">
                 <p style="color : white">Loading Matches...</p>
             </ngx-spinner>
+            <!--    routerLink -> on click of a div, navigate to allmatches/index, index being the specific match      -->
             <div *ngFor="let match of getAllFootballMatches(); let i = index"  routerLink="{{ i }}" class="main-center-center-row">
                 <div class="main-center-center-row-left" >
                     <h3 class="main-center-center-row-clubName">{{ match.firstTeam.clubName.toLocaleUpperCase() }}</h3>
