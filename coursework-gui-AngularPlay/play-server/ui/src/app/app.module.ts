@@ -17,6 +17,7 @@ import { SelectedClubComponent } from './components/selected-club/selected-club.
 
 
 @NgModule({
+  //*All used components*//
   declarations: [
     AppComponent,
     NavbarComponent,
@@ -27,6 +28,7 @@ import { SelectedClubComponent } from './components/selected-club/selected-club.
     AllClubsComponent,
     SelectedClubComponent
   ],
+  //*All used Modules*//
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -36,6 +38,7 @@ import { SelectedClubComponent } from './components/selected-club/selected-club.
     BrowserAnimationsModule
   ],
   providers: [],
+  //*Bootstrap AppComponent to AppModule, AppComponent holds router-outlet, which will display everything*//
   bootstrap: [AppComponent]
 })
 export class AppModule { }
