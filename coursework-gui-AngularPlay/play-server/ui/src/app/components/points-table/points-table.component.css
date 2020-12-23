@@ -1,0 +1,165 @@
+.container {
+    height: 94vh;
+    margin-top: 3%;
+    animation: fadein 1s;
+    -moz-animation: fadein 1s; 
+    -webkit-animation: fadein 1s; 
+    -o-animation: fadein 1s; 
+    border-left: 5px solid purple;
+    border-right: 5px solid purple;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 1)), url(/assets/images/PL-kane2.jpg);
+    background-size: cover;
+}
+@keyframes fadein {
+    from {
+        opacity:0;
+        transform: translate(0, -10%)
+    }
+    to {
+        opacity:1;
+        transform: translate(0, 0%)
+    }
+}
+@-moz-keyframes fadein { 
+    from {
+        opacity:0;
+        transform: translate(0, -10%)
+    }
+    to {
+        opacity:1;
+        transform: translate(0, 0%)
+    }
+}
+@-webkit-keyframes fadein { 
+    from {
+        opacity:0;
+        transform: translate(0, -10%)
+    }
+    to {
+        opacity:1;
+        transform: translate(0, 0%)
+    }
+}
+@-o-keyframes fadein { 
+    from {
+        opacity:0;
+        transform: translate(0, -10px)
+    }
+    to {
+        opacity:1;
+        transform: translate(0, 0px)
+    }
+}
+
+.pane {
+    display: inline-block;
+    overflow-y: scroll;
+    max-height:400px;
+    width: 100%;
+    scroll-behavior: smooth;
+    position: relative;
+    height: 400px;
+}
+
+.table {
+    background-color: transparent;
+    width: 100%;
+    border-collapse: collapse;
+    color: #04f5ff;
+    height: 400px;
+    margin: 0;
+}
+
+th {
+    color: #62ffa4;
+    padding: 10px;
+}
+
+td {
+    padding: 10px;
+}
+
+th, td {
+    width: 8%;
+    text-align: center;
+}
+
+.table tr .longSpan {
+    width: 28%;
+    text-align: left;
+    font-weight: bolder;
+}
+.table tr td.longSpan {
+
+    color: #f00;
+}
+
+.table tr:nth-child(even) {
+    background-color: transparent;
+}
+
+
+.lower-footer {
+    height: 213px;
+    background-color: transparent;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.lower-footer-img {
+    object-fit: contain;
+    height: 210px;
+}
+
+.lower-footer button {
+    background-color: transparent;
+}
+
+.lower-footer-sortBtn {
+    color: #04f5ff;
+    height: 50px;
+    padding: 8px;
+    width: 200px;
+    border-color: #04f5ff;
+    transition: 0.3s ease;
+    font-size: 18px;
+    outline: none;
+    font-weight: bolder;
+
+}
+.lower-footer-sortBtn:hover {
+    cursor: pointer;
+    color: white;
+    transform: scaleX(1.1);
+}
+
+.reset-btn {
+    border: 1px solid #f00;
+    color: #f00;
+}
+
+.play-btn {
+    border: 1px solid #62ffa4;
+    color: #62ffa4;
+}
+.play-btn:hover {
+    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both infinite;
+    transform: translate3d(0, 0, 0);
+    perspective: 1000px;
+}
+
+@keyframes shake {
+    10%, 90% {
+        transform: translate3d(-1px, 0, 0);
+    }
+    20%, 80% {
+        transform: translate3d(2px, 0, 0);
+    }
+    30%, 50%, 70% {
+        transform: translate3d(-4px, 0, 0);
+    }
+    40%, 60% {
+        transform: translate3d(4px, 0, 0);
+    }
+}
