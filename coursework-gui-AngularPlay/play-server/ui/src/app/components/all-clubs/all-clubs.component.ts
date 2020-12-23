@@ -1,5 +1,6 @@
 /*
- *
+ * AllClubsComponent
+ * Copyright © 2020 Ammar Raneez. All Rights Reserved.
  */
 import { Component, OnInit } from '@angular/core';
 import { FootballClub } from 'src/app/models/FootballClub.model';
@@ -13,6 +14,8 @@ import { AllClubsService } from 'src/app/services/all-clubs/all-clubs.service';
 
 /**
  * AllClubsComponent class, which will be used to render all the clubs
+ * @version 1.x December 5th 2020
+ * @author Ammar Raneez | 2019163 | W1761196
  */
 export class AllClubsComponent implements OnInit {
   //*Create an array of FootballClub objects to hold all Football clubs*//
