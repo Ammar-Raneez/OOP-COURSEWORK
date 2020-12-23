@@ -3,11 +3,13 @@
 # ~~~~
 
 #All Getter Methods
+#Get method for the inital display will render the index.html file of Angular
 GET     /                              coursework.controllers.FrontendController.index()
 GET     /pointstable                   coursework.controllers.ClubController.returnAllClubs
 GET     /pointstable/winfilter         coursework.controllers.ClubController.winSortClubFilter
 GET     /pointstable/goalfilter        coursework.controllers.ClubController.goalSortClubFilter
 GET     /pointstable/playmatch         coursework.controllers.MatchController.playMatch
+#Accepts in url parameters
 GET     /clubs/*clubName               coursework.controllers.ClubController.returnSelectedClub(clubName : String)
 GET     /allmatches/*arrIndex          coursework.controllers.MatchController.returnSelectedMatch(arrIndex : Integer)
 GET     /allmatches                    coursework.controllers.MatchController.returnAllMatches
