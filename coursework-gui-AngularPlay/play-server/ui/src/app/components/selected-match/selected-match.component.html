@@ -1,10 +1,11 @@
 <div class="container">
     <div class="top-header">
-        <img src="assets/images/PL-LionText-transparent.png" />
+        <img src="assets/images/PL-LionText-transparent.png" alt="lionTextTransparent" />
     </div>
 
     <div class="main-center">
         <div class="main-center-left">
+            <!--    render all the stats of both the teams of the selected match      -->
             <h3 class="main-center-left-clubName">{{ getSelectedMatch().firstTeam.clubName.toLocaleUpperCase() }}</h3>
             <h3>{{ getSelectedMatch().firstTeamSingleMatchStats.goals }}</h3>
             <h3>{{ getSelectedMatch().firstTeamSingleMatchStats.shots }}</h3>
