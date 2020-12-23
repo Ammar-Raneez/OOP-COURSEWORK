@@ -4,13 +4,22 @@ import { FootballClub } from 'src/app/models/FootballClub.model';
 import { Observable } from 'rxjs';
 import { BASE_URL } from 'src/app/app.constants';
 
+/**
+ * AllClubsService class, to be used to fetch all the clubs, will be calling the API URL localhost:9000/pointstable
+ * The Controller method associated with /pointstable in the Play backend will be called
+ */
 @Injectable({
   providedIn: 'root'
 })
 export class AllClubsService {
+  //*Specifying an object of HttpClient for REST API accessibility. Is accessible throughout*//
   constructor(private httpClient : HttpClient) { }
 
-  public getAllFootballClubs() : Observable<FootballClub> { 
+  /**
+   * Sends a GET request to the url and Returns an Observable holding the Json data of all clubs
+   * @return Observable (handles Asynchronous communication) with all FootballClubs
+   */
+  public getAllFootballClubs() : Observable<FootballClub> {
     return this.httpClient.get<FootballClub>(`${BASE_URL}/pointstable`);
   }
 }
