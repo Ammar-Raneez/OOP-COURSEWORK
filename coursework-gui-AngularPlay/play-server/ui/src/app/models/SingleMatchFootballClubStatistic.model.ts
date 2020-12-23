@@ -1,3 +1,13 @@
+/*
+ * SingleMatchFootballClubStatistic
+ * Copyright © 2020 Ammar Raneez. All Rights Reserved.
+ */
+
+/**
+ * SingleMatchFootballClubStatistic interface -> To provide a data type for SingleMatchFootballClubStatistic
+ * Will be used to hold SingleMatchFootballClubStatistic objects that are retrieved, that are a part of a FootballMatch
+ * Will hold the exact same Attributes as the SingleMatchFootballClubStatistic object of Java
+ */
 export interface SingleMatchFootballClubStatistic {
     corners : number;
     fouls : number;
