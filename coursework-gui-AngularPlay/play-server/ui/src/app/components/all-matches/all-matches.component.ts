@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 import { FootballMatch } from 'src/app/models/FootballMatch.model';
 import { AllMatchesService } from 'src/app/services/all-matches/all-matches.service';
 import { MatchesOnDateService } from 'src/app/services/matches-on-date/matches-on-date.service';
+import Swal from 'sweetalert2';
 
 /**
  * AllMatchesComponent class, which will be used to render all the matches
@@ -41,7 +42,7 @@ export class AllMatchesComponent implements OnInit {
         error => this.handleErrorResponse(error)
       );
     } else {
-      window.alert("Invalid Date Format!")
+      Swal.fire('❗❗❗❗', 'Please Specify a Date with Format yyyy/mm/dd', 'error')
     }
   }
 
@@ -62,6 +63,9 @@ export class AllMatchesComponent implements OnInit {
    */
   private handleSuccessfulResponse(response : any) : void {
     this.allMatches = response;
+    if (this.allMatches.length == 0) {
+      Swal.fire('🧐🧐🧐', 'Hmm... There appears to be no matches played at this date', 'info')
+    }
     console.log(response);
   }
   /**
