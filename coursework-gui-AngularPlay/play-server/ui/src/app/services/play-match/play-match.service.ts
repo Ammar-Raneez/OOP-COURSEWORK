@@ -1,3 +1,8 @@
+/*
+ * PlayMatchService
+ * Copyright © 2020 Ammar Raneez. All Rights Reserved.
+ */
+
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -8,6 +13,8 @@ import { FootballClub } from 'src/app/models/FootballClub.model';
  * PlayMatchService class, to be used to fetch the updated matches upon playing a match
  * will be calling the API URL localhost:9000/playmatch
  * The Controller method associated with /playmatch in the Play backend will be called
+ * @version 1.x December 5th 2020
+ * @author Ammar Raneez | 2019163 | W1761196
  */
 @Injectable({
   providedIn: 'root'

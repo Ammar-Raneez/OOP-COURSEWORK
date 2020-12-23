@@ -1,3 +1,8 @@
+/*
+ * SelectedMatchService
+ * Copyright © 2020 Ammar Raneez. All Rights Reserved.
+ */
+
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -8,6 +13,8 @@ import { FootballMatch } from '../../models/FootballMatch.model';
  * SelectedMatchService class, to be used to fetch a specific match
  * will be calling the API URL localhost:9000/allmatches/:id
  * The Controller method associated with /allmatches/:id in the Play backend will be called
+ * @version 1.x December 5th 2020
+ * @author Ammar Raneez | 2019163 | W1761196
  */
 @Injectable({
   providedIn: 'root'
