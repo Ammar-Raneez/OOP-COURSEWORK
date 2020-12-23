@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FootballClub } from 'src/app/models/FootballClub.model';
 import { AllClubsService } from 'src/app/services/all-clubs/all-clubs.service';
-import { AllMatchesFilterService } from 'src/app/services/all-matches-filter/all-matches-filter.service';
+import { AllClubsFilterService } from 'src/app/services/all-clubs-filter/all-clubs-filter.service';
 import { PlayMatchService } from 'src/app/services/play-match/play-match.service';
 import { NgxSpinnerService } from "ngx-spinner";
 
@@ -14,7 +14,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 export class PointsTableComponent implements OnInit {
   private allClubs : FootballClub[];
 
-  constructor(private allClubsService : AllClubsService, private allClubsFilterService : AllMatchesFilterService,
+  constructor(private allClubsService : AllClubsService, private allClubsFilterService : AllClubsFilterService,
     private playMatchService : PlayMatchService, private ngxSpinnerService : NgxSpinnerService) { }
 
   ngOnInit(): void {
@@ -41,13 +41,13 @@ export class PointsTableComponent implements OnInit {
   //   this.allClubs = MatchAndClub.clubs;
   // }
   public getFootballClubsSortedOnWins() : void {
-    this.allClubsFilterService.getMatchesWinFilter().subscribe(
+    this.allClubsFilterService.getClubsWinFilter().subscribe(
       response => this.handleSuccessfulResponse(response),
       error => this.handleErrorResponse(error)
     );
   }
   public getFootballClubsSortedOnGoals() : void {
-    this.allClubsFilterService.getMatchesGoalFilter().subscribe(
+    this.allClubsFilterService.getClubsGoalFilter().subscribe(
       response => this.handleSuccessfulResponse(response),
       error => this.handleErrorResponse(error)
     );

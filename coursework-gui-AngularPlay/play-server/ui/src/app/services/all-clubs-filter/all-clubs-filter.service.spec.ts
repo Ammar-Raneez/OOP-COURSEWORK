@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { AllMatchesFilterService } from './all-matches-filter.service';
+import { AllClubsFilterService } from './all-clubs-filter.service';
 
 describe('AllMatchesFilterService', () => {
-  let service: AllMatchesFilterService;
+  let service: AllClubsFilterService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(AllMatchesFilterService);
+    service = TestBed.inject(AllClubsFilterService);
   });
 
   it('should be created', () => {
