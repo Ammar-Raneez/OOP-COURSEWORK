@@ -207,21 +207,9 @@ public class PremierLeagueManager implements LeagueManager {
                 break;
             }
 
-            //*ensure whether all matches have already been played this is done by generating every possible match of*//
-            //*a team, and checking whether the list of matches consists of that match, if and only if the list does*//
-            //*contain all possible matches, no more matches can be played*//
-            boolean allMatchesPlayed = true;
-            for(FootballClub eachClub : allFootballClubs) {
-                for(FootballClub otherClub : allFootballClubs) {
-                    if (eachClub.getClubName().equals(otherClub.getClubName())) {
-                        continue;
-                    }
-                    FootballMatch checkMatch = new FootballMatch(eachClub, otherClub, generateRandomDate(season));
-                    for (FootballMatch validPlayedMatch : allMatches) {
-                        allMatchesPlayed = validPlayedMatch.equals(checkMatch);
-                    }
-                }
-            }
+            boolean allMatchesPlayed = validatePlayableMatches(season);
+            System.out.println(allMatchesPlayed);
+
             if (allMatchesPlayed) {
                 System.out.println("[ERROR] ==> All Possible Matches have already been played!");
                 break;
@@ -236,6 +224,28 @@ public class PremierLeagueManager implements LeagueManager {
                 secondTeam = allFootballClubs.get(PremierLeagueManager.RANDOM.nextInt(allFootballClubs.size()));
             } while (firstTeam.getClubName().equals(secondTeam.getClubName()));
         }
+    }
+    /**
+     * Helper method that is used to check whether all matches have been played or not. Public cuz MatchController
+     * Needs access to this as well
+     * @param season - user season input
+     * @return - t/f, whether all matches have been played
+     */
+    public static boolean validatePlayableMatches(String season) {
+        //*ensure whether all matches have already been played this is done by generating every possible match of*//
+        //*a team, and checking whether the list of matches consists of that match, if and only if the list does*//
+        //*contain all possible matches, no more matches can be played*//
+        boolean allMatchesPlayed = true;
+        for(FootballClub eachClub : allFootballClubs) {
+            for(FootballClub otherClub : allFootballClubs) {
+                if (eachClub.getClubName().equals(otherClub.getClubName())) {
+                    continue;
+                }
+                FootballMatch checkMatch = new FootballMatch(eachClub, otherClub, generateRandomDate(season));
+                allMatchesPlayed = allMatches.contains(checkMatch);
+            }
+        }
+        return allMatchesPlayed;
     }
     /**
      * Private helper method that generates a random date

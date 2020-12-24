@@ -66,6 +66,9 @@ public class ClubController extends Controller {
         String season = SeasonRetriever.getSeason();
         ConsoleController.loadData(season);
         List<FootballClub> allClubs = PremierLeagueManager.getAllFootballClubs();
+        //*The reason to sort based on points too, is because, if there are teams that have the same number of wins*//
+        //*The points obtained by the teams will be considered to give the higher position*//
+        allClubs.sort(Collections.reverseOrder());
         allClubs.sort(new WinComparator().reversed());
         ConsoleController.saveData(season);
         return ok(Json.toJson(allClubs));
@@ -79,6 +82,9 @@ public class ClubController extends Controller {
         String season = SeasonRetriever.getSeason();
         ConsoleController.loadData(season);
         List<FootballClub> allClubs = PremierLeagueManager.getAllFootballClubs();
+        //*The reason to sort based on points too, is because, if there are teams that have the same number of goals*//
+        //*The points obtained by the teams will be considered to give the higher position*//
+        allClubs.sort(Collections.reverseOrder());
         allClubs.sort(new GoalsForComparator().reversed());
         ConsoleController.saveData(season);
         return ok(Json.toJson(allClubs));

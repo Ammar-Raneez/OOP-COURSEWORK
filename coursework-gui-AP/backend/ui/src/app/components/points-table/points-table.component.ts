@@ -9,6 +9,7 @@ import { AllClubsService } from 'src/app/services/all-clubs/all-clubs.service';
 import { AllClubsFilterService } from 'src/app/services/all-clubs-filter/all-clubs-filter.service';
 import { PlayMatchService } from 'src/app/services/play-match/play-match.service';
 import { NgxSpinnerService } from "ngx-spinner";
+import Swal from 'sweetalert2';
 
 /**
  * PointsTableComponent class, which will be used to render the points table view
@@ -43,16 +44,25 @@ export class PointsTableComponent implements OnInit {
    */
   public updateFootballClubsAfterPlay() : void {
     this.playMatchService.playMatch().subscribe(
-      // response => this.handleSuccessfulResponseAfterPlay(response),
-      response => this.handleSuccessfulResponse(response),
+      response => this.handleSuccessfulResponseAfterPlay(response),
       error => this.handleErrorResponse(error)
     )
   }
-  // handleSuccessfulResponseAfterPlay(response : any) : void {
-  //   MatchAndClub.setClubs(response[0]);
-  //   MatchAndClub.setMatches(response[1]);
-  //   this.allClubs = MatchAndClub.clubs;
-  // }
+  /**
+   * Handles the subscribe of Play match. Successful response (Error response is same as for other services)
+   * Throws an alert, if all matches have been played, else simply updates the standings
+   * @param response - false/the clubs on whether a match has actually been played or not in the backend
+   */
+  handleSuccessfulResponseAfterPlay(response : any) : void {
+    console.log(response);
+    if (!response) {
+      Swal.fire('❗❗❗❗', 'All Playable Matches have Already been Played!', 'error')
+    }
+    else {
+      this.allClubs = response;
+    }
+  }
+
   /**
    * Gets the json format of the football clubs sorted based on wins in descending order
    */

@@ -11,6 +11,8 @@ import coursework.models.FootballMatch;
 import coursework.utils.SeasonRetriever;
 import play.mvc.*;
 import play.libs.Json;
+
+import java.time.LocalDate;
 import java.util.*;
 
 /**
@@ -79,8 +81,14 @@ public class MatchController extends Controller {
     public Result playMatch() {
         String season = SeasonRetriever.getSeason();
         ConsoleController.loadData(season);
-        ConsoleController.addPlayedMatch(season);
+        boolean allMatchesPlayed = PremierLeagueManager.validatePlayableMatches(season);
 
+        //*Return false if all matches have been played*//
+        if (allMatchesPlayed) {
+            return ok(Json.toJson(false));
+        }
+
+        ConsoleController.addPlayedMatch(season);
         List<FootballClub> updatedClubs = PremierLeagueManager.getAllFootballClubs();
         updatedClubs.sort(Collections.reverseOrder());
         ConsoleController.saveData(season);
