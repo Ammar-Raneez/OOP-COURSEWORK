@@ -199,7 +199,7 @@ public class PremierLeagueManager implements LeagueManager {
             //*the match is played and added into the list of matches, and the entire while loop is broken*//
             //*since its reason has been fulfilled*//
             if(!hasMatch) {
-                System.out.print("Now playing match between " + footballMatch.getFirstTeam().getClubName() + " and " +
+                System.out.println("Now playing match between " + footballMatch.getFirstTeam().getClubName() + " and " +
                         footballMatch.getSecondTeam().getClubName()
                 );
                 footballMatch.playMatch();
