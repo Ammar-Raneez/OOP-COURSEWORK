@@ -208,7 +208,6 @@ public class PremierLeagueManager implements LeagueManager {
             }
 
             boolean allMatchesPlayed = validatePlayableMatches(season);
-            System.out.println(allMatchesPlayed);
 
             if (allMatchesPlayed) {
                 System.out.println("[ERROR] ==> All Possible Matches have already been played!");
@@ -236,13 +235,25 @@ public class PremierLeagueManager implements LeagueManager {
         //*a team, and checking whether the list of matches consists of that match, if and only if the list does*//
         //*contain all possible matches, no more matches can be played*//
         boolean allMatchesPlayed = true;
+
+        outerMostLoop:
         for(FootballClub eachClub : allFootballClubs) {
             for(FootballClub otherClub : allFootballClubs) {
                 if (eachClub.getClubName().equals(otherClub.getClubName())) {
                     continue;
                 }
                 FootballMatch checkMatch = new FootballMatch(eachClub, otherClub, generateRandomDate(season));
-                allMatchesPlayed = allMatches.contains(checkMatch);
+                boolean temp = false;
+                for(FootballMatch match : allMatches) {
+                    if (!checkMatch.equals(match)) {
+                        temp = true;
+                        break;
+                    }
+                }
+                allMatchesPlayed = !temp;
+                if (!allMatchesPlayed) {
+                    break outerMostLoop;
+                }
             }
         }
         return allMatchesPlayed;
