@@ -42,7 +42,7 @@ export class AllMatchesComponent implements OnInit {
         error => this.handleErrorResponse(error)
       );
     } else {
-      Swal.fire('❗❗❗❗', 'Please Specify a Date with Format yyyy/mm/dd', 'error')
+      Swal.fire('❗❗❗❗', 'Please Specify a Date with Format yyyy-mm-dd', 'error')
     }
   }
 

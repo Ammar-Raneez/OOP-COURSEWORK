@@ -27,8 +27,10 @@ public class ConsoleController {
     private static final Scanner SCANNER = new Scanner(System.in);
     //*regex for season input validation*//
     private static final Pattern SEASON_PATTERN = Pattern.compile("^\\d{4}");
+    private static final Pattern MANUAL_DATE_ENTRY_PATTERN = Pattern.compile("^\\d{2}-\\d{2}$");
     private static final PremierLeagueManager PREMIER_LEAGUE_MANAGER = new PremierLeagueManager();
 
+    //***********************************************HELPER METHODS***************************************************//
     /**
      * Public helper method that displays a sentence and returns user's input transformed to lowercase and whitespaces
      * trimmed
@@ -58,6 +60,27 @@ public class ConsoleController {
         }
         return userInput;
     }
+
+    /**
+     * public helper method that is used for the date or season input validation
+     * @param regex - the Pattern regex to use
+     * @param inputMsg - sentence to use as an initial prompt
+     * @param validationMsg  sentence to use as the retry prompt
+     * @return a valid inputted date or season
+     */
+    public static String validateDateAndSeasonInput(Pattern regex, String inputMsg, String validationMsg) {
+        String dateOrSeason = ConsoleController.userInputValidation(inputMsg, validationMsg);
+        while (true) {
+            if (regex.matcher(dateOrSeason).matches()) {
+                break;
+            } else {
+                dateOrSeason = getUserInput(validationMsg);
+            }
+        }
+        return dateOrSeason;
+    }
+    //**********************************************END HELPER METHODS************************************************//
+
 
 
     /**
@@ -110,7 +133,8 @@ public class ConsoleController {
                 if (footballClub.getClubName().equals(clubNameInput)) {
                     clubExists = true;
                     //*club already exists*//
-                    clubNameInput = userInputValidation("[ERROR] ==> " + 		    clubNameInput + " already exists! Please try again", "Please Enter a Club name!");
+                    clubNameInput = userInputValidation("[ERROR] ==> " + clubNameInput + " already exists! Please try again",
+                            "Please Enter a Club name!");
                     //*stop continuous looping, after a club has been found, to prevent unnecessary continuous looping*//
                     break;
                 }
@@ -268,7 +292,81 @@ public class ConsoleController {
      * @param season - user season input
      */
     public static void addPlayedMatch(String season) {
+        boolean canPlay = PremierLeagueManager.validatePlayableMatches(season);
+        //*if all matches are already played, then the method can stop immediately*//
+        if (!canPlay) {
+            System.out.println("[ERROR] ==> All Possible Matches have already been played!");
+            return;
+        }
 
+        //*validate date against regex*//
+        String date = ConsoleController.validateDateAndSeasonInput(MANUAL_DATE_ENTRY_PATTERN, "Please enter a date (mm-dd)",
+                "Invalid input! Please specify a date! (mm-dd)");
+
+        //*get validated inputs associated with the clubs and their score for the match*//
+        String firstTeam = ConsoleController.userInputValidation("Please enter the first clubs name", "Please specify a club name!");
+        String firstTeamScore = ConsoleController.userInputValidation("Please enter the first clubs score", "Please specify a score!");
+        boolean validFirstTeam = validateAddPlayedMatchClubName(firstTeam);
+        int validatedFirstTeamScore = validateAddPlayedMatchClubScore(firstTeamScore);
+        if (!validFirstTeam) {
+            return;
+        }
+
+        String secondTeam = ConsoleController.userInputValidation("Please enter the second clubs name", "Please specify a club name!");
+        String secondTeamScore = ConsoleController.userInputValidation("Please enter the second clubs score", "Please specify a score!");
+        //*the same club can't play against themselves*//
+        if (firstTeam.equals(secondTeam)) {
+            System.out.println("[ERROR] ==> the same club cannot play against itself!");
+            return;
+        }
+        boolean validSecondTeam = validateAddPlayedMatchClubName(secondTeam);
+        int validatedSecondTeamScore = validateAddPlayedMatchClubScore(secondTeamScore);
+        if (!validSecondTeam) {
+            return;
+        }
+
+        //*if the program were to reach this statement, all inputs are valid, and hence a match is playable*//
+        PREMIER_LEAGUE_MANAGER.addPlayedMatch(season, date, firstTeam, secondTeam, validatedFirstTeamScore, validatedSecondTeamScore);
+    }
+    /**
+     * private helper method of addPlayedMatch()
+     * To validate the club name input
+     * @param clubName - input club name
+     * @return t/f whether club entered is actually a club in the Premier League
+     */
+    private static boolean validateAddPlayedMatchClubName(String clubName) {
+        boolean validFirstTeam = false;
+        //*check whether the list of clubs contain the specified club or not, if not, the method is terminated*//
+        for (FootballClub club : PremierLeagueManager.getAllFootballClubs()) {
+            if (club.getClubName().equals(clubName)) {
+                validFirstTeam = true;
+                break;
+            }
+        }
+
+        if (!validFirstTeam) {
+            System.out.println("[ERROR] ==> club specified does not exist!");
+        }
+        return validFirstTeam;
+    }
+    /**
+     *  private helper method of addPlayedMatch()
+     *  To validate club score input
+     * @param score - input club score
+     * @return the score parsed into an integer
+     */
+    private static int validateAddPlayedMatchClubScore(String score) {
+        int parsedScore;
+        while (true) {
+            //*Try to convert the input to integer, if errored, ask score input again*//
+            try {
+                parsedScore = Integer.parseInt(score);
+                break;
+            } catch (Exception e) {
+                score = getUserInput("Please specify an Integer as the score!");
+            }
+        }
+        return parsedScore;
     }
 
     /**
@@ -282,35 +380,27 @@ public class ConsoleController {
      * static method, that handles the displaying of the points table
      * Calls the displayPointsTable() method of PremierLeagueManager
      */
-    public static void displayPointsTable() {
-        PREMIER_LEAGUE_MANAGER.displayPointsTable();
-    }
+    public static void displayPointsTable() { PREMIER_LEAGUE_MANAGER.displayPointsTable(); }
 
     /**
      * static method, that handles the displaying of all match results
      * Calls the displayMatchResults() method of PremierLeagueManager
      */
-    public static void displayMatchResults() {
-        PREMIER_LEAGUE_MANAGER.displayMatchResults();
-    }
+    public static void displayMatchResults() { PREMIER_LEAGUE_MANAGER.displayMatchResults(); }
 
     /**
      * static method, that handles the saving of data
      * Calls the saveData() method of PremierLeagueManager
      * @param season - user season input
      */
-    public static void saveData(String season) {
-        PREMIER_LEAGUE_MANAGER.saveData(season);
-    }
+    public static void saveData(String season) { PREMIER_LEAGUE_MANAGER.saveData(season); }
 
     /**
      * static method, that handles the loading of data
      * Calls the loadData() method of PremierLeagueManager
      * @param season - user season input
      */
-    public static void loadData(String season) {
-        PREMIER_LEAGUE_MANAGER.loadData(season);
-    }
+    public static void loadData(String season) { PREMIER_LEAGUE_MANAGER.loadData(season); }
 
     /**
      * static method, that handles opening of the localhost of angular for the GUI
@@ -352,18 +442,8 @@ public class ConsoleController {
      * @return - the season year
      */
     public static String getSeasonInput() {
-        String userSeasonChoice = getUserInput("Please enter the season (Ex: 2020 OR 2021)");
-
-        //*loop infinitely till the inout matches the 4 digit regex defined initially*//
-        while (true) {
-            //*if and only if the input matches the pattern will the program continue*//
-            if (SEASON_PATTERN.matcher(userSeasonChoice).matches()) {
-                break;
-            } else {
-                System.out.println("INVALID Input!");
-                userSeasonChoice = getUserInput("Please enter the season (Ex: 2020 OR 2021) appropriately!");
-            }
-        }
+        String userSeasonChoice = validateDateAndSeasonInput(SEASON_PATTERN, "Please enter the season (Ex 2020 or 2021)",
+                "Please enter the season (Ex: 2020 OR 2021) appropriately!");
         PremierLeagueManager.setSeasonFile(userSeasonChoice);
         return userSeasonChoice;
     }
@@ -371,7 +451,7 @@ public class ConsoleController {
     public static void main(String[] args) throws IllegalAccessException, ClassNotFoundException {
         String season = getSeasonInput();
         printDisplay();
-        String userChoice = getUserInput("Please choose an option");
+        String userChoice = userInputValidation("Please choose an option", "Please choose an option!");
         infiniteLoop:
         while (true) {
             switch (userChoice) {
@@ -392,6 +472,13 @@ public class ConsoleController {
                 case "p":
                     loadData(season);
                     addPlayedMatchRandom(season);
+                    saveData(season);
+                    printDisplay();
+                    userChoice = getUserInput("Please choose an option");
+                    break;
+                case "l":
+                    loadData(season);
+                    addPlayedMatch(season);
                     saveData(season);
                     printDisplay();
                     userChoice = getUserInput("Please choose an option");

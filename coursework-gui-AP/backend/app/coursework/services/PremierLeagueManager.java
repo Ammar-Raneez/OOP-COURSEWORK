@@ -160,14 +160,17 @@ public class PremierLeagueManager implements LeagueManager {
      * Method implementation of addPlayedMatch(), overrun from the LeagueManager interface
      * This method handles the functionality of playing a manually entered match in the PremierLeague
      * @param season - user season input
+     * @param date - user date input
      * @param firstTeamInput - club name of first/second team
      * @param secondTeamInput - club name of second/first team
      * @param firstTeamScore - score of first/second team
      * @param secondTeamScore - score of second/first team
      */
     @Override
-    public void addPlayedMatch(String season, String firstTeamInput, String secondTeamInput, int firstTeamScore, int secondTeamScore) {
-
+    public void addPlayedMatch(String season, String date, String firstTeamInput, String secondTeamInput, int firstTeamScore, int secondTeamScore) {
+        date = date.replaceAll("-", "/");
+        date = season + "/" + date;
+        LocalDate validDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
     //**************************************END ADD PLAYED MATCH BETWEEN TWO CLUBS*************************************//
 
@@ -186,6 +189,13 @@ public class PremierLeagueManager implements LeagueManager {
         //*this if condition checks whether there are enough teams to play a match in the first place*//
         if (allFootballClubs.size() < 2) {
             System.out.println("[ERROR] ==> There isn't enough teams to play a match!");
+            return;
+        }
+
+        //*We check to make sure that all the matches playable have already been played or not*//
+        boolean allMatchesPlayed = validatePlayableMatches(season);
+        if (allMatchesPlayed) {
+            System.out.println("[ERROR] ==> All Possible Matches have already been played!");
             return;
         }
 
@@ -222,13 +232,6 @@ public class PremierLeagueManager implements LeagueManager {
                 );
                 footballMatch.playMatch();
                 allMatches.add(footballMatch);
-                break;
-            }
-
-            boolean allMatchesPlayed = validatePlayableMatches(season);
-
-            if (allMatchesPlayed) {
-                System.out.println("[ERROR] ==> All Possible Matches have already been played!");
                 break;
             }
 
