@@ -292,38 +292,38 @@ public class ConsoleController {
      * @param season - user season input
      */
     public static void addPlayedMatch(String season) {
-        boolean canPlay = PremierLeagueManager.validatePlayableMatches(season);
+        boolean allMatchesPlayed = PremierLeagueManager.validatePlayableMatches(season);
         //*if all matches are already played, then the method can stop immediately*//
-        if (!canPlay) {
+        if (allMatchesPlayed) {
             System.out.println("[ERROR] ==> All Possible Matches have already been played!");
             return;
         }
 
         //*validate date against regex*//
-        String date = ConsoleController.validateDateAndSeasonInput(MANUAL_DATE_ENTRY_PATTERN, "Please enter a date (mm-dd)",
-                "Invalid input! Please specify a date! (mm-dd)");
+        String date = ConsoleController.validateDateAndSeasonInput(MANUAL_DATE_ENTRY_PATTERN, "Please enter a date (dd-mm)",
+                "Invalid input! Please specify a date! (dd-mm)");
 
         //*get validated inputs associated with the clubs and their score for the match*//
         String firstTeam = ConsoleController.userInputValidation("Please enter the first clubs name", "Please specify a club name!");
-        String firstTeamScore = ConsoleController.userInputValidation("Please enter the first clubs score", "Please specify a score!");
         boolean validFirstTeam = validateAddPlayedMatchClubName(firstTeam);
-        int validatedFirstTeamScore = validateAddPlayedMatchClubScore(firstTeamScore);
         if (!validFirstTeam) {
             return;
         }
+        String firstTeamScore = ConsoleController.userInputValidation("Please enter the first clubs score", "Please specify a score!");
+        int validatedFirstTeamScore = validateAddPlayedMatchClubScore(firstTeamScore);
 
         String secondTeam = ConsoleController.userInputValidation("Please enter the second clubs name", "Please specify a club name!");
-        String secondTeamScore = ConsoleController.userInputValidation("Please enter the second clubs score", "Please specify a score!");
+        boolean validSecondTeam = validateAddPlayedMatchClubName(secondTeam);
         //*the same club can't play against themselves*//
+        if (!validSecondTeam) {
+            return;
+        }
         if (firstTeam.equals(secondTeam)) {
             System.out.println("[ERROR] ==> the same club cannot play against itself!");
             return;
         }
-        boolean validSecondTeam = validateAddPlayedMatchClubName(secondTeam);
+        String secondTeamScore = ConsoleController.userInputValidation("Please enter the second clubs score", "Please specify a score!");
         int validatedSecondTeamScore = validateAddPlayedMatchClubScore(secondTeamScore);
-        if (!validSecondTeam) {
-            return;
-        }
 
         //*if the program were to reach this statement, all inputs are valid, and hence a match is playable*//
         PREMIER_LEAGUE_MANAGER.addPlayedMatch(season, date, firstTeam, secondTeam, validatedFirstTeamScore, validatedSecondTeamScore);

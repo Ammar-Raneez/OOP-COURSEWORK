@@ -39,33 +39,64 @@ public class FootballMatch implements Serializable, Comparable<FootballMatch> {
         this.MATCH_DATE = matchDate;
     }
 
-
-
-    //*************************************PLAY MATCH METHOD BETWEEN TWO TEAMS***************************************//
     /**
-     * Main function that handles playing of a single match
-     * This function is called in the PremierLeagueManager class in the addMatch() method
-     * Which handles all the necessary updates
+     * private helper method for both methods of match play
+     * Will set the statistics of the match
+     * @param  firstTeamScore - first teams score
+     * @param  secondTeamScore - second teams score
      */
-    public void playMatch() {
+    private void playMatchCommonCode(int firstTeamScore, int secondTeamScore) {
         //*randomly generated values of statistics for a single match*//
-        List<Integer> firstTeamRandomStats = singleMatchRandomGeneratedStats();
-        List<Integer> secondTeamRandomStats = singleMatchRandomGeneratedStats();
+        List<Integer> firstTeamRandomStats = singleMatchRandomGeneratedStats(firstTeamScore);
+        List<Integer> secondTeamRandomStats = singleMatchRandomGeneratedStats(secondTeamScore);
+
         //*total club statistics of the two teams*//
         FootballClubTotalStatistics firstTeamTotalStats = FIRST_TEAM.getFootballClubTotalStatistics();
         FootballClubTotalStatistics secondTeamTotalStats = SECOND_TEAM.getFootballClubTotalStatistics();
-        //*single match statistics -> values need not be saved*//
-
-        //*not randomly generate for both teams, since teams two's possession = 100 - team one's possession*//
         int firstTeamPossession = FootballMatch.RANDOM.nextInt(100 + 1);
 
+        //*not randomly generated for both teams, since teams two's possession = 100 - team one's possession*//
         FIRST_TEAM_SINGLE_MATCH_STATISTICS.setPossession(firstTeamPossession);
+
         //*use the randomly generated values to update the attributes of a club*//
         updateSingleMatchTeamStats(FIRST_TEAM_SINGLE_MATCH_STATISTICS, firstTeamRandomStats, firstTeamTotalStats);
 
         //*second team's possession = 100 - first team's*//
         SECOND_TEAM_SINGLE_MATCH_STATISTICS.setPossession((100 - firstTeamPossession));
         updateSingleMatchTeamStats(SECOND_TEAM_SINGLE_MATCH_STATISTICS, secondTeamRandomStats, secondTeamTotalStats);
+    }
+
+    //************************************MANUAL PLAY MATCH BETWEEN TWO TEAMS*****************************************//
+    /**
+     * Main function that handles playing of a manual match.
+     * This function is called in the PremierLeagueManager class in addPlayedMatch() method
+     * Handles the necessary updates
+     * @param firstTeamScore - first teams score
+     * @param secondTeamScore - second teams score
+     */
+    public void playMatch(int firstTeamScore, int secondTeamScore) {
+        this.playMatchCommonCode(firstTeamScore, secondTeamScore);
+        updateClubTotalStatistics();
+    }
+    //**********************************END MANUAL PLAY MATCH BETWEEN TWO TEAMS***************************************//
+
+    //*********************************RANDOM PLAY MATCH METHOD BETWEEN TWO TEAMS*************************************//
+    /**
+     * Main function that handles playing of a single match randomly
+     * This function is called in the PremierLeagueManager class in the addPlayedMatchRandom() method
+     * Which handles all the necessary updates
+     */
+    public void playMatchRandom() {
+//        List<Integer> firstTeamRandomStats = singleMatchRandomGeneratedStats(-1);
+//        List<Integer> secondTeamRandomStats = singleMatchRandomGeneratedStats(-1);
+//        FootballClubTotalStatistics firstTeamTotalStats = FIRST_TEAM.getFootballClubTotalStatistics();
+//        FootballClubTotalStatistics secondTeamTotalStats = SECOND_TEAM.getFootballClubTotalStatistics();
+//        int firstTeamPossession = FootballMatch.RANDOM.nextInt(100 + 1);
+//        FIRST_TEAM_SINGLE_MATCH_STATISTICS.setPossession(firstTeamPossession);
+//        updateSingleMatchTeamStats(FIRST_TEAM_SINGLE_MATCH_STATISTICS, firstTeamRandomStats, firstTeamTotalStats);
+//        SECOND_TEAM_SINGLE_MATCH_STATISTICS.setPossession((100 - firstTeamPossession));
+//        updateSingleMatchTeamStats(SECOND_TEAM_SINGLE_MATCH_STATISTICS, secondTeamRandomStats, secondTeamTotalStats);
+        this.playMatchCommonCode(-1, -1);
 
         //*to prevent matches from having the same score results*//
         List<FootballMatch> footballMatches = PremierLeagueManager.getAllMatches();
@@ -155,10 +186,12 @@ public class FootballMatch implements Serializable, Comparable<FootballMatch> {
      * private helper method of playMatch() that generates random values for the stats of a team for a match
      * @return list of randomly generated values
      */
-    private List<Integer> singleMatchRandomGeneratedStats() {
+    private List<Integer> singleMatchRandomGeneratedStats(int goals) {
         //generate random values within reasonable ranges for each stat recorded in a match**//
         int corners = FootballMatch.RANDOM.nextInt(30 - 5 + 1) + 5;
-        int goals = FootballMatch.RANDOM.nextInt(15 + 1);
+        if (goals == -1) {
+            goals = FootballMatch.RANDOM.nextInt(15 + 1);
+        }
         int fouls = FootballMatch.RANDOM.nextInt(15 - 5 + 1) + 5;
         int offsides = FootballMatch.RANDOM.nextInt(10 - 5 + 1) + 5;
         int passes = FootballMatch.RANDOM.nextInt(700 - 300 + 1) + 300;

@@ -168,9 +168,47 @@ public class PremierLeagueManager implements LeagueManager {
      */
     @Override
     public void addPlayedMatch(String season, String date, String firstTeamInput, String secondTeamInput, int firstTeamScore, int secondTeamScore) {
+        //*Manipulate and create a valid date object*//
         date = date.replaceAll("-", "/");
-        date = season + "/" + date;
+        date = date + "/" + season;
         LocalDate validDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+
+        FootballClub firstTeam = null;
+        FootballClub secondTeam = null;
+        //*based on club name input, we assign the FootballClub to a football club object, so that a match can be played*//
+        for (FootballClub footballClub : allFootballClubs) {
+            if (footballClub.getClubName().equals(firstTeamInput)) {
+                firstTeam = footballClub;
+                break;
+            }
+        }
+        for (FootballClub footballClub : allFootballClubs) {
+            if (footballClub.getClubName().equals(secondTeamInput)) {
+                secondTeam = footballClub;
+                break;
+            }
+        }
+
+        FootballMatch match = new FootballMatch(firstTeam, secondTeam, validDate);
+        boolean matchPlayed = false;
+        //*Check to see whether the match specified has already been played*//
+        for (FootballMatch footballMatch : allMatches) {
+            if (match.equals(footballMatch)) {
+                matchPlayed = true;
+                break;
+            }
+        }
+
+        //*if the match is unique, play it*//
+        if (!matchPlayed) {
+            System.out.println("Now playing match between " + match.getFirstTeam().getClubName() + " and " +
+                    match.getSecondTeam().getClubName()
+            );
+            match.playMatch(firstTeamScore, secondTeamScore);
+            allMatches.add(match);
+        } else {
+            System.out.println("[ERROR] ==> Match between " + firstTeamInput + " and " + secondTeamInput + " has already been played!");
+        }
     }
     //**************************************END ADD PLAYED MATCH BETWEEN TWO CLUBS*************************************//
 
@@ -230,7 +268,7 @@ public class PremierLeagueManager implements LeagueManager {
                 System.out.println("Now playing match between " + footballMatch.getFirstTeam().getClubName() + " and " +
                         footballMatch.getSecondTeam().getClubName()
                 );
-                footballMatch.playMatch();
+                footballMatch.playMatchRandom();
                 allMatches.add(footballMatch);
                 break;
             }
