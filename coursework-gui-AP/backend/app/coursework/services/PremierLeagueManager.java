@@ -155,13 +155,31 @@ public class PremierLeagueManager implements LeagueManager {
 
 
 
-    //***************************************ADD PLAYED MATCH BETWEEN TWO CLUB****************************************//
+    //**************************************ADD PLAYED MATCH BETWEEN TWO CLUBS****************************************//
     /**
      * Method implementation of addPlayedMatch(), overrun from the LeagueManager interface
-     * This method handles the functionality of playing a match in the PremierLeague
+     * This method handles the functionality of playing a manually entered match in the PremierLeague
+     * @param season - user season input
+     * @param firstTeamInput - club name of first/second team
+     * @param secondTeamInput - club name of second/first team
+     * @param firstTeamScore - score of first/second team
+     * @param secondTeamScore - score of second/first team
      */
     @Override
-    public void addPlayedMatch(String season) {
+    public void addPlayedMatch(String season, String firstTeamInput, String secondTeamInput, int firstTeamScore, int secondTeamScore) {
+
+    }
+    //**************************************END ADD PLAYED MATCH BETWEEN TWO CLUBS*************************************//
+
+
+
+    //**********************************ADD RANDOM PLAYED MATCH BETWEEN TWO CLUBS*************************************//
+    /**
+     * Method implementation of addPlayedMatchRandom(), overrun from the LeagueManager interface
+     * This method handles the functionality of playing a random match in the PremierLeague
+     */
+    @Override
+    public void addPlayedMatchRandom(String season) {
         FootballClub firstTeam;
         FootballClub secondTeam;
 
@@ -273,7 +291,7 @@ public class PremierLeagueManager implements LeagueManager {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return LocalDate.parse(dateString, formatter);
     }
-    //*************************************END ADD PLAYED MATCH BETWEEN TWO CLUB**************************************//
+    //*********************************END ADD RANDOM PLAYED MATCH BETWEEN TWO CLUBS**********************************//
 
 
 

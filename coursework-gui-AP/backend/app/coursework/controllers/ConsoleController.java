@@ -263,12 +263,20 @@ public class ConsoleController {
             System.out.println("[ERROR] ==> No such Football Match exists!");
         }
     }
+    /**
+     * static method, that handles the playing of a manually entered match
+     * @param season - user season input
+     */
+    public static void addPlayedMatch(String season) {
+
+    }
 
     /**
-     * static method, that handles the playing of a match
-     * Calls the addPlayedMatch() method of PremierLeagueManager
+     * static method, that handles the playing of a randomly generated match
+     * Calls the addPlayedMatchRandom() method of PremierLeagueManager
+     * @param season - user season input
      */
-    public static void addPlayedMatch(String season) { PREMIER_LEAGUE_MANAGER.addPlayedMatch(season); }
+    public static void addPlayedMatchRandom(String season) { PREMIER_LEAGUE_MANAGER.addPlayedMatchRandom(season); }
 
     /**
      * static method, that handles the displaying of the points table
@@ -289,6 +297,7 @@ public class ConsoleController {
     /**
      * static method, that handles the saving of data
      * Calls the saveData() method of PremierLeagueManager
+     * @param season - user season input
      */
     public static void saveData(String season) {
         PREMIER_LEAGUE_MANAGER.saveData(season);
@@ -297,6 +306,7 @@ public class ConsoleController {
     /**
      * static method, that handles the loading of data
      * Calls the loadData() method of PremierLeagueManager
+     * @param season - user season input
      */
     public static void loadData(String season) {
         PREMIER_LEAGUE_MANAGER.loadData(season);
@@ -326,7 +336,8 @@ public class ConsoleController {
         System.out.println("***************************************************");
         System.out.println("Enter a to promote a club to the Premier League");
         System.out.println("Enter d to relegate a club from the Premier League");
-        System.out.println("Enter p to play a match");
+        System.out.println("Enter p to play a match (Random Generation)");
+        System.out.println("Enter l to play a match (Manual Entry)");
         System.out.println("Enter z to display the current Premier League Standings");
         System.out.println("Enter c to display all Match Scores of the Premier League");
         System.out.println("Enter x to display a selected club");
@@ -380,7 +391,7 @@ public class ConsoleController {
                     break;
                 case "p":
                     loadData(season);
-                    addPlayedMatch(season);
+                    addPlayedMatchRandom(season);
                     saveData(season);
                     printDisplay();
                     userChoice = getUserInput("Please choose an option");
