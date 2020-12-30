@@ -78,6 +78,14 @@ public class PremierLeagueManagerTest {
             fail("[ERROR] ==> Problem in delete method, club bcd exists, but was not deleted and obtained");
         }
 
+        //*check whether it was actually removed*//
+        FootballClub fakeDeletedClub = this.premierLeagueManager.deleteClub("bcd");
+        try {
+            assertNull(fakeDeletedClub);
+        } catch (Exception ignored) {
+            fail("[ERROR] ==> Problem in delete method, club bcd does not exist anymore.");
+        }
+
         //**check to see whether the program can handle deleting on non-existent clubs*//
         FootballClub nextDeletedClub = this.premierLeagueManager.deleteClub("non existent club");
         try {
@@ -88,7 +96,7 @@ public class PremierLeagueManagerTest {
     }
 
     /**
-     * TEst method for display selected club
+     * Test method for display selected club
      * A preferred clubs name is passed, and it is checked whether the returned club is the specified one
      */
     @Test
@@ -100,6 +108,7 @@ public class PremierLeagueManagerTest {
             fail("[ERROR] ==> Problem with display selected club method, club abc exists, but was not obtained");
         }
 
+        //*null checks*//
         FootballClub nextSelectedClub = this.premierLeagueManager.displaySelectedClub("non existent club");
         try {
             assertNull(nextSelectedClub);
