@@ -28,11 +28,18 @@ import static org.junit.Assert.*;
 public class PremierLeagueManagerTest {
     PremierLeagueManager premierLeagueManager;
 
+    /**
+     * Run this method first
+     */
     @Before
     public void testASetUp() {
         this.premierLeagueManager = new PremierLeagueManager();
     }
 
+    /**
+     * Test method for add method of PremierLeagueManager
+     * A couple of clubs are added, and checked whether they have actually been added
+     */
     @Test
     public void testBAdd() {
         this.premierLeagueManager.addClub("league", "abc", "abc", "abc",
@@ -45,24 +52,33 @@ public class PremierLeagueManagerTest {
                 "bcd"
         );
 
+        //*attempt to get the first added club, if it throws an IndexOutOfBoundsException, it means a club*//
+        //*had not been added*//
         try {
             PremierLeagueManager.getAllFootballClubs().get(0);
         } catch (IndexOutOfBoundsException ignored) {
             fail("club has not been added");
         }
 
+        //*is expected equal to actual*//
         assertEquals("abc", PremierLeagueManager.getAllFootballClubs().get(0).getClubName());
     }
 
+    /**
+     * Test method for delete
+     * A club is deleted and it is checked whether the deleted club is what it is supposed to be
+     */
     @Test
     public void testCDelete() {
         FootballClub deletedClub = this.premierLeagueManager.deleteClub("bcd");
+        //*is the deleted club equal to the expected deleted club*//
         try {
             assertEquals("bcd", deletedClub.getClubName());
         } catch (Exception ignored) {
             fail("[ERROR] ==> Problem in delete method, club bcd exists, but was not deleted and obtained");
         }
 
+        //**check to see whether the program can handle deleting on non-existent clubs*//
         FootballClub nextDeletedClub = this.premierLeagueManager.deleteClub("non existent club");
         try {
             assertNull(nextDeletedClub);
@@ -71,6 +87,10 @@ public class PremierLeagueManagerTest {
         }
     }
 
+    /**
+     * TEst method for display selected club
+     * A preferred clubs name is passed, and it is checked whether the returned club is the specified one
+     */
     @Test
     public void testDDisplaySelectedClub() {
         FootballClub selectedClub = this.premierLeagueManager.displaySelectedClub("abc");
@@ -88,6 +108,9 @@ public class PremierLeagueManagerTest {
         }
     }
 
+    /**
+     * Test method for the manual addition of a match
+     */
     @Test
     public void testEAddPlayedMatch() {
         this.premierLeagueManager.addClub("league", "efg", "efg", "efg",
@@ -95,6 +118,7 @@ public class PremierLeagueManagerTest {
                 "efg"
         );
 
+        //*test to check whether the specified match has been played*//
         this.premierLeagueManager.addPlayedMatch("2020", "10/10", "abc", "efg", 5, 5);
         try {
             assertEquals(PremierLeagueManager.getAllMatches().get(0),
@@ -110,6 +134,7 @@ public class PremierLeagueManagerTest {
                 "hij"
         );
 
+        //**check to see whether the program handles the prevention of repeated matches
         this.premierLeagueManager.addPlayedMatch("2020", "10/10", "abc", "efg", 5, 5);
         try {
             assertThrows(IndexOutOfBoundsException.class, () -> {
@@ -120,8 +145,12 @@ public class PremierLeagueManagerTest {
         }
     }
 
+    /**
+     * Test method for the randomly generated match
+     */
     @Test
     public void testFAddPlayedMatchRandom() {
+        //*check to see whether all possible matches do play*//
         this.premierLeagueManager.addPlayedMatchRandom("2020");
         try {
             assertNotNull(PremierLeagueManager.getAllMatches().get(1));
@@ -130,13 +159,14 @@ public class PremierLeagueManagerTest {
         }
 
         this.premierLeagueManager.addPlayedMatchRandom("2020");
-        System.out.println(PremierLeagueManager.getAllMatches().size());
+//        System.out.println(PremierLeagueManager.getAllMatches().size());
         try {
             assertNotNull(PremierLeagueManager.getAllMatches().get(2));
         } catch (Exception ignored) {
             fail("[ERROR] ==> problem with add played match method there are 3 clubs, therefore there are 3 total playable matches, 1 more can be played");
         }
 
+        //**check to see whether the program knows when all matches have already been played*//
         this.premierLeagueManager.addPlayedMatchRandom("2020");
         try {
             assertThrows(IndexOutOfBoundsException.class, () -> {
@@ -147,19 +177,31 @@ public class PremierLeagueManagerTest {
         }
     }
 
+    /**
+     * Test for displaying of a preferred match
+     */
     @Test
     public void testGDisplaySelectedMatch() {
+        //*tests to see whether a played match exists*//
         try {
             assertEquals(this.premierLeagueManager.displaySelectedMatch("abc", "efg"), PremierLeagueManager.getAllMatches().get(0));
         } catch (Exception ignored) {
             fail("[ERROR] ==> problem with display selected match method, this match has been played");
         }
 
+        //*check to see whether the order of club inputs do not matter*//
         try {
             assertEquals(this.premierLeagueManager.displaySelectedMatch("efg", "abc"), PremierLeagueManager.getAllMatches().get(0));
         } catch (Exception ignored) {
             fail("[ERROR] ==> problem with display selected match method, this match has been played, " +
                     "there's a problem with the equals method, the order of the clubs involved in the match should not matter");
+        }
+
+        try {
+            assertNull(this.premierLeagueManager.displaySelectedMatch("non-existent", "non-existent-2"));
+        } catch (Exception ignored) {
+            fail("[ERROR] ==> problem with display selected match method, this match has not been played, and" +
+                    " is supposed to return null ");
         }
     }
 }
