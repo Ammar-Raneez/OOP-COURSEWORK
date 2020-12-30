@@ -302,14 +302,17 @@ public class PremierLeagueManager implements LeagueManager {
                     continue;
                 }
                 FootballMatch checkMatch = new FootballMatch(eachClub, otherClub, generateRandomDate(season));
-                boolean temp = false;
-                for(FootballMatch match : allMatches) {
-                    if (!checkMatch.equals(match)) {
-                        temp = true;
-                        break;
-                    }
-                }
-                allMatchesPlayed = !temp;
+//                System.out.println(eachClub.getClubName() + " " + otherClub.getClubName());
+
+//                for(FootballMatch match : allMatches) {
+//                    if (checkMatch.equals(match)) {
+//                        allMatchesPlayed = true;
+//                        break ;
+//                    }
+//                }
+                allMatchesPlayed = allMatches.contains(checkMatch);
+//                System.out.println(allMatchesPlayed);
+
                 if (!allMatchesPlayed) {
                     break outerMostLoop;
                 }
