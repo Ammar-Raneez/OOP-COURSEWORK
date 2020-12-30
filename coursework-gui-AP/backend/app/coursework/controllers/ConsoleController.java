@@ -245,7 +245,7 @@ public class ConsoleController {
         FootballMatch foundFootballMatch = PREMIER_LEAGUE_MANAGER.displaySelectedMatch(firstTeamInput, secondTeamInput);
 
         if (foundFootballMatch != null) {
-            //*display all stats of the match, in a simple formatted string*//
+            //*display all stats of the match, in a simple formatted way*//
             System.out.println("===================================================================");
             System.out.format("%-27s %-10s %28s", foundFootballMatch.getFirstTeam().getClubName().toUpperCase(),
                     "TEAM STATS", foundFootballMatch.getSecondTeam().getClubName().toUpperCase());
@@ -293,6 +293,12 @@ public class ConsoleController {
      * @param season - user season input
      */
     public static void addPlayedMatch(String season) {
+        //*this if condition checks whether there are enough teams to play a match in the first place*//
+        if (PremierLeagueManager.getAllFootballClubs().size() < 2) {
+            System.out.println("[ERROR] ==> There isn't enough teams to play a match!");
+            return;
+        }
+
         boolean allMatchesPlayed = PremierLeagueManager.validatePlayableMatches(season);
         //*if all matches are already played, then the method can stop immediately*//
         if (allMatchesPlayed) {
@@ -315,10 +321,10 @@ public class ConsoleController {
 
         String secondTeam = ConsoleController.userInputValidation("Please enter the second clubs name", "Please specify a club name!");
         boolean validSecondTeam = validateAddPlayedMatchClubName(secondTeam);
-        //*the same club can't play against themselves*//
         if (!validSecondTeam) {
             return;
         }
+        //*the same club can't play against themselves*//
         if (firstTeam.equals(secondTeam)) {
             System.out.println("[ERROR] ==> the same club cannot play against itself!");
             return;
