@@ -29,6 +29,10 @@ public class ClubController extends Controller {
     public Result returnAllClubs() {
         //*Fetches the season input from the file, parameters weren't being received by Play!*//
         //*From the Console*//
+
+        //*The common functionality in Play is*//
+        //*Get season -> load data of that season -> fetch match/club of that season -> call cli methods to handle*//
+        //*functionality*//
         String season = SeasonRetriever.getSeason();
         ConsoleController.loadData(season);
         List<FootballClub> allClubs = PremierLeagueManager.getAllFootballClubs();
