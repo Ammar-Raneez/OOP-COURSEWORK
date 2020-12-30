@@ -105,6 +105,11 @@ public class PremierLeagueManagerTest {
             fail("[ERROR] ==> problem with add played match method, match was not played");
         }
 
+        this.premierLeagueManager.addClub("league", "hij", "hij", "hij",
+                "hij", "hij", new Color(255, 0, 0), new Color(255, 0, 0),
+                "hij"
+        );
+
         this.premierLeagueManager.addPlayedMatch("2020", "10/10", "abc", "efg", 5, 5);
         try {
             assertThrows(IndexOutOfBoundsException.class, () -> {
@@ -117,7 +122,29 @@ public class PremierLeagueManagerTest {
 
     @Test
     public void testFAddPlayedMatchRandom() {
+        this.premierLeagueManager.addPlayedMatchRandom("2020");
+        try {
+            assertNotNull(PremierLeagueManager.getAllMatches().get(1));
+        } catch (Exception ignored) {
+            fail("[ERROR] ==> problem with add played match method there are 3 clubs, therefore there are 3 total playable matches, 2 more can be played");
+        }
 
+        this.premierLeagueManager.addPlayedMatchRandom("2020");
+        System.out.println(PremierLeagueManager.getAllMatches().size());
+        try {
+            assertNotNull(PremierLeagueManager.getAllMatches().get(2));
+        } catch (Exception ignored) {
+            fail("[ERROR] ==> problem with add played match method there are 3 clubs, therefore there are 3 total playable matches, 1 more can be played");
+        }
+
+        this.premierLeagueManager.addPlayedMatchRandom("2020");
+        try {
+            assertThrows(IndexOutOfBoundsException.class, () -> {
+                PremierLeagueManager.getAllMatches().get(3);
+            });
+        } catch (Exception ignored) {
+            fail("[ERROR] ==> problem with add played match method, a match was not supposed to have been played, since all matches hav already been played");
+        }
     }
 
     @Test
