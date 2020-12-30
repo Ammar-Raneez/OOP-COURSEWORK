@@ -6,6 +6,7 @@ package services;
  */
 
 import coursework.models.FootballClub;
+import coursework.models.FootballMatch;
 import coursework.services.PremierLeagueManager;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
@@ -13,6 +14,8 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import java.awt.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import static org.junit.Assert.*;
 
@@ -57,7 +60,7 @@ public class PremierLeagueManagerTest {
         try {
             assertEquals("bcd", deletedClub.getClubName());
         } catch (Exception ignored) {
-            fail("[ERROR] ==> Problem in delete method, club bcd exists, but was not obtained");
+            fail("[ERROR] ==> Problem in delete method, club bcd exists, but was not deleted and obtained");
         }
 
         FootballClub nextDeletedClub = this.premierLeagueManager.deleteClub("non existent club");
@@ -71,14 +74,65 @@ public class PremierLeagueManagerTest {
     @Test
     public void testDDisplaySelectedClub() {
         FootballClub selectedClub = this.premierLeagueManager.displaySelectedClub("abc");
-        assertEquals("abc", selectedClub.getClubName());
+        try {
+            assertEquals("abc", selectedClub.getClubName());
+        } catch (Exception ignored) {
+            fail("[ERROR] ==> Problem with display selected club method, club abc exists, but was not obtained");
+        }
 
         FootballClub nextSelectedClub = this.premierLeagueManager.displaySelectedClub("non existent club");
-        assertNull(nextSelectedClub);
+        try {
+            assertNull(nextSelectedClub);
+        } catch (Exception ignored) {
+            fail("[ERROR] ==> Problem with display selected club method, club must be null");
+        }
     }
 
     @Test
     public void testEAddPlayedMatch() {
+        this.premierLeagueManager.addClub("league", "efg", "efg", "efg",
+                "efg", "efg", new Color(255, 0, 0), new Color(255, 0, 0),
+                "efg"
+        );
 
+        this.premierLeagueManager.addPlayedMatch("2020", "10/10", "abc", "efg", 5, 5);
+        try {
+            assertEquals(PremierLeagueManager.getAllMatches().get(0),
+                    new FootballMatch(PremierLeagueManager.getAllFootballClubs().get(0), PremierLeagueManager.getAllFootballClubs().get(1),
+                            LocalDate.parse("10/10/2020", DateTimeFormatter.ofPattern("dd/MM/yyyy")))
+            );
+        } catch (Exception ignored) {
+            fail("[ERROR] ==> problem with add played match method, match was not played");
+        }
+
+        this.premierLeagueManager.addPlayedMatch("2020", "10/10", "abc", "efg", 5, 5);
+        try {
+            assertThrows(IndexOutOfBoundsException.class, () -> {
+                PremierLeagueManager.getAllMatches().get(1);
+            });
+        } catch (Exception ignored) {
+            fail("[ERROR] ==> problem with add played match method, a match was not supposed to have been played, since this match has already been played");
+        }
+    }
+
+    @Test
+    public void testFAddPlayedMatchRandom() {
+
+    }
+
+    @Test
+    public void testGDisplaySelectedMatch() {
+        try {
+            assertEquals(this.premierLeagueManager.displaySelectedMatch("abc", "efg"), PremierLeagueManager.getAllMatches().get(0));
+        } catch (Exception ignored) {
+            fail("[ERROR] ==> problem with display selected match method, this match has been played");
+        }
+
+        try {
+            assertEquals(this.premierLeagueManager.displaySelectedMatch("efg", "abc"), PremierLeagueManager.getAllMatches().get(0));
+        } catch (Exception ignored) {
+            fail("[ERROR] ==> problem with display selected match method, this match has been played, " +
+                    "there's a problem with the equals method, the order of the clubs involved in the match should not matter");
+        }
     }
 }
