@@ -27,7 +27,7 @@ public class ConsoleController {
     private static final Scanner SCANNER = new Scanner(System.in);
     //*regex for season input validation*//
     private static final Pattern SEASON_PATTERN = Pattern.compile("^\\d{4}");
-    private static final Pattern MANUAL_DATE_ENTRY_PATTERN = Pattern.compile("^\\d{2}-\\d{2}$");
+    private static final Pattern MANUAL_DATE_ENTRY_PATTERN = Pattern.compile("(0[1-9]|1[0-9]|2[0-9]|3[0-1])-(0[1-9]|1[0-2])");
     private static final PremierLeagueManager PREMIER_LEAGUE_MANAGER = new PremierLeagueManager();
 
     //***********************************************HELPER METHODS***************************************************//
