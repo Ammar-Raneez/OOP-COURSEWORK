@@ -287,6 +287,7 @@ public class ConsoleController {
             System.out.println("[ERROR] ==> No such Football Match exists!");
         }
     }
+
     /**
      * static method, that handles the playing of a manually entered match
      * @param season - user season input
