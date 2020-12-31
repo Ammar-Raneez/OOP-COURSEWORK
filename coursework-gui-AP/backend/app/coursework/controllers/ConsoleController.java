@@ -26,7 +26,9 @@ import java.util.regex.Pattern;
 public class ConsoleController {
     private static final Scanner SCANNER = new Scanner(System.in);
     //*regex for season input validation*//
+    //*any 4 digit number*//
     private static final Pattern SEASON_PATTERN = Pattern.compile("^\\d{4}");
+    //*validation to ensure month is 1-12, and date 1-31*//
     private static final Pattern MANUAL_DATE_ENTRY_PATTERN = Pattern.compile("(0[1-9]|1[0-9]|2[0-9]|3[0-1])-(0[1-9]|1[0-2])");
     private static final PremierLeagueManager PREMIER_LEAGUE_MANAGER = new PremierLeagueManager();
 
