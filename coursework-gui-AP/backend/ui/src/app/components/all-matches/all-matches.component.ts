@@ -42,7 +42,19 @@ export class AllMatchesComponent implements OnInit {
         error => this.handleErrorResponse(error)
       );
     } else {
-      Swal.fire('❗❗❗❗', 'Please Specify a Date with Format yyyy-mm-dd', 'error')
+      Swal.fire({
+        title: '❗❗❗❗',
+        imageUrl: "/assets/images/PL-lionAlert.png",
+        imageHeight: 200,
+        imageWidth: 200,
+        text: 'Please Specify a Date with Format yyyy-mm-dd',
+        showClass: {
+          popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+          popup: 'animate__animated animate__fadeOutUp'
+        }
+      })
     }
   }
 
@@ -64,7 +76,19 @@ export class AllMatchesComponent implements OnInit {
   private handleSuccessfulResponse(response : any) : void {
     this.allMatches = response;
     if (this.allMatches.length == 0) {
-      Swal.fire('🧐🧐🧐', 'Hmm... There appears to be no matches played at this date', 'info')
+      Swal.fire({
+        title: '🧐🧐🧐',
+        imageUrl: "/assets/images/PL-lionAlert.png",
+        imageHeight: 200,
+        imageWidth: 200,
+        text: 'Hmm... There appears to be no matches played at this date',
+        showClass: {
+          popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+          popup: 'animate__animated animate__fadeOutUp'
+        }
+      })
     }
     console.log(response);
   }

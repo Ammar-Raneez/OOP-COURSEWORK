@@ -18,7 +18,7 @@ public interface LeagueManager {
     SportsClub deleteClub(String clubNameInput);
     SportsClub displaySelectedClub(String clubNameInput);
     FootballMatch displaySelectedMatch(String firstTeamInput, String secondTeamInput);
-    void addPlayedMatchRandom(String season);
+    FootballMatch addPlayedMatchRandom(String season);
     void addPlayedMatch(String season, String date, String firstTeamInput, String secondTeamInput, int firstTeamScore, int secondTeamScore);
     void displayPointsTable();
     void displayMatchResults();

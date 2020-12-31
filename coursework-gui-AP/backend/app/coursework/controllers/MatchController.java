@@ -20,6 +20,7 @@ import java.util.*;
  * @author Ammar Raneez | 2019163 | W1761196
  */
 public class MatchController extends Controller {
+    PremierLeagueManager premierLeagueManager = new PremierLeagueManager();
     /**
      * Serves all the football matches played in the Premier League
      * The same logic is used for all methods -> Matches obtained, any filters are applied, then sorted
@@ -87,10 +88,11 @@ public class MatchController extends Controller {
             return ok(Json.toJson(false));
         }
 
-        ConsoleController.addPlayedMatchRandom(season);
+        FootballMatch playedMatch = premierLeagueManager.addPlayedMatchRandom(season);
         List<FootballClub> updatedClubs = PremierLeagueManager.getAllFootballClubs();
         updatedClubs.sort(Collections.reverseOrder());
         ConsoleController.saveData(season);
-        return ok(Json.toJson(updatedClubs));
+        List<Object> matchAndClubs = new ArrayList<>(Arrays.asList(updatedClubs, playedMatch));
+        return ok(Json.toJson(matchAndClubs));
     }
 }

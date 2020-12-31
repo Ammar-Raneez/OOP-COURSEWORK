@@ -10,7 +10,7 @@ import { AllClubsFilterService } from 'src/app/services/all-clubs-filter/all-clu
 import { PlayMatchService } from 'src/app/services/play-match/play-match.service';
 import { NgxSpinnerService } from "ngx-spinner";
 import Swal from 'sweetalert2';
-
+import {FootballMatch} from "../../models/FootballMatch.model";
 /**
  * PointsTableComponent class, which will be used to render the points table view
  * @version 1.x December 5th 2020
@@ -23,6 +23,7 @@ import Swal from 'sweetalert2';
 })
 export class PointsTableComponent implements OnInit {
   private allClubs : FootballClub[];
+  private newMatch: FootballMatch;
 
   //*instances of required Services injected via dependency injection*//
   constructor(private allClubsService : AllClubsService, private allClubsFilterService : AllClubsFilterService,
@@ -50,17 +51,84 @@ export class PointsTableComponent implements OnInit {
   }
   /**
    * Handles the subscribe of Play match. Successful response (Error response is same as for other services)
-   * Throws an alert, if all matches have been played, else simply updates the standings
-   * @param response - false/the clubs on whether a match has actually been played or not in the backend
+   * Throws an alert, if all matches have been played, else simply updates the standings, showing an alert
+   * @param response - false/the clubs with new match on whether a match has actually been played or not in the backend
    */
-  handleSuccessfulResponseAfterPlay(response : any) : void {
+  private handleSuccessfulResponseAfterPlay(response : any) : void {
     console.log(response);
     if (!response) {
-      Swal.fire('❗❗❗❗', 'All Playable Matches have Already been Played!', 'error')
+      Swal.fire({
+        imageUrl: "/assets/images/PL-lionAlert.png",
+        imageHeight: 200,
+        imageWidth: 200,
+        title: '❗❗❗❗',
+        text: 'All Playable Matches have Already been Played!',
+        showClass: {
+          popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+          popup: 'animate__animated animate__fadeOutUp'
+        }
+      })
     }
     else {
-      this.allClubs = response;
+      this.allClubs = response[0];
+      this.newMatch = response[1];
+      let firingString: string = this.constructAlertBodyString();
+      let headerString: string = this.constructAlertHeaderString();
+      Swal.fire({
+        imageUrl: "/assets/images/PL-lionAlert.png",
+        imageHeight: 200,
+        imageWidth: 200,
+        title: headerString,
+        html: firingString,
+        showClass: {
+          popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+          popup: 'animate__animated animate__fadeOutUp'
+        }
+      });
     }
+  }
+  /**
+   * Helper method of handleSuccessfulResponseAfterPlay, to construct the alert string body
+   */
+  private constructAlertBodyString() : string {
+    let firingString : string =  ``;
+    firingString += `
+      <div style="display: flex; justify-content: space-between">
+        <div style="width: 50%">
+            <h3>
+                ${this.newMatch.firstTeam.clubName.toLocaleUpperCase()}
+            </h3>
+            <h1 style="color: #ff2882">
+                ${this.newMatch.firstTeamSingleMatchStats.goals}
+            </h1>
+        </div>
+        <div style="width: 50%">
+            <h3>
+                ${this.newMatch.secondTeam.clubName.toLocaleUpperCase()}
+            </h3>
+            <h1 style="color: #ff2882;">
+                ${this.newMatch.secondTeamSingleMatchStats.goals}
+            </h1>
+        </div>
+      </div>
+    `
+
+    return firingString;
+  }
+  /**
+   * Helper method of handleSuccessfulResponseAfterPlay, to construct the alert string header
+   */
+  private constructAlertHeaderString(): string {
+    let headerString: string;
+    headerString = this.newMatch.firstTeamSingleMatchStats.goals > this.newMatch.secondTeamSingleMatchStats.goals ?
+      this.newMatch.firstTeam.clubName + " won!" : this.newMatch.secondTeamSingleMatchStats.goals > this.newMatch.firstTeamSingleMatchStats.goals ?
+        this.newMatch.secondTeam.clubName + " won!" : "This match was a draw!";
+
+    return headerString;
   }
 
   /**

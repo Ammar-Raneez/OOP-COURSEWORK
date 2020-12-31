@@ -218,23 +218,25 @@ public class PremierLeagueManager implements LeagueManager {
     /**
      * Method implementation of addPlayedMatchRandom(), overrun from the LeagueManager interface
      * This method handles the functionality of playing a random match in the PremierLeague
+     * @param season - user input season
+     * @return footballMatch - the football match that was played (Used for GUI frontend)
      */
     @Override
-    public void addPlayedMatchRandom(String season) {
+    public FootballMatch addPlayedMatchRandom(String season) {
         FootballClub firstTeam;
         FootballClub secondTeam;
 
         //*this if condition checks whether there are enough teams to play a match in the first place*//
         if (allFootballClubs.size() < 2) {
             System.out.println("[ERROR] ==> There isn't enough teams to play a match!");
-            return;
+            return null;
         }
 
         //*We check to make sure that all the matches playable have already been played or not*//
         boolean allMatchesPlayed = validatePlayableMatches(season);
         if (allMatchesPlayed) {
             System.out.println("[ERROR] ==> All Possible Matches have already been played!");
-            return;
+            return null;
         }
 
         //*loop till two unique teams are selected (two same teams cannot play against each other)*//
@@ -270,7 +272,7 @@ public class PremierLeagueManager implements LeagueManager {
                 );
                 footballMatch.playMatchRandom();
                 allMatches.add(footballMatch);
-                break;
+                return footballMatch;
             }
 
             //*if the program has reached this statement, it means that the generated random match has already been*//
