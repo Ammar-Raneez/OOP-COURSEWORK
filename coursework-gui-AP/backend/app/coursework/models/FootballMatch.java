@@ -184,6 +184,7 @@ public class FootballMatch implements Serializable, Comparable<FootballMatch> {
 
     /**
      * private helper method of playMatch() that generates random values for the stats of a team for a match
+     * @param goals - will hold the goals scored entered, if manual play, else will be -1 for random generation
      * @return list of randomly generated values
      */
     private List<Integer> singleMatchRandomGeneratedStats(int goals) {
