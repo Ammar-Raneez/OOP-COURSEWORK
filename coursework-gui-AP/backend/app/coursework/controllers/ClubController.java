@@ -15,7 +15,7 @@ import play.libs.Json;
 import java.util.*;
 
 /**
- * ConsoleController class, will handle serving data related to Football clubs
+ * ClubController class, will handle serving data related to Football clubs
  * @version 1.x December 10th 2020
  * @author Ammar Raneez | 2019163 | W1761196
  */

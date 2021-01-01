@@ -312,20 +312,30 @@ public class ConsoleController {
         String date = ConsoleController.validateDateAndSeasonInput(MANUAL_DATE_ENTRY_PATTERN, "Please enter a date (dd-mm)",
                 "Invalid input! Please specify a date! (dd-mm)");
 
-        //*get validated inputs associated with the clubs and their score for the match*//
-        String firstTeam = ConsoleController.userInputValidation("Please enter the first clubs name", "Please specify a club name!");
-        boolean validFirstTeam = validateAddPlayedMatchClubName(firstTeam);
-        if (!validFirstTeam) {
-            return;
-        }
+        //*get validated inputs associated with the clubs and their score for the match, loop continuously till a valid club name is entered*//
+        String firstTeam; /*= ConsoleController.userInputValidation("Please enter the first clubs name", "Please specify a club name!");*/
+        boolean validFirstTeam; /* = validateAddPlayedMatchClubName(firstTeam);*/
+//        if (!validFirstTeam) {
+//            return;
+//        }
+        do {
+            firstTeam = ConsoleController.userInputValidation("Please enter the first clubs name", "Please specify a club name!");
+            validFirstTeam = validateAddPlayedMatchClubName(firstTeam);
+        } while (!validFirstTeam);
+
         String firstTeamScore = ConsoleController.userInputValidation("Please enter the first clubs score", "Please specify a score!");
         int validatedFirstTeamScore = validateAddPlayedMatchClubScore(firstTeamScore);
 
-        String secondTeam = ConsoleController.userInputValidation("Please enter the second clubs name", "Please specify a club name!");
-        boolean validSecondTeam = validateAddPlayedMatchClubName(secondTeam);
-        if (!validSecondTeam) {
-            return;
-        }
+        String secondTeam; /*= ConsoleController.userInputValidation("Please enter the second clubs name", "Please specify a club name!");*/
+        boolean validSecondTeam; /*= validateAddPlayedMatchClubName(secondTeam);*/
+//        if (!validSecondTeam) {
+//            return;
+//        }
+        do {
+            secondTeam = ConsoleController.userInputValidation("Please enter the second clubs name", "Please specify a club name!");
+            validSecondTeam = validateAddPlayedMatchClubName(secondTeam);
+        } while (!validSecondTeam);
+
         //*the same club can't play against themselves*//
         if (firstTeam.equals(secondTeam)) {
             System.out.println("[ERROR] ==> the same club cannot play against itself!");
@@ -370,6 +380,10 @@ public class ConsoleController {
             //*Try to convert the input to integer, if errored, ask score input again*//
             try {
                 parsedScore = Integer.parseInt(score);
+                //*only integers greater than 0 is accepted*//
+                while(parsedScore < 0) {
+                    parsedScore = Integer.parseInt(getUserInput("Goal cannot be less than 0!"));
+                }
                 break;
             } catch (Exception e) {
                 score = getUserInput("Please specify an Integer as the score!");
@@ -457,6 +471,13 @@ public class ConsoleController {
         return userSeasonChoice;
     }
 
+    /**
+     * Main method, brain of the program, keep running the program, displaying the menu after each method, for a continuous endless loop
+     * Only end if explicitly commanded to, upon prompted for a choice on the menu
+     * @param args - command line arguments
+     * @throws IllegalAccessException - thrown in get() method of Field
+     * @throws ClassNotFoundException - thrown in Color input
+     */
     public static void main(String[] args) throws IllegalAccessException, ClassNotFoundException {
         String season = getSeasonInput();
         printDisplay();
@@ -465,6 +486,7 @@ public class ConsoleController {
         while (true) {
             switch (userChoice) {
                 case "a":
+                    //*save and load before and after each method respectively. So that the content is always updated*//
                     loadData(season);
                     addClub();
                     saveData(season);
