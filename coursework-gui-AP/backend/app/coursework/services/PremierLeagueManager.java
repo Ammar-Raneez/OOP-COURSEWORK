@@ -418,6 +418,7 @@ public class PremierLeagueManager implements LeagueManager {
     /**
      * Method implementation of saveData(), overrun from the LeagueManager interface
      * This method handles the functionality of saving all required data
+     * @param season - user input season
      */
     @Override
     public void saveData(String season) {
@@ -442,6 +443,7 @@ public class PremierLeagueManager implements LeagueManager {
     /**
      * Method implementation of loadData(), overrun from the LeagueManager interface
      * This method handles the functionality of loading all the data that had been saved
+     * @param season  - user input season
      */
     @Override
     public void loadData(String season) {
@@ -468,6 +470,7 @@ public class PremierLeagueManager implements LeagueManager {
     /**
      * sets the season choice
      * This is needed for the Play Controllers to get access to the season of choice
+     * @param season  - user input season
      */
     public static void setSeasonFile(String season) {
         try (FileWriter file = new FileWriter(SEASON_INPUT + "\\season.txt")) {
